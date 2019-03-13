@@ -108,51 +108,32 @@ namespace BilBakalim.Web.Controllers
         [HttpGet]
         public ActionResult RolDuzenle(int id)
         {
-            TempData["KullaniciID"] = id;
-            Rol k = db.Rol.Where(x => x.ID == id).SingleOrDefault();
-            return View(k);
+
+            Rol r = db.Rol.Where(x => x.ID == id).FirstOrDefault();
+            return View(r);
         }
 
         [HttpPost]
         public ActionResult RolDuzenle(Rol k)
         {
-            int id = (int)TempData["KullaniciID"];
-            Rol c = db.Rol.Where(x => x.ID ==id ).SingleOrDefault();
-
             try
             {
-                if (k.RolAdi!=null)
+                Rol r = db.Rol.Where(x => x.ID == k.ID).FirstOrDefault();
+                if (r == null)
                 {
-                    if (c.RolAdi == k.RolAdi)
-                    {
-                        ViewData["hata"] = " aynı isimli Rol eklemeyiniz";
-                        return View();
-                    }
-                    else
-                    {
-                         c.RolAdi = k.RolAdi;
-                         c.Aciklama = k.Aciklama;
-                         db.SaveChanges();
-                        TempData["uyari"] = k.RolAdi + " isimli Rol basarı ile guncellenmiştir";
-                        return RedirectToAction("RolListesi");
-                    }
-
+                    return RedirectToAction("Hata", "Admin");
                 }
-                else
-                {
-                    ViewData["Hata"] = "Lütfen Rol adı giriniz.";
-                    return View();
-                }
-
-               
+                r.RolAdi = k.RolAdi;
+                r.Aciklama = k.Aciklama;
+                db.SaveChanges();
+                TempData["GenelMesaj"] = "Profil bilgileri başarılı bir şekilde güncellenmiştir.";
+                return RedirectToAction("RolListesi");
             }
             catch (Exception)
             {
-                ViewData["Hata"] = "Hata oluştu";
-                return View();
-                
+                return Redirect("/Admin/Hata");
             }
-  
+
         }
 
         [HttpGet]
@@ -199,22 +180,35 @@ namespace BilBakalim.Web.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult RolSil(int id)
         {
-            if (id != null)
+            Rol b = db.Rol.Where(x => x.ID == id).SingleOrDefault();
+            if (b == null)
             {
-                Rol k = db.Rol.Where(x => x.ID == id).SingleOrDefault();
-
-                db.Rol.Remove(k);
-                db.SaveChanges();
-                TempData["uyari"] = k.RolAdi + " isimli Rol basarı ile silinmiştir";
-                return RedirectToAction("RolListesi");
+                return Json(false);
             }
             else
             {
-                TempData["tehlikeli"] = "Kullanıcı silerken hata olustu";
-                return View();
+                try
+                {
+                    if (b.RolAdi == "Admin")
+                    {
+                        return Json("admin");
+                    }
+                    if (b.RolAdi == "LDAP")
+                    {
+                        return Json("ldap");
+                    }
+                    db.Rol.Remove(b);
+                    db.SaveChanges();
+                    return Json(true);
+                }
+                catch (Exception)
+                {
+                    return Json("FK");
+                }
+
             }
         }
 

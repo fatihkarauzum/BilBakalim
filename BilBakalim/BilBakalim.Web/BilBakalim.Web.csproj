@@ -170,7 +170,6 @@
     <Content Include="Views\Login\Kayit.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Admin\RolListesi.cshtml" />
-    <Content Include="Views\Admin\RolEkle.cshtml" />
     <Content Include="Views\Admin\RolDuzenle.cshtml" />
     <Content Include="Views\Admin\KullaniciGuncelle.cshtml" />
     <Content Include="Views\Admin\MenuGetir.cshtml" />
