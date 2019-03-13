@@ -49,32 +49,43 @@
                                 <tr>
                                     <th>Adı</th>
                                     <th>E-Mail</th>
-                                    <th>Tel</th>
+                                    <th>Kullanici Adi</th>
                                     <th>Yetki</th>
+                                    <th>Durum</th>
                                     <th style="text-align:center;"> İşlemler</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    <tr id="@item.ID">
-                                        <td>
-                                            @item.Adi @item.Soyadi
-                                        </td>
-                                        <td>
-                                            @item.Email
-                                        </td>
-                                        <td>
-                                            @item.Adi
-                                        </td>
-                                        <td>
-                                            item.rol.adi
-                                        </td>
-                                        <td>
-                                            <a title="Sil" style="float:right;" class="btn btn-danger btn-xs btn-confirm" data-id="@item.ID"><i class="icon-trash"></i> Sil</a>
-                                            <a title="Düzünle" style="float:right;margin-right:5px;" href="/Kullanici/Guncelle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Düzenle</a>
-                                        </td>
-                                    </tr>
+                                <tr id="@item.ID">
+                                    <td>
+                                        @item.Adi @item.Soyadi
+                                    </td>
+                                    <td>
+                                        @item.Email
+                                    </td>
+                                    <td>
+                                        @item.Adi
+                                    </td>
+                                    <td>
+                                        @item.Rol.RolAdi
+                                    </td>
+                                    <td>
+                                        @if (item.Durum == true)
+                                        {
+                                        <span style="font-size:10px;" class="label label-success">Aktif</span>
+                                        }
+                                        else
+                                        {
+                                        <span style="font-size:10px;" class="label label-danger">Pasif</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a title="Sil" style="float:right;" class="btn btn-danger btn-xs btn-confirm" data-id="@item.ID"><i class="icon-trash"></i> Sil</a>
+                                        <a title="Düzünle" style="float:right;margin-right:5px;" href="/Admin/KullaniciGuncelle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Düzenle</a>
+                                    </td>
+                                </tr>
                                 }
 
                             </tbody>
@@ -153,7 +164,7 @@
         modalConfirm(function (confirm) {
             if (confirm) {
                 $.ajax({
-                    url: '/Kullanici/Sil/' + id,
+                    url: '/Admin/KullaniciSil/' + id,
                     type: 'POST',
                     success: function (rs) {
                         if (rs === true) {
