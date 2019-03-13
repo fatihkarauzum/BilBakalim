@@ -138,8 +138,6 @@
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Admin\MenuGetir.cshtml" />
-    <Content Include="Views\Admin\YetkiBulunamadi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Classes\Functions.cs" />
@@ -172,6 +170,8 @@
     <Content Include="Views\Login\Kayit.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Admin\KullaniciGuncelle.cshtml" />
+    <Content Include="Views\Admin\MenuGetir.cshtml" />
+    <Content Include="Views\Admin\YetkiBulunamadi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
