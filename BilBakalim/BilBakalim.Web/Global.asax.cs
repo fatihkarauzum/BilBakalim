@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using BilBakalim.Web.App_Classes;
 
 namespace BilBakalim.Web
 {
@@ -13,6 +14,7 @@ namespace BilBakalim.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalFilters.Filters.Add(new _SecurityFilter());
         }
     }
 }

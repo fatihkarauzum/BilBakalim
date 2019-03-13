@@ -138,9 +138,12 @@
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Admin\MenuGetir.cshtml" />
+    <Content Include="Views\Admin\YetkiBulunamadi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Classes\Functions.cs" />
+    <Compile Include="App_Classes\_SecurityFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -148,6 +151,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MenuControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -181,7 +185,6 @@
     <Folder Include="Content\Home\" />
     <Folder Include="Content\images\" />
     <Folder Include="Content\Login_v4\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BilBakalim.Data\BilBakalim.Data.csproj">
