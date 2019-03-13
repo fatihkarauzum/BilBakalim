@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="KIDS is a clean, modern, and fully responsive Html Template. Take your Startup business website to the next level. It is designed for kindergarten, childcare, homeschooling, school, learning, playground businesses or any type of person or business who wants to showcase their work, services and professional way.">
+    <meta name="keywords" content="business, care, childcare, children, clean, corporate, happykids, homeschool, kids, kindergarten, playground, responsive, school, learning">
+    <meta name="author" content="rometheme.net">
+
+    @RenderSection("head", false)
+
+</head>
+
+<body>
+
+    @*<div class="navbar-main" style="background: #272727">
+            <div class="container">
+                <nav id="navbar-example" class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="/Content/index-1.html">
+                        <img src="/Content/images/logo.png" alt="" height="60">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                </nav>
+            </div>
+        </div>*@
+
+    @RenderBody()
+
+    @RenderSection("script", false)
+
+</body>
+</html>

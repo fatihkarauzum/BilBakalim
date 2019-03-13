@@ -1,0 +1,281 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="KIDS is a clean, modern, and fully responsive Html Template. Take your Startup business website to the next level. It is designed for kindergarten, childcare, homeschooling, school, learning, playground businesses or any type of person or business who wants to showcase their work, services and professional way.">
+    <meta name="keywords" content="business, care, childcare, children, clean, corporate, happykids, homeschool, kids, kindergarten, playground, responsive, school, learning">
+    <meta name="author" content="rometheme.net">
+
+    <!-- ==============================================
+    Favicons
+    =============================================== -->
+    <link rel="shortcut icon" href="/Content/Home/images\favicon.ico">
+    <link rel="apple-touch-icon" href="/Content/Home/images\apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/Content/Home/images\apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/Content/Home/images\apple-touch-icon-114x114.png">
+
+    <!-- ==============================================
+    CSS VENDOR
+    =============================================== -->
+    <link rel="stylesheet" type="text/css" href="/Content/Home/css\vendor\bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Home/css\vendor\font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Home/css\vendor\owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Home/css\vendor\owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Home/css\vendor\magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Home/css\vendor\animate.min.css">
+
+    <!-- ==============================================
+    Custom Stylesheet
+    =============================================== -->
+    <link rel="stylesheet" type="text/css" href="/Content/Home/css\style.css">
+
+    <script src="/Content/Home/js\vendor\modernizr.min.js"></script>
+
+    <script src='/google_analytics_auto.js'></script>
+    <style>
+        .btnn {
+            border: none;
+            color: white;
+            padding: 8px 28px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .success {
+            background-color: #4CAF50;
+        }
+
+            .success:hover {
+                background-color: #46a049;
+            }
+
+        .warning {
+            background-color: #a834b5;
+        }
+            /* Orange */
+            .warning:hover {
+                background: #a13eac;
+            }
+    </style>
+
+
+    @RenderSection("head", false)
+
+</head>
+
+<body>
+
+    <!-- LOAD PAGE -->
+    <div class="animationload">
+        <div class="loader"></div>
+    </div>
+
+    <!-- BACK TO TOP SECTION -->
+    <a href="/Content/Home/#0" class="cd-top cd-is-visible cd-fade-out">Top</a>
+
+    <!-- HEADER -->
+    <div class="header header-1">
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-sm-8 col-md-6">
+
+                    </div>
+                    <div class="col-sm-4 col-md-6">
+                        <div class="sosmed-icon pull-right d-inline-flex">
+                            <a href="#" class="fb"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="tw"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="ig"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="in"><i class="fa fa-linkedin"></i></a>
+                            <button type="submit" class="btnn warning   ">Giriş</button>
+                            <button type="submit" class="btnn success   ">Kayıt Ol</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NAVBAR SECTION -->
+        <div class="navbar-main">
+            <div class="container">
+                <nav id="navbar-example" class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="/Content/Home/index-1.html">
+                        <img src="/Content/Home/images\logo.png" alt="">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/Home/Index">ANA SAYFA</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Content/Home/about.html">ABOUT US</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Content/Home/classes.html">RAPORLAR</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Home/Gelistiriciler">GELİŞTİRİCİLER</a>
+                            </li>
+                            <li class="nav-item dropdown dmenu">
+                                <a class="nav-link dropdown-toggle" href="/Content/Home/#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    PAGES
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/Content/Home/page-gallery.html">GALLERY</a>
+                                    <a class="dropdown-item" href="/Content/Home/page-testimonials.html">TESTIMONIALS</a>
+                                    <a class="dropdown-item" href="/Content/Home/page-faq.html">FAQ</a>
+                                    <a class="dropdown-item" href="/Content/Home/page-404.html">404 PAGE</a>
+                                    <a class="dropdown-item" href="/Content/Home/page-events.html">EVENTS</a>
+                                    <a class="dropdown-item" href="/Content/Home/page-events-single.html">SINGLE EVENTS</a>
+                                    <a class="dropdown-item" href="/Content/Home/page-news.html">NEWS</a>
+                                    <a class="dropdown-item" href="/Content/Home/page-news-single.html">SINGLE NEWS</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Content/Home/contact.html">İLETİŞİM</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav> <!-- -->
+
+            </div>
+        </div>
+
+    </div>
+
+
+    @RenderBody()
+
+
+    <!-- FOOTER SECTION -->
+    <div class="footer" data-background="images/bg.jpg">
+        <div class="content-wrap">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        <div class="footer-item">
+                            <img src="/Content/Home/images\logo.png" alt="logo bottom" class="logo-bottom">
+                            <div class="spacer-30"></div>
+                            <p>Düzce üniversitesi bilgisayar mühendisliği öğrencileri tarafından geliştirildi.</p>
+                            <a href="/Content/Home/#"><i class="fa fa-angle-right"></i> Daha fazla </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        <div class="footer-item">
+                            <div class="footer-title">
+                                Contact Info
+                            </div>
+                            <ul class="list-info">
+                                <li>
+                                    <div class="info-icon">
+                                        <span class="fa fa-map-marker"></span>
+                                    </div>
+                                    <div class="info-text">99 S.t Jomblo Park Pekanbaru 28292. Indonesia</div>
+                                </li>
+                                <li>
+                                    <div class="info-icon">
+                                        <span class="fa fa-phone"></span>
+                                    </div>
+                                    <div class="info-text">(0761) 654-123987</div>
+                                </li>
+                                <li>
+                                    <div class="info-icon">
+                                        <span class="fa fa-envelope"></span>
+                                    </div>
+                                    <div class="info-text">info@yoursite.com</div>
+                                </li>
+                                <li>
+                                    <div class="info-icon">
+                                        <span class="fa fa-clock-o"></span>
+                                    </div>
+                                    <div class="info-text">Mon - Sat 09:00 - 17:00</div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        <div class="footer-item">
+                            <div class="footer-title">
+                                Useful Links
+                            </div>
+
+                            <ul class="list">
+                                <li><a href="/Content/Home/about.html" title="About us">About us</a></li>
+                                <li><a href="/Content/Home/teachers.html" title="Our Teacher">Our Teacher</a></li>
+                                <li><a href="/Content/Home/classes.html" title="Our Classes">Our Classes</a></li>
+                                <li><a href="/Content/Home/page-events.html" title="Our Events">Our Events</a></li>
+                                <li><a href="/Content/Home/contact.html" title="Contact Us">Contact Us</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 col-lg-3">
+                        <div class="footer-item">
+                            <div class="footer-title">
+                                Get in Touch
+                            </div>
+                            <p>Sosyal Medya Hesaplarımızdan Bizi Takip Ediniz</p>
+                            <div class="sosmed-icon d-inline-flex">
+                                <a href="/Content/Home/#" class="fb"><i class="fa fa-facebook"></i></a>
+                                <a href="/Content/Home/#" class="tw"><i class="fa fa-twitter"></i></a>
+                                <a href="/Content/Home/#" class="ig"><i class="fa fa-instagram"></i></a>
+                                <a href="/Content/Home/#" class="in"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fcopy">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <p class="ftex">Copyright 2019 &copy; <span class="color-primary">Bil Bakalım</span> <span class="color-primary"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS VENDOR -->
+    <script src="/Content/Home/js\vendor\jquery.min.js"></script>
+    <script src="/Content/Home/js\vendor\bootstrap.min.js"></script>
+    <script src="/Content/Home/js\vendor\owl.carousel.js"></script>
+    <script src="/Content/Home/js\vendor\jquery.magnific-popup.min.js"></script>
+
+    <!-- SENDMAIL -->
+    <script src="/Content/Home/js\vendor\validator.min.js"></script>
+    <script src="/Content/Home/js\vendor\form-scripts.js"></script>
+
+    <script src="/Content/Home/js\script.js"></script>
+
+    @RenderSection("script", false)
+
+</body>
+</html>

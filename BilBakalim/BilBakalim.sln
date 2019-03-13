@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BilBakalim.Data", "BilBakalim.Data\BilBakalim.Data.csproj", "{28B93B4F-2EC9-4B15-A0C7-E639E42DE01F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BilBakalim.Web", "BilBakalim.Web\BilBakalim.Web.csproj", "{FA28A4E5-57CB-4B96-A7B8-4806766341A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28B93B4F-2EC9-4B15-A0C7-E639E42DE01F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28B93B4F-2EC9-4B15-A0C7-E639E42DE01F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28B93B4F-2EC9-4B15-A0C7-E639E42DE01F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28B93B4F-2EC9-4B15-A0C7-E639E42DE01F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA28A4E5-57CB-4B96-A7B8-4806766341A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA28A4E5-57CB-4B96-A7B8-4806766341A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA28A4E5-57CB-4B96-A7B8-4806766341A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA28A4E5-57CB-4B96-A7B8-4806766341A4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
