@@ -1,0 +1,65 @@
+﻿
+@using BilBakalim.Web.Models;
+@using BilBakalim.Data;
+@model MenuControl
+
+
+<aside>
+    <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+            @*<li>
+                <a class="active" href="/Admin/Index">
+                    <i class="icon-home"></i>
+                    <span>Anasayfa</span>
+                </a>
+            </li>*@
+            @foreach (Menu menu in Model.menuler)
+            {
+                foreach (MenuRol rol in Model.roller)
+                {
+                    if (menu.ID == rol.MenuId)
+                    {
+                        if (menu.AcilirMenu == true)
+                        {
+                            <li class="sub-menu">
+                                <a href="/Content/javascript:;">
+                                    <i class="@menu.Icon"></i>
+                                    <span>@menu.Adi</span>
+                                </a>
+                                <ul class="sub">
+                                    @foreach (MenuRol rol2 in Model.roller)
+                                    {
+                                        foreach (Menu altmenu in Model.menuler.Where(x => x.ParentMenuID != null))
+                                        {
+                                            if (altmenu.ParentMenuID == menu.ID && rol2.MenuId == altmenu.ID)
+                                            {
+                                                <li><a href="/@altmenu.Controller/@altmenu.Action">@altmenu.Adi</a></li>
+                                            }
+                                        }
+                                    }
+                                </ul>
+                            </li>
+
+                        }
+                        else if (menu.ParentMenuID == null && menu.Icon != null)
+                        {
+                            <li>
+                                <a href="/@menu.Controller/@menu.Action">
+                                    <i class="@menu.Icon"></i>
+                                    <span>@menu.Adi </span>
+                                </a>
+                            </li>
+                        }
+
+
+                    }
+                }
+            }
+
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+
+

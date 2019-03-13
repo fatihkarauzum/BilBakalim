@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BilBakalim.Web.Models;
 
 namespace BilBakalim.Web.Controllers
 {
@@ -21,6 +22,79 @@ namespace BilBakalim.Web.Controllers
         public ActionResult KullaniciListesi()
         {
             return View(db.Kullanici.ToList());
+        }
+
+        public PartialViewResult MenuGetir()
+        {
+            Kullanici p = (Kullanici)Session["Kullanici"];
+
+            MenuControl k = new MenuControl();
+            k.menuler = db.Menu.ToList();
+            k.roller = db.MenuRol.Where(x => x.RolId == p.RolID).ToList();
+            return PartialView(k);
+        }
+
+        [HttpGet]
+        public ActionResult YetkiBulunamadi()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult KullaniciGuncelle(int id)
+        {
+            ViewBag.Roller = db.Rol.ToList();
+            Kullanici k = db.Kullanici.Where(x => x.ID == id).FirstOrDefault();
+            return View(k);
+
+        }
+
+        [HttpPost]
+        public ActionResult KullaniciGuncelle(Kullanici k)
+        {
+            try
+            {
+
+                Kullanici ku = db.Kullanici.Where(x => x.ID==k.ID).FirstOrDefault();
+                if (ku == null)
+                {
+                    return RedirectToAction("Hata", "Admin");
+                }
+                ku.Adi = k.Adi;
+                ku.Soyadi = k.Soyadi;
+                ku.Email = k.Email;
+                ku.Sifre = k.Sifre;              
+                db.SaveChanges();
+                TempData["GenelMesaj"] = "Kullanıcı güncelleme işlemi başarılı bir şekilde tamamlanmıştır.";
+                return RedirectToAction("KullaniciListesi");
+            }
+            catch (Exception)
+            {
+                return Redirect("/Admin/Hata");
+            }
+        }
+        [HttpPost]
+        public ActionResult KullaniciSil(int id)
+        {
+            Kullanici b = db.Kullanici.Where(x => x.ID == id).SingleOrDefault();
+            if (b == null)
+            {
+                return Json(false);
+            }
+            else
+            {
+                try
+                {
+                    db.Kullanici.Remove(b);
+                    db.SaveChanges();
+                    return Json(true);
+                }
+                catch (Exception)
+                {
+                    return Json("FK");
+                }
+
+            }
         }
 
         [HttpGet]

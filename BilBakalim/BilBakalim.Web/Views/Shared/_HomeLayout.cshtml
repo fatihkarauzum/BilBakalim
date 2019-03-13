@@ -45,7 +45,7 @@
 
     <script src='/google_analytics_auto.js'></script>
     <style>
-        .btnn {
+        .buton {
             border: none;
             color: white;
             padding: 8px 28px;
@@ -54,19 +54,19 @@
             cursor: pointer;
         }
 
-        .success {
+        .kayit {
             background-color: #4CAF50;
         }
 
-            .success:hover {
+            .kayit:hover {
                 background-color: #46a049;
             }
 
-        .warning {
+        .giris {
             background-color: #a834b5;
         }
             /* Orange */
-            .warning:hover {
+            .giris:hover {
                 background: #a13eac;
             }
     </style>
@@ -102,9 +102,9 @@
                             <a href="#" class="fb"><i class="fa fa-facebook"></i></a>
                             <a href="#" class="tw"><i class="fa fa-twitter"></i></a>
                             <a href="#" class="ig"><i class="fa fa-instagram"></i></a>
-                            <a href="#" class="in"><i class="fa fa-linkedin"></i></a>
-                            <button type="submit" class="btnn warning   ">Giriş</button>
-                            <button type="submit" class="btnn success   ">Kayıt Ol</button>
+                            <a href="#" class="in"><i class="fa fa-linkedin"></i></a>                          
+                            <button class="buton giris" onclick="location.href = '/Login/Login'" type="button">Giriş</button>
+                            <button class="buton kayit" onclick="location.href = '/Login/Kayit'" type="button">Kayıt Ol</button>
                         </div>
                     </div>
                 </div>
