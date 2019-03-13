@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewBag.Title = "Yetkiler";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using BilBakalim.Data
+
+@model Rol
+
+@{
+    int temp = 0;
+}
+
+@section head{
+    <link rel="stylesheet" href="/Content/assets/data-tables/DT_bootstrap.css" />
+    <style type="text/css">
+        tbody, thead {
+            width: 19.2%;
+        }
+
+        tbody, thead {
+            font-size: 12px;
+        }
+
+        #back {
+            background-color: #EECBC4;
+        }
+    </style>
+}
+
+<form role="form" method="post" action="/Kullanici/Yetkiler">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    
+                        <span><b> @Model.RolAdi</b> İsimli Profile Ait Yetkiler</span>
+                        <button type="submit" class="btn btn-success" style="float: right; margin-top:-6px">Kaydet</button>
+                        <a href="/Kullanici/ProfilListesi" class="btn btn-default" style="float: right; margin-top: -6px; margin-right: 5px">Geri</a>
+                    
+                </header>
+            </section>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Menü Erişim İzinleri
+                    
+                </header>
+                <div class="hidden">
+                    <input name="RolID" value="@Model.ID" />
+                </div>
+                <div class="panel-body" id="demo">
+                    <div class="col-lg-12">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Menü Adı</th>
+                                <th>Url</th>
+                                <th align="center" width="20%">Yetki Durumu</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            @{
+
+                                foreach (Menu menu in ViewBag.Menuler)
+                                {
+                                    <tr>
+                                        <td>
+                                            @menu.Adi
+                                        </td>
+                                        <td>
+                                            @menu.Controller/@menu.Action
+                                        </td>
+                                        @foreach (MenuRol yetki in ViewBag.Yetkileri)
+                                        {
+                                            if (menu.ID == yetki.MenuId)
+                                            {
+                                                <td>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            @if (yetki.Rol.RolAdi == "Admin")
+                                                            {
+                                                                    @*<input disabled name="@menu.MenuList" value="true" type="checkbox" checked>*@
+                                                                <input disabled onclick="myFunction1()" class="menuizin" value="@menu.Adi" type="checkbox" checked>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                    @*<input name="@menu.MenuList" value="true" type="checkbox" checked*@
+                                                                <input onclick="myFunction1()" class="menuizin" value="@menu.Adi" type="checkbox" checked>
+
+                                                            }
+
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                temp = 1;
+                                                continue;
+                                            }
+                                        }
+
+                                        @if (temp == 0)
+                                        {
+                                            <td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        @*<input name="@menu.MenuList" value="true" type="checkbox">*@
+                                                        <input onclick="myFunction1()" class="menuizin" value="@menu.Adi" type="checkbox">
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        }
+                                        @{
+                                            temp = 0;
+                                        }
+                                    </tr>
+                                }
+
+                            }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <input class="hidden" onload="myFunction()" type="text" name="katrol" id="katrol">
+    <input class="hidden" onload="myFunction1()" type="text" name="menuler" id="menurol" />
+    <input class="hidden" onload="myFunction2()" type="text" name="islemler" id="islemrol" />
+</form>
+
+
+
+@section script{
+    <script type="text/javascript" src="/Content/assets/data-tables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="/Content/assets/data-tables/DT_bootstrap.js"></script>
+
+    <!--common script for all pages-->
+    <!--script for this page only-->
+    <script src="/Content/js/editable-table.js"></script>
+    <!-- END JAVASCRIPTS -->
+    <script>
+        jQuery(document).ready(function () {
+            EditableTable.init();
+
+        });
+    </script>
+    <script>
+        window.onload = function () {
+            $('#listele').addClass('active');
+        }</script>
+
+    <script>
+        function myFunction() {
+
+            var checkedValue = "";
+            var cboxes = document.getElementsByClassName('messageCheckbox');
+            var len = cboxes.length;
+            for (var i = 0; i < len; i++) {
+                if (cboxes[i].checked) {
+                    checkedValue = cboxes[i].value + "^" + checkedValue;
+                }
+            }
+
+            document.getElementById("katrol").value = checkedValue;
+        }
+        function myFunction1() {
+
+            var checkedValue = "";
+            var cboxes = document.getElementsByClassName('menuizin');
+            var len = cboxes.length;
+            for (var i = 0; i < len; i++) {
+                if (cboxes[i].checked) {
+                    checkedValue = cboxes[i].value + "^" + checkedValue;
+                }
+            }
+
+            document.getElementById("menurol").value = checkedValue;
+        }
+
+        function myFunction2() {
+
+            var checkedValue = "";
+            var cboxes = document.getElementsByClassName('islemizin');
+            var len = cboxes.length;
+            for (var i = 0; i < len; i++) {
+                if (cboxes[i].checked) {
+                    checkedValue = cboxes[i].value + "^" + checkedValue;
+                }
+            }
+
+            document.getElementById("islemrol").value = checkedValue;
+        }
+
+
+        $(document).ready(function () {
+            myFunction();
+            myFunction1();
+            myFunction2();
+        });
+
+    </script>
+
+}
+
