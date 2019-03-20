@@ -29,7 +29,7 @@ namespace BilBakalim.Web.Controllers
             Kullanici p = (Kullanici)Session["Kullanici"];
 
             MenuControl k = new MenuControl();
-            k.menuler = db.Menu.ToList();
+            k.menuler = db.Menu.Where(x => x.Aktif == true).ToList();
             k.roller = db.MenuRol.Where(x => x.RolId == p.RolID).ToList();
             return PartialView(k);
         }

@@ -33,6 +33,7 @@ namespace BilBakalim.Data
         public string Action { get; set; }
 
         public bool? AcilirMenu { get; set; }
+        public bool? Aktif { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Menu> Menu1 { get; set; }
