@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>audio &#8211; Kids World</title>
+	<atom:link href="https://kidsheaven.wpengine.com/category/audio/feed/" rel="self" type="application/rss+xml" />
+	<link>https://kidsheaven.wpengine.com</link>
+	<description>Just another WordPress site</description>
+	<lastBuildDate>Tue, 22 Jan 2019 07:26:22 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.9.9</generator>
+	<item>
+		<title>Self Hosted Audio</title>
+		<link>https://kidsheaven.wpengine.com/self-hosted-audio/</link>
+		<comments>https://kidsheaven.wpengine.com/self-hosted-audio/#respond</comments>
+		<pubDate>Thu, 18 Jun 2015 06:23:56 +0000</pubDate>
+		<dc:creator><![CDATA[ram]]></dc:creator>
+				<category><![CDATA[audio]]></category>
+		<category><![CDATA[News]]></category>
+		<category><![CDATA[design]]></category>
+
+		<guid isPermaLink="false">http://kidsheaven.wpengine.com/?p=116</guid>
+		<description><![CDATA[Etiam leo sapien, rutrum id vestibulum vitae, tempor eu eros. Fusce mollis tellus id tortor tempus cursus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum efficitur egestas ultrices. Fusce sollicitudin leo sit amet sem pellentesque, volutpat efficitur lectus tristique. Pellentesque rhoncus suscipit eros, ut cursus nisl luctus vel. Integer [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Etiam leo sapien, rutrum id vestibulum vitae, tempor eu eros. Fusce mollis tellus id tortor tempus cursus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum efficitur egestas ultrices. Fusce sollicitudin leo sit amet sem pellentesque, volutpat efficitur lectus tristique. Pellentesque rhoncus suscipit eros, ut cursus nisl luctus vel. Integer cursus neque vel dapibus vestibulum. Proin volutpat, libero quis mollis eleifend, mauris sem sodales mi, vitae pellentesque ex nibh ut nibh. Nunc ac fermentum justo. Aenean faucibus egestas turpis eu elementum.</p>
+<p>Duis aliquet placerat finibus. Quisque lacinia iaculis condimentum. Nullam quis ultrices arcu. In rhoncus nulla ut lorem facilisis, a laoreet erat aliquet. Nullam malesuada tempor quam sed tristique. Mauris vulputate ipsum ut ipsum tincidunt porttitor.</p>
+]]></content:encoded>
+			<wfw:commentRss>https://kidsheaven.wpengine.com/self-hosted-audio/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

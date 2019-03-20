@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kids World - ECPv4.5.0.2//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Kids World
+X-ORIGINAL-URL:https://kidsheaven.wpengine.com
+X-WR-CALDESC:Events for Kids World
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20180407T100000
+DTEND;TZID=UTC+0:20190407T113000
+DTSTAMP:20190313T194224
+CREATED:20150716T094936Z
+LAST-MODIFIED:20170925T061236Z
+UID:4816-1523095200-1554636600@kidsheaven.wpengine.com
+SUMMARY:Elite group organization
+DESCRIPTION:Nulla sagittis arcu et risus eleifend eleifend. Integer id maximus nibh. Sed non enim fringilla\, mollis ex non\, vestibulum neque. Sed non lacus nisl. Pellentesque lobortis risus in convallis tempor. Cras ultricies lectus sit amet est convallis rutrum. Praesent non ultrices nibh\, a interdum sem. Nulla dui ligula\, malesuada sed ante a\, scelerisque tristique nibh. Vivamus nec dapibus dui. Maecenas non cursus metus.\n\nSed non enim fringilla\, mollis ex non\, vestibulum neque. Sed non lacus nisl. Pellentesque lobortis risus in convallis tempor. Cras ultricies lectus sit amet est convallis rutrum. Praesent non ultrices nibh\, a interdum sem. Nulla dui ligula\, malesuada sed ante a\, scelerisque tristique nibh. Vivamus nec dapibus dui. Maecenas non cursus metus.
+URL:https://kidsheaven.wpengine.com/event/elite-group-organization/
+LOCATION:Avalanche\, Ooty\, 87455\, India
+GEO:11.3960886;76.6894528
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Avalanche Ooty 87455 India;X-APPLE-RADIUS=500;X-TITLE=Avalanche:geo:76.6894528,11.3960886
+CATEGORIES:Education,Service
+ATTACH;FMTTYPE=image/jpeg:https://kidsheaven.wpengine.com/wp-content/uploads/2015/02/event6.jpg
+ORGANIZER;CN="Matthew%20Kate":MAILTO:ram@iamd.com
+END:VEVENT
+END:VCALENDAR

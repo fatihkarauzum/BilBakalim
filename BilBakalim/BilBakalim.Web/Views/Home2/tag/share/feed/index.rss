@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Share &#8211; Kids World</title>
+	<atom:link href="https://kidsheaven.wpengine.com/tag/share/feed/" rel="self" type="application/rss+xml" />
+	<link>https://kidsheaven.wpengine.com</link>
+	<description>Just another WordPress site</description>
+	<lastBuildDate>Tue, 22 Jan 2019 07:26:22 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.9.9</generator>
+	<item>
+		<title>Economy and creativity</title>
+		<link>https://kidsheaven.wpengine.com/event/economy-and-creativity/</link>
+		<comments>https://kidsheaven.wpengine.com/event/economy-and-creativity/#respond</comments>
+		<pubDate>Fri, 06 Apr 2018 08:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[ram]]></dc:creator>
+				<category><![CDATA[Share]]></category>
+
+		<guid isPermaLink="false">http://wedesignthemes.com/themes/fitness-zone/?post_type=tribe_events&#038;p=256</guid>
+		<description><![CDATA[Sed sollicitudin odio vitae blandit aliquet. Praesent vitae urna ornare, sodales lacus lobortis, dictum risus. Donec ut tellus euismod, venenatis elit quis, volutpat nisl. Fusce ultricies lorem eget tellus finibus euismod.]]></description>
+				<content:encoded><![CDATA[<p>Sed sollicitudin odio vitae blandit aliquet. Praesent vitae urna ornare, sodales lacus lobortis, dictum risus. Donec ut tellus euismod, venenatis elit quis, volutpat nisl. Fusce ultricies lorem eget tellus finibus euismod. Phasellus eu erat interdum, finibus ligula vitae, lobortis metus. Duis blandit facilisis laoreet. Cras auctor ex tellus, sed ornare leo luctus imperdiet. Phasellus scelerisque rhoncus massa, a fringilla augue mattis at. Cras in scelerisque diam, nec ornare nisl. In at elit feugiat, viverra tellus nec, pharetra massa. Cras vehicula rhoncus lorem sagittis porta. Suspendisse in enim condimentum, porta neque quis, facilisis nisl. Morbi sit amet quam ornare, ornare nisl sed, placerat mi. Ut ut arcu eu elit dapibus ultrices. Suspendisse non dapibus nibh, nec blandit metus.</p>
+<p>Duis mollis, leo semper tristique efficitur, metus dui scelerisque metus, quis tempus lectus odio quis lorem. Sed pulvinar vehicula nisi. Vestibulum neque dui, pulvinar at fermentum vitae, interdum sit amet leo. In hac habitasse platea dictumst. Morbi quis sodales odio. Duis feugiat libero gravida molestie fringilla.</p>
+]]></content:encoded>
+			<wfw:commentRss>https://kidsheaven.wpengine.com/event/economy-and-creativity/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

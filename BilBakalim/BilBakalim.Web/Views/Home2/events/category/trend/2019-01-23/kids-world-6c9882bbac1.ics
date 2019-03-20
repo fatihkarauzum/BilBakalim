@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kids World - ECPv4.5.0.2//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Kids World
+X-ORIGINAL-URL:https://kidsheaven.wpengine.com
+X-WR-CALDESC:Events for Kids World
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20180404T080000
+DTEND;TZID=UTC+0:20190404T170000
+DTSTAMP:20190313T185619
+CREATED:20150210T114147Z
+LAST-MODIFIED:20170925T061137Z
+UID:250-1522828800-1554397200@kidsheaven.wpengine.com
+SUMMARY:Annual Sports Day for tiny tots
+DESCRIPTION:Nam vehicula tortor a sapien consectetur congue. Curabitur dolor nibh\, rhoncus vitae enim non\, auctor malesuada purus. Praesent elit justo\, dignissim a suscipit commodo\, malesuada at felis. Cras non ex sem. Sed posuere ultricies felis\, accumsan viverra nunc luctus eget. Maecenas lobortis tortor congue leo tristique\, efficitur accumsan nisl mattis. In euismod in erat vitae mollis. Sed vel augue rhoncus\, gravida neque ut\, tempor magna. Suspendisse interdum placerat risus pretium vestibulum. Nullam quis odio sed magna tempus bibendum et et velit. Cum sociis natoque penatibus et magnis dis parturient montes\, nascetur ridiculus mus. Sed elementum lorem metus\, ut blandit lectus blandit nec. Duis ex leo\, venenatis non suscipit quis\, finibus vel diam. Donec efficitur erat nunc\, sed convallis enim elementum vitae. Vestibulum vel tempus leo. Sed dictum\, mauris vitae lacinia semper\, nunc nunc posuere nunc\, eu sodales ipsum urna in urna.\n\nMorbi vestibulum ipsum nibh. Nulla non mattis lorem. Nunc eleifend feugiat ultrices. Donec ullamcorper erat vel est pulvinar condimentum. Cras odio nibh\, fringilla sed finibus nec\, pulvinar a nisi. Proin sed augue ut arcu accumsan mattis. Etiam ornare accumsan mauris id scelerisque. Ut vestibulum massa ut ornare hendrerit.
+URL:https://kidsheaven.wpengine.com/event/how-designers-can-survive-the-latest-challenge/
+LOCATION:peelmedu \, coimbatore\, 95412\, India
+GEO:11.0331511;77.02766
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=peelmedu  coimbatore 95412 India;X-APPLE-RADIUS=500;X-TITLE=peelmedu:geo:77.02766,11.0331511
+CATEGORIES:Trend
+ATTACH;FMTTYPE=image/jpeg:https://kidsheaven.wpengine.com/wp-content/uploads/2015/02/event2.jpg
+ORGANIZER;CN="William%20Dafoe":MAILTO:http://iamdesigning.com
+END:VEVENT
+END:VCALENDAR

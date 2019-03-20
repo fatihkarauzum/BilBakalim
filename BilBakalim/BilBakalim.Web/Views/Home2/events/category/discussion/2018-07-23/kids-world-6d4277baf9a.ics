@@ -1,0 +1,43 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kids World - ECPv4.5.0.2//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Kids World
+X-ORIGINAL-URL:https://kidsheaven.wpengine.com
+X-WR-CALDESC:Events for Kids World
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20171224T080000
+DTEND;TZID=UTC+0:20181030T170000
+DTSTAMP:20190313T195810
+CREATED:20150210T124251Z
+LAST-MODIFIED:20170925T060136Z
+UID:259-1514102400-1540918800@kidsheaven.wpengine.com
+SUMMARY:A well adjusted child is a delight to bring up
+DESCRIPTION:Vestibulum fermentum consequat odio at dapibus. Sed rutrum\, nunc interdum aliquam tempor\, mi elit fermentum eros\, non iaculis ante purus vitae quam. Donec condimentum malesuada metus. Maecenas consectetur sapien est\, nec rutrum orci viverra imperdiet. Etiam tortor nunc\, ullamcorper eget gravida ac\, finibus vel metus. Proin vestibulum commodo tellus\, id varius mauris pharetra in. Sed molestie magna quis dui vulputate consectetur. Nulla id lectus at elit scelerisque egestas a et purus. Maecenas sit amet sagittis neque. Praesent quis lobortis risus. Praesent ac nunc auctor\, pulvinar ante sit amet\, bibendum lacus. Vivamus tristique dolor eget augue ullamcorper\, quis euismod leo dapibus. Nulla eleifend felis non pretium placerat. Nullam non pretium enim. Maecenas velit sem\, venenatis vitae tincidunt vitae\, rutrum a neque. Morbi luctus pellentesque lectus at tempor.\n\nDonec mollis sed nunc eu sagittis. Fusce interdum risus vitae nisl egestas faucibus. Ut quam augue\, convallis consectetur varius sit amet\, bibendum vitae ligula. Ut magna erat\, ornare ut scelerisque sed\, sagittis at urna. Mauris molestie vehicula elit\, non interdum dui tincidunt nec. Nullam nec felis bibendum\, fringilla tortor malesuada\, malesuada nisi.
+URL:https://kidsheaven.wpengine.com/event/free-talk-discussion/
+LOCATION:Codissia\, Coimbatore\, 24785\, India
+GEO:11.0388544;77.0205051
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Codissia Coimbatore 24785 India;X-APPLE-RADIUS=500;X-TITLE=Codissia:geo:77.0205051,11.0388544
+CATEGORIES:Discussion,Get Together
+ATTACH;FMTTYPE=image/jpeg:https://kidsheaven.wpengine.com/wp-content/uploads/2015/02/event6.jpg
+ORGANIZER;CN="William%20Dafoe":MAILTO:http://iamdesigning.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20180410T170000
+DTEND;TZID=UTC+0:20200410T174500
+DTSTAMP:20190313T195810
+CREATED:20150210T105919Z
+LAST-MODIFIED:20170925T061331Z
+UID:238-1523379600-1586540700@kidsheaven.wpengine.com
+SUMMARY:Identifying the Picasso next week…
+DESCRIPTION:Lorem ipsum dolor sit amet\, consectetur adipiscing elit. Phasellus pellentesque ligula ut libero congue\, in pretium quam cursus. Curabitur orci ante\, pellentesque sit amet blandit in\, pulvinar pellentesque metus. Fusce imperdiet tincidunt nisl non lacinia. Nunc porta pellentesque rutrum. Etiam erat mauris\, ultricies aliquet pretium vel\, placerat vel justo. Duis blandit tincidunt purus\, eget gravida lectus faucibus varius. Nam mollis\, nulla sed efficitur convallis\, libero justo gravida nunc\, at molestie nunc massa a arcu. Morbi in hendrerit risus\, ac blandit lectus. Etiam pellentesque porttitor orci quis hendrerit. Cras ac magna risus. Mauris rutrum aliquam erat tempus tincidunt.\n\nVivamus tristique eros vitae sapien laoreet volutpat. Vestibulum pellentesque tempus justo eu facilisis. Aliquam non dictum turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra\, per inceptos himenaeos. Donec sed lacinia massa. Nunc venenatis neque ut metus aliquam\, eu volutpat enim commodo. Suspendisse potenti.
+URL:https://kidsheaven.wpengine.com/event/latest-trends-in-the-web-and-app-design/
+LOCATION:peelamedu\, coimbatore\, 56987\, India
+GEO:11.0331511;77.02766
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=peelamedu coimbatore 56987 India;X-APPLE-RADIUS=500;X-TITLE=peelamedu:geo:77.02766,11.0331511
+CATEGORIES:Discussion
+ATTACH;FMTTYPE=image/jpeg:https://kidsheaven.wpengine.com/wp-content/uploads/2015/02/event1.jpg
+ORGANIZER;CN="William%20Dafoe":MAILTO:http://iamdesigning.com
+END:VEVENT
+END:VCALENDAR

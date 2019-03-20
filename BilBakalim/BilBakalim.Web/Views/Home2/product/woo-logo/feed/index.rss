@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Woo Logo</title>
+	<atom:link href="https://kidsheaven.wpengine.com/product/woo-logo/feed/" rel="self" type="application/rss+xml" />
+	<link>https://kidsheaven.wpengine.com/product/woo-logo/</link>
+	<description>Just another WordPress site</description>
+	<lastBuildDate>Tue, 10 Jan 2017 05:11:02 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.9.9</generator>
+	<item>
+		<title>By: Cobus Bester</title>
+		<link>https://kidsheaven.wpengine.com/product/woo-logo/#comment-2</link>
+		<dc:creator><![CDATA[Cobus Bester]]></dc:creator>
+		<pubDate>Fri, 07 Jun 2013 11:57:05 +0000</pubDate>
+		<guid isPermaLink="false">http://demo2.woothemes.com/woocommerce/?post_type=product&#038;p=15#comment-2</guid>
+		<description><![CDATA[Simple and effective design. One of my favorites.]]></description>
+		<content:encoded><![CDATA[<p>Simple and effective design. One of my favorites.</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

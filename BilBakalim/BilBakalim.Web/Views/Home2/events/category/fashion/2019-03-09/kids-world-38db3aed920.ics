@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kids World - ECPv4.5.0.2//NONSGML v1.0//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Kids World
+X-ORIGINAL-URL:https://kidsheaven.wpengine.com
+X-WR-CALDESC:Events for Kids World
+BEGIN:VEVENT
+DTSTART;TZID=UTC+0:20180405T080000
+DTEND;TZID=UTC+0:20190405T170000
+DTSTAMP:20190313T182714
+CREATED:20150210T112159Z
+LAST-MODIFIED:20170925T061154Z
+UID:246-1522915200-1554483600@kidsheaven.wpengine.com
+SUMMARY:Swimming Champion in the making
+DESCRIPTION:Maecenas convallis quam eget urna imperdiet\, eget gravida erat rutrum. Pellentesque rhoncus odio et lorem pharetra dictum. Nam blandit metus diam\, ut maximus arcu commodo in. Integer auctor sapien enim\, viverra vulputate orci posuere eu. Nulla pretium elit orci\, eu facilisis ligula hendrerit ut. Suspendisse malesuada eros ut euismod euismod. Fusce vestibulum ornare augue\, eu mollis orci volutpat non. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla leo lorem\, bibendum et sapien vel\, venenatis ultrices libero.\n\nSuspendisse arcu odio\, elementum et nisl nec\, maximus consectetur purus. Maecenas lacus magna\, malesuada et gravida sit amet\, rutrum non nisl. Sed non suscipit nunc\, ac varius sapien. Vestibulum euismod vehicula mauris. Ut et faucibus dui. Cras ornare nulla eget massa semper\, a viverra lectus aliquam. Mauris sollicitudin turpis eget est eleifend\, et pretium nunc feugiat. Aenean tristique velit magna. Curabitur a turpis orci.
+URL:https://kidsheaven.wpengine.com/event/organization-with-full-of-experts/
+LOCATION:Avalanche\, Ooty\, 87455\, India
+GEO:11.3960886;76.6894528
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-ADDRESS=Avalanche Ooty 87455 India;X-APPLE-RADIUS=500;X-TITLE=Avalanche:geo:76.6894528,11.3960886
+CATEGORIES:Fashion
+ATTACH;FMTTYPE=image/jpeg:https://kidsheaven.wpengine.com/wp-content/uploads/2015/02/event4.jpg
+ORGANIZER;CN="William%20Dafoe":MAILTO:http://iamdesigning.com
+END:VEVENT
+END:VCALENDAR

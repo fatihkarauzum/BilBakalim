@@ -1,0 +1,58 @@
+	/* Note: Design for a width of 1280px */	
+  @media only screen and (min-width:1200px) and (max-width:1280px) {
+	
+	/** grid css **/
+	
+	/*----*****---- <<Container >> ----*****----*/	
+	.container, .layout-boxed .vc_row .dt-sc-stretch-row-content, .left-header #header-wrapper .top-bar .container { width: 1080px; }
+	.container.fill-container, .page-template-tpl-fullwidth .section-wrapper.fullwidth-section .container.fill-stretch-row { width: 1110px; }
+	.layout-boxed .wrapper, .layout-boxed .main-header-wrapper, .layout-boxed .is-sticky #header-wrapper, .layout-boxed.standard-header .main-header-wrapper { width: 1120px; }
+
+	#primary { width:810px; }
+	#secondary, #secondary-right, #secondary-left { width:240px; }
+	#primary.with-both-sidebar { width:540px; }
+	
+	/** layout styles **/
+	
+	/*----*****---- << Header >> ----*****----*/
+	.left-header #main-menu .megamenu-2-columns-group .megamenu-child-container { width:460px; }
+	.left-header #main-menu .megamenu-3-columns-group .megamenu-child-container { width:680px; }
+	.left-header #main-menu .megamenu-4-columns-group .megamenu-child-container { width:900px; }
+	
+	/** blog styles **/
+	
+	.page-with-sidebar .tpl-blog-holder.apply-isotope .dt-sc-one-half { width: 48.8%; }
+	.with-both-sidebar .tpl-blog-holder.apply-isotope .dt-sc-one-half { width:48.2%; }
+	
+	/** portfolio styles **/
+	
+	.portfolio.column.no-space.dt-sc-one-fourth { width:24.97%; }
+		
+	.with-both-sidebar .portfolio.dt-sc-one-half, .page-with-sidebar.with-both-sidebar .portfolio.dt-sc-one-third, .page-with-sidebar.with-both-sidebar .portfolio.dt-sc-one-fourth { width:48.2%; }
+	.portfolio-fullwidth-container .dt-sc-one-third { width:32%; }
+	
+	.page-with-sidebar .portfolio.dt-sc-one-half { width:48.8%; }
+	
+	.with-both-sidebar .dt-sc-portfolio-sorting.type2 { width:100%; }
+	.dt-sc-portfolio-sorting.type2:before { display:none; }
+	
+	/*----*****---- << Shortcodes >> ----*****----*/	
+
+    /** Events **/
+	
+	.dt-sc-event-image-caption .dt-sc-image-content, .dt-sc-event-image-caption .dt-sc-image-wrapper { width:100%; }
+	.dt-sc-event-image-caption .dt-sc-image-wrapper img { width:100%; }
+	
+	/** Icon Box **/
+	.dt-sc-icon-box.type14 { min-height: 325px; }
+	
+	/** Image Caption **/
+	.dt-sc-image-caption.type6 { overflow: hidden; }
+	.dt-sc-image-caption.type6 .dt-sc-image-wrapper { padding: 45px 0 0; }
+	.dt-sc-image-caption.type6 .dt-sc-image-wrapper img { max-height: none; width: 100%; }
+	.dt-sc-image-caption.type6:hover:before { top: 0; }		 
+	.dt-sc-image-caption.type6 .dt-sc-image-content p { display: none; }
+	
+	/*----*****---- << WooCommerce >> ----*****----*/
+	
+  }
