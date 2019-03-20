@@ -17,10 +17,6 @@ namespace BilBakalim.Web.Controllers
             ViewBag.Siniflar = ctx.Sinif.ToList();
             return View();
         }
-        public ActionResult Gelistiriciler()
-        {
-            return View();
-        }
 
     }
 }
