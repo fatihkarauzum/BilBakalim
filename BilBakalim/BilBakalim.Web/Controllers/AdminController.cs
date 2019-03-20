@@ -216,5 +216,10 @@ namespace BilBakalim.Web.Controllers
 
 
 
+
+        public ActionResult Hata()
+        {
+            return View();
+        }
     }
 }

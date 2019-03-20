@@ -7009,6 +7009,10 @@
     <Content Include="Views\Home2\youtube-maecenas-finibus-eros-ut\index.html" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Admin\MenuGetir.cshtml" />
+    <Content Include="Views\Admin\YetkiBulunamadi.cshtml" />
+    <Content Include="Views\Kullanici\Yetkiler.cshtml" />
+    <Content Include="Views\Admin\Hata.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Classes\Functions.cs" />
@@ -7016,6 +7020,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
