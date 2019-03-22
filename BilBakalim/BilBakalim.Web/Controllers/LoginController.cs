@@ -70,7 +70,7 @@ namespace BilBakalim.Web.Controllers
                     TempData["GenelMesaj"] = "Kaydınız başarı ile tamamlanmıştır";
                     return RedirectToAction("Login");
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
                     ViewBag.Hata = "Kaydınız yapılırken bir hata ortaya çıktı";
                     return Redirect("/Home/Index");
