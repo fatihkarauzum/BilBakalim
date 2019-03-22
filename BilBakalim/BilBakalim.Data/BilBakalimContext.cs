@@ -10,6 +10,7 @@
         public BilBakalimContext()
             : base("name=BilBakalimContext")
         {
+            this.Configuration.LazyLoadingEnabled = true;
         }
 
         public virtual DbSet<Dİl> Dİl { get; set; }
