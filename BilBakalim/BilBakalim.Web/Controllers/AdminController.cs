@@ -195,11 +195,7 @@ namespace BilBakalim.Web.Controllers
                     if (b.RolAdi == "Admin")
                     {
                         return Json("admin");
-                    }
-                    if (b.RolAdi == "LDAP")
-                    {
-                        return Json("ldap");
-                    }
+                    }                   
                     db.Rol.Remove(b);
                     db.SaveChanges();
                     return Json(true);
@@ -211,11 +207,6 @@ namespace BilBakalim.Web.Controllers
 
             }
         }
-
-
-
-
-
 
         public ActionResult Hata()
         {

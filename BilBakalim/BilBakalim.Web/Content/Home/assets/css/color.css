@@ -1,0 +1,237 @@
+a,
+a:hover,
+.theme-color,
+.top-bar-menu ul li ul li a:hover,
+.search-popup .close-search,
+.quickview-popup .close-quickview,
+.cart-popup .close-cart,
+.featured-content h2 a:hover,
+.ratings li a,
+.availability.in-stock span,
+.wa-product-caption h2 a:hover,
+.wa-product .wa-product-caption a:hover,
+.wa-trainding-product-main .wa-product-caption h2 a:hover,
+.latest-twitts span:hover,
+.latest-twitts a i.fa,
+.latest-twitts a.default-color,
+.recent-blog-section.dark-layout .lined-title h2,
+.default-blog-column .default-text a:hover,
+.default-blog-column p a:hover,
+.default-blog-column .inner-box .image-box h3 a:hover,
+ul.blog-meta-info li a:hover,
+.default-blog-column .meta-data h3 a:hover,
+.newsletter-form .check-box input[type="checkbox"]:checked + label,
+.footer ul li a:hover,
+.footer a:hover,
+.breadcrumb > li.active,
+.latest-from-seller .product-style-one h3 a:hover,
+.wa-fashion-contact-style-1 .right-box address ul li a:hover,
+.sidebar-widget h4 a:hover,
+.sidebar .popular-posts .post a,
+.sidebar .popular-posts .post a:hover,
+.sidebar .list li a:hover,
+.sidebar .list li.current a,
+.styled-pagination li a:hover,
+.styled-pagination li a.active,
+.view-product .display-product-option > li.selected span,
+.view-product .display-product-option > li:hover span ,
+.prod-info-section .content-column .add-options .add-cart-btn:hover,
+.prod-info-section .content-column .add-options .add-fav:hover,
+.prod-info-section .content-column .share-options a:hover,
+.prod-tabs .reviews-container .rating,
+.prod-tabs .add-review .rating .rate-box:hover,
+.prod-tabs .add-review .rating .rate-box:focus,
+.prod-tabs .add-review .rating .rate-box:active,
+ul.blog-meta-info li a:hover,
+.comments-area .reviews-container .rating,
+.wishlist .product-style-one .post-date .month,
+.wishlist .product-style-one h3 a:hover,
+.wishlist .product-style-one ul.info li .icon,
+.home-middle-widget h4 a:hover,
+.vertical-bx-1 figure,
+.nav-item .wa-product .wa-product-caption h2 a:hover,
+.nav-item > a:focus,
+.nav-item > a:hover,
+.nav-item > a.open,
+.nav-item > a:focus,
+.nav-item > a:hover,
+.nav-item > a.open,
+.nav-item > a.open i,
+.nav-item > a:hover i,
+.nav-item > a:focus i,
+.sub-nav-group li a:hover,
+.sub-nav-group.sub-nav-grey li a:hover span,
+.sub-nav-group.sub-nav-grey li a:hover,
+.sub-nav-group li a:hover span,
+.no-touch .dl-menuwrapper li a:hover,
+.no-touch .dl-menuwrapper li a:hover:not(:only-child):after,
+.dl-menuwrapper li.dl-back:hover:after,
+.product-name a:hover,
+.sidebar-widget .list label:hover,
+#user-top-bar li  ul il a {
+    color: #f5a84c;
+}
+.theme-button,
+.theme-button:visited,
+.circle:before,
+.circle div:before,
+.owl-theme .owl-controls .owl-page.active span,
+.total-amount,
+.comments-area .reply-btn,
+.newsletter-form .check-box label:after,
+.error-section .text .theme-btn,
+.prod-info-section .content-column .add-options .add-cart-btn,
+.prod-tabs .tab-btns .tab-btn:hover,
+.prod-tabs .tab-btns .tab-btn.active-btn,
+.wishlist .product-style-one .post-date,
+.dl-menuwrapper button,
+.dl-menuwrapper button:hover,
+.dl-menuwrapper button.dl-active,
+.dl-menuwrapper ul {	
+    background: #f5a84c;
+}
+.owl-buttons div,
+.wa-product-icon li a:hover,
+ul.social li a:hover,
+.tag-list a:focus,
+.tag-list a:hover,
+.more-product-enable,
+.nav-tabs > li > a:hover,
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus{	
+    background-color: #f5a84c;
+}
+h2.mini-heading:after,
+.mini-heading:after,
+.centered-title h2:after {
+	 border-bottom: 3px solid #f5a84c;
+}
+header .top-bar,
+.top-bar-menu ul li ul {
+    background: #f5a84c none repeat scroll 0 0;
+}
+.top-bar-menu ul li ul {	
+    border-top: 2px solid #F5A84C;
+}
+.wa-product-icon li a:hover,
+ul.social li a:hover,
+.group-title h2:after,
+.newsletter-form .check-box label:before,
+.search-website .form-group input[type="text"]:focus,
+.search-website .form-group input[type="search"]:focus,
+.search-website .form-group textarea:focus,
+.sidebar .shop-widget .widget-title h2:after,
+.styled-pagination li a:hover,
+.styled-pagination li a.active,
+.view-product .display-product-option > li.selected,
+.view-product .display-product-option > li:hover,
+.prod-info-section .carousel-outer .image-carousel,
+.prod-info-section .content-column .form-group input[type="text"]:focus,
+.prod-info-section .content-column .form-group input[type="email"]:focus,
+.prod-info-section .content-column .form-group select:focus,
+.prod-info-section .content-column .form-group textarea:focus,
+.prod-info-section .content-column .add-options .add-cart-btn,
+.prod-info-section .content-column .add-options .add-fav:hover,
+.prod-tabs .tab-btns .tab-btn:hover,
+.prod-tabs .tab-btns .tab-btn.active-btn,
+.sub-nav,
+.nav-tabs > li > a:hover,
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    border-color: #f5a84c;
+}
+.wa_home_slider_wrapper .main_slider_carousel_control_left,
+.wa_home_slider_wrapper .main_slider_carousel_control_left:hover,
+.wa_home_slider_wrapper .main_slider_carousel_control_left:active,
+.wa_home_slider_wrapper .main_slider_carousel_control_left:focus,
+.wa_home_slider_wrapper .main_slider_carousel_control_right,
+.wa_home_slider_wrapper .main_slider_carousel_control_right:hover,
+.wa_home_slider_wrapper .main_slider_carousel_control_right:active,
+.wa_home_slider_wrapper .main_slider_carousel_control_right:focus,
+.wa_home_slider_wrapper .full_width_carousel_button_colored:before{
+	background: #f5a84c;
+}
+
+.theme-button.more-product-button,
+.top-bar-menu ul li ul li a:hover{
+    color: #f5a84c;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px){
+	.header-icons,
+    .header-icons:hover,
+	.main_slider_carousel_control_left,
+	.main_slider_carousel_control_right,
+	.main_slider_carousel_control_left:hover,
+	.main_slider_carousel_control_left:active,
+	.main_slider_carousel_control_left:focus,
+	.main_slider_carousel_control_right:hover,
+	.main_slider_carousel_control_right:active,
+	.main_slider_carousel_control_right:focus{		
+     	     background: #f5a84c;
+	}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 480px){
+	.header-icons,
+    .header-icons:hover,
+	.main_slider_carousel_control_left,
+	.main_slider_carousel_control_right,
+	.main_slider_carousel_control_left:hover,
+	.main_slider_carousel_control_left:active,
+	.main_slider_carousel_control_left:focus,
+	.main_slider_carousel_control_right:hover,
+	.main_slider_carousel_control_right:active,
+	.main_slider_carousel_control_right:focus{		
+     	     background: #f5a84c;
+	}
+}
+@media only screen and (min-width: 481px) and (max-width: 767px){
+	.header-icons,
+    .header-icons:hover,
+	.main_slider_carousel_control_left,
+	.main_slider_carousel_control_right,
+	.main_slider_carousel_control_left:hover,
+	.main_slider_carousel_control_left:active,
+	.main_slider_carousel_control_left:focus,
+	.main_slider_carousel_control_right:hover,
+	.main_slider_carousel_control_right:active,
+	.main_slider_carousel_control_right:focus{		
+     	background: #f5a84c;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px){
+	.header-icons,
+    .header-icons:hover	{		
+     	background: #f5a84c;
+	}
+}
+@media (max-width: 991px) {
+	#user-top-bar li  ul il a:hover {
+	   color: #f5a84c;
+	}
+}
+@media only screen and (min-width: 992px) and (max-width: 1024px){
+	.header-icons,
+    .header-icons:hover	{		
+     	background: #f5a84c;
+	}
+}
+@media only screen and (min-width: 1025px) and (max-width: 1199px){
+	.header-icons,
+    .header-icons:hover	{		
+     	background: #f5a84c;
+	}
+}
+@media only screen and (min-width: 1200px){
+	.header-icons,
+    .header-icons:hover{
+		background: #f5a84c;
+	}
+}
+#style-switcher h2 a {
+    background: #f5a84c none repeat scroll 0 0;
+}
