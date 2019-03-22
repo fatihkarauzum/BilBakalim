@@ -1,0 +1,240 @@
+﻿
+@{
+    ViewBag.Title = "MenuListesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using BilBakalim.Web.Controllers
+@using BilBakalim.Data
+
+@model List<Menu>
+
+@functions
+{
+
+    public IHtmlString bosKontrol(string veri)
+    {
+        if (veri != null)
+        {
+            return Html.Raw(veri);
+        }
+        else
+        {
+            return Html.Raw($@"<i><b>NULL</b></i>");
+        }
+    }
+
+}
+
+@section head{
+    <link rel="stylesheet" href="/Content/Admin/assets/data-tables/DT_bootstrap.css" />
+    <style type="text/css">
+        tbody, thead {
+            width: 19.2%;
+        }
+
+        tbody, thead {
+            font-size: 12px;
+        }
+
+        #back {
+            background-color: #EECBC4;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        @if (ViewBag.hata != null)
+        {
+            <div class="alert alert-danger">
+                <p>@ViewBag.hata</p>
+            </div>
+        }
+        @if (TempData["GenelMesaj"] != null)
+        {
+            <div class="alert alert-success">
+                <p>@TempData["GenelMesaj"]</p>
+            </div>
+        }
+
+        <section class="panel">
+            <header class="panel-heading" style="padding-bottom: 10px;">
+                <div class="col-lg-12" style="margin-bottom:10px;">
+                    <b>Menü Listesi</b>
+                    <a href="/Urun/Ekle" class="btn btn-success" style="float: right"><i class="icon-plus"></i> Yeni Menü Ekle</a>
+                </div>
+            </header>
+
+            <div class="panel-body">
+                <div class="col-lg-12">
+                    <div class="adv-table editable-table">
+                        <table class="table table-striped table-hover table-bordered duzenTable" id="editable-sample">
+                            <thead>
+                                <tr>
+                                    <th>Adı</th>
+                                    <th>İkon</th>
+                                    <th>Parent Menu</th>
+                                    <th>Controller</th>
+                                    <th>Action</th>
+                                    <th>Açılır Menu</th>
+                                    <th style="text-align:center"> İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr id="@item.ID">
+                                        <td>
+                                            @bosKontrol(item.Adi)
+                                        </td>
+                                        <td>
+                                            <i class="@bosKontrol(item.Icon)"></i><span> @bosKontrol(item.Icon)</span>
+                                        </td>
+                                        <td>
+                                            @if (item.Menu2 == null){@bosKontrol(null)} else {@bosKontrol(item.Menu2.Adi)} 
+                                        </td>
+                                        <td>
+                                            @bosKontrol(item.Controller)
+                                        </td>
+                                        <td>
+                                            @bosKontrol(item.Action)
+                                        </td>
+                                        <td>
+
+                                            @if (@item.AcilirMenu == false)
+                                            {
+                                                <span class="label label-danger label-mini sericlass">False</span>
+                                            }
+                                            else if (@item.AcilirMenu == true)
+                                            {
+                                                <span class="label label-success label-mini sericlass">True</span>
+                                            }
+
+                                        </td>
+                                        <td style="width: 150px;">
+                                            <a title="Sil" style="float: right;" class="btn btn-danger btn-xs btn-confirm" data-id="@item.ID"><i class="icon-trash"></i> Sil</a>
+                                            <a title="Düzenle" style="float: right; margin-right: 5px;" href="/Urun/Guncelle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Düzenle</a>
+                                            @*<a title="Garantiye Gönder" style="float: right; margin-right: 5px;" href="/Urun/Garanti/@item.ID" class="btn btn-default btn-xs"><i class="icon-refresh"></i> Garanti</a>
+                                            <a title="Stok Ekle" href="stokEkleView/@item.ID" style="float: right; margin-right: 5px;" class="btn btn-warning btn-xs"><i class="icon-plus-sign-alt"></i> Stok Ekle</a>
+                                            <a title="Ürün Çıkışı" href="/Urun/stokCikar/@item.ID" data-id="@item.ID" style="float: right; margin-right: 5px;" class="btn btn-info btn-xs btn-confirm1"><i class="icon-mail-reply (alias)"></i> Ürün Çıkışı</a>*@
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Bu Ürünü Silmek İstediğinizden Emin misiniz ?</h4>
+            </div>
+            <div class="modal-footer">
+                @*<div class="form-group">
+                    <label for="exampleInputEmail1">Ürünü Silme Nedeni </label>&nbsp;<span style="color: red;">*</span>
+                    <input type="text" class="form-control" placeholder="Ürünü Silme Nedenini Giriniz..." id="neden" required>
+                </div>*@
+                <button type="button" class="btn btn-danger" id="modal-btn-si">Sil</button>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script{
+    <script type="text/javascript" src="/Content/Admin/assets/data-tables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="/Content/Admin/assets/data-tables/DT_bootstrap.js"></script>
+
+    <!--common script for all pages-->
+    <!--script for this page only-->
+    <script src="/Content/Admin/js/editable-table.js"></script>
+    <!-- END JAVASCRIPTS -->
+    <script>
+        jQuery(document).ready(function () {
+            EditableTable.init();            
+        });
+    </script>
+    <script>
+        window.onload = function () {
+            //$('#listele').addClass('active');
+        }
+    </script>
+    
+
+
+    <script>
+        var id;
+        var modalConfirm = function (callback) {
+
+            $(".btn-confirm").on("click", function () {
+                id = $(this).attr("data-id");
+                $("#mi-modal").modal('show');
+            });
+
+            $("#modal-btn-si").on("click", function () {
+                callback(true);
+
+                $("#mi-modal").modal('hide');
+            });
+
+            $("#modal-btn-no").on("click", function () {
+                callback(false);
+                $("#mi-modal").modal('hide');
+                return e.preventDefault();
+            });
+        };
+
+
+
+        modalConfirm(function (confirm) {
+            if (confirm) {
+                $.ajax({
+                    url: '@Url.Action("Sil","Menu")',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        id: id
+                    }),
+                    type: 'POST',
+                    success: function (rs) {
+                        if (rs === true) {
+                            $('#' + id).remove();
+                        }
+                        else if (rs === "menuRol") {
+                            alert("Bu menüye ait bir rol tanımlaması yapıldığı için menüyü silemezsiniz.");
+                        }
+                        else if (rs === "menus") {
+                            alert("Bu menüye ait bir alt menü tanımlaması yapıldığı için menüyü silemezsiniz.");
+                        }
+                        else if (rs === "FK") {
+                            alert('Silme işlemi gerçekleşirken bir hata oluştu.');
+                        }
+                        else {
+                            alert('Silme işlemi gerçekleşirken bir hata oluştu.');
+                        }
+                    },
+                    error: function (rs) {
+                        alert('Bir hata oluştu');
+                    }
+                });
+            } else {
+                console.log("");
+            }
+        });
+
+    </script>
+
+}
+

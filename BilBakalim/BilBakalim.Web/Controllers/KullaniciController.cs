@@ -22,7 +22,7 @@ namespace BilBakalim.Web.Controllers
             }
 
             ViewBag.Yetkileri = db.MenuRol.Where(x => x.RolId == r.ID).ToList();
-            ViewBag.Menuler = db.Menu.ToList();
+            ViewBag.Menuler = db.Menu.Where(x => x.Aktif == true).ToList();
             return View(r);
         }
 
@@ -59,7 +59,7 @@ namespace BilBakalim.Web.Controllers
                 for (int i = 0; i < Menuparts.Length; i++)
                 {
                     string s = Menuparts[i].ToString();
-                    Menu alt = db.Menu.Where(x => x.Adi == s).FirstOrDefault();
+                    Menu alt = db.Menu.Where(x => x.Adi == s && x.Aktif == true).FirstOrDefault();
                     if (alt != null)
                     {
                         Eklenenmenuler.Add(alt);
@@ -75,7 +75,7 @@ namespace BilBakalim.Web.Controllers
                 }
                 // MenuList.RolKontrol(list, RolID);
                 ViewBag.Yetkileri = db.MenuRol.Where(x => x.RolId == r.ID).ToList();
-                ViewBag.Menuler = db.Menu.ToList();
+                ViewBag.Menuler = db.Menu.Where(x => x.Aktif == true).ToList();
                 #endregion
 
                 //Sayfayı geri yükle
