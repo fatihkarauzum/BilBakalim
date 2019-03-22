@@ -335,7 +335,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\_viewStart.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
@@ -352,6 +351,7 @@
     <Content Include="Views\Kullanici\SinifEkle.cshtml" />
     <Content Include="Views\Kullanici\SoruEkle.cshtml" />
     <Content Include="Views\Menu\MenuListesi.cshtml" />
+    <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
