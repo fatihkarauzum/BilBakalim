@@ -1,0 +1,136 @@
+/*------------------------------------------------------------------
+[Master Stylesheet]
+
+Project:	Faashmira Shop - HTML
+Version:	1.0.0
+Assigned to:	Themeforest
+Primary use:	Fashion, Shop, Ecommerce, BootStrap, Retail   
+-------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+[Table of contents]
+
+1. Body
+	2. Preloader / .preloader	
+	3. Header / #main-header
+		3.1. Top Bar / .top-bar
+		3.2. Middle Bar / #header-bar
+			3.2.1 Header Logo / #header-logo
+			3.2.2 Navigation / .main-menu
+	4. Main Slider / .main-slider
+		4.1 Slider Carousel / .wa_home_slider_wrapper
+			4.1.1 Active Slide / .item .active
+			4.1.2 Default Slide / .item
+	5. Featured Sale/ .featured-section
+		5.1 Image Column / .image-column
+		5.2 Content Column / .content-column
+	6. Latest Offer Thumbnail Slider/ .latest-offer-main
+		6.1 Offer Product Carousel / #latest-offer-carousel
+			6.1.1 Product Item / .latest-product-item
+	7. Product Section / .wa-product-main
+		7.1 Product Item / .wa-product
+			7.1.1 Product Thumbnail / .wa-product-thumbnail
+			7.1.2 Product Caption / .wa-product-caption
+	8. Hot Deal / .wa-trainding-product-main
+		8.1 Image Section / .col-md-12 .left-box .pad0
+		8.1 Caption Section / .col-md-6 right-box pad37
+	9. Home Blog Section / .default-blog-column
+	10. Partner Section / .wa-partners
+	11. News Letter / .newsletter-section
+	12. Social Section / .social-section
+	13. Quickview Popup / .quickview-popup
+	14. Search Popup / .search-popup
+	15. Mini Cart / #cart-popup
+		15.1 Close Popup / .close-cart
+		15.2 Cart Content / .popup-inner
+	16. More Products / .more-products-on-home 	
+		16.1 Product widget / .home-middle-widget
+	17. Checkout Form / .form-chackout 
+		17.1 Billing Fields / .billing-fields 
+			17.1.1 Input	/ .form-controller
+			17.1.1 Text Area / textarea
+		17.2 Shipping Fields / .shipping-fields 
+			17.2.1 Input	/ .form-controller
+			17.2.1 Text Area / textarea
+		17.3 Returning customer / .login
+			17.3.1 Input	/ .form-controller
+			17.3.2 Submit Button / .theme-button
+		17.4 Coupon Form / .checkout_coupon 
+			17.4.1 Input	/ .form-controller
+			17.4.2 Submit Button / .theme-button
+	18. Shop List / .list-product
+	19. Shop- Page/ .shop-page
+	20. Countdown  / .countdown 
+	21. Filter / .filter-1
+	22. Blog Page/ .blog-page
+	23. Blog Grid Page / .default-blog-column 
+	24. Post Pagination / .styled-pagination
+	25. comment / .comments-area
+		25.1 Comment List Container/ .reviews-container
+			25.1.1 Comment List / .review-box
+				25.1.1.1 Sub Comment list / .sub-rev-box .review-box
+		25.2 Comment Form / .fashion_contactform
+			25.2.1 Input / .form-controller
+			25.2.2 Comment message / textarea
+			25.2.3 Submit Button / .theme-button
+	26. Sidebar Page/ .sidebar
+	27. Sidebar Widget / .sidebar-widget
+	28. Login / .user-login
+	29. Contact Page / .wa-fashion-contact-style-1	
+	30. Footer / #footer
+		30.1 Footer Widget Container / .footer-widgets
+			30.1.1 widget / .widget
+			30.1.2 Contact Widget / .widget .contact-widget
+			30.1.3 Twitter Widget / .twitter-box 
+		30.2 Copright Footer / .footer-four			
+
+-------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+[Color codes]
+
+Background:	#ffffff/#f5a84c (white or bright orange)
+Content:	#777 (light black)
+Header h1:	#000/#202020 (black and drak gray touch)
+Header h2:	#000/#202020 (black and drak gray touch)
+Header h3:	#000/#202020 (black and drak gray touch)
+Header h4:	#000/#202020 (black and drak gray touch)
+Header h5:	#000/#202020 (black and drak gray touch)
+Header h6:	#000/#202020 (black and drak gray touch)
+Footer:		#888888 (dark gray)
+
+
+a (standard):	#202020/#f5a84c (Similar grey and black or light black or bright orange)
+a (visited):	#202020/#f5a84c (Similar grey and black or light black or bright orange)
+a (active):		#f5a84c (bright orange)
+
+Hover :		#f5a84c (bright orange)
+--------------------------------------------*/
+
+/*------------------------------------------------------------------
+[Typography]
+
+Body copy:		16px/1.8em 'Lato', sans-serif;
+Headers:		36px/1.6em 'Raleway', sans-serif;
+Input, textarea:	16px 'Lato', sans-serif;
+Sidebar heading:	24px 'Raleway', sans-serif
+
+-------------------------------------------------------------------*/
+
+/* Bootstrap core CSS*/
+@import url("assets/css/bootstrap.min.css");
+
+
+/*Plugins CSS */	
+@import url("assets/plugins/megamenu/css/jquery-accessibleMegaMenu.css");
+@import url("assets/plugins/font-awesome/css/font-awesome.min.css");
+@import url("assets/plugins/owl-carousel/css/owl.carousel.css");
+@import url("assets/plugins/ResponsiveMultiLevelMenu/css/component.css");
+@import url("assets/plugins/fancymedia/css/jquery.fancybox.css");
+
+
+/*Defaults CSS SETTINGS */	
+@import url("assets/css/style.css");
+
+/*Template Media Query CSS */
+@import url("assets/css/responsive.css");

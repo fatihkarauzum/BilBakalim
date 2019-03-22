@@ -17,7 +17,7 @@ namespace BilBakalim.Web.App_Classes
             string metot = filterContext.HttpContext.Request.RequestType;
             if (HttpContext.Current.Session["Kullanici"] == null)
             {
-                if (controllerName == "Admin")
+                if (controllerName == "Admin" || controllerName == "Menu")
                 {
                     filterContext.Result = new RedirectResult("/Login/Login");
                 }
@@ -46,7 +46,7 @@ namespace BilBakalim.Web.App_Classes
                     }
                     else
                     {
-                        Menu currentMenu = db.Menu.Where(x => x.Action == actionName && x.Controller == controllerName).SingleOrDefault();
+                        Menu currentMenu = db.Menu.Where(x => x.Action == actionName && x.Controller == controllerName && x.Aktif == true).SingleOrDefault();
                         if (currentMenu != null)
                         {
                             MenuRol rol = db.MenuRol.Where(x => x.RolId == p.RolID && x.MenuId == currentMenu.ID).SingleOrDefault();

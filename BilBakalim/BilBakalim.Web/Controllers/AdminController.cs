@@ -29,7 +29,7 @@ namespace BilBakalim.Web.Controllers
             Kullanici p = (Kullanici)Session["Kullanici"];
 
             MenuControl k = new MenuControl();
-            k.menuler = db.Menu.ToList();
+            k.menuler = db.Menu.Where(x => x.Aktif == true).ToList();
             k.roller = db.MenuRol.Where(x => x.RolId == p.RolID).ToList();
             return PartialView(k);
         }
@@ -195,11 +195,7 @@ namespace BilBakalim.Web.Controllers
                     if (b.RolAdi == "Admin")
                     {
                         return Json("admin");
-                    }
-                    if (b.RolAdi == "LDAP")
-                    {
-                        return Json("ldap");
-                    }
+                    }                   
                     db.Rol.Remove(b);
                     db.SaveChanges();
                     return Json(true);
@@ -211,11 +207,6 @@ namespace BilBakalim.Web.Controllers
 
             }
         }
-
-
-
-
-
 
         public ActionResult Hata()
         {
