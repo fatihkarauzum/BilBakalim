@@ -15,7 +15,7 @@ namespace BilBakalim.Web.Controllers
         public ActionResult Index()
         {
             ViewBag.Siniflar = ctx.Sinif.ToList();
-
+            ViewBag.Favori = ctx.Favori.ToList();
             return View();
         }
         public ActionResult Gelistiriciler()
@@ -27,10 +27,6 @@ namespace BilBakalim.Web.Controllers
             ViewBag.Kategori=ctx.SinifKategori.ToList();
             return PartialView();
         }
-        public ActionResult KategoriGetirSlider()
-        {
-            ViewBag.Kategori = ctx.SinifKategori.ToList();
-            return PartialView();
-        }
+      
     }
 }

@@ -38,6 +38,7 @@
     <script src="/Content/Home/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     @RenderSection("head", false)
+    
 </head>
 <body>
 
@@ -180,8 +181,8 @@
                                         <a href="/Content/Home/#"><span>Kategoriler <i class="fa fa-angle-down"></i></span></a>
                                         <div class="sub-nav">
                                             <ul class="sub-nav-group">
-                                               @{
-                                                   Html.RenderAction("KategoriGetir", "Home");
+                                                @{
+                                                    Html.RenderAction("KategoriGetir", "Home");
                                                 }
                                             </ul>
                                         </div>
@@ -321,6 +322,8 @@
     <!--//=======Header End=======//-->
 
     @RenderBody()
+
+
     <footer id="footer" class="footer">
         <div class="footer-one footer-widgets">
             <div class="container">
@@ -707,5 +710,6 @@
     <script src="/Content/Home/assets\plugins\switcher\switcher.js"></script>
     <script src="/Content/Home/assets\js\main.js"></script>
     @RenderSection("script", false)
+    
 </body>
 </html>

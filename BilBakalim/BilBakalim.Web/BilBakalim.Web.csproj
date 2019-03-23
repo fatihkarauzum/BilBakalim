@@ -263,6 +263,7 @@
     <Content Include="Content\Home\cart-page.html" />
     <Content Include="Content\Home\checkout-page.html" />
     <Content Include="Content\Home\compare.html" />
+    <Content Include="Content\Home\css.css" />
     <Content Include="Content\Home\css\vendor\animate.min.css" />
     <Content Include="Content\Home\css\vendor\bootstrap.min.css" />
     <Content Include="Content\Home\css\vendor\font-awesome.min.css" />
@@ -291,6 +292,7 @@
     <Content Include="Content\Home\shop-list.html" />
     <Content Include="Content\Home\shop.html" />
     <Content Include="Content\Home\wishlist.html" />
+    <Content Include="Content\images\adiyaman.jpg" />
     <Content Include="Content\images\cd-icon-close.svg" />
     <Content Include="Content\images\emre.jpg" />
     <Content Include="Content\images\fatih.jpg" />

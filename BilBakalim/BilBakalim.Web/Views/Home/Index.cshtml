@@ -5,7 +5,63 @@
 }
 @using BilBakalim.Data
 
+@model List<Favori>
 
+<div class="wa-product-main padTB60">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="centered-title">
+                    <h2>new <span class="light-font">arrival</span></h2>
+                    <div class="clear"></div>
 
+                </div>
+            </div>
+        </div>
 
+        <div class="row marT60" id="MixItUp1">
+            <!--Product start-->
+            @foreach (Sinif item in ViewBag.Siniflar)
+            {
+                <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 mix women" style="display: inline-block;" data-bound="">
+                    <div class="wa-product">
+                        <div class="wa-product-thumbnail wa-item">
+                            <img src="@item.Resim.Url" alt="">
 
+                            <div class="caption">
+                                <div class="caption-text">
+                                    @item.Sorular.Count() Soru
+                                    <div class="clear"></div>
+                                    <a href="/Content/Home/product-detail.html" class="theme-button marT10"><i style="font-size:18px" class="fa">&#xf04b;</i> Oyna</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wa-product-caption">
+                            <h2>
+                                <a href="/Content/Home/product-detail.html">@item.Ad </a>
+                            </h2>
+                            <div class="clear"></div>
+                            <div class="lower-content">
+                                <ul class="blog-meta-info">
+                                    <li class="author"><a href=""><i class="fa fa-eye"></i>@item.GoruntulenmeSayisi</a></li>
+                                    <li class="comment"><a href=""><i class="fa fa-calendar"></i> @item.OlusturmaTarihi.Value.Day.@item.OlusturmaTarihi.Value.Month.@item.OlusturmaTarihi.Value.Year</a></li>
+                                    
+                                    <li class="comments_nr"><a href=""><i class="fa fa-comments"> @item.Favori.Count()</i></a></li>
+                                </ul>
+
+                            </div>
+
+                            <div class="clear"></div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!--Product end-->
+
+            <div class="clear"></div>
+            <a href="/Content/Home/" class="theme-button marT10 marT30 hover-color">view more</a>
+        </div>
+    </div>
+</div>
