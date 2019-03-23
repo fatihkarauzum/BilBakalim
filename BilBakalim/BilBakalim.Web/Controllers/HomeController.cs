@@ -15,8 +15,22 @@ namespace BilBakalim.Web.Controllers
         public ActionResult Index()
         {
             ViewBag.Siniflar = ctx.Sinif.ToList();
+
             return View();
         }
-
+        public ActionResult Gelistiriciler()
+        {
+            return View();
+        }
+        public PartialViewResult KategoriGetir()
+        {
+            ViewBag.Kategori=ctx.SinifKategori.ToList();
+            return PartialView();
+        }
+        public ActionResult KategoriGetirSlider()
+        {
+            ViewBag.Kategori = ctx.SinifKategori.ToList();
+            return PartialView();
+        }
     }
 }
