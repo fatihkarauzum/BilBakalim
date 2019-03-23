@@ -38,10 +38,22 @@ namespace BilBakalim.Web.Controllers
                     ViewBag.Hata = "Girdiğiniz bilgilere ait bir kullanıcı bulunamadı";
                     return View();
                 }
+                else
+                {
+                    if (kullanici.Durum != null)
+                    {
 
-                Session["Kullanici"] = kullanici;
-                return RedirectToAction("Index", "Home");
-                #endregion
+                        Session["Kullanici"] = kullanici;
+                        return RedirectToAction("Index", "Home");
+                        #endregion
+                    }
+                    else
+                    {
+                        ViewBag.Hata = "Girdiginiz Kullanıcı Akfit Değilidir.";
+                        return View();
+                    }
+                }
+
             }
             catch (Exception)
             {
