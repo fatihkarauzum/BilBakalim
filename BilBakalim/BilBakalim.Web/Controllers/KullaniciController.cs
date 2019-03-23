@@ -107,14 +107,9 @@ namespace BilBakalim.Web.Controllers
 
             if (resimGelen == null)
             {
-              
-                //l = db.ResimKategori.Where(x => x.KategoriAdi == "SinifSoru").SingleOrDefault();
-                //o.ResimKategoriID = l.ID;
-                //o.Url = "bos.jpg";
-                //db.Resim.Add(o);
-                //db.SaveChanges();
 
-                //k.ResimID = o.ID;
+                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/SinifSoru/default.png").SingleOrDefault();
+                k.ResimID = b.ID;
             }
             else
             {
@@ -197,8 +192,10 @@ namespace BilBakalim.Web.Controllers
 
             if (resimGelen == null)
             {
-                //sr.Sinif.Resim.Url = "bos.png";
+                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/SinifSoru/default.png").SingleOrDefault();
+                sr.MedyaID = b.ID;
             }
+
             else
             {
 
@@ -238,7 +235,7 @@ namespace BilBakalim.Web.Controllers
 
 
                 db.Sorular.Add(sr);
-            if (Odul != false)
+            if (Odul != null)
             {
                 sr.Odul = Odul;
             }

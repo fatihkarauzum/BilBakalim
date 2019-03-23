@@ -19,6 +19,7 @@ namespace BilBakalim.Data
 
         [StringLength(75)]
         public string KategoriAdi { get; set; }
+        public bool? Aktif { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Resim> Resim { get; set; }

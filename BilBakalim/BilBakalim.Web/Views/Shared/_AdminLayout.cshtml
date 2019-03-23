@@ -288,7 +288,7 @@
         <!--header end-->
         <!--sidebar start-->
         @{
-           Html.RenderAction("MenuGetir", "Admin");
+            Html.RenderAction("MenuGetir", "Admin");
         }
         <!--sidebar end-->
         <!--main content start-->
@@ -356,6 +356,32 @@
 
     </script>
     @RenderSection("script", false)
+
+    @RenderSection("footer", false)
+    <script>
+
+        //owl carousel
+
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+                navigation: true,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true,
+                autoPlay: true
+
+            });
+        });
+
+        //custom select box
+
+        $(function () {
+            $('select.styled').customSelect();
+        });
+
+    </script>
+
+
 </body>
 </html>
 
