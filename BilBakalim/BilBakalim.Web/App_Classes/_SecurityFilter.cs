@@ -19,7 +19,7 @@ namespace BilBakalim.Web.App_Classes
             {
                 if (controllerName == "Admin" || controllerName == "Menu")
                 {
-                    filterContext.Result = new RedirectResult("/Login/Login");
+                    filterContext.Result = new RedirectResult("/Login");
                 }
                 else
                 {

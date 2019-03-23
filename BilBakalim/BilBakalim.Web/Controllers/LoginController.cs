@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using BilBakalim.Data;
 using BilBakalim.Web.App_Classes;
 
@@ -13,6 +14,7 @@ namespace BilBakalim.Web.Controllers
     {
         BilBakalimContext db = new BilBakalimContext();
         // GET: Login
+        [Route("Login")]
         public ActionResult Login()
         {
             return View();
@@ -47,6 +49,7 @@ namespace BilBakalim.Web.Controllers
             }
         }
 
+        [Route("Register")]
         [HttpGet]
         public ActionResult Kayit()
         {
@@ -76,6 +79,13 @@ namespace BilBakalim.Web.Controllers
                     return Redirect("/Home/Index");
                 }
             }
+        }
+
+        [Route("LogOut")]
+        public ActionResult Cikis()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

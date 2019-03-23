@@ -3,9 +3,15 @@
 @using BilBakalim.Data;
 @model MenuControl
 
+<style>
+    #menuler {
+        position: relative;
+        z-index: 1;
+    }
+</style>
 
 <aside>
-    <div id="sidebar" class="nav-collapse ">
+    <div id="sidebar" class="nav-collapse " id="menuler">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
             @*<li>

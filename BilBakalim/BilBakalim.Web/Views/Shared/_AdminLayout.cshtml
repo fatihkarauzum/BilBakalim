@@ -26,7 +26,14 @@
     <link href="/Content/Admin/css/style.css" rel="stylesheet">
     <link href="/Content/Admin/css/style-responsive.css" rel="stylesheet" />
     @RenderSection("head", false)
-
+    <style>
+        #footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 0;
+        }
+    </style>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
       <script src="/Content/Admin/js/html5shiv.js"></script>
@@ -286,13 +293,13 @@
         <!--sidebar end-->
         <!--main content start-->
         <section id="main-content">
-            <section class="wrapper">
+            <section class="wrapper" id="ortaKisim">
                 @RenderBody()
             </section>
         </section>
         <!--main content end-->
         <!--footer start-->
-        <footer class="site-footer">
+        <footer class="site-footer" id="footer">
             <div class="text-center">
                 2013 &copy; FlatLab by VectorLab.
                 <a href="/Content/Admin/#" class="go-top">

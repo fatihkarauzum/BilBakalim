@@ -263,9 +263,27 @@
     <Content Include="Content\Home\cart-page.html" />
     <Content Include="Content\Home\checkout-page.html" />
     <Content Include="Content\Home\compare.html" />
+    <Content Include="Content\Home\css.css" />
+    <Content Include="Content\Home\css\vendor\animate.min.css" />
+    <Content Include="Content\Home\css\vendor\bootstrap.min.css" />
+    <Content Include="Content\Home\css\vendor\font-awesome.min.css" />
+    <Content Include="Content\Home\css\vendor\magnific-popup.css" />
+    <Content Include="Content\Home\css\vendor\owl.carousel.min.css" />
+    <Content Include="Content\Home\css\vendor\owl.theme.default.min.css" />
     <Content Include="Content\Home\index-2.html" />
     <Content Include="Content\Home\index-3.html" />
     <Content Include="Content\Home\index.html" />
+    <Content Include="Content\Home\js\googlemap-setting.js" />
+    <Content Include="Content\Home\js\script.js" />
+    <Content Include="Content\Home\js\vendor\bootstrap.min.js" />
+    <Content Include="Content\Home\js\vendor\form-scripts.js" />
+    <Content Include="Content\Home\js\vendor\imagesloaded.pkgd.min.js" />
+    <Content Include="Content\Home\js\vendor\isotope.pkgd.min.js" />
+    <Content Include="Content\Home\js\vendor\jquery.magnific-popup.min.js" />
+    <Content Include="Content\Home\js\vendor\jquery.min.js" />
+    <Content Include="Content\Home\js\vendor\modernizr.min.js" />
+    <Content Include="Content\Home\js\vendor\owl.carousel.js" />
+    <Content Include="Content\Home\js\vendor\validator.min.js" />
     <Content Include="Content\Home\login.html" />
     <Content Include="Content\Home\main.css" />
     <Content Include="Content\Home\order.html" />
@@ -274,7 +292,10 @@
     <Content Include="Content\Home\shop-list.html" />
     <Content Include="Content\Home\shop.html" />
     <Content Include="Content\Home\wishlist.html" />
+    <Content Include="Content\images\adiyaman.jpg" />
     <Content Include="Content\images\cd-icon-close.svg" />
+    <Content Include="Content\images\emre.jpg" />
+    <Content Include="Content\images\fatih.jpg" />
     <Content Include="Content\images\footer-background.jpg" />
     <Content Include="Content\images\logo - giris.png" />
     <Content Include="Content\images\logo.png" />
@@ -315,6 +336,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Classes\Functions.cs" />
+    <Compile Include="App_Classes\MvcHelper.cs" />
     <Compile Include="App_Classes\ResimIslemleri.cs" />
     <Compile Include="App_Classes\_SecurityFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -356,6 +378,10 @@
     <Content Include="Views\Admin\SinifKategori.cshtml" />
     <Content Include="Views\Admin\SinifKategoriDuzenle.cshtml" />
     <Content Include="Views\Admin\ResimKategori.cshtml" />
+    <Content Include="Views\Menu\MenuEkle.cshtml" />
+    <Content Include="Views\Menu\Duzenle.cshtml" />
+    <Content Include="Views\Home\Gelistiriciler.cshtml" />
+    <Content Include="Views\Home\KategoriGetir.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

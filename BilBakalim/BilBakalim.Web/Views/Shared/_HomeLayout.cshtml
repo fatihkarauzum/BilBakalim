@@ -2,6 +2,13 @@
 @{
     Layout = null;
 }
+@using BilBakalim.Data
+
+@using BilBakalim.Data;
+
+@{
+    Kullanici aktifKullanici = (Kullanici)Session["Kullanici"];
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +42,8 @@
     <script src="/Content/Home/https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="/Content/Home/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    @RenderSection("head", false)
+    
 </head>
 <body>
 
@@ -90,18 +99,36 @@
                         <div class="top-bar-menu textR">
                             <nav id="user-top-bar">
                                 <ul class="list-inline textL">
-                                    <li><a href="/Content/Home/"><i class="fa fa-map-marker"></i>track order</a></li>
+
                                     <li class="btn-group">
                                         <a href="/Content/Home/#" class="pm_item visible-xs">
                                             <i class="icon-bag"></i> (2)
                                         </a>
                                     </li>
-                                    <li class="btn-group dropdown">
-                                        <a href="/Content/Home/login.html" class="pm_item" title="login">
-                                            <i class="fa fa-sign-in"></i>
-                                            <span class="">Login/Register</span>
-                                        </a>
-                                    </li>
+                                    @if(Session["Kullanici"] == null)
+                                    {
+                                        <li class="btn-group dropdown">
+                                            <a href="/Login" class="pm_item" title="login">
+                                                <i class="fa fa-sign-in"></i>
+                                                <span class="">Login</span>
+                                            </a>
+                                        </li>
+                                        <li class="btn-group dropdown">
+                                            <a href="/Register" class="pm_item" title="login">
+                                                <i class="fa fa-sign-in"></i>
+                                                <span class="">Register</span>
+                                            </a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="btn-group dropdown">
+                                            <a href="/LogOut" class="pm_item" title="login">
+                                                <i class="fa fa-sign-in"></i>
+                                                <span class="">Log Out</span>
+                                            </a>
+                                        </li>
+                                    }
                                     <li>
                                         <a href="/Content/Home/#">My Account <i class="fa fa-caret-down"></i></a>
                                         <ul>
@@ -156,8 +183,8 @@
                 <div class="row positionR">
                     <!--======Logo========-->
                     <div id="header-logo" class="col-md-2 col-sm-3">
-                        <a href="/Content/Home/index.html">
-                            <img src="/Content/Home/assets\img\logo.png" class="logo center-block hidden-xs hidden-sm" alt="Faashmira- Responsive HTML5 Multipurpose Ecommerce Template">
+                        <a href="~/Content/Home/index.html">
+                            <img src="~/Content/Home/assets\img\logo.png" class="logo center-block hidden-xs hidden-sm" alt="Faashmira- Responsive HTML5 Multipurpose Ecommerce Template">
                             <img src="/Content/Home/assets\img\logo.png" class="logo center-block hidden-lg hidden-md" alt="Faashmira- Responsive HTML5 Multipurpose Ecommerce Template">
                         </a>
                     </div>
@@ -168,360 +195,28 @@
                             <nav class="main-menu">
                                 <ul class="nav-menu">
                                     <li class="nav-item">
-                                        <a href="/Content/Home/#">Home <i class="fa fa-angle-down"></i></a>
+                                        <a href="/Home/Index">Ana Sayfa <i class="fa"></i></a>
+
+                                    </li>
+
+
+                                    <li class="nav-item">
+                                        <a href="/Content/Home/#"><span>Kategoriler <i class="fa fa-angle-down"></i></span></a>
                                         <div class="sub-nav">
                                             <ul class="sub-nav-group">
-                                                <li><a href="/Content/Home/index.html">Home Page 1</a></li>
-                                                <li><a href="/Content/Home/index-2.html">Home Page 2</a></li>
-                                                <li><a href="/Content/Home/index-3.html">Home Page 3</a></li>
-                                                <li><a href="/Content/Home/#">Coming Soon</a></li>
-                                                <li><a href="/Content/Home/#">Coming Soon</a></li>
+                                                @{
+                                                    Html.RenderAction("KategoriGetir", "Home");
+                                                }
                                             </ul>
                                         </div>
                                     </li>
+
+
                                     <li class="nav-item">
-                                        <a href="/Content/Home/shop.html"><span>categories <i class="fa fa-angle-down"></i></span></a>
-                                        <div class="sub-nav full padding">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <h3 class="sub-nav-title">Mens</h3>
-                                                    <ul class="sub-nav-group sub-nav-grey">
-                                                        <li><a href="/Content/Home/shop.html">Shirts</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Jackets</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Chinos &amp; Trousers</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Jeans</a></li>
-                                                        <li><a href="/Content/Home/shop.html">T-Shirts</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Underwear</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <h3 class="sub-nav-title">Womens</h3>
-                                                    <ul class="sub-nav-group sub-nav-grey">
-                                                        <li><a href="/Content/Home/shop.html">Shirts</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Jackets</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Chinos &amp; Trousers</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Jeans</a></li>
-                                                        <li><a href="/Content/Home/shop.html">T-Shirts</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Underwear</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <h3 class="sub-nav-title">Kids</h3>
-                                                    <ul class="sub-nav-group sub-nav-grey">
-                                                        <li><a href="/Content/Home/shop.html">Shirts</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Jackets</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Chinos &amp; Trousers</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Jeans</a></li>
-                                                        <li><a href="/Content/Home/shop.html">T-Shirts</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Underwear</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <h3 class="sub-nav-title">All</h3>
-                                                    <ul class="sub-nav-group sub-nav-grey">
-                                                        <li><a href="/Content/Home/shop.html">Shirts</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Jackets</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Chinos &amp; Trousers</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Jeans</a></li>
-                                                        <li><a href="/Content/Home/shop.html">T-Shirts</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Underwear</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <a href="/Content/Home/contact.html"><i class="icon-call-in"></i> Oyunlar</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="/Content/Home/shop.html"><span>Girls <i class="fa fa-angle-down"></i></span></a>
-                                        <div class="sub-nav full padding">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="megamenu-popular box-with-pager">
-                                                        <h3 class="sub-nav-title hover">New Arrival</h3>
-                                                        <div id="menu-products-carousel" class="wa-product-main">
-                                                            <div class="wa-product">
-                                                                <div class="wa-product-thumbnail wa-item">
-                                                                    <img src="/Content/Home/assets\img\single\1.jpeg" alt="">
-                                                                    <div class="caption">
-                                                                        <div class="caption-text">
-                                                                            <div class="clear"></div>
-                                                                            <a href="/Content/Home/product-detail.html" class="theme-button marT10"><i class="fa fa-link"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="wa-product-caption">
-                                                                    <h2><a href="/Content/Home/product-detail.html">Ladies fency dress</a></h2>
-                                                                    <div class="clear"></div>
-                                                                    <span class="price">
-                                                                        <del>$200</del>
-                                                                        $100
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="wa-product">
-                                                                <div class="wa-product-thumbnail wa-item">
-                                                                    <img src="/Content/Home/assets\img\single\2.jpeg" alt="">
-                                                                    <div class="caption">
-                                                                        <div class="caption-text">
-                                                                            <div class="clear"></div>
-                                                                            <a href="/Content/Home/product-detail.html" class="theme-button marT10"><i class="fa fa-link"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="wa-product-caption">
-                                                                    <h2><a href="/Content/Home/product-detail.html">Ladies fency dress</a></h2>
-                                                                    <div class="clear"></div>
-                                                                    <span class="price">
-                                                                        <del>$200</del>
-                                                                        $100
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="wa-product">
-                                                                <div class="wa-product-thumbnail wa-item">
-                                                                    <img src="/Content/Home/assets\img\single\3.jpeg" alt="">
-                                                                    <div class="caption">
-                                                                        <div class="caption-text">
-                                                                            <div class="clear"></div>
-                                                                            <a href="/Content/Home/product-detail.html" class="theme-button marT10"><i class="fa fa-link"></i></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="wa-product-caption">
-                                                                    <h2><a href="/Content/Home/product-detail.html">Ladies fency dress</a></h2>
-                                                                    <div class="clear"></div>
-                                                                    <span class="price">
-                                                                        <del>$200</del>
-                                                                        $100
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <h3 class="sub-nav-title">Jackets</h3>
-                                                    <ul class="sub-nav-group sub-nav-grey">
-                                                        <li><a href="/Content/Home/shop.html">Shirts</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Jumper & Cardigans</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Autumn Jackets</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Winter Jackets</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Leather Jackets</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Jeans</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Shoes</a></li>
-                                                    </ul>
-                                                    <h3 class="sub-nav-title">Winter</h3>
-                                                    <ul class="sub-nav-group sub-nav-grey">
-                                                        <li><a href="/Content/Home/shop.html" class="">Jackets</a></li>
-                                                        <li><a href="/Content/Home/shop.html" class="">Chinos &amp; Trousers</a></li>
-                                                        <li><a href="/Content/Home/shop.html" class="">T-Shirts</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <h3 class="sub-nav-title">accessories</h3>
-                                                    <ul class="sub-nav-group sub-nav-grey">
-                                                        <li><a href="/Content/Home/shop.html">Bags</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Beauty</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Underwear</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Glasses</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Leather Jackets</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Jeans</a></li>
-                                                        <li><a href="/Content/Home/shop.html">Shoes</a></li>
-                                                    </ul>
-                                                    <h3 class="sub-nav-title">Party Wear</h3>
-                                                    <ul class="sub-nav-group sub-nav-grey">
-                                                        <li><a href="/Content/Home/shop.html" class="">Jackets</a></li>
-                                                        <li><a href="/Content/Home/shop.html" class="">Chinos &amp; Trousers</a></li>
-                                                        <li><a href="/Content/Home/shop.html" class="">T-Shirts</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/Content/Home/#"><span>Pages <i class="fa fa-angle-down"></i></span></a>
-                                        <div class="sub-nav">
-                                            <ul class="sub-nav-group">
-                                                <li><a href="/Content/Home/shop.html">Shop</a></li>
-                                                <li><a href="/Content/Home/shop-list.html" class="">Shop List</a></li>
-                                                <li><a href="/Content/Home/shop-fullwidth.html" class="">Shop full width</a></li>
-                                                <li><a href="/Content/Home/product-detail.html">Product detail</a></li>
-                                                <li><a href="/Content/Home/cart-page.html">Cart</a></li>
-                                                <li><a href="/Content/Home/checkout-page.html">Checkout</a></li>
-                                                <li><a href="/Content/Home/register.html">Register</a></li>
-                                                <li class="has-sub-nav">
-                                                    <a href="/Content/Home/#">404 error</a>
-                                                    <div class="sub-nav">
-                                                        <ul class="sub-nav-group">
-                                                            <li><a href="/Content/Home/404.html">404 Default</a></li>
-                                                            <li><a href="/Content/Home/404-bg.html">404 Bg Image</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                <li class="has-sub-nav">
-                                                    <a href="/Content/Home/#"><span>Submenu Left</span></a>
-                                                    <div class="sub-nav left-side">
-                                                        <ul class="sub-nav-group">
-                                                            <li><a href="/Content/Home/">Account</a></li>
-                                                            <li><a href="/Content/Home/#">New Product</a></li>
-                                                            <li><a href="/Content/Home/#">Special Product</a></li>
-                                                            <li><a href="/Content/Home/#">Featured Product</a></li>
-                                                            <li><a href="/Content/Home/#">Contact</a></li>
-                                                            <li><a href="/Content/Home/#">Shortcodes</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/Content/Home/#"><span>Blog <i class="fa fa-angle-down"></i></span></a>
-                                        <div class="sub-nav">
-                                            <ul class="sub-nav-group">
-                                                <li><a href="/Content/Home/blogs.html">Blog Default</a></li>
-                                                <li><a href="/Content/Home/blogs-grid.html">Blog Grid Sidebar</a></li>
-                                                <li><a href="/Content/Home/blogs-grid-fullwidth.html">Blog Grid Full Width</a></li>
-                                                <li><a href="/Content/Home/blogs-detail.html">Blog Detail Sidebar</a></li>
-                                                <li><a href="/Content/Home/blogs-detail-fullwidth.html">Blog Detail Full Width</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/Content/Home/"><span>Featured <i class="fa fa-angle-down"></i></span></a>
-                                        <div class="sub-nav full padding">
-                                            <div class="row">
-                                                <div class="col-md-4 marB30">
-                                                    <a href="/Content/Home/shop.html" class="img-fade-hover">
-                                                        <img src="/Content/Home/assets\img\menu\faa_1.jpeg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-4 marB30">
-                                                    <a href="/Content/Home/shop.html" class="img-fade-hover">
-                                                        <img src="/Content/Home/assets\img\menu\faa_2.jpeg" alt="">
-                                                    </a>
-                                                </div>
-                                                <div class="col-md-4 marB30">
-                                                    <a href="/Content/Home/shop.html" class="img-fade-hover">
-                                                        <img src="/Content/Home/assets\img\menu\faa_3.jpeg" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="megamenu-popular mmp-type-2 box-with-pager">
-                                                <ul class="vertical-bx-1">
-                                                    <li>
-                                                        <div class="row wa-product-main">
-                                                            <div class="col-sm-4 col-md-4">
-                                                                <div class="wa-product">
-                                                                    <div class="wa-product-thumbnail wa-item">
-                                                                        <img src="/Content/Home/assets\img\newarrival\img1.jpeg" alt="">
-                                                                        <div class="caption">
-                                                                            <div class="caption-text">
-                                                                                <ul class="wa-product-icon">
-                                                                                    <li><a href="/Content/Home/" title="Add to cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                                    <li><a href="/Content/Home/#" class="wa-trigger" title="Quick View"><i class="fa fa-eye"></i></a></li>
-                                                                                    <li><a href="/Content/Home/" title="Add to wishlist"><i class="fa fa-heart"></i></a></li>
-                                                                                    <li><a href="/Content/Home/" title="Add to compare"><i class="fa fa-random"></i></a></li>
-                                                                                </ul>
-                                                                                <div class="clear"></div>
-                                                                                <a href="/Content/Home/product-detail.html" class="theme-button marT10">view detail</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="wa-product-caption">
-                                                                        <h2><a href="/Content/Home/product-detail.html">womens top</a></h2>
-                                                                        <div class="clear"></div>
-                                                                        <ul class="ratings">
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star-half-o"></i></a></li>
-                                                                        </ul>
-                                                                        <div class="clear"></div>
-                                                                        <span class="price">
-                                                                            <del>$200</del>
-                                                                            $100
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-md-4">
-                                                                <div class="wa-product">
-                                                                    <div class="wa-product-thumbnail wa-item">
-                                                                        <img src="/Content/Home/assets\img\newarrival\img1.jpeg" alt="">
-                                                                        <div class="caption">
-                                                                            <div class="caption-text">
-                                                                                <ul class="wa-product-icon">
-                                                                                    <li><a href="/Content/Home/" title="Add to cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                                    <li><a href="/Content/Home/#0" class="wa-trigger quickview-box-btn" title="Quick View"><i class="fa fa-eye"></i></a></li>
-                                                                                    <li><a href="/Content/Home/" title="Add to wishlist"><i class="fa fa-heart"></i></a></li>
-                                                                                    <li><a href="/Content/Home/" title="Add to compare"><i class="fa fa-random"></i></a></li>
-                                                                                </ul>
-                                                                                <div class="clear"></div>
-                                                                                <a href="/Content/Home/product-detail.html" class="theme-button marT10">view detail</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="wa-product-caption">
-                                                                        <h2><a href="/Content/Home/product-detail.html">womens top</a></h2>
-                                                                        <div class="clear"></div>
-                                                                        <ul class="ratings">
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star-half-o"></i></a></li>
-                                                                        </ul>
-                                                                        <div class="clear"></div>
-                                                                        <span class="price">
-                                                                            <del>$200</del>
-                                                                            $100
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-4 col-md-4">
-                                                                <div class="wa-product">
-                                                                    <div class="wa-product-thumbnail wa-item">
-                                                                        <img src="/Content/Home/assets\img\newarrival\img1.jpeg" alt="">
-                                                                        <div class="caption">
-                                                                            <div class="caption-text">
-                                                                                <ul class="wa-product-icon">
-                                                                                    <li><a href="/Content/Home/" title="Add to cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                                    <li><a href="/Content/Home/#0" class="wa-trigger quickview-box-btn" title="Quick View"><i class="fa fa-eye"></i></a></li>
-                                                                                    <li><a href="/Content/Home/" title="Add to wishlist"><i class="fa fa-heart"></i></a></li>
-                                                                                    <li><a href="/Content/Home/" title="Add to compare"><i class="fa fa-random"></i></a></li>
-                                                                                </ul>
-                                                                                <div class="clear"></div>
-                                                                                <a href="/Content/Home/product-detail.html" class="theme-button marT10">view detail</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="wa-product-caption">
-                                                                        <h2><a href="/Content/Home/product-detail.html">womens top</a></h2>
-                                                                        <div class="clear"></div>
-                                                                        <ul class="ratings">
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                                                            <li><a href="/Content/Home/"><i class="fa fa-star-half-o"></i></a></li>
-                                                                        </ul>
-                                                                        <div class="clear"></div>
-                                                                        <span class="price">
-                                                                            <del>$200</del>
-                                                                            $100
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/Content/Home/contact.html"><i class="icon-call-in"></i> Contact Us</a>
+                                        <a href="/Home/Gelistiriciler"><i class="icon-call-in"></i> Geliştiriciler</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -650,6 +345,8 @@
     <!--//=======Header End=======//-->
 
     @RenderBody()
+
+
     <footer id="footer" class="footer">
         <div class="footer-one footer-widgets">
             <div class="container">
@@ -1017,40 +714,6 @@
         </div>
     </div>
 
-    <!-- SWITCHER DESIGN AREA -->
-    <div id="style-switcher">
-        <h2>Choose Color<a href="/Content/Home/#"><i class="fa fa-cog fa-spin"></i></a></h2>
-        <div>
-            <ul class="colors" id="color1">
-                <li>
-                    <a href="/Content/Home/#" class="color"></a>
-                </li>
-                <li>
-                    <a href="/Content/Home/#" class="color1"></a>
-                </li>
-                <li>
-                    <a href="/Content/Home/#" class="color2"></a>
-                </li>
-                <li>
-                    <a href="/Content/Home/#" class="color3"></a>
-                </li>
-                <li>
-                    <a href="/Content/Home/#" class="color4"></a>
-                </li>
-                <li>
-                    <a href="/Content/Home/#" class="color5"></a>
-                </li>
-                <li>
-                    <a href="/Content/Home/#" class="color6"></a>
-                </li>
-                <li>
-                    <a href="/Content/Home/#" class="color7"></a>
-                </li>
-            </ul>
-
-        </div>
-    </div>
-    <!-- / END SWITCHER DESIGN AREA -->
 
     <div style="display:none;">
         <a href="/Content/Home/http://info.flagcounter.com/DsUo"><img src="/Content/Home/http://s01.flagcounter.com/count2/DsUo/bg_FFFFFF/txt_000000/border_CCCCCC/columns_6/maxflags_12/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
@@ -1069,5 +732,7 @@
     <script src="/Content/Home/assets\plugins\ResponsiveMultiLevelMenu\js\jquery.dlmenu.js"></script>
     <script src="/Content/Home/assets\plugins\switcher\switcher.js"></script>
     <script src="/Content/Home/assets\js\main.js"></script>
+    @RenderSection("script", false)
+    
 </body>
 </html>
