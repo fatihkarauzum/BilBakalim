@@ -22,6 +22,8 @@ namespace BilBakalim.Data
 
         public int? ResimID { get; set; }
 
+        public bool? Aktif { get; set; }
+
         public virtual Resim Resim { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

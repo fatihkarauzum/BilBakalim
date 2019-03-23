@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BilBakalim.Web.Models;
+using BilBakalim.Web.App_Classes;
 
 namespace BilBakalim.Web.Controllers
 {
@@ -148,11 +149,11 @@ namespace BilBakalim.Web.Controllers
         {
             try
             {
-                Rol kont = db.Rol.Where(x => x.RolAdi == k.RolAdi).SingleOrDefault();
+                Rol kont = db.Rol.Where(x => x.RolAdi.ToLower() == k.RolAdi.ToLower()).SingleOrDefault();
                 if (kont != null)
                 {
                     ViewData["Hata"] = "Kayıtlı bir Rol Eklediniz!";
-                    return View();
+                    return RedirectToAction("RolListesi");
                 }
 
                 else
@@ -167,7 +168,7 @@ namespace BilBakalim.Web.Controllers
                     else
                     {
                         ViewData["Hata"] = "Boş Geçmeyiniz";
-                        return View();
+                        return RedirectToAction("RolListesi");
                     }
                 }
             }
@@ -207,6 +208,292 @@ namespace BilBakalim.Web.Controllers
 
             }
         }
+
+        [HttpGet]
+        public ActionResult SinifKategori()
+        {
+            return View(db.SinifKategori.ToList());
+
+        }
+
+        [HttpPost]
+        public ActionResult SinifKategoriEkle(SinifKategori k, HttpPostedFileBase resimGelen)
+        {
+
+            try
+            {
+                Resim o = new Resim();
+                ResimKategori l = new ResimKategori();
+
+                if (resimGelen == null)
+                {
+
+                    Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/SinifSoru/default.png").SingleOrDefault();
+                    k.ResimID = b.ID;
+                }
+                else
+                {
+
+                    string yeniResimAdi = "";
+                    ResimIslemleri r = new ResimIslemleri();
+                    yeniResimAdi = r.Ekle(resimGelen, "SinifSoru");
+                    //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
+
+                    if (yeniResimAdi == "uzanti")
+                    {
+                        ViewBag.Dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                        ViewBag.SinifKat = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");
+                        ViewData["Hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                        return RedirectToAction("SinifKategori");
+                    }
+                    else if (yeniResimAdi == "boyut")
+                    {
+                        ViewBag.Dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                        ViewBag.SinifKat = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");
+                        ViewData["Hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
+                        return RedirectToAction("SinifKategori");
+                    }
+                    else
+                    {
+
+                        l = db.ResimKategori.Where(x => x.KategoriAdi == "SinifSoru").SingleOrDefault();
+                        o.ResimKategoriID = l.ID;
+                        o.Url = yeniResimAdi;
+                        db.Resim.Add(o);
+                        k.ResimID = o.ID;
+                       
+
+                    }
+                }
+
+                    SinifKategori kont = db.SinifKategori.Where(x => x.KategoriAdi.ToLower() == k.KategoriAdi.ToLower()).SingleOrDefault();
+                    if (kont != null)
+                    {
+                        TempData["Hata"] = "Kayıtlı bir Kategori Eklediniz!";
+                        return RedirectToAction("SinifKategori");
+                }
+
+                    else
+                    {
+                        if (k != null)
+                        {
+                        k.Aktif = true;
+                        db.SinifKategori.Add(k);
+                            db.SaveChanges();
+                            TempData["uyari"] = k.KategoriAdi + " isimli Kategori basarı ile eklenmiştir";
+                            return RedirectToAction("SinifKategori");
+                        }
+                        else
+                        {
+                            ViewData["Hata"] = "Boş Geçmeyiniz";
+                            return RedirectToAction("SinifKategori");
+                    }
+                    }                
+
+                
+
+            }
+            catch (Exception)
+            {
+                TempData["tehlikeli"] = "Kategori eklerken hata olustu";
+                return RedirectToAction("SinifKategori");
+
+            }
+
+        }
+
+        [HttpGet]
+        public ActionResult SinifKategoriDuzenle(int id)
+        {
+
+           
+            SinifKategori r = db.SinifKategori.Where(x => x.ID == id).SingleOrDefault();
+            return View(r);
+
+        }
+
+        [HttpPost]
+        public ActionResult SinifKategoriDuzenle(SinifKategori k, HttpPostedFileBase resimGelen)
+        {
+
+            try
+            {
+
+                SinifKategori ob = db.SinifKategori.Where(x => x.ID == k.ID).SingleOrDefault();
+                Resim o = new Resim();
+                ResimKategori l = new ResimKategori();
+
+                if (resimGelen == null)
+                {
+
+                    Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/SinifSoru/default.png").SingleOrDefault();
+                    ob.ResimID = b.ID;
+                }
+                else
+                {
+
+
+                    string yeniResimAdi = "";
+                    ResimIslemleri r = new ResimIslemleri();
+                    yeniResimAdi = r.Ekle(resimGelen, "SinifSoru");
+                    //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
+
+                    if (yeniResimAdi == "uzanti")
+                    {
+                        ViewBag.Dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                        ViewBag.SinifKat = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");
+                        ViewData["Hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                        return RedirectToAction("SinifKategori");
+                    }
+                    else if (yeniResimAdi == "boyut")
+                    {
+                        ViewBag.Dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                        ViewBag.SinifKat = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");
+                        ViewData["Hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
+                        return RedirectToAction("SinifKategori");
+                    }
+                    else
+                    {
+                        if (ob.Resim.Url != null)
+                        {
+                            new ResimIslemleri().Sil(resimGelen.ToString(),"SinifSoru");
+
+                        }
+
+                        l = db.ResimKategori.Where(x => x.KategoriAdi == "SinifSoru").SingleOrDefault();
+                        o.ResimKategoriID = l.ID;
+                        o.Url = yeniResimAdi;
+                        db.Resim.Add(o);
+                        ob.ResimID = o.ID;
+                    }
+                }
+
+                SinifKategori kont = db.SinifKategori.Where(x => x.KategoriAdi.ToLower() == k.KategoriAdi.ToLower()).SingleOrDefault();
+                if (kont != null)
+                {
+                    TempData["Hata"] = "Kayıtlı bir Kategori Eklediniz!";
+                    return RedirectToAction("SinifKategori");
+                }
+
+                else
+                {
+                    if (k != null)
+                    {
+
+                        ob.KategoriAdi = k.KategoriAdi;                        
+                        db.SaveChanges();
+                        TempData["uyari"] = k.KategoriAdi + " isimli Kategori basarı ile eklenmiştir";
+                        return RedirectToAction("SinifKategori");
+                    }
+                    else
+                    {
+                        ViewData["Hata"] = "Boş Geçmeyiniz";
+                        return RedirectToAction("SinifKategori");
+                    }
+                }
+
+
+            }
+            catch (Exception)
+            {
+                TempData["Hata"] = "Kategori eklerken hata olustu";
+                return RedirectToAction("SinifKategori");
+
+            }
+
+        }
+
+
+        public ActionResult SinifKatAktif(int id)
+        {
+            try
+            {
+                SinifKategori k = db.SinifKategori.Where(x => x.ID == id).SingleOrDefault();
+                if (k != null)
+                {
+                    if (db.SinifKategori.Where(x => x.Aktif == true).Where(x => x.Aktif == true).Count() > 0)
+                    {
+
+                        k.Aktif = Convert.ToBoolean(k.Aktif) ? false : true;
+                        if (k.Aktif == true)
+                        {
+                            TempData["uyari"] = "Kategori Aktif oldu";
+                        }
+                        else
+                        {
+                            TempData["uyari"] = "Kategori Pasif oldu";
+                        }
+                        db.SaveChanges();
+
+                        return RedirectToAction("SinifKategori");
+                    }
+                    else
+                    {
+                        TempData["hata"] = "En az bir tane Kategori olmali";
+                        return RedirectToAction("SinifKategori");
+                    }
+                }
+                else
+                {
+                    TempData["hata"] = id + "li kategori bulunamamıştır.";
+                    return RedirectToAction("SinifKategori");
+                }
+
+            }
+            catch
+            {
+                TempData["uyari"] = "Kullanıcı silerken hata olustu";
+                return RedirectToAction("SinifKategori");
+            }
+
+
+        }
+
+
+        public ActionResult SinifKategoriSil(int id)
+        {
+            List<Sinif> Siniflar = db.Sinif.Where(x => x.SinifKategoriID == id).ToList();
+            try
+            {
+                SinifKategori k = db.SinifKategori.Where(x => x.ID == id).SingleOrDefault();
+                if (k != null)
+                {
+                    if (Siniflar.Count()!= 0)
+                    {
+                        TempData["hata"] = "Kategoriye ait siniflar mevcut. Lütfen silmek yerine pasif duruma alın.";
+                        return RedirectToAction("SinifKategori");
+                    }
+
+                    else
+                    {
+                        db.SinifKategori.Remove(k);
+                        db.SaveChanges();
+                        TempData["Uyari"] = k.KategoriAdi + "İsimli Kategori başarılı şekilde silinmiştir.";
+                        return RedirectToAction("SinifKategori");
+                    }                   
+                }
+                else
+                {
+                    TempData["hata"] = id + "li kategori bulunamamıştır.";
+                    return RedirectToAction("SinifKategori");
+                }          
+            }
+            catch
+            {
+                TempData["hata"] = "Kullanıcı silerken hata olustu";
+                return RedirectToAction("SinifKategori");
+            }
+
+        }
+
+
+        public ActionResult ResimKategori()
+        {
+            return View(db.ResimKategori.ToList());
+
+
+        }
+
 
         public ActionResult Hata()
         {

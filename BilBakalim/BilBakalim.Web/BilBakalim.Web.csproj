@@ -281,6 +281,7 @@
     <Content Include="Content\images\setting.png" />
     <Content Include="Content\images\user.png" />
     <Content Include="Content\Resimler\SinifSoru\bos.jpg" />
+    <Content Include="Content\Resimler\SinifSoru\default.png" />
     <Content Include="Database\13.03.2019 - DB.sql" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -352,6 +353,9 @@
     <Content Include="Views\Kullanici\SoruEkle.cshtml" />
     <Content Include="Views\Menu\MenuListesi.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\Admin\SinifKategori.cshtml" />
+    <Content Include="Views\Admin\SinifKategoriDuzenle.cshtml" />
+    <Content Include="Views\Admin\ResimKategori.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

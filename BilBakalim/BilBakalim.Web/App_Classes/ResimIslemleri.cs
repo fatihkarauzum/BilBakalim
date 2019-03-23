@@ -26,7 +26,8 @@ namespace BilBakalim.Web.App_Classes
             string ad = Guid.NewGuid().ToString() + uzanti;
             Bitmap res = new Bitmap(Image.FromStream(orjResim.InputStream));
             res.Save(HttpContext.Current.Server.MapPath("/Content/Resimler/" + yer + "/" + ad));
-            return ad;
+            string uz = "/Content/Resimler/" + yer + "/" + ad;
+            return uz;
         }
 
         public string Sil(string resimAdi, String yer)
@@ -35,6 +36,19 @@ namespace BilBakalim.Web.App_Classes
             if (System.IO.File.Exists(yol)) // belirtilen kalasörde o dosya var mı
             {
                 System.IO.File.Delete(yol); // eski resmi sil
+            }
+            else
+            {
+                return "Bulunamadı";
+            }
+            return "Silindi";
+        }
+
+        public string Sil2(string resimAdi, String yer)
+        {          
+            if (System.IO.File.Exists(resimAdi)) // belirtilen kalasörde o dosya var mı
+            {
+                System.IO.File.Delete(resimAdi); // eski resmi sil
             }
             else
             {
