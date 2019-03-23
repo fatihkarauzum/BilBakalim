@@ -1,0 +1,232 @@
+﻿
+@{
+    ViewBag.Title = "Duzenle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using System.Collections
+@using BilBakalim.Data
+
+@{
+    Kullanici p = (Kullanici)Session["Kullanici"];
+}
+
+@functions
+{
+
+    
+
+}
+
+@model Menu
+<div class="row">
+
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <div class="col-lg-12">
+                    Şu anda <b> @Model.Adi</b> İsimli Menüyü Düzenliyorsunuz...
+                </div>
+            </header>
+            <header class="panel-heading">
+                <div class="col-lg-12">
+                    <b> Menu Düzenle Ekle</b>
+                </div>
+            </header>
+            <div class="panel-body">
+            @using (Html.BeginForm("Duzenle", "Menu", FormMethod.Post, new {enctype = "multipart/form-data"}))
+            {
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <input hidden name="ID" value="@Model.ID"/>
+                            </div>
+
+                            <div class="form-group">
+                                @if (Model.AcilirMenu == true)
+                                {
+                                    <input hidden name="AcilirMenu" value="true" />
+                                }
+                                else
+                                {
+                                    <input hidden name="AcilirMenu" value="false" />
+                                }
+
+                            </div>
+                            <div class="form-group">
+                                @if (Model.Aktif == true)
+                                {
+                                    <input hidden name="Aktif" value="true" />
+                                }
+                                else
+                                {
+                                    <input hidden name="Aktif" value="false" />
+                                }
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Menü Adı </label>&nbsp;<span style="color: red;">*</span>
+                                <input type="text" class="form-control" placeholder="Menü Adını Giriniz..." name="Adi" value="@Model.Adi" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Icon Class'ını Giriniz</label>&nbsp;<span style="color: red;">*</span>
+                                <input type="text" class="form-control" placeholder="Icon Class'ını Giriniz..." value="@Model.Icon" name="Icon" required>
+                            </div>
+
+                            <div id="altMenu" style="display: none">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Üst Menü Seçiniz</label>
+                                    <select onchange="show_selected()" id="ustMenuSec" class="form-control m-bot15" name="ParentMenuID">
+                                        <option value="default">Üst Menü Seçiniz</option>
+                                        @foreach (var item in ViewBag.menus)
+                                        {
+                                            if (Model.ParentMenuID == item.ID)
+                                            {
+                                                <option value="@item.ID" selected>@item.Adi</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.ID">@item.Adi</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+
+
+
+                                <div class="form-group">
+
+                                    <label for="exampleInputEmail1">Controller Seçiniz</label>
+                                    <select onchange="show_selected()" id="controllerSec" class="form-control m-bot15" name="Controller">
+                                        <option value="default">Controller Seçiniz</option>
+                                        @foreach (var item in ViewBag.controllers)
+                                        {
+                                            if (Model.Controller + "Controller" == item)
+                                            {
+                                                <option value="@item" selected>@item</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item">@item</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Action Seçiniz</label>&nbsp;<span style="color: red;">*</span>
+                                    <input type="text" class="form-control" placeholder="Action Giriniz..." name="Action" value="@Model.Action">
+                                </div>
+                            </div>
+                            <div class="form-group" id="ustMenuCheckDiv" style="display: block">
+                                <label for="exampleInputEmail1">Güncellemek İstediğiniz Menü Üst Menü mü ?</label><br/>
+                                <div class="switch switch-square"
+                                     data-on-label="<i class=' icon-ok'></i>"
+                                     data-off-label="<i class='icon-remove'></i>">
+                                    <input type="checkbox" id="ustMenuCheck"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="altMenuCheckDiv" style="display: block">
+                                <label for="exampleInputEmail1">Güncellemek İstediğiniz Menü Alt Menü mü ?</label><br/>
+                                <div class="switch switch-square"
+                                     data-on-label="<i class=' icon-ok'></i>"
+                                     data-off-label="<i class='icon-remove'></i>">
+                                    <input type="checkbox" id="altMenuCheck"/>
+                                </div>
+                            </div>
+                            <button type="submit" id="button" class="btn btn-info">Kaydet</button>
+                            <a href="/Menu/MenuListesi" class="btn btn-danger">İptal</a>
+                            <button type="reset" class="btn btn-default">Temizle</button>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+            </div>
+        </section>
+    </div>
+</div>
+
+
+@section script{
+    <script src="/Content/Admin/js/bootstrap-switch.js"></script>
+    <script type="text/javascript">
+        $('#ustMenuCheck').change(function () {
+            $('#ustMenu').toggle();
+            $('#altMenuCheckDiv').toggle();
+        });
+
+        $('#altMenuCheck').change(function () {
+            $('#altMenu').toggle();
+            $('#ustMenuCheckDiv').toggle();
+
+            var checked = document.getElementById("altMenuCheck").checked;
+
+            if (checked == true) {
+                var selector = document.getElementById('ustMenuSec');
+                var ustMenuSecDefault = selector[selector.selectedIndex].value;
+
+                var selector1 = document.getElementById('controllerSec');
+                var controllerSecDefault = selector1[selector1.selectedIndex].value;
+
+                if (checked == true && controllerSecDefault == 'default' || ustMenuSecDefault == 'default') {
+                    $('#button').removeClass('btn btn-info');
+                    $('#button').addClass('btn btn-info disabled');
+                    document.getElementById('button').disabled = true;
+                }
+                else {
+                    $('#button').removeClass('btn btn-info disabled');
+                    $('#button').addClass('btn btn-info');
+                    document.getElementById('button').disabled = false;
+                }
+            }
+
+        });
+
+        
+
+
+    </script>
+    
+    <script type="text/javascript">
+        function show_selected(){
+            "use strict";
+            var selector = document.getElementById('ustMenuSec');
+            var ustMenuSecDefault = selector[selector.selectedIndex].value;
+
+            var selector1 = document.getElementById('controllerSec');
+            var controllerSecDefault = selector1[selector1.selectedIndex].value;
+
+            //var selector = document.getElementById('firma');
+            //var valuec = selector[selector.selectedIndex].value;
+
+            //var selector = document.getElementById('alimTipi');
+            //var valued = selector[selector.selectedIndex].value;
+
+            //var selector = document.getElementById('labDurum');
+            //var valuee = selector[selector.selectedIndex].value;
+
+            //var selector = document.getElementById('gkkSonuc');
+            //var valuef = selector[selector.selectedIndex].value;
+
+            if (ustMenuSecDefault == 'default' || controllerSecDefault == 'default') {
+                $('#button').removeClass('btn btn-info');
+                $('#button').addClass('btn btn-info disabled');
+                document.getElementById('button').disabled = true;
+            }
+            else {
+                $('#button').removeClass('btn btn-info disabled');
+                $('#button').addClass('btn btn-info');
+                document.getElementById('button').disabled = false;
+            }
+        };
+        //window.onload = show_selected();
+    </script>
+}
+

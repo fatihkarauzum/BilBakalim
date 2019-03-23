@@ -314,6 +314,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Classes\Functions.cs" />
+    <Compile Include="App_Classes\MvcHelper.cs" />
     <Compile Include="App_Classes\ResimIslemleri.cs" />
     <Compile Include="App_Classes\_SecurityFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -352,6 +353,8 @@
     <Content Include="Views\Kullanici\SoruEkle.cshtml" />
     <Content Include="Views\Menu\MenuListesi.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\Menu\MenuEkle.cshtml" />
+    <Content Include="Views\Menu\Duzenle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
