@@ -194,6 +194,17 @@
                         <div class="top-menu">
                             <nav class="main-menu">
                                 <ul class="nav-menu">
+                                    @{
+                                        if(aktifKullanici != null)
+                                        {
+                                            if (aktifKullanici.Rol.RolAdi == "Admin")
+                                            {
+                                                <li class="nav-item">
+                                                    <a href="/Admin/Index">Admin</a>
+                                                </li>
+                                            }
+                                        }
+                                    }
                                     <li class="nav-item">
                                         <a href="/Home/Index">Ana Sayfa <i class="fa"></i></a>
 
@@ -204,6 +215,7 @@
                                         <a href="/Content/Home/#"><span>Kategoriler <i class="fa fa-angle-down"></i></span></a>
                                         <div class="sub-nav">
                                             <ul class="sub-nav-group">
+
                                                 @{
                                                     Html.RenderAction("KategoriGetir", "Home");
                                                 }
