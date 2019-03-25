@@ -13,6 +13,15 @@
 <div class="row">
 
     <div class="col-lg-12">
+        <div class="alert alert-danger" style="display: none" id="uyari">
+            <p>
+                Lütfen Menünün Hangi Türde Olacağını Seçiniz !
+
+                <button type="button" onclick="uyariKapat();" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </p>
+        </div>
         <section class="panel">
             <header class="panel-heading">
                 <div class="col-lg-12">
@@ -20,21 +29,22 @@
                 </div>
             </header>
             <div class="panel-body">
-                <form role="form" method="post" action="/Menu/Ekle">
+                <form role="form" method="post" action="/Menu/Ekle" onsubmit = "return checkForm(this);">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="col-lg-12">                 
+                            <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Menü Adı </label>&nbsp;<span style="color: red;">*</span>
                                     <input type="text" class="form-control" placeholder="Menü Adını Giriniz..." name="Adi" required>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Icon Class'ını Giriniz</label>&nbsp;<span style="color: red;">*</span>
                                     <input type="text" class="form-control" placeholder="Icon Class'ını Giriniz..." name="Icon" required>
                                 </div>
 
                                 <div id="altMenu" style="display: none">
+                                    <div id="normalMenu">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Üst Menü Seçiniz</label>
                                         <select onchange="show_selected()" id="ustMenuSec" class="form-control m-bot15" name="ParentMenuID">
@@ -45,24 +55,24 @@
                                             }
                                         </select>
                                     </div>
-                                
-        
-                                
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Controller Seçiniz</label>&nbsp;<span style="color: red;">*</span>
-                                    <select onchange="show_selected()" id="controllerSec" class="form-control m-bot15" name="Controller">
-                                        <option value="default">Controller Seçiniz</option>
-                                        @foreach (var item in ViewBag.controllers)
-                                        {
-                                             <option value="@item">@item</option>
-                                        }
-                                    </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Action Seçiniz</label>&nbsp;<span style="color: red;">*</span>
-                                    <input type="text" class="form-control" placeholder="Action Giriniz..." name="Action">
-                                </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Controller Seçiniz</label>&nbsp;<span style="color: red;">*</span>
+                                        <select onchange="show_selected()" id="controllerSec" class="form-control m-bot15" name="Controller">
+                                            <option value="default">Controller Seçiniz</option>
+                                            @foreach (var item in ViewBag.controllers)
+                                            {
+                                                <option value="@item">@item</option>
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Action Giriniz</label>&nbsp;<span style="color: red;">*</span>
+                                        <input type="text" class="form-control" id="action" placeholder="Action Giriniz..." name="Action">
+                                    </div>
                                 </div>
                                 <div class="form-group" id="ustMenuCheckDiv" style="display: block">
                                     <label for="exampleInputEmail1">Güncellemek İstediğiniz Menü Üst Menü mü ?</label><br/>
@@ -81,10 +91,22 @@
                                         <input type="checkbox" id="altMenuCheck"/>
                                     </div>
                                 </div>
+                                
+                                <div class="form-group" id="normalMenuCheckDiv" style="display: block">
+                                    <label for="exampleInputEmail1">Güncellemek İstediğiniz Normal Menü mü ?</label><br />
+                                    <div class="switch switch-square"
+                                         data-on-label="<i class=' icon-ok'></i>"
+                                         data-off-label="<i class='icon-remove'></i>">
+                                        
+                                            <input type="checkbox" name="normalMenuCheck" id="normalMenuCheck" />
+                                        
+                                    </div>
+                                </div>
+
                                 <button type="submit" id="button" class="btn btn-info">Kaydet</button>
                                 <a href="/Menu/MenuListesi" class="btn btn-danger">İptal</a>
                                 <button type="reset" class="btn btn-default">Temizle</button>
-                                
+
 
                             </div>
 
@@ -101,33 +123,49 @@
 @section script{
     <script src="/Content/Admin/js/bootstrap-switch.js"></script>
     <script type="text/javascript">
-        $('#ustMenuCheck').change(function () {
-            $('#ustMenu').toggle();
+        $('#ustMenuCheck').change(function() {
+            //$('#ustMenu').toggle();
             $('#altMenuCheckDiv').toggle();
+            $('#normalMenuCheckDiv').toggle();
+
+            var checked = document.getElementById("ustMenuCheck").checked;
+
+            if (checked) {
+                document.getElementById('ustMenuSec').selectedIndex = 0;
+                document.getElementById('controllerSec').selectedIndex = 0;
+                document.getElementById('action').value = '';
+                $('#action').attr('required', false);
+            }         
+            
         });
 
-        $('#altMenuCheck').change(function () {
+        $('#altMenuCheck').change(function() {
             $('#altMenu').toggle();
             $('#ustMenuCheckDiv').toggle();
+            $('#normalMenuCheckDiv').toggle();
+
+            $('#action').attr('required', true);
 
             var checked = document.getElementById("altMenuCheck").checked;
 
-            if (checked == true) {
-                var selector = document.getElementById('ustMenuSec');
-                var ustMenuSecDefault = selector[selector.selectedIndex].value;
+            if (checked) {
+                if (!$('#action').attr('required', true)){
+                    $('#action').attr('required', true);
+                }             
+            } else {
+                $('#action').attr('required', false);
+            }
 
-                var selector1 = document.getElementById('controllerSec');
-                var controllerSecDefault = selector1[selector1.selectedIndex].value;
+            var selector = document.getElementById('ustMenuSec');
+            var ustMenuSecDefault = selector[selector.selectedIndex].value;
 
-                if (checked == true && controllerSecDefault == 'default' || ustMenuSecDefault == 'default') {
-                    $('#button').removeClass('btn btn-info');
-                    $('#button').addClass('btn btn-info disabled');
-                    document.getElementById('button').disabled = true;
-                } else {
-                    $('#button').removeClass('btn btn-info disabled');
-                    $('#button').addClass('btn btn-info');
-                    document.getElementById('button').disabled = false;
-                }
+            var selector1 = document.getElementById('controllerSec');
+            var controllerSecDefault = selector1[selector1.selectedIndex].value;
+
+            if (checked == true && (controllerSecDefault == 'default' || ustMenuSecDefault == 'default')) {
+                $('#button').removeClass('btn btn-info');
+                $('#button').addClass('btn btn-info disabled');
+                document.getElementById('button').disabled = true;
             } else {
                 $('#button').removeClass('btn btn-info disabled');
                 $('#button').addClass('btn btn-info');
@@ -136,44 +174,176 @@
 
         });
 
+        $('#normalMenuCheck').change(function() {
+            $('#altMenu').toggle();
+            $('#ustMenuCheckDiv').toggle();
+            $('#altMenuCheckDiv').toggle();
+            $('#normalMenu').toggle();
 
+            var checkedNormal = document.getElementById("normalMenuCheck").checked;
 
+            if (checkedNormal) {
+                document.getElementById('ustMenuSec').selectedIndex = 0;
+                if (!$('#action').attr('required', true)){
+                    $('#action').attr('required', true);
+                }             
+            } else {
+                $('#action').attr('required', false);
+            }
 
-    </script>
+            var selector1Normal = document.getElementById('controllerSec');
+            var controllerSecDefaultNormal = selector1Normal[selector1Normal.selectedIndex].value;
 
-    <script type="text/javascript">
-        function show_selected(){
-            "use strict";
-            var selector = document.getElementById('ustMenuSec');
-            var ustMenuSecDefault = selector[selector.selectedIndex].value;
-
-            var selector1 = document.getElementById('controllerSec');
-            var controllerSecDefault = selector1[selector1.selectedIndex].value;
-
-            //var selector = document.getElementById('firma');
-            //var valuec = selector[selector.selectedIndex].value;
-
-            //var selector = document.getElementById('alimTipi');
-            //var valued = selector[selector.selectedIndex].value;
-
-            //var selector = document.getElementById('labDurum');
-            //var valuee = selector[selector.selectedIndex].value;
-
-            //var selector = document.getElementById('gkkSonuc');
-            //var valuef = selector[selector.selectedIndex].value;
-
-            if (ustMenuSecDefault == 'default' || controllerSecDefault == 'default') {
+            if (checkedNormal == true && controllerSecDefaultNormal == 'default') {
                 $('#button').removeClass('btn btn-info');
                 $('#button').addClass('btn btn-info disabled');
                 document.getElementById('button').disabled = true;
-            }
-            else {
+            } else {
                 $('#button').removeClass('btn btn-info disabled');
                 $('#button').addClass('btn btn-info');
                 document.getElementById('button').disabled = false;
             }
+        });
+    </script>
+
+    <script type="text/javascript">
+        function show_selected() {
+            "use strict";
+            var checked = document.getElementById("altMenuCheck").checked;
+            var normalChecked = document.getElementById("normalMenuCheck").checked;
+
+            if (normalChecked) {
+                var selector1Normal = document.getElementById('controllerSec');
+                var controllerSecDefaultNormal = selector1Normal[selector1Normal.selectedIndex].value;
+
+                if (controllerSecDefaultNormal == 'default') {
+                    $('#button').removeClass('btn btn-info');
+                    $('#button').addClass('btn btn-info disabled');
+                    document.getElementById('button').disabled = true;
+                } else {
+                    $('#button').removeClass('btn btn-info disabled');
+                    $('#button').addClass('btn btn-info');
+                    document.getElementById('button').disabled = false;
+                }
+            }
+
+            if (checked) {
+                var selector = document.getElementById('ustMenuSec');
+                var ustMenuSecDefault = selector[selector.selectedIndex].value;
+
+                var selector1 = document.getElementById('controllerSec');
+                var controllerSecDefault = selector1[selector1.selectedIndex].value;
+
+                if (ustMenuSecDefault == 'default' || controllerSecDefault == 'default') {
+                    $('#button').removeClass('btn btn-info');
+                    $('#button').addClass('btn btn-info disabled');
+                    document.getElementById('button').disabled = true;
+                } else {
+                    $('#button').removeClass('btn btn-info disabled');
+                    $('#button').addClass('btn btn-info');
+                    document.getElementById('button').disabled = false;
+                }
+            }
         };
-        //window.onload = show_selected();
+
+        //$(document).ready(function () {
+        //    var controllerDurum = document.getElementById('ControllerDurum').getAttribute('data-id');
+        //    console.log(controllerDurum);
+        //    if (controllerDurum != null) {
+        //        //$('#deneme').prop("checked", true);
+        //        $('#altMenuCheck').attr('checked', true);
+        //    }
+        //});
+
+        $(document).ready(function () {
+
+            var altChecked = document.getElementById("altMenuCheck").checked;
+
+            if (altChecked) {
+                $('#altMenu').toggle();
+                $('#ustMenuCheckDiv').toggle();
+                $('#normalMenuCheckDiv').toggle();
+
+                $('#action').attr('required', true);
+
+                var checked = document.getElementById("altMenuCheck").checked;
+
+                var selector = document.getElementById('ustMenuSec');
+                var ustMenuSecDefault = selector[selector.selectedIndex].value;
+
+                var selector1 = document.getElementById('controllerSec');
+                var controllerSecDefault = selector1[selector1.selectedIndex].value;
+
+                if (checked == true && (controllerSecDefault == 'default' || ustMenuSecDefault == 'default')) {
+                    $('#button').removeClass('btn btn-info');
+                    $('#button').addClass('btn btn-info disabled');
+                    document.getElementById('button').disabled = true;
+                } else {
+                    $('#button').removeClass('btn btn-info disabled');
+                    $('#button').addClass('btn btn-info');
+                    document.getElementById('button').disabled = false;
+                }
+            }
+
+            var ustChecked = document.getElementById("ustMenuCheck").checked;
+
+            if (ustChecked) {
+                $('#altMenuCheckDiv').toggle();
+                $('#normalMenuCheckDiv').toggle();
+            }
+
+            var normalChecked = document.getElementById("normalMenuCheck").checked;
+
+            if (normalChecked) {
+                $('#altMenu').toggle();
+                $('#ustMenuCheckDiv').toggle();
+                $('#altMenuCheckDiv').toggle();
+                $('#normalMenu').toggle();
+
+                $('#action').attr('required', true);
+
+                var checkedNormal = document.getElementById("normalMenuCheck").checked;
+
+                var selector1Normal = document.getElementById('controllerSec');
+                var controllerSecDefaultNormal = selector1Normal[selector1Normal.selectedIndex].value;
+
+                if (checkedNormal == true && controllerSecDefaultNormal == 'default') {
+                    $('#button').removeClass('btn btn-info');
+                    $('#button').addClass('btn btn-info disabled');
+                    document.getElementById('button').disabled = true;
+                } else {
+                    $('#button').removeClass('btn btn-info disabled');
+                    $('#button').addClass('btn btn-info');
+                    document.getElementById('button').disabled = false;
+                }
+            }
+        });
+
+    </script>
+
+    <script>
+
+        function checkForm(form) {
+            var alt = document.getElementById("altMenuCheck").checked;
+            var normal = document.getElementById("normalMenuCheck").checked;
+            var ust = document.getElementById("ustMenuCheck").checked;
+
+            if (!alt && !normal && !ust) {
+
+                    $('#uyari').show('slow');
+                    setTimeout(() => {
+                        uyariKapat();
+                    }, 4000);
+
+                return false;
+            }
+            return true;
+        }
+
+        function uyariKapat() {
+            $('#uyari').hide('slow');
+        }
+
     </script>
 }
 

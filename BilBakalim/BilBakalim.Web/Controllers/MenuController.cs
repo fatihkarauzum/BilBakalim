@@ -161,10 +161,6 @@ namespace BilBakalim.Web.Controllers
                     Menu parentMenu = db.Menu.FirstOrDefault(x => x.ID == menu.ParentMenuID);
                     parentMenu.AcilirMenu = true;
                 }
-                else
-                {
-                    menu.AcilirMenu = false;
-                }
 
                 db.Menu.AddOrUpdate(menu);
                 db.SaveChanges();

@@ -50,13 +50,13 @@
     <div class="col-lg-12">
         @if (ViewBag.hata != null)
         {
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" id="hata">
                 <p>@ViewBag.hata</p>
             </div>
         }
         @if (TempData["GenelMesaj"] != null)
         {
-            <div class="alert alert-success">
+            <div class="alert alert-success" id="genelMesaj">
                 <p>@TempData["GenelMesaj"]</p>
             </div>
         }
@@ -163,69 +163,67 @@
     <script src="/Content/Admin/js/editable-table.js"></script>
     <!-- END JAVASCRIPTS -->
     <script>
-        jQuery(document).ready(function () {
-            EditableTable.init();            
+        jQuery(document).ready(function() {
+            EditableTable.init();
         });
     </script>
     <script>
-        window.onload = function () {
+        window.onload = function() {
             //$('#listele').addClass('active');
         }
     </script>
-    
+
 
 
     <script>
         var id;
-        var modalConfirm = function (callback) {
+        var modalConfirm = function(callback) {
 
-            $(".btn-confirm").on("click", function () {
-                id = $(this).attr("data-id");
-                $("#mi-modal").modal('show');
-            });
+            $(".btn-confirm").on("click",
+                function() {
+                    id = $(this).attr("data-id");
+                    $("#mi-modal").modal('show');
+                });
 
-            $("#modal-btn-si").on("click", function () {
-                callback(true);
+            $("#modal-btn-si").on("click",
+                function() {
+                    callback(true);
 
-                $("#mi-modal").modal('hide');
-            });
+                    $("#mi-modal").modal('hide');
+                });
 
-            $("#modal-btn-no").on("click", function () {
-                callback(false);
-                $("#mi-modal").modal('hide');
-                return e.preventDefault();
-            });
+            $("#modal-btn-no").on("click",
+                function() {
+                    callback(false);
+                    $("#mi-modal").modal('hide');
+                    return e.preventDefault();
+                });
         };
 
 
-
-        modalConfirm(function (confirm) {
+        modalConfirm(function(confirm) {
             if (confirm) {
                 $.ajax({
-                    url: '@Url.Action("Sil","Menu")',
+                    url: '@Url.Action("Sil", "Menu")',
                     contentType: 'application/json',
                     data: JSON.stringify({
                         id: id
                     }),
                     type: 'POST',
-                    success: function (rs) {
+                    success: function(rs) {
                         if (rs === true) {
                             $('#' + id).remove();
-                        }
-                        else if (rs === "menuRol") {
+                        } else if (rs === "menuRol") {
                             alert("Bu menüye ait bir rol tanımlaması yapıldığı için menüyü silemezsiniz.");
-                        }
-                        else if (rs === "menus") {
+                        } else if (rs === "menus") {
                             alert("Bu menüye ait bir alt menü tanımlaması yapıldığı için menüyü silemezsiniz.");
-                        }
-                        else if (rs === "FK") {
+                        } else if (rs === "FK") {
                             alert('Silme işlemi gerçekleşirken bir hata oluştu.');
-                        }
-                        else {
+                        } else {
                             alert('Silme işlemi gerçekleşirken bir hata oluştu.');
                         }
                     },
-                    error: function (rs) {
+                    error: function(rs) {
                         alert('Bir hata oluştu');
                     }
                 });
@@ -233,6 +231,23 @@
                 console.log("");
             }
         });
+
+        $(document).ready(function() {
+            $('#hata').show('slow');
+            setTimeout(() => {
+                uyariKapat();
+            }, 4000);
+
+            $('#genelMesaj').show('slow');
+            setTimeout(() => {
+                uyariKapat();
+            }, 4000);
+        });
+
+        function uyariKapat() {
+            $('#genelMesaj').hide('slow');
+            $('#hata').show('slow');
+        }
 
     </script>
 
