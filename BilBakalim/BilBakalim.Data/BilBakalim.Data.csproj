@@ -60,10 +60,12 @@
     <Compile Include="BilBakalimContext.cs" />
     <Compile Include="Dİl.cs" />
     <Compile Include="Favori.cs" />
+    <Compile Include="Functions\Controls.cs" />
     <Compile Include="Kullanici.cs" />
     <Compile Include="KullaniciResim.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuRol.cs" />
+    <Compile Include="Model\FirstDatas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rapor.cs" />
     <Compile Include="Resim.cs" />
