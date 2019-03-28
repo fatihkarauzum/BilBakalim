@@ -4,12 +4,14 @@
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using BilBakalim.Data.Model;
 
     public partial class BilBakalimContext : DbContext
     {
         public BilBakalimContext()
             : base("name=BilBakalimContext")
         {
+            Database.SetInitializer(new FirstDatas());
             this.Configuration.LazyLoadingEnabled = true;
         }
 
