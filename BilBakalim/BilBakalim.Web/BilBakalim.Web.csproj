@@ -309,6 +309,7 @@
     <Content Include="Content\images\tarih.jpg" />
     <Content Include="Content\images\teknoloji.jpg" />
     <Content Include="Content\images\user.png" />
+    <Content Include="Content\LocalScripts\editable-table.js" />
     <Content Include="Content\Resimler\SinifSoru\bos.jpg" />
     <Content Include="Content\Resimler\SinifSoru\default.png" />
     <Content Include="Database\13.03.2019 - DB.sql" />

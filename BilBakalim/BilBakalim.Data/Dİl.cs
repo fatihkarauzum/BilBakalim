@@ -1,3 +1,5 @@
+using BilBakalim.Data.Interfaces;
+
 namespace BilBakalim.Data
 {
     using System;
@@ -6,7 +8,7 @@ namespace BilBakalim.Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Dİl
+    public partial class Dİl : Entity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Dİl()

@@ -1,3 +1,5 @@
+using BilBakalim.Data.Interfaces;
+
 namespace BilBakalim.Data
 {
     using System;
@@ -7,7 +9,7 @@ namespace BilBakalim.Data
     using System.Data.Entity.Spatial;
 
     [Table("Sinif")]
-    public partial class Sinif
+    public partial class Sinif : Entity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sinif()
