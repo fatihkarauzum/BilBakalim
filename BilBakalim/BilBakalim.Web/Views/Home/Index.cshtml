@@ -3,6 +3,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+
 @using BilBakalim.Data
 
 @model List<Favori>
@@ -20,246 +21,42 @@
     <div class="container-fluid pad0">
         <div class="row mar0">
             <div id="latest-offer-carousel" class="owl-carousel latest-offer-carousel">
-                <!--Product start-->
-                <div class="latest-product-item">
-                    <div class="wa-product">
-                        <div class="wa-product-thumbnail item latest-offer-item wa-item">
-                            <img src="~/Content/images/mat.jpg" alt="">
-                            <div class="caption">
-                                <div class="caption-text">
-                                    <div class="clear"></div>
-                                    <div class="wa-product-caption">
-                                        <h2><a href="product-detail.html">Matematik</a></h2>
+                @foreach (SinifKategori item in ViewBag.SinifKategorileri)
+                {
+                    <!--Product start-->
+                    <div class="latest-product-item">
+                        <div class="wa-product">
+                            <div class="wa-product-thumbnail item latest-offer-item wa-item">
+                                <img src=@item.Resim.Url alt="">
+                                <div class="caption">
+                                    <div class="caption-text">
                                         <div class="clear"></div>
+                                        <div class="wa-product-caption">
+                                            <h2><a href="/Home/KategoriAyrıntı/@item.ID">@item.KategoriAdi</a></h2>
+                                            <div class="clear"></div>
 
 
-                                        <div class="clear"></div>
+                                            <div class="clear"></div>
 
-                                        <div class="clear"></div>
-                                        <a href="product-detail.html" class="theme-button marT10">Oyunlara Bak</a>
+                                            <div class="clear"></div>
+                                            <a href="/Home/KategoriAyrıntı/@item.ID" class="theme-button marT10">Oyunlara Bak</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12 mask-top-upper">
-                                <div class="mask-top">
-                                    <h2>Matematik</h2>
+                                <div class="col-md-12 mask-top-upper">
+                                    <div class="mask-top">
+                                        <h2>@item.KategoriAdi</h2>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--Product end-->
-                <!--Product start-->
-                <div class="latest-product-item">
-                    <div class="wa-product">
-                        <div class="wa-product-thumbnail item latest-offer-item wa-item">
-                            <img src="~/Content/images/bilim.jpg" alt="">
-                            <div class="caption">
-                                <div class="caption-text">
-                                    <div class="clear"></div>
-                                    <div class="wa-product-caption">
-                                        <h2><a href="product-detail.html">Bilim</a></h2>
-                                        <div class="clear"></div>
+                    <!--Product end-->
+                }
 
 
-                                        <div class="clear"></div>
 
-                                        <div class="clear"></div>
-                                        <a href="product-detail.html" class="theme-button marT10">Oyunlara Bak</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mask-top-upper">
-                                <div class="mask-top">
-                                    <h2>Bilim</h2>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Product end-->
-                <!--Product start-->
-                <div class="latest-product-item">
-                    <div class="wa-product">
-                        <div class="wa-product-thumbnail item latest-offer-item wa-item">
-                            <img src="~/Content/images/tarih.jpg" alt="">
-                            <div class="caption">
-                                <div class="caption-text">
-                                    <div class="clear"></div>
-                                    <div class="wa-product-caption">
-                                        <h2><a href="product-detail.html">Tarih</a></h2>
-                                        <div class="clear"></div>
-
-
-                                        <div class="clear"></div>
-
-                                        <div class="clear"></div>
-                                        <a href="product-detail.html" class="theme-button marT10">Oyunlara Bak</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mask-top-upper">
-                                <div class="mask-top">
-                                    <h2>Tarih</h2>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Product end-->
-                <!--Product start-->
-                <div class="latest-product-item">
-                    <div class="wa-product">
-                        <div class="wa-product-thumbnail item latest-offer-item wa-item">
-                            <img src="~/Content/images/teknoloji.jpg" alt="">
-                            <div class="caption">
-                                <div class="caption-text">
-                                    <div class="clear"></div>
-                                    <div class="wa-product-caption">
-                                        <h2><a href="product-detail.html">Teknoloji</a></h2>
-                                        <div class="clear"></div>
-
-
-                                        <div class="clear"></div>
-
-                                        <div class="clear"></div>
-                                        <a href="product-detail.html" class="theme-button marT10">Oyunlara Bak</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mask-top-upper">
-                                <div class="mask-top">
-                                    <h2>Teknoloji</h2>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Product end-->
-                <!--Product start-->
-                <div class="latest-product-item">
-                    <div class="wa-product">
-                        <div class="wa-product-thumbnail item latest-offer-item wa-item">
-                            <img src="~/Content/images/muzik.jpg" alt="">
-                            <div class="caption">
-                                <div class="caption-text">
-                                    <div class="clear"></div>
-                                    <div class="wa-product-caption">
-                                        <h2><a href="product-detail.html">Müzik</a></h2>
-                                        <div class="clear"></div>
-
-
-                                        <div class="clear"></div>
-
-                                        <div class="clear"></div>
-                                        <a href="product-detail.html" class="theme-button marT10">Oyunlara Bak</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mask-top-upper">
-                                <div class="mask-top">
-                                    <h2>Müzik</h2>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Product end-->
-                <!--Product start-->
-                <div class="latest-product-item">
-                    <div class="wa-product">
-                        <div class="wa-product-thumbnail item latest-offer-item wa-item">
-                            <img src="~/Content/images/ing.jpg" alt="">
-                            <div class="caption">
-                                <div class="caption-text">
-                                    <div class="clear"></div>
-                                    <div class="wa-product-caption">
-                                        <h2><a href="product-detail.html">İngilizce</a></h2>
-                                        <div class="clear"></div>
-
-
-                                        <div class="clear"></div>
-
-                                        <div class="clear"></div>
-                                        <a href="product-detail.html" class="theme-button marT10">Oyunlara Bak</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mask-top-upper">
-                                <div class="mask-top">
-                                    <h2>İngilizce</h2>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Product end-->
-                <!--Product start-->
-                <div class="latest-product-item">
-                    <div class="wa-product">
-                        <div class="wa-product-thumbnail item latest-offer-item wa-item">
-                            <img src="~/Content/images/foto.jpg" alt="">
-                            <div class="caption">
-                                <div class="caption-text">
-                                    <div class="clear"></div>
-                                    <div class="wa-product-caption">
-                                        <h2><a href="product-detail.html">Fotoğraf</a></h2>
-                                        <div class="clear"></div>
-
-
-                                        <div class="clear"></div>
-
-                                        <div class="clear"></div>
-                                        <a href="product-detail.html" class="theme-button marT10">Oyunlara Bak</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mask-top-upper">
-                                <div class="mask-top">
-                                    <h2>Fotoğraf</h2>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Product end-->
-                <!--Product start-->
-                <div class="latest-product-item">
-                    <div class="wa-product">
-                        <div class="wa-product-thumbnail item latest-offer-item wa-item">
-                            <img src="~/Content/images/film.jpg" alt="">
-                            <div class="caption">
-                                <div class="caption-text">
-                                    <div class="clear"></div>
-                                    <div class="wa-product-caption">
-                                        <h2><a href="product-detail.html">Film</a></h2>
-                                        <div class="clear"></div>
-
-
-                                        <div class="clear"></div>
-
-                                        <div class="clear"></div>
-                                        <a href="product-detail.html" class="theme-button marT10">Oyunlara Bak</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mask-top-upper">
-                                <div class="mask-top">
-                                    <h2>Film</h2>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Product end-->
 
 
             </div>
@@ -272,7 +69,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="centered-title">
-                    <h2>new <span class="light-font">arrival</span></h2>
+                    <h2>En Son <span class="light-font">Eklenen Sınıflar</span></h2>
                     <div class="clear"></div>
 
                 </div>

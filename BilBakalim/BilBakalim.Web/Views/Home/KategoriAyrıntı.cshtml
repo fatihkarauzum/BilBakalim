@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "KategoriAyrıntı";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+@using BilBakalim.Data
+@model SinifKategori
+
+@section head{
+    <link rel="shortcut icon" href="/Content/Home/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/Content/Home/assets/img/favicon.ico" type="image/x-icon">
+    <!-- Master Css -->
+    <link href="/Content/Home/main.css" rel="stylesheet">
+    <link href="/Content/Home/assets/plugins/switcher/switcher.css" rel="stylesheet">
+    <link href="/Content/Home/assets/css/color.css" rel="stylesheet" id="colors">
+}
+
+    <div class="centered-title marT60 col-md-12">
+        <h2>@Model.KategoriAdi</h2>       
+    </div>
+
+   
+    <div class="sidebar-page-container shop-page">
+        <div class="container">
+            <div class="row clearfix">
+                <!--Content Side-->
+                <div class="content-side pull-right col-lg-9 col-md-8 col-sm-8 col-xs-12">
+
+                    <div class="clearfix row">
+
+                    </div>
+                    <!--//=======Product Section Start=======//-->
+                    <div class="wa-product-main">
+                        <div class="row">
+                            @foreach (Sinif item in ViewBag.Oyunlar)
+                            {
+                                <!--Product start-->
+                                <div class="col-lg-4  col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                                    <div class="wa-product">
+                                        <div class="wa-product-thumbnail wa-item">
+                                            <img src="@item.Resim.Url" alt="">
+                                            <div class="caption">
+                                                <div class="caption-text">
+                                                    @item.Sorular.Count() Soru
+                                                    <div class="clear"></div>
+                                                    <a href="product-detail.html" class="theme-button marT10">Oyna</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="wa-product-caption">
+                                            <h2><a href="product-detail.html">@item.Ad</a></h2>
+                                            <div class="clear"></div>
+                                            <div class="lower-content">
+                                                <ul class="blog-meta-info">
+                                                    <li class="author"><a href=""><i class="fa fa-eye"></i>@item.GoruntulenmeSayisi</a></li>
+                                                    <li class="comment"><a href=""><i class="fa fa-calendar"></i> @item.OlusturmaTarihi.Value.Day.@item.OlusturmaTarihi.Value.Month.@item.OlusturmaTarihi.Value.Year</a></li>
+
+                                                    <li class="comments_nr"><a href=""><i class="fa fa-comments"> @item.Favori.Count()</i></a></li>
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Product end-->
+                            }
+
+
+                        </div>
+                    </div>
+                    <!--//=======Product Section End=======//-->
+                    <!-- Styled Pagination -->
+                    <div class="styled-pagination text-left padB30">
+                        <ul>
+                            <li><a class="prev" href="#"><span class="fa fa-angle-double-left"></span>&ensp;</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#" class="active">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a class="next" href="#">&ensp;<span class="fa fa-angle-double-right"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Content Side-->
+                <!--Sidebar-->
+                <div class="col-lg-3 pull-left col-md-4 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                    <aside class="sidebar">
+                        <!-- Recent Articles -->
+                        <div class="sidebar-widget shop-widget boxed-widget links-widget wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <div class="widget-title">
+                                <h2 class="mini-heading">Diğer <span class="light-font">Kategoriler</span></h2>
+                            </div>
+                            <ul class="list">
+                                @foreach (SinifKategori item in ViewBag.Kategori)
+                                {
+                                <li>
+                                    <a href="@item.ID">
+                                        <div class="clearfix"><span class="pull-left">@item.KategoriAdi</span> <span class="pull-right">(@item.Sinif.Count())</span></div>
+                                    </a>
+                                </li>
+                                }
+                                
+                              
+                            </ul>
+                        </div>
+                        <!-- Price Filters -->
+
+
+
+
+
+
+
+                    </aside>
+                </div>
+                <!--Sidebar-->
+            </div>
+        </div>
+    </div>
+
+@section script{
+    <script src="/Content/Home/assets/plugins/ResponsiveMultiLevelMenu/js/modernizr.custom.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/Content/Home/assets/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/Content/Home/assets/js/bootstrap.min.js"></script>
+    <script src="/Content/Home/assets/plugins/megamenu/js/jquery-accessibleMegaMenu.js"></script>
+    <script src="/Content/Home/assets/plugins/bx-slider/js/jquery.bxslider.min.js"></script>
+    <script src="/Content/Home/assets/plugins/owl-carousel/js/owl.carousel.js"></script>
+    <script src="/Content/Home/assets/plugins/mixitup/js/jquery.mixitup.js"></script>
+    <script src="/Content/Home/assets/js/jquery.countdown.js"></script>
+    <script src="/Content/Home/assets/plugins/ResponsiveMultiLevelMenu/js/jquery.dlmenu.js"></script>
+    <script src="/Content/Home/assets/plugins/switcher/switcher.js"></script>
+    <script src="/Content/Home/assets/js/main.js"></script>
+}
+

@@ -1,5 +1,5 @@
 ﻿@using BilBakalim.Data
 @foreach (SinifKategori ktg in ViewBag.Kategori)
 {
-    <li><a href="/Content/Home/shop.html">@ktg.KategoriAdi</a></li>
+    <li><a href="/Home/KategoriAyrıntı/@ktg.ID">@ktg.KategoriAdi</a></li>
 }

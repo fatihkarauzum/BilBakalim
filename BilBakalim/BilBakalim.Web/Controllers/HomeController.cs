@@ -16,6 +16,7 @@ namespace BilBakalim.Web.Controllers
         {
             ViewBag.Siniflar = ctx.Sinif.ToList();
             ViewBag.Favori = ctx.Favori.ToList();
+            ViewBag.SinifKategorileri = ctx.SinifKategori.ToList();
             return View();
         }
         public ActionResult Gelistiriciler()
@@ -27,6 +28,17 @@ namespace BilBakalim.Web.Controllers
             ViewBag.Kategori=ctx.SinifKategori.ToList();
             return PartialView();
         }
+
+        [HttpGet]
+        public ActionResult KategoriAyrıntı(int id)
+        {
+            var ad = ctx.SinifKategori.Where(x => x.ID == id).FirstOrDefault();
+            ViewBag.Kategori = ctx.SinifKategori.ToList();
+            ViewBag.Oyunlar = ctx.Sinif.Where(x => x.SinifKategoriID == id);
+            return View(ad);
+        }
+
+        
       
     }
 }
