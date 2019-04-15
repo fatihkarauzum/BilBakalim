@@ -1,3 +1,5 @@
+using BilBakalim.Data.Interfaces;
+
 namespace BilBakalim.Data
 {
     using System;
@@ -7,7 +9,7 @@ namespace BilBakalim.Data
     using System.Data.Entity.Spatial;
 
     [Table("Menu")]
-    public partial class Menu
+    public partial class Menu : Entity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Menu()

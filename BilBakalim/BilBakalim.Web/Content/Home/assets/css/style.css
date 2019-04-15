@@ -1809,6 +1809,7 @@ span.price {
 }
 .latest-from-seller .product-style-one {
     position: relative;
+    height: 80px;
 }
 .latest-from-seller .product-style-one .inner-box {
     position: relative;
@@ -1824,7 +1825,7 @@ span.price {
     overflow: hidden;
 }
 .latest-from-seller .product-style-one .list-product .image-box {
-    width: 40%;
+    width: 25%;
 }
 .latest-from-seller .product-style-one .image-box img {
     display: block;

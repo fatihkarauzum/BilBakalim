@@ -1,4 +1,4 @@
-var EditableTable = function () {
+ï»¿var EditableTable = function () {
 
     return {
 
@@ -57,19 +57,19 @@ var EditableTable = function () {
                 "sDom": "<'row'<'col-lg-6'l><'col-lg-6'f>r>t<'row'<'col-lg-6'i><'col-lg-6'p>>",
                 "sPaginationType": "bootstrap",
                 "oLanguage": {
-                    "sSearch": "Ara:",
-                    "sLengthMenu": "Getir _MENU_ kayýt",
-                    "sInfo": " _START_ den _END_ kadar Toplam _TOTAL_ madde gösterildi",
-                    "sEmptyTable": "Veri Bulunanadý",
+                    "sSearch": "Arama : ",
+                    "sLengthMenu": "Getir _MENU_ kayÄ±t",
+                    "sInfo": " _START_ den _END_ kadar Toplam _TOTAL_ madde gÃ¶sterildi",
+                    "sEmptyTable": "Veri BulunanadÄ±",
                     "oPaginate": {
                         "sNext": "ileri",
                         "sPrevious": "Geri"
                     }
                 },
                 "aoColumnDefs": [{
-                        'bSortable': false,
-                        'aTargets': [0]
-                    }
+                    'bSortable': false,
+                    'aTargets': [0]
+                }
                 ]
             });
 
