@@ -10,7 +10,11 @@ io.on('connection', (socket) => {
 
     socket.on('joinRoom', (data) => {
         rooms = socket.rooms;
-        console.log(rooms);
+        
+        rooms.forEach(items => {
+            
+        });
+        
         socket.join(data.roomId, () => {
             io.to(data.roomId).emit('log', { messages: data.roomId + ' Numaralı Odaya Girildi.' });
         });
