@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    div(ng-app="BilBakalim")
+      block content
+
+  block javascripts
+    script(src="http://localhost:3000/socket.io/socket.io.js")
+    script(src="/angular/angular.min.js")
+    script(src="/jquery/dist/jquery.min.js")
+    script(src="/javascripts/main.js")

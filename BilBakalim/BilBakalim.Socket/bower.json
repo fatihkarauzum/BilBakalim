@@ -1,0 +1,18 @@
+{
+  "name": "bilbakalim.socket",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Fatih <fatih47154@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Quiz",
+    "Socket"
+  ],
+  "homepage": "https://github.com/fatih47154/BilBakalim",
+  "dependencies": {
+    "angular": "^1.7.8",
+    "jquery": "^3.4.0"
+  }
+}

@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  div(ng-controller="indexController", ng-init="init()")
+    h1= title
+    p Welcome to #{title}
+
+    p(hidden)#id= id
+
+    div(ng-repeat="message in messages")
+      div(ng-if="!message.type.code")
+        span [SERVER] &nbsp;
+        | {{ message.message }}
+  
+      
+append javascripts
+  script(src="/javascripts/controller/indexController.js")
+  script(src="/javascripts/services/indexFactory.js")

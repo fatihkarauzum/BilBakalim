@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  div(ng-controller="loginController", ng-init="init()")
+    h1= title
+    p Welcome to #{title}
+
+    span ID:&nbsp;
+    br
+    input#id(type="text")
+    button#login &nbsp;
+      | Login
+
+    div(ng-repeat="message in messages")
+      div(ng-if="!message.type.code")
+        span [SERVER] &nbsp;
+        | {{ message.message }}
+      
+append javascripts
+  script(src="/javascripts/controller/loginController.js")
+  script(src="/javascripts/services/loginFactory.js")
