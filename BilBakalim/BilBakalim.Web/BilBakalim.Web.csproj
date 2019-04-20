@@ -391,6 +391,7 @@
     <Content Include="Views\Menu\Duzenle.cshtml" />
     <Content Include="Views\Home\Gelistiriciler.cshtml" />
     <Content Include="Views\Home\KategoriGetir.cshtml" />
+    <Content Include="Views\Home\KategoriAyrıntı.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
