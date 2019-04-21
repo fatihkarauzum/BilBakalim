@@ -7,11 +7,35 @@ block content
 
     p(hidden)#id= id
 
+    div(ng-repeat="player in players", id="{{ player.id }}",)
+      span {{ player.username }}
+
     div(ng-repeat="message in messages")
       div(ng-if="!message.type.code")
         span [SERVER] &nbsp;
         | {{ message.message }}
   
+    br
+    button#start Start
+    br
+
+    div(ng-repeat="question in showQuestions")
+      br
+      div
+        | Soru)&nbsp; {{ question.Soru }}
+        br
+        | A)&nbsp; {{ question.Cevap1 }}
+        | B)&nbsp; {{ question.Cevap2 }}
+        br
+        | C)&nbsp; {{ question.Cevap3 }}
+        | D)&nbsp; {{ question.Cevap4 }}
+        br
+
+    div(hidden)#score
+      | Puanlar 
+      br
+      |
+      button#pass Diğer Soru
       
 append javascripts
   script(src="/javascripts/controller/indexController.js")

@@ -5,16 +5,48 @@ block content
     h1= title
     p Welcome to #{title}
 
-    span ID:&nbsp;
+    div#login
+      span ID:&nbsp;
+      input#id(type="text")
+      button#loginButton &nbsp;
+        | Login
+
     br
-    input#id(type="text")
-    button#login &nbsp;
-      | Login
+
+    div#name(style={display: 'none'})
+      span Name:&nbsp;
+      input#inputName(type="text")
+      button#send &nbsp;
+        | Login
+
+    div(ng-repeat="player in players", id="{{ player.id }}",)
+      span {{ player.username }}
 
     div(ng-repeat="message in messages")
       div(ng-if="!message.type.code")
         span [SERVER] &nbsp;
         | {{ message.message }}
+
+    div(ng-repeat="question in showQuestions")
+      br
+      div
+        | Soru)&nbsp; {{ question.Soru }}
+        br
+        
+        button(ng-click="Cevap('Cevap1')") 
+          | A)&nbsp; {{ question.Cevap1 }}
+        button#Cevap2
+          | B)&nbsp; {{ question.Cevap2 }}
+        br
+        button#Cevap3
+          | C)&nbsp; {{ question.Cevap3 }}
+        button#Cevap4
+          | D)&nbsp; {{ question.Cevap4 }}
+        br
+
+    div(hidden)#score
+      | Puanlar 
+    
       
 append javascripts
   script(src="/javascripts/controller/loginController.js")
