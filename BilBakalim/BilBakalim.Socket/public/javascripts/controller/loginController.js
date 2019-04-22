@@ -67,12 +67,14 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                         }, //info
                         message: data.messages
                     };
-                    
-                    $('#name').show('slow');
-                    $('#login').hide('slow');
 
                     $scope.messages.push(messagesData);
                     $scope.$apply();
+                });
+
+                socket.on('inputNameShow', (data) => {
+                    $('#name').show('slow');
+                    $('#login').hide('slow');
                 });
 
                 socket.on('hata', (data) => {
@@ -90,7 +92,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                 socket.on('questions', (data) => {
                     var array = data;
                     array.forEach(element => {
-                        if(element.SinifID == $('#id').val()) $scope.questions.push(element);
+                        if(element.realRoomId == $('#id').val()) $scope.questions.push(element);
                     });
                     $scope.$apply();
 

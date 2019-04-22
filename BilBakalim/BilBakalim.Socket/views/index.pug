@@ -6,6 +6,7 @@ block content
     p Welcome to #{title}
 
     p(hidden)#id= id
+    p(hidden)#realId= id
 
     div(ng-repeat="player in players", id="{{ player.id }}",)
       span {{ player.username }}

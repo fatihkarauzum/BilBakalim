@@ -22,7 +22,6 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                 socket.on('newUserConnect', (data) => {
                     $scope.players[data.id] = data;
                     $scope.$apply();
-                    console.log($scope.players);
                 });
 
                 socket.on('log', (data) => {
@@ -33,38 +32,43 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                         message: data.messages
                     };
                     
+                    $('#realId').html(data.realRoomId);
                     $scope.messages.push(messagesData);
                     $scope.$apply();
-                    console.log($scope.messages);
                 });
 
                 $('#start').on('click', () => {
-                    socket.emit('start', { roomId: $('#id').text() });
+                    socket.emit('start', { roomId: $('#id').text(), realRoomId: $('#realId').text() });
                 });
 
                 $('#pass').on('click', () => {
-                    socket.emit('pass', { roomId: $('#id').text() })
+                    if(point < $scope.questions.length){
+                        socket.emit('pass', { roomId: $('#id').text(), realRoomId: $('#realId').text() })
 
-                    $('#score').hide('slow');
-                    if(point <= $scope.questions.length){
-                        $scope.showQuestions.push($scope.questions[point]);
-                        $scope.$apply();
-
-                        setTimeout(() => {
-                            $scope.showQuestions.pop();
+                        $('#score').hide('slow');
+                        if(point <= $scope.questions.length){
+                            $scope.showQuestions.push($scope.questions[point]);
                             $scope.$apply();
-                            $('#score').show('slow');
-                        }, $scope.questions[point].Sure * 1000);
-
-                        point++;
+    
+                            setTimeout(() => {
+                                $scope.showQuestions.pop();
+                                $scope.$apply();
+                                $('#score').show('slow');
+                            }, $scope.questions[point].Sure * 1000);
+    
+                            point++;
+                        }
+                        $scope.$apply();
                     }
-                    $scope.$apply();
+                    else{
+
+                    } 
                 });
 
                 socket.on('questions', (data) => {
                     var array = data;
                     array.forEach(element => {
-                        if(element.SinifID == $('#id').text()) $scope.questions.push(element);
+                        if(element.realRoomId == $('#realId').text()) $scope.questions.push(element);
                     });
                     $scope.$apply();
 

@@ -7,6 +7,7 @@ const socketApi = {
 
 const users = { };
 const questions = [ ];
+const roomIds = [ ];
 
 // function initPlayers(roomID) {
 //     users.forEach(element => {
@@ -17,11 +18,11 @@ const questions = [ ];
 io.on('connection', (socket) => {
 
     socket.on('joinRoom', (data) => {
-        
         if(io.sockets.adapter.rooms[data.roomId] != null)
         {
             socket.join(data.roomId, () => {
                 io.to(data.roomId).emit('log', { messages: data.roomId + ' Numaralı Odaya Girildi.' });
+                socket.emit('inputNameShow');
             });
         }
         else{
@@ -44,14 +45,26 @@ io.on('connection', (socket) => {
     });
 
     socket.on('registerRoom', (data) => {
+
+        data.roomId = Math.floor(Math.random() * 1000) + 1;
+
+        roomIds.forEach(element => {
+            if(element != data.roomIds){
+                roomIds.push(data.roomIds);
+            }   
+            else{
+                data.roomId = Math.floor(Math.random() * 1000) + 1;
+                roomIds.push(data.roomIds);
+            }
+        });
+
         socket.join(data.roomId, () => {
-            io.to(data.roomId).emit('log', { messages: data.roomId + ' Numaralı Odaya Girildi.' });
+            io.to(data.roomId).emit('log', { messages: data.roomId + ' Numaralı Odaya Girildi.', realRoomId: data.roomId });
         });
     });
 
     socket.on('start', (data) => {
         var request = new sql.Request();
-        console.log(data.roomId);
         request.query('SELECT * FROM Sorular WHERE SinifID = '+ data.roomId, function (err, recordset) {
             if (err){
                 console.log(err)
@@ -59,16 +72,16 @@ io.on('connection', (socket) => {
             else{
                 var array = recordset.recordset;
                 array.forEach(element => {
+                    element.realRoomId = data.realRoomId;
                     questions.push(element);
                 });
-    
-                io.to(data.roomId).emit('questions', questions);
+                io.to(data.realRoomId).emit('questions', questions);
             }                       
         });     
     });
 
     socket.on('pass', (data) => {
-        io.to(data.roomId).emit('pass');
+        io.to(data.realRoomId).emit('pass');
     });
 
 });
