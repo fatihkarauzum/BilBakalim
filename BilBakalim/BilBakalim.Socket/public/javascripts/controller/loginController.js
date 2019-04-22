@@ -1,4 +1,4 @@
-app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFactory) => {
+app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFactory) => {  
     $scope.messages = [ ];
     $scope.players = { };
     $scope.questions = [ ];
@@ -10,7 +10,20 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
     };
 
     $scope.Cevap = (cevap) => {
-        console.log($('#inputName').val());   
+        answers = ['Cevap1', 'Cevap2', 'Cevap3', 'Cevap4'];
+        answers.forEach(element => {
+            $('#' + element).prop( "disabled", true );
+            $('#' + cevap).css( "background-color", "yellow" )
+        });
+
+        questionID = $('.questionID').attr('id');
+        $scope.questions.forEach(element=>{
+            if(element.ID == questionID){
+                if(element.DogruCevap == cevap){
+                    console.log('Tebrikler');
+                }
+            }
+        });
     }
 
     async function initSocket(){
@@ -31,7 +44,13 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                 });
 
                 socket.on('initPlayers', (players) => {
-                    $scope.players = players;
+                    Object.keys(players).forEach(item => {
+                        console.log(item);
+                        if(players[item].roomId == $('#id').val()){
+                            $scope.players[item] = players[item];
+                        }
+                    });
+
                     $scope.$apply();
                 });
 
@@ -71,7 +90,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                 socket.on('questions', (data) => {
                     var array = data;
                     array.forEach(element => {
-                        $scope.questions.push(element);
+                        if(element.SinifID == $('#id').val()) $scope.questions.push(element);
                     });
                     $scope.$apply();
 
@@ -103,22 +122,6 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                         point++;
                     }
                     $scope.$apply();
-                });
-
-                $('#Cevap1').on('click', () => {
-                    console.log('sdad');                    
-                });
-
-                $('#Cevap2').on('click', () => {
-
-                });
-
-                $('#Cevap3').on('click', () => {
-
-                });
-
-                $('#Cevap4').on('click', () => {
-
                 });
             }
             catch(err){

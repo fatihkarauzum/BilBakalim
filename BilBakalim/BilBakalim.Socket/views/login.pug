@@ -3,7 +3,6 @@ extends layout
 block content
   div(ng-controller="loginController", ng-init="init()")
     h1= title
-    p Welcome to #{title}
 
     div#login
       span ID:&nbsp;
@@ -19,7 +18,7 @@ block content
       button#send &nbsp;
         | Login
 
-    div(ng-repeat="player in players", id="{{ player.id }}",)
+    div(ng-repeat="player in players", id="{{ player.id }}")
       span {{ player.username }}
 
     div(ng-repeat="message in messages")
@@ -29,18 +28,18 @@ block content
 
     div(ng-repeat="question in showQuestions")
       br
-      div
+      div.questionID(ng-attr-id="{{ question.ID }}")
         | Soru)&nbsp; {{ question.Soru }}
         br
         
-        button(ng-click="Cevap('Cevap1')") 
+        button#Cevap1(ng-click="Cevap('Cevap1')") 
           | A)&nbsp; {{ question.Cevap1 }}
-        button#Cevap2
+        button#Cevap2(ng-click="Cevap('Cevap2')") 
           | B)&nbsp; {{ question.Cevap2 }}
         br
-        button#Cevap3
+        button#Cevap3(ng-click="Cevap('Cevap3')") 
           | C)&nbsp; {{ question.Cevap3 }}
-        button#Cevap4
+        button#Cevap4(ng-click="Cevap('Cevap4')") 
           | D)&nbsp; {{ question.Cevap4 }}
         br
 

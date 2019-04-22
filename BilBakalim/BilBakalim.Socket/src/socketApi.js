@@ -8,6 +8,12 @@ const socketApi = {
 const users = { };
 const questions = [ ];
 
+// function initPlayers(roomID) {
+//     users.forEach(element => {
+
+//     });
+// }
+
 io.on('connection', (socket) => {
 
     socket.on('joinRoom', (data) => {
@@ -27,11 +33,13 @@ io.on('connection', (socket) => {
     socket.on('newUser', (data) => {
         const defaultData = {
             id: socket.id,
+            roomId: data.roomId,
             username: data.username
         };
 
         users[socket.id] = defaultData;
-        io.to(data.roomId).emit('newUserConnect', users[socket.id]);
+
+        io.to(data.roomId).emit('newUserConnect', users[socket.id]);    
         socket.emit('initPlayers', users);
     });
 
@@ -43,6 +51,7 @@ io.on('connection', (socket) => {
 
     socket.on('start', (data) => {
         var request = new sql.Request();
+        console.log(data.roomId);
         request.query('SELECT * FROM Sorular WHERE SinifID = '+ data.roomId, function (err, recordset) {
             if (err){
                 console.log(err)

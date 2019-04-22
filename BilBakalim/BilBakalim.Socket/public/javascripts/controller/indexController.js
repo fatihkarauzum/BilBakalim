@@ -64,7 +64,7 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                 socket.on('questions', (data) => {
                     var array = data;
                     array.forEach(element => {
-                        $scope.questions.push(element);
+                        if(element.SinifID == $('#id').text()) $scope.questions.push(element);
                     });
                     $scope.$apply();
 
