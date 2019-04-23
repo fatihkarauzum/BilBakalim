@@ -2,6 +2,7 @@ extends layout
 
 block content
   div(ng-controller="loginController", ng-init="init()")
+    p#mineId(hidden)
     h1= title
 
     div#login
@@ -21,10 +22,10 @@ block content
     div(ng-repeat="player in players", id="{{ player.id }}")
       span {{ player.username }}
 
-    div(ng-repeat="message in messages")
-      div(ng-if="!message.type.code")
-        span [SERVER] &nbsp;
-        | {{ message.message }}
+    //- div(ng-repeat="message in messages")
+    //-   div(ng-if="!message.type.code")
+    //-     span [SERVER] &nbsp;
+    //-     | {{ message.message }}
 
     div(ng-repeat="question in showQuestions")
       br
@@ -43,9 +44,43 @@ block content
           | D)&nbsp; {{ question.Cevap4 }}
         br
 
+    br
     div(hidden)#score
       | Puanlar 
+      br
+      div(ng-repeat="oyuncular in oyuncular | orderBy: 'score'", id="{{ oyuncular.id }}")
+        span {{ oyuncular.username }} : &nbsp;
+        span {{ oyuncular.score }}
+      br
+      br
     
+    div#answersCount
+      | {{ answersCount }} &nbsp; &nbsp; &nbsp;
+    
+    span#remaining  
+
+    div#middle(hidden)
+      div#middleSub(hidden)
+        div#correct(hidden)
+          | Correct
+          br
+          span#Puan  
+          br
+          span#firstBeetwen
+
+        div#wrong(hidden)
+          | Wrong 
+          br
+          span#Puan  
+          br
+          span#firstBeetwen
+
+        div#timeUp(hidden)
+          | Time Up 
+          br
+          span#Puan 
+          br
+          span#firstBeetwen
       
 append javascripts
   script(src="/javascripts/controller/loginController.js")
