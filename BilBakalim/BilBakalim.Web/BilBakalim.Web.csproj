@@ -310,6 +310,14 @@
     <Content Include="Content\images\teknoloji.jpg" />
     <Content Include="Content\images\user.png" />
     <Content Include="Content\LocalScripts\editable-table.js" />
+    <Content Include="Content\OyunGiris\css\main.css" />
+    <Content Include="Content\OyunGiris\images\Searchs_002.png" />
+    <Content Include="Content\OyunGiris\index.html" />
+    <Content Include="Content\OyunGiris\js\extention\choices.js" />
+    <Content Include="Content\OyunGiris\js\extention\custom-materialize.js" />
+    <Content Include="Content\OyunGiris\js\extention\flatpickr.js" />
+    <Content Include="Content\OyunGiris\js\main.js" />
+    <Content Include="Content\OyunGiris\readme.txt" />
     <Content Include="Content\Resimler\SinifSoru\bos.jpg" />
     <Content Include="Content\Resimler\SinifSoru\default.png" />
     <Content Include="Database\13.03.2019 - DB.sql" />
@@ -354,6 +362,7 @@
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\OyunGirisController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -392,6 +401,7 @@
     <Content Include="Views\Home\Gelistiriciler.cshtml" />
     <Content Include="Views\Home\KategoriGetir.cshtml" />
     <Content Include="Views\Home\KategoriAyrıntı.cshtml" />
+    <Content Include="Views\OyunGiris\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
