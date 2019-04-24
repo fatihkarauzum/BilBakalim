@@ -3,8 +3,10 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    block styles
+
   body
-    div(ng-app="BilBakalim")
+    div(ng-app="BilBakalim", ng-cloak)
       block content
 
   block javascripts

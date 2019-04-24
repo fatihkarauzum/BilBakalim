@@ -3,28 +3,28 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
     $scope.players = { };
     $scope.questions = [ ];
     $scope.showQuestions = [ ];
+    $scope.answersCount;
+    $scope.oyuncular = [ ];
     var point;
+    var distance;
+    var passingTime;
+    var score;
+    var timeUp = 0;
+    var first = 1;
+    var x;
+    const scoreMiddle = [ ];
 
     $scope.init = () => {
         initSocket();
     };
 
-    $scope.Cevap = (cevap) => {
-        answers = ['Cevap1', 'Cevap2', 'Cevap3', 'Cevap4'];
-        answers.forEach(element => {
-            $('#' + element).prop( "disabled", true );
-            $('#' + cevap).css( "background-color", "yellow" )
-        });
-
-        questionID = $('.questionID').attr('id');
-        $scope.questions.forEach(element=>{
-            if(element.ID == questionID){
-                if(element.DogruCevap == cevap){
-                    console.log('Tebrikler');
-                }
-            }
-        });
-    }
+    Object.size = function(obj) {
+        var size = 0, key;
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) size++;
+        }
+        return size;
+    };
 
     async function initSocket(){
         const connectionOptions = {
@@ -39,25 +39,122 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                 });
 
                 $('#send').on('click', () => {
-                    $('#name').hide('slow');
+                    $('#name').hide();
+                    $('#loginBlock').hide();
+                    
                     socket.emit('newUser', { roomId: $('#id').val(), username: $('#inputName').val() });
+                });
+
+                $scope.Cevap = (cevap) => {
+                    socket.emit('choosingAnswer', { roomId: $('#id').val(), answer: cevap });
+
+                    $('#middleSub').show();
+                    socket.emit('delay');
+                    
+                    answers = ['Cevap1', 'Cevap2', 'Cevap3', 'Cevap4'];
+                    answers.forEach(element => {
+                        $('#' + element).prop( "disabled", true );
+                        $('#' + cevap).css( "background-color", "yellow" )
+                    });
+            
+                    questionID = $('.questionID').attr('id');
+                    $scope.questions.forEach(element=>{
+                        if(element.ID == questionID){
+                            if(element.DogruCevap == cevap){
+                                $('#correct').show();
+                                socket.emit('correctAnswer', { mineId: $('#mineId').text(), roomId: $('#id').val(), timeLeft: passingTime, award: $scope.showQuestions[0].Odul });
+                                timeUp = 1;
+                            }
+                            else{
+                                $('#wrong').show();
+                                timeUp = 1;
+                            }
+                        }
+                    });
+
+                    socket.emit('answersCount', { roomId: $('#id').val() });
+                };
+
+                socket.on('correctAnswer', (data) => {
+                    Object.keys($scope.players).forEach(item => {
+                        if(item == data.mineId){
+                            if(data.award){
+                                score = 2000;
+                            }
+                            else{
+                                score = 1000;
+                            }
+
+                            scoreMiddle[0] = score - data.timeLeft * 25;
+                            $scope.players[item].score += (score - data.timeLeft * 25);
+                            $scope.$applyAsync();
+                            //console.log($scope.players);
+                        }
+                    });
+                });
+
+                socket.on('meCorrect', (data) => { 
+                    socket.emit('score', { score: scoreMiddle[0] });
+                });
+
+                socket.on('score', (data) => {
+                    console.log(data.score);
+                    $('#Puan').html(data.score);
+                });
+
+                socket.on('answersCount', (data) => {
+                    $scope.answersCount = data.answerCount;
+                    $scope.$applyAsync();
+
+                    if($scope.answersCount == Object.size($scope.players)){
+                        clearInterval(x);
+                        $scope.showQuestions.pop();
+                        $scope.$applyAsync();
+                        $('#middleSub').show();
+                        $('#remaining').hide();
+                        $('#answersCount').hide();
+                        if(!timeUp){
+                            $('#timeUp').show();
+                        }
+                        if(first == 1){
+                            point = 1;
+                        }
+                        timeUp = 0;
+
+                        Object.keys($scope.players).forEach(element => {
+                            $scope.oyuncular.push($scope.players[element]);
+                            $scope.$applyAsync();
+                        });
+    
+                        var max = Math.max.apply(Math, $scope.oyuncular.map(x => x.score));
+                        var fark = max - $scope.players[$('#mineId').text()].score;
+                        if( fark != 0 ){
+                            $('#firstBeetwen').html(fark);
+                        }
+                        else{
+                            $('#firstBeetwen').html('Birincisiniz');
+                        }
+                        
+                    }
+                });
+
+                socket.on('mineId', (id) => {
+                    $('#mineId').html(id);
                 });
 
                 socket.on('initPlayers', (players) => {
                     Object.keys(players).forEach(item => {
-                        console.log(item);
                         if(players[item].roomId == $('#id').val()){
                             $scope.players[item] = players[item];
                         }
                     });
 
-                    $scope.$apply();
+                    $scope.$applyAsync();
                 });
 
                 socket.on('newUserConnect', (data) => {
                     $scope.players[data.id] = data;
-                    $scope.$apply();
-                    console.log($scope.players);
+                    $scope.$applyAsync();
                 });
 
                 socket.on('log', (data) => {
@@ -69,12 +166,19 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                     };
 
                     $scope.messages.push(messagesData);
-                    $scope.$apply();
+                    $scope.$applyAsync();
                 });
 
                 socket.on('inputNameShow', (data) => {
-                    $('#name').show('slow');
-                    $('#login').hide('slow');
+                    $('#login').animate({left: '100%'}, () => {
+                        $('#login').hide();
+                        $('#name').show();
+                        $('#name').animate({left: '0%'});
+                    });   
+                });
+
+                socket.on('showMiddle', () => {
+                    $('#middle').show('slow');
                 });
 
                 socket.on('hata', (data) => {
@@ -86,44 +190,97 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                     };
                     
                     $scope.messages.push(messagesData);
-                    $scope.$apply();
+                    $scope.$applyAsync();
                 });
 
                 socket.on('questions', (data) => {
+                    $('#remaining').show();
                     var array = data;
                     array.forEach(element => {
                         if(element.realRoomId == $('#id').val()) $scope.questions.push(element);
                     });
-                    $scope.$apply();
+                    $scope.$applyAsync();
 
                     $scope.showQuestions.push($scope.questions[0]);
-                    $scope.$apply();
+                    $scope.$applyAsync();
 
-                    setTimeout(() => {
-                        $scope.showQuestions.pop();
-                        $scope.$apply();
-                        $('#score').show('slow');
-                        point=1;
-                    }, $scope.questions[0].Sure * 1000);
+                    distance = $scope.showQuestions[0].Sure;
+                    x = setInterval(() => {
+                        $('#remaining').html(distance);
+                        distance -= 1;
+                        passingTime = $scope.showQuestions[0].Sure - distance;
+                        if (distance < 0) {
+                            clearInterval(x);
+                            $scope.showQuestions.pop();
+                            $scope.$applyAsync();
+                            $('#middleSub').show();
+                            $('#remaining').hide();
+                            $('#answersCount').hide();
+                            if(!timeUp){
+                                $('#timeUp').show();
+                            }
+                            timeUp = 0; 
+                            point=1;
+
+                            Object.keys($scope.players).forEach(element => {
+                                $scope.oyuncular.push($scope.players[element]);
+                                $scope.$applyAsync();
+                            });
+        
+                            var max = Math.max.apply(Math, $scope.oyuncular.map(x => x.score));
+                            console.log(max);
+                        }
+                    }, 1000);
 
                     $('#start').hide('slow');
                 });
 
+                socket.on('delay', () => {
+                    distance -= 1;
+                });
+
                 socket.on('pass', () => {
-                    $('#score').hide('slow');
+                    first = 0;
+                    $('#middle').hide('slow');
+                    $('#middleSub').hide();
+                    $('#timeUp').hide();
+                    $('#correct').hide();
+                    $('#wrong').hide();
+                    $('#remaining').show();
                     if(point <= $scope.questions.length){
                         $scope.showQuestions.push($scope.questions[point]);
-                        $scope.$apply();
+                        $scope.$applyAsync();
 
-                        setTimeout(() => {
-                            $scope.showQuestions.pop();
-                            $scope.$apply();
-                            $('#score').show('slow');
-                        }, $scope.questions[point].Sure * 1000);
+                        distance = $scope.showQuestions[0].Sure;
+                            x = setInterval(() => {
+                            $('#remaining').html(distance);
+                            distance -= 1;
+                            passingTime = $scope.showQuestions[0].Sure - distance;
+                            if (distance < 0) {
+                                clearInterval(x);
+                                $scope.showQuestions.pop();
+                                $scope.$applyAsync();
+                                $('#middleSub').show();
+                                $('#remaining').hide();
+                                $('#answersCount').hide();
+                                if(!timeUp){
+                                    $('#timeUp').show();
+                                }
+                                timeUp = 0;
+
+                                Object.keys($scope.players).forEach(element => {
+                                    $scope.oyuncular.push($scope.players[element]);
+                                    $scope.$applyAsync();
+                                });
+            
+                                var max = Math.max.apply(Math, $scope.oyuncular.map(x => x.score));
+                                console.log(max);
+                            }
+                        }, 1000);
 
                         point++;
                     }
-                    $scope.$apply();
+                    $scope.$applyAsync();
                 });
             }
             catch(err){

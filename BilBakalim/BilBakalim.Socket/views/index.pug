@@ -17,7 +17,7 @@ block content
         | {{ message.message }}
   
     br
-    button#start Start
+    button#start(disabled) Start
     br
 
     div(ng-repeat="question in showQuestions")
@@ -35,9 +35,36 @@ block content
     div(hidden)#score
       | Puanlar 
       br
-      |
+      div(ng-repeat="oyuncular in oyuncular | orderBy: '-score'")
+        span {{ oyuncular.username }} : &nbsp;
+        span {{ oyuncular.score }}
+      br
+      br
       button#pass Diğer Soru
-      
+      br
+      br
+ 
+    div#answersCount
+      | {{ answersCount }} &nbsp; &nbsp; &nbsp;
+    
+    span(hidden)#remaining  
+
+    div#middle(hidden)
+      span A: &nbsp;
+      span#choosingA 
+      br
+      span B: &nbsp;
+      span#choosingB 
+      br
+      span C: &nbsp;
+      span#choosingC 
+      br
+      span D: &nbsp;
+      span#choosingD
+      br
+      button#puanlar(ng-click="passScores()") Next
+    
+
 append javascripts
   script(src="/javascripts/controller/indexController.js")
   script(src="/javascripts/services/indexFactory.js")
