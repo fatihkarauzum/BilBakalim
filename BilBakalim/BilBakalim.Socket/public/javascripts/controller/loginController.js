@@ -39,7 +39,9 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                 });
 
                 $('#send').on('click', () => {
-                    $('#name').hide('slow');
+                    $('#name').hide();
+                    $('#loginBlock').hide();
+                    
                     socket.emit('newUser', { roomId: $('#id').val(), username: $('#inputName').val() });
                 });
 
@@ -168,8 +170,11 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                 });
 
                 socket.on('inputNameShow', (data) => {
-                    $('#name').show('slow');
-                    $('#login').hide('slow');
+                    $('#login').animate({left: '100%'}, () => {
+                        $('#login').hide();
+                        $('#name').show();
+                        $('#name').animate({left: '0%'});
+                    });   
                 });
 
                 socket.on('showMiddle', () => {

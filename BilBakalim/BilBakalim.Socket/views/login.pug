@@ -1,23 +1,53 @@
 extends layout
 
+block styles
+  meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='author', content='colorlib.com')
+  link(href='https://fonts.googleapis.com/css?family=Poppins:300,400,500', rel='stylesheet')
+  link(href='/OyunGiris/css/main.css', rel='stylesheet')
+
 block content
   div(ng-controller="loginController", ng-init="init()")
     p#mineId(hidden)
-    h1= title
+    //- h1= title
 
-    div#login
-      span ID:&nbsp;
-      input#id(type="text")
-      button#loginButton &nbsp;
-        | Login
+    .s002#loginBlock(style='margin:-50px')
+      form
+        fieldset
+          p.deneme Bil Bakalım
+        .inner-form#login
+          .input-field.first-wrap
+            .icon-wrap
+              svg(xmlns='http://www.w3.org/2000/svg', width='24', height='24', viewBox='0 0 24 24')
+                path(d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z')
+            input#id(type='text', placeholder='Sınıf ID')
+          .input-field.fifth-wrap
+            button.btn-search#loginButton(type='button') Giriş
+        
+        .inner-form#name(style={display: 'none'})
+          .input-field.first-wrap
+            .icon-wrap
+              svg(xmlns='http://www.w3.org/2000/svg', width='24', height='24', viewBox='0 0 24 24')
+                path(d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z')
+            input#inputName(type='text', placeholder='İsminizi Giriniz')
+          .input-field.fifth-wrap
+            button.btn-search#send(type='button') Kaydet
 
-    br
+    //- div#login
+    //-   span ID:&nbsp;
+    //-   input#id(type="text")
+    //-   button#loginButton &nbsp;
+    //-     | Login
 
-    div#name(style={display: 'none'})
-      span Name:&nbsp;
-      input#inputName(type="text")
-      button#send &nbsp;
-        | Login
+    //- br
+
+    //- div#name(style={display: 'none'})
+    //-   span Name:&nbsp;
+    //-   input#inputName(type="text")
+    //-   button#send &nbsp;
+    //-     | Login
 
     div(ng-repeat="player in players", id="{{ player.id }}")
       span {{ player.username }}

@@ -413,6 +413,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Admin\" />
     <Folder Include="Content\Login_v4\" />
+    <Folder Include="Content\OturumGiris\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BilBakalim.Data\BilBakalim.Data.csproj">
