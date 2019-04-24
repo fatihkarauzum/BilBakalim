@@ -402,6 +402,7 @@
     <Content Include="Views\Home\KategoriGetir.cshtml" />
     <Content Include="Views\Home\KategoriAyrıntı.cshtml" />
     <Content Include="Views\OyunGiris\Index.cshtml" />
+    <Content Include="Views\OyunGiris\Index2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
