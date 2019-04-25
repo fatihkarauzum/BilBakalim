@@ -1,0 +1,128 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400);
+body{ font-family: lato, helvetica, arial, sans-serif;}
+
+h1{font-size:16px; color: #aaa; text-align:center;}
+h2{color:#fff; font-weight:100; text-align:center; font-size:32px}
+h3{font-size:13px; color: rgba(0, 0, 0, .5); text-align:center;}
+
+
+.block{width: 100%; padding:80px 0; background: #c33; border-bottom:2px solid #333}
+.block-in{width: 200px; margin:80px auto; overflow:hidden;margin-left:10%}
+
+/*------------------------------------------------------------------------------
+Type Loader  / prefixfree
+---------------------------------------------------------------------------------*/
+
+.tape{margin:120px auto;width: 100px; height: 30px; border:1px solid #333;  border: none;  overflow:hidden; position:relative; background: rgba(0, 0, 0, .3);border-radius:5px;
+  box-shadow:0px 35px 0 -5px #333, 0 -5px 0 0px #232323, 0 -25px 0 -5px #ccc,   -25px -30px 0 0px #232323, -25px 30px 0 0px #232323, 25px -30px 0 0px #232323, 25px 30px 0 0px #232323, 20px  10px 0 5px #232323,  20px  -10px 0 5px #232323, -20px -10px 0 5px #232323,-20px 10px 0 5px #232323;
+  animation:tape2 1.5s linear infinite alternate;}
+
+.tape:after, .tape:before{content:""; border-radius:100%; width: 38px; height: 38px;  display:block;position:absolute; border: 5px dashed #fff; margin:-9px auto; top:0; bottom: 0; transform:rotate(0deg) scale(.4);
+animation:tape 4s linear infinite;}
+
+.tape:after{left: -10px;  box-shadow:0 0 0 4px #fff, 0 0 0 65px #000;}
+.tape:before{right: -10px; box-shadow:0 0 0 4px #fff, 0 0 0 35px #000;}
+
+@keyframes tape{
+  0%{transform:rotate(0deg) scale(.4);}
+  100%{transform:rotate(-360deg) scale(.4);}
+}
+
+@keyframes tape2{
+   0%{ transform: perspective(500px) rotateX(0deg) rotateY(-20deg) rotateZ(0deg) ;}
+  100%{ transform: perspective(500px) rotateX(0deg) rotateY(20deg) rotateZ(0deg);}
+}
+
+
+
+/*------------------------------------------------------------------------------
+Gear Loader  / prefixfree
+---------------------------------------------------------------------------------*/
+
+
+.gear{width: 80px; height: 80px; border-radius:10%; margin:80px auto; border:5px solid  #fff ; position:relative;box-shadow:  0 10px 0 0 rgba(0, 0, 0, .1);
+}
+
+.gear:after{content:"";width: 100px; height: 100px;border-radius:100%; display:block; border:5px dashed  #fff ;position:absolute; top:-24px; left: -24px; box-shadow: inset 0px 0 0 20px #fff; transform:scale(.5) rotate(0deg);
+ animation:gear 6s linear infinite;}
+
+.gear:before{content:"";width: 58px; height: 58px;border-radius:100%; 
+ display:block; border:5px dashed  #fff ; position:absolute; top:26px; right: -14px; box-shadow: inset 0px 0 0 10px #fff; transform:scale(.5) rotate(0deg);
+ animation:gear2 4s linear infinite;}
+
+@keyframes gear {
+   0%{transform:scale(.5) rotate(0deg);}
+  100%{transform:scale(.5) rotate(360deg);}
+}
+
+@keyframes gear2 {
+   0%{transform:scale(.5) rotate(0deg);}
+  100%{transform:scale(.5)  rotate(-360deg);}
+}
+
+
+/*------------------------------------------------------------------------------
+clock Loader  / prefixfree
+---------------------------------------------------------------------------------*/
+.block-in .clock{float:left}
+
+
+.clock{width: 80px; height: 80px; border-radius:100%; 
+  background:#333 ; margin:10px; border:5px solid  #fff ; position:relative; box-shadow:0 5px 0 0 rgba(0, 0, 0, .3),inset 0 5px 0 0 rgba(0, 0, 0, .3), inset 0 0 0 34px #c33;
+}
+
+
+.clock:after {content:"";width: 5px; height: 60px;
+ display:block; position:absolute; top:0; bottom: 0; left: 0; right: 0; margin: auto; box-shadow: inset 0px 2px 0 0 #fff, inset 0px 30px 0 0 #333;
+ animation:clock .5s linear infinite;}
+
+.clock:before{content:"";width: 5px; height: 50px; display:block; position:absolute; top:0; bottom: 0; left: 0; right: 0; margin: auto; box-shadow: inset 0px 2px 0 0 #fff, inset 0px 25px 0 0 #333;
+ animation:clockb 6s linear infinite;}
+
+
+@keyframes clock {
+  100%{transform: rotate(360deg);}
+}
+
+@keyframes clockb {
+  100%{transform: rotate(360deg);}
+}
+
+
+/*------------------------------------------------------------------------------
+clock2 Loader  / prefixfree
+---------------------------------------------------------------------------------*/
+
+/*I repeated the code "clock" only to facilitate copying*/
+
+.block-in .clock2{float:right;}
+
+
+
+.clock2{width: 80px; height: 80px; border-radius:100%; 
+  background: ;
+  margin:10px;
+  border:5px solid  transparent ; position:relative;
+  box-shadow:30px -30px 0 -25px #222,-30px -30px 0 -25px #222,20px 35px 0 -35px #222,25px 45px 0 -40px #222,-20px 35px 0 -35px #222,-25px 45px 0 -40px #222,inset 0 0 0 3px #fff,
+    inset 0 6px 0 0 rgba(0, 0, 0, .3),
+    inset 0 0 0 35px #09c,
+    inset 0 0 0 40px #222;}
+
+.clock2:after{content:"";width: 5px; height: 60px;display:block; position:absolute; top:0; bottom: 0; left: 0; right: 0; margin: auto; box-shadow: inset 0px 2px 0 0 #fff, inset 0px 30px 0 0 #222;
+ animation:clock .5s linear infinite;}
+
+
+
+.clock2:before{content:"";width: 5px; height: 50px; display:block; position:absolute; top:0; bottom: 0; left: 0; right: 0; margin: auto; box-shadow: inset 0px 2px 0 0 #fff, inset 0px 25px 0 0 #222;
+   animation:clockb 6s linear infinite;}
+
+
+@keyframes clock {
+  100%{transform: rotate(360deg);}
+}
+
+@keyframes clockb {
+  100%{transform: rotate(360deg);}
+}
+
+.clock, .clock2{ display:inline-block}

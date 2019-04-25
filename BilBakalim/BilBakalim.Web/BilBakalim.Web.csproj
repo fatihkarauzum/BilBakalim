@@ -310,6 +310,20 @@
     <Content Include="Content\images\teknoloji.jpg" />
     <Content Include="Content\images\user.png" />
     <Content Include="Content\LocalScripts\editable-table.js" />
+    <Content Include="Content\logo.png" />
+    <Content Include="Content\OturumGiris\css\bootstrap-grid.css" />
+    <Content Include="Content\OturumGiris\css\bootstrap-grid.min.css" />
+    <Content Include="Content\OturumGiris\css\bootstrap-reboot.css" />
+    <Content Include="Content\OturumGiris\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\OturumGiris\css\bootstrap.css" />
+    <Content Include="Content\OturumGiris\css\bootstrap.min.css" />
+    <Content Include="Content\OturumGiris\css\style.css" />
+    <Content Include="Content\OturumGiris\images\exclamation.png" />
+    <Content Include="Content\OturumGiris\index.html" />
+    <Content Include="Content\OturumGiris\js\bootstrap.bundle.js" />
+    <Content Include="Content\OturumGiris\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\OturumGiris\js\bootstrap.js" />
+    <Content Include="Content\OturumGiris\js\bootstrap.min.js" />
     <Content Include="Content\OyunGiris\css\main.css" />
     <Content Include="Content\OyunGiris\images\Searchs_002.png" />
     <Content Include="Content\OyunGiris\index.html" />
@@ -340,6 +354,16 @@
     <Content Include="Content\Home\assets\plugins\ResponsiveMultiLevelMenu\fonts\icomoon.eot" />
     <Content Include="Content\Home\assets\plugins\ResponsiveMultiLevelMenu\fonts\icomoon.ttf" />
     <Content Include="Content\Home\assets\plugins\ResponsiveMultiLevelMenu\fonts\icomoon.woff" />
+    <Content Include="Content\OturumGiris\css\bootstrap-grid.css.map" />
+    <Content Include="Content\OturumGiris\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\OturumGiris\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\OturumGiris\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\OturumGiris\css\bootstrap.css.map" />
+    <Content Include="Content\OturumGiris\css\bootstrap.min.css.map" />
+    <Content Include="Content\OturumGiris\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\OturumGiris\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\OturumGiris\js\bootstrap.js.map" />
+    <Content Include="Content\OturumGiris\js\bootstrap.min.js.map" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -402,6 +426,7 @@
     <Content Include="Views\Home\KategoriGetir.cshtml" />
     <Content Include="Views\Home\KategoriAyrıntı.cshtml" />
     <Content Include="Views\OyunGiris\Index.cshtml" />
+    <Content Include="Views\OyunGiris\Index2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -413,7 +438,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Admin\" />
     <Folder Include="Content\Login_v4\" />
-    <Folder Include="Content\OturumGiris\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BilBakalim.Data\BilBakalim.Data.csproj">
