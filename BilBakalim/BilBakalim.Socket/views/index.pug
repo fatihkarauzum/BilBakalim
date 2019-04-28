@@ -1,24 +1,63 @@
 extends layout
 
+block styles
+  link(rel='stylesheet', href='/OturumGiris/css/styleIndex.css')
+  link(rel='stylesheet', href='/OturumGiris/css/bootstrap.css')
+  link(rel='stylesheet', href='/OturumGiris/css/bootstrap.min.css')
+
 block content
   div(ng-controller="indexController", ng-init="init()")
-    h1= title
-    p Welcome to #{title}
+    div#oturum(style="height: 100vh;width: 100%; position: absolute; z-index: -4")
+      p(hidden)#id= id
+      p(hidden)#realId= id
 
-    p(hidden)#id= id
-    p(hidden)#realId= id
+      .top
+          .topText
+            | PIN:
+            b 
+              span#realIdShow
+                | 
+            |  ile
+            b  bilbakalim.com/login
+            |  Adresinden Giriş Yapabilirsiniz
+            
+      .main
+        .mainTop
+          .container
+            br
+            .row
+              .col-4.bottomText(style='float:right; text-align: left')
+                b
+                  span#playersCount
+                  i {{ playersCount }} Oyuncu
+              .col-4.bottomText(style='float:right; text-align: center')
+                img(src='/OturumGiris/images/logo.png', width='30%')
+              .col-4.bottomText(style='font-size:25;float:right; text-align: right')
+                button#start(disabled, style='background-color: black; color: white; width: 150px; height: 55px')
+                  b Başlat
+            br
+            br
+            .row
+              .col(ng-repeat="player in players", id="{{ player.id }}")
+                | {{ player.username }}
 
-    div(ng-repeat="player in players", id="{{ player.id }}",)
-      span {{ player.username }}
+      .bottom
+        .bottomImage
+          img(src='/OturumGiris/images/exclamation.png', width='60', height='60')
+        .bottomText
+          b &nbsp;&nbsp;&nbsp; Diğer Oyuncular Bekleniyor ...
 
-    div(ng-repeat="message in messages")
-      div(ng-if="!message.type.code")
-        span [SERVER] &nbsp;
-        | {{ message.message }}
+    //- div(ng-repeat="player in players", id="{{ player.id }}",)
+    //-   span {{ player.username }}
+
+    //- div(ng-repeat="message in messages")
+    //-   div(ng-if="!message.type.code")
+    //-     span [SERVER] &nbsp;
+    //-     | {{ message.message }}
   
-    br
-    button#start(disabled) Start
-    br
+    //- br
+    //- button#start(disabled) Start
+    //- br
 
     div(ng-repeat="question in showQuestions")
       br
@@ -32,7 +71,7 @@ block content
         | D)&nbsp; {{ question.Cevap4 }}
         br
 
-    div(hidden)#score
+    div(style="display:none;")#score
       | Puanlar 
       br
       div(ng-repeat="oyuncular in oyuncular | orderBy: '-score'")
@@ -47,9 +86,9 @@ block content
     div#answersCount
       | {{ answersCount }} &nbsp; &nbsp; &nbsp;
     
-    span(hidden)#remaining  
+    span(style="display:none;")#remaining  
 
-    div#middle(hidden)
+    div#middle(style="display:none;")
       span A: &nbsp;
       span#choosingA 
       br
@@ -68,3 +107,20 @@ block content
 append javascripts
   script(src="/javascripts/controller/indexController.js")
   script(src="/javascripts/services/indexFactory.js")
+
+  script(src='/OturumGiris/js/bootstrap.js')
+  script(src='/OturumGiris/js/bootstrap.min.js')
+  script.
+    var main = $('.main');
+    var colors = ['#864BBF', '#34C7CF', '#65BF39', '#FA4045', '#FF3356', ' 	#FFA502'];
+    var currentIndex = 0;
+    setInterval(function () {
+    main.css({
+    backgroundColor: colors[currentIndex]
+    });
+    if (!colors[currentIndex]) {
+    currentIndex = 0;
+    } else {
+    currentIndex++;
+    }
+    }, 7000);

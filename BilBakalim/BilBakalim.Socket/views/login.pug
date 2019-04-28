@@ -7,13 +7,17 @@ block styles
   meta(name='author', content='colorlib.com')
   link(href='https://fonts.googleapis.com/css?family=Poppins:300,400,500', rel='stylesheet')
   link(href='/OyunGiris/css/main.css', rel='stylesheet')
+  link(rel='stylesheet', href='/stylesheets/style.css')
+  link(rel='stylesheet', href='/OyuncuIlkEkran/css/stylePlayer.css')
+  link(rel='stylesheet', href='/OyuncuIlkEkran/css/bootstrap.css')
+  link(rel='stylesheet', href='/OyuncuIlkEkran/css/bootstrap.min.css')
 
 block content
   div(ng-controller="loginController", ng-init="init()")
     p#mineId(hidden)
     //- h1= title
 
-    .s002#loginBlock(style='margin:-50px')
+    .s002#loginBlock(style='margin:-50px;')
       form
         fieldset
           p.deneme Bil Bakalım
@@ -22,7 +26,7 @@ block content
             .icon-wrap
               svg(xmlns='http://www.w3.org/2000/svg', width='24', height='24', viewBox='0 0 24 24')
                 path(d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z')
-            input#id(type='text', placeholder='Sınıf ID')
+            input#id(type='text', placeholder='Sınıf ID', ng-model="classId")
           .input-field.fifth-wrap
             button.btn-search#loginButton(type='button') Giriş
         
@@ -31,7 +35,7 @@ block content
             .icon-wrap
               svg(xmlns='http://www.w3.org/2000/svg', width='24', height='24', viewBox='0 0 24 24')
                 path(d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z')
-            input#inputName(type='text', placeholder='İsminizi Giriniz')
+            input#inputName(type='text', placeholder='İsminizi Giriniz', ng-model="playerName")
           .input-field.fifth-wrap
             button.btn-search#send(type='button') Kaydet
 
@@ -49,8 +53,8 @@ block content
     //-   button#send &nbsp;
     //-     | Login
 
-    div(ng-repeat="player in players", id="{{ player.id }}")
-      span {{ player.username }}
+    //- div(ng-repeat="player in players", id="{{ player.id }}")
+    //-   span {{ player.username }}
 
     //- div(ng-repeat="message in messages")
     //-   div(ng-if="!message.type.code")
@@ -74,44 +78,96 @@ block content
           | D)&nbsp; {{ question.Cevap4 }}
         br
 
-    br
-    div(hidden)#score
-      | Puanlar 
-      br
-      div(ng-repeat="oyuncular in oyuncular | orderBy: 'score'", id="{{ oyuncular.id }}")
-        span {{ oyuncular.username }} : &nbsp;
-        span {{ oyuncular.score }}
-      br
-      br
+    //- div(hidden)#score
+    //-   | Puanlar 
+    //-   br
+    //-   div(ng-repeat="oyuncular in oyuncular | orderBy: 'score'", id="{{ oyuncular.id }}")
+    //-     span {{ oyuncular.username }} : &nbsp;
+    //-     span {{ oyuncular.score }}
+    //-   br
+    //-   br
     
     div#answersCount
-      | {{ answersCount }} &nbsp; &nbsp; &nbsp;
+      //- | {{ answersCount }} &nbsp; &nbsp; &nbsp;
     
     span#remaining  
 
-    div#middle(hidden)
-      div#middleSub(hidden)
-        div#correct(hidden)
-          | Correct
-          br
-          span#Puan  
-          br
-          span#firstBeetwen
+    //- div#middle(hidden)
+    //-   div#middleSub(hidden)
+    //-     div#correct(hidden)
+    //-       | Correct
+    //-       br
+    //-       span#Puan  
+    //-       br
+    //-       span#firstBeetwen
 
-        div#wrong(hidden)
-          | Wrong 
-          br
-          span#Puan  
-          br
-          span#firstBeetwen
+    //-     div#wrong(hidden)
+    //-       | Wrong 
+    //-       br
+    //-       span#Puan  
+    //-       br
+    //-       span#firstBeetwen
 
-        div#timeUp(hidden)
-          | Time Up 
-          br
-          span#Puan 
-          br
-          span#firstBeetwen
+    //-     div#timeUp(hidden)
+    //-       | Time Up 
+    //-       br
+    //-       span#Puan 
+    //-       br
+    //-       span#firstBeetwen
+
+    .block#middle(style="display: none;")
+      .top#middleSub(style="display: none;")
+        .topLeft
+          b PIN: {{classId}}
+        .topRight
+          b {{playerName}}
+      .main#middleSub1(style="display: none;")
+        .mainWait#wait(style="display: none;")
+          .mainWaitTop
+            b
+              i Giriş Yaptınız
+          .mainWaitBottom
+            b Oturum Ekranında İsminizi Görebilirsiniz
+        .mainCorrect#correct(style="display: none;")
+          .mainCorrectTop
+            b
+              i Doğru
+            br
+            img(src='/OyuncuIlkEkran/images/correct.png', width='70px')
+          .mainCorrectBottom
+            br
+            .artiPuan
+              .text
+                b +
+                b#Puan
+            .mainCorrectPlaceBottom
+              br
+              b#firstBeetwen
+        .mainWrong#wrong(style="display: none;")
+          .mainCorrectTop
+            b
+              i Yanlış
+            br
+            img(src='/OyuncuIlkEkran/images/wrong.png', width='70px')
+          .mainCorrectBottom
+            br
+            .mainCorrectPlaceBottom
+              br
+              b#firstBeetwen
+        .mainTimeUp#timeUp(style="display: none;")
+          .mainCorrectTop
+            b
+              i Süre Doldu
+            br
+            img(src='/OyuncuIlkEkran/images/timeUp.png', width='100px')
+          .mainCorrectBottom
+            br
+            .mainCorrectPlaceBottom
+              br
+              b#firstBeetwen
       
 append javascripts
   script(src="/javascripts/controller/loginController.js")
   script(src="/javascripts/services/loginFactory.js")
+  script(src='/OyuncuIlkEkran/js/bootstrap.js')
+  script(src='/OyuncuIlkEkran/js/bootstrap.min.js')

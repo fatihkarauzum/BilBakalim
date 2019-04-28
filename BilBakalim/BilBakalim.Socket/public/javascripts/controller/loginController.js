@@ -41,7 +41,11 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                 $('#send').on('click', () => {
                     $('#name').hide();
                     $('#loginBlock').hide();
-                    
+                    $('#middle').show();
+                    $('#middleSub').show();
+                    $('#middleSub1').show();
+                    $('#wait').show();
+
                     socket.emit('newUser', { roomId: $('#id').val(), username: $('#inputName').val() });
                 });
 
@@ -49,6 +53,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                     socket.emit('choosingAnswer', { roomId: $('#id').val(), answer: cevap });
 
                     $('#middleSub').show();
+                    $('#middleSub1').show();
                     socket.emit('delay');
                     
                     answers = ['Cevap1', 'Cevap2', 'Cevap3', 'Cevap4'];
@@ -111,6 +116,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                         $scope.showQuestions.pop();
                         $scope.$applyAsync();
                         $('#middleSub').show();
+                        $('#middleSub1').show();
                         $('#remaining').hide();
                         $('#answersCount').hide();
                         if(!timeUp){
@@ -178,7 +184,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                 });
 
                 socket.on('showMiddle', () => {
-                    $('#middle').show('slow');
+                    $('#middle').show();
                 });
 
                 socket.on('hata', (data) => {
@@ -189,6 +195,13 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                         message: data.err
                     };
                     
+                    var username = document.getElementById('login');
+                    username.classList.add('error');
+                
+                    setTimeout(function() {
+                        username.classList.remove('error');
+                    }, 300);
+
                     $scope.messages.push(messagesData);
                     $scope.$applyAsync();
                 });
@@ -203,6 +216,10 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
 
                     $scope.showQuestions.push($scope.questions[0]);
                     $scope.$applyAsync();
+                    $('#middle').hide();
+                    $('#middleSub').hide();
+                    $('#wait').hide();
+                    $('#middleSub1').hide();
 
                     distance = $scope.showQuestions[0].Sure;
                     x = setInterval(() => {
@@ -214,6 +231,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                             $scope.showQuestions.pop();
                             $scope.$applyAsync();
                             $('#middleSub').show();
+                            $('#middleSub1').show();
                             $('#remaining').hide();
                             $('#answersCount').hide();
                             if(!timeUp){
@@ -232,7 +250,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                         }
                     }, 1000);
 
-                    $('#start').hide('slow');
+                    $('#start').hide();
                 });
 
                 socket.on('delay', () => {
@@ -243,6 +261,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                     first = 0;
                     $('#middle').hide('slow');
                     $('#middleSub').hide();
+                    $('#middleSub1').hide();
                     $('#timeUp').hide();
                     $('#correct').hide();
                     $('#wrong').hide();
@@ -261,6 +280,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                                 $scope.showQuestions.pop();
                                 $scope.$applyAsync();
                                 $('#middleSub').show();
+                                $('#middleSub1').show();
                                 $('#remaining').hide();
                                 $('#answersCount').hide();
                                 if(!timeUp){

@@ -5,12 +5,16 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
     $scope.showQuestions = [ ];
     $scope.answersCount;
     $scope.oyuncular = [ ];
+    $scope.playersCount = 0;
     var point;
     var distance;
     var passingTime;
     var score;
     var first = 1;
     var x;
+    var audioCount = 0;
+    var audio = new Audio('/sounds/main.mp4');
+    
 
     $scope.init = () => {
         initSocket();
@@ -36,8 +40,9 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
 
                 socket.on('newUserConnect', (data) => {
                     $scope.players[data.id] = data;
+                    $scope.playersCount += 1;
                     $scope.$applyAsync();
-
+                    
                     $('#start').removeAttr("disabled");
                 });
 
@@ -49,7 +54,9 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                         message: data.messages
                     };
                     
+                    audio.play();
                     $('#realId').html(data.realRoomId);
+                    $('#realIdShow').html(data.realRoomId);
                     $scope.messages.push(messagesData);
                     $scope.$applyAsync();
                 });
@@ -81,7 +88,11 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                         clearInterval(x);
                         $scope.showQuestions.pop();
                         $scope.$applyAsync();
-                        $('#middle').show('slow');
+                        $('#middle').show();
+                        audio.pause();
+                        audio = new Audio('/sounds/timeUp.mp3');
+                        audio.play();
+
                         $('#remaining').hide();
                         $('#answersCount').hide();
                         if(first == 1){
@@ -99,6 +110,20 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                 });
 
                 $('#start').on('click', () => {
+                    $('#oturum').hide();
+                    audio.pause();
+                    
+                    if(audioCount=0){
+                        audio = new Audio('/sounds/questions1.mp3');
+                        audioCount = 1;
+                        socket.emit('delay');
+                    }
+                    else{
+                        audio = new Audio('/sounds/questions.mp3');
+                        audioCount = 0;
+                        socket.emit('delay');
+                    }
+
                     socket.emit('start', { roomId: $('#id').text(), realRoomId: $('#realId').text() });
                     $('#remaining').show();
                 });
@@ -115,6 +140,16 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                 }
 
                 $('#pass').on('click', () => {
+                    if(audioCount == 0){
+                        audio = new Audio('/sounds/questions1.mp3');
+                        audioCount = 1;
+                    }
+                    else{
+                        audio = new Audio('/sounds/questions.mp3');
+                        audioCount = 0;
+                    }
+
+                    audio.play();
                     first = 0;
                     $('#remaining').show();
                     if(point < $scope.questions.length){
@@ -135,6 +170,10 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                                     $scope.showQuestions.pop();
                                     $scope.$applyAsync();
                                     $('#middle').show('slow');
+                                    audio.pause();
+                                    audio = new Audio('/sounds/timeUp.mp3');
+                                    audio.play();
+                                    
                                     $('#remaining').hide();
                                     $('#answersCount').hide();
 
@@ -162,6 +201,7 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                     $scope.showQuestions.push($scope.questions[0]);
                     $scope.$applyAsync();
 
+                    audio.play();
                     distance = $scope.showQuestions[0].Sure;
                     x = setInterval(() => {
                         $('#remaining').html(distance);
@@ -174,6 +214,9 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                             $('#middle').show('slow');
                             $('#remaining').hide();
                             $('#answersCount').hide();
+                            audio.pause();
+                            audio = new Audio('/sounds/timeUp.mp3');
+                            audio.play();
 
                             socket.emit('showMiddle', { realRoomId: $('#realId').text() });
                             point=1;

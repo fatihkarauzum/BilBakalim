@@ -20,7 +20,7 @@ const choosingAnswer = { };
 io.on('connection', (socket) => {
 
     socket.on('joinRoom', (data) => {
-        if(io.sockets.adapter.rooms[data.roomId] != null)
+        if(io.sockets.adapter.rooms[data.roomId] != null && questions[0] == null)
         {
             socket.join(data.roomId, () => {
                 socket.emit('inputNameShow');
@@ -149,6 +149,7 @@ io.on('connection', (socket) => {
         console.log(data.score);
         socket.emit('score', { score: data.score });
     });
+
 
 });
 
