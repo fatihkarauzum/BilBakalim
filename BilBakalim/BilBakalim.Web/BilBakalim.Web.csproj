@@ -123,6 +123,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Admin\gallery.html" />
     <Content Include="Content\Home\404-bg.html" />
     <Content Include="Content\Home\404.html" />
     <Content Include="Content\Home\assets\css\bootstrap.min.css" />
@@ -387,6 +388,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\OyunGirisController.cs" />
+    <Compile Include="Controllers\SinifController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -427,6 +429,11 @@
     <Content Include="Views\Home\KategoriAyrıntı.cshtml" />
     <Content Include="Views\OyunGiris\Index.cshtml" />
     <Content Include="Views\OyunGiris\Index2.cshtml" />
+    <Content Include="Views\OyunGiris\Index3.cshtml" />
+    <Content Include="Views\Sinif\Index.cshtml" />
+    <Content Include="Views\Sinif\Oyunlar.cshtml" />
+    <Content Include="Views\Sinif\SinifEkle.cshtml" />
+    <Content Include="Views\Sinif\SinifDetay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -436,7 +443,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Admin\" />
     <Folder Include="Content\Login_v4\" />
   </ItemGroup>
   <ItemGroup>

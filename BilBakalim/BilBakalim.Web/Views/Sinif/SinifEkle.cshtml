@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "SinifEkle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using BilBakalim.Data
+@model List<Dİl>
+<link rel="stylesheet" type="text/css" href="/Content/Admin/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="alert alert-danger" style="display: none" id="uyari">
+            <p>
+                Lütfen Menünün Hangi Türde Olacağını Seçiniz !
+
+                <button type="button" onclick="uyariKapat();" class="close" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </p>
+        </div>
+
+        <section class="panel">
+            <header class="panel-heading">
+                <div class="col-lg-12">
+                    <b> Yeni Sınıf Ekle</b>
+                </div>
+            </header>
+            <div class="panel-body">
+                <form role="form" method="post" action="/Menu/Ekle" onsubmit="return checkForm(this);">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Sınıf Adı </label>&nbsp;<span style="color: red;">*</span>
+                                    <input type="text" class="form-control" placeholder="Sınıf Adını Giriniz..." name="Adi" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Açıklama</label>&nbsp;<span style="color: red;">*</span>
+                                    <input type="text" class="form-control" placeholder="Açıklama Giriniz..." name="Icon" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Dil</label>&nbsp;<span style="color: red;">*</span>
+                                    <select onchange="show_selected()" id="controllerSec" class="form-control m-bot15" name="Controller">
+                                        <option value="default">Dili Seçiniz...</option>
+                                        @foreach (var item in Model)
+                                        {
+                                            <option value="@item.ID">@item.Adi</option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="checkboxes">
+                                    <label class="label_check c_on" for="checkbox-01">
+                                        <input name="sample-checkbox-01" id="checkbox-01" value="1" type="checkbox" checked=""> Görünürlük
+                                    </label>
+                                </div>
+
+                                <div class="form-group last">
+                                    <label class="control-label col-md-3">Sınıf Resmi</label>
+                                    <div class="col-md-9">
+                                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                                            <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                                            </div>
+                                            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                            <div>
+                                                <span class="btn btn-white btn-file">
+                                                    <span class="fileupload-new"><i class="icon-paper-clip"></i> Resim Seç</span>
+                                                    <span class="fileupload-exists"><i class="icon-undo"></i> Change</span>
+                                                    <input type="file" class="default" />
+                                                </span>
+                                                <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="icon-trash"></i> Remove</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <button type="submit" id="button" class="btn btn-info">Kaydet</button>
+                                <a href="/Sinif/Index" class="btn btn-danger">İptal</a>
+                                <button type="reset" class="btn btn-default">Temizle</button>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+
+ 
+
+ 

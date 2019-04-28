@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using BilBakalim.Data
+@model List< SinifKategori>
+
+
+<link href="/Content/Admin/assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="/Content/Admin/css/gallery.css" />
+
+<section class="panel">
+    <header class="panel-heading">
+        Image Galley
+    </header>
+    <div class="panel-body">
+        <ul class="grid cs-style-3">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <figure>
+                        <img src="@item.Resim.Url" alt="img04">
+                        <figcaption>
+                            <h3>@item.KategoriAdi</h3>                           
+                            <a class="fancybox" rel="group" href="/Sinif/Oyunlar/@item.ID">Göz Atın</a>
+                        </figcaption>
+                    </figure>
+                </li>
+            }
+
+
+
+        </ul>
+
+    </div>
+</section>
+
+
+<script src="/Content/Admin/js/jquery.js"></script>
+<script src="/Content/Admin/js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript" src="/Content/Admin/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="/Content/Admin/assets/fancybox/source/jquery.fancybox.js"></script>
+<script src="/Content/Admin/js/jquery.scrollTo.min.js"></script>
+<script src="/Content/Admin/js/jquery.nicescroll.js" type="text/javascript"></script>
+<script src="/Content/Admin/js/respond.min.js"></script>
+<script src="/Content/Admin/js/modernizr.custom.js"></script>
+<script src="/Content/Admin/js/toucheffects.js"></script>
+
+
+<script class="include" type="text/javascript" src="/Content/Admin/js/jquery.dcjqaccordion.2.7.js"></script>
+
+
+<!--common script for all pages-->
+<script src="/Content/Admin/js/common-scripts.js"></script>
+<!--
+<script type="text/javascript">
+    $(function () {
+        //    fancybox
+        jQuery(".fancybox").fancybox();
+    });
+
+</script>
+    -->
