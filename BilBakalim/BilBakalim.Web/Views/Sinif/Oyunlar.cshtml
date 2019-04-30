@@ -7,6 +7,9 @@
 @using BilBakalim.Data
 
 @model List<Sinif>
+@{
+    Kullanici k = (Kullanici)Session["Kullanici"];
+ }
 
 
 <link href="/Content/Admin/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
@@ -43,8 +46,8 @@
     <div class="col-lg-12">
         <section class="panel">
             <header class="panel-heading">
-                Sınıf Listesi
-                <a href="/Kullanici/Ekle" class="btn btn-success" style="float: right"><i class="icon-plus"></i> Yeni Sınıf Ekle</a>
+                 Listesi
+                <a href="/Sinif/SinifEkle" class="btn btn-success" style="float: right"><i class="icon-plus"></i> Yeni Sınıf Ekle</a>
             </header><div style="padding-left:20px;padding-right:20px;padding-bottom:50px">
                 <div class="adv-table">
                     <table class="display table table-bordered table-striped" id="example">
@@ -81,8 +84,9 @@
                                     @*<a style="float:right;margin-right:5px;" href="/Admin/SinifKategoriSil/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Sil</a>*@
 
                                     <a title="Sil" style="float:right;" class="btn btn-danger btn-xs btn-confirm" data-id="@item.ID"><i class="icon-trash"></i> Sil</a>
-                                    <a style="float:right;margin-right:5px;" href="/Admin/SinifKategoriDuzenle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Düzenle</a>
+                                    <a style="float:right;margin-right:5px;" href="/Sinif/SinifGuncelle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Düzenle</a>
                                     <a style="float:right;margin-right:5px;" href="/Sinif/SinifDetay/@item.ID" class="btn btn-info btn-xs"><i class="icon-search"></i> Göster</a>
+                                    <a style="float:right;margin-right:5px;" href="/Sinif/Sorular/@item.ID" class="btn btn-warning btn-xs"><i class="icon-eye-open"></i> Sorular</a>
                                 </td>
                             </tr>
                             }

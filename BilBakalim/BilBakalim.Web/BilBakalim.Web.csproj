@@ -434,6 +434,11 @@
     <Content Include="Views\Sinif\Oyunlar.cshtml" />
     <Content Include="Views\Sinif\SinifEkle.cshtml" />
     <Content Include="Views\Sinif\SinifDetay.cshtml" />
+    <Content Include="Views\Sinif\Sorular.cshtml" />
+    <Content Include="Views\Sinif\SoruDetay.cshtml" />
+    <Content Include="Views\Sinif\SoruEkle.cshtml" />
+    <Content Include="Views\Sinif\SoruGuncelle.cshtml" />
+    <Content Include="Views\Sinif\SinifGuncelle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
