@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "SoruDetay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using BilBakalim.Data
+@model Sorular
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading" style="padding-bottom: 10px;">
+                <div class="col-lg-12" style="margin-bottom:10px;">
+                    <b>Soru Detay</b>
+                    <a href="/Sinif/Sorular/@Model.SinifID" class="btn btn-success" style="float: right"><i class="icon-mail-reply (alias)"></i> Listeye Geri Dön</a>
+                </div>
+            </header>
+
+            <div class="panel-body">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading tab-bg-dark-navy-blue ">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#home">Soru Bilgileri</a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#about">Sınıf Bilgileri</a>
+                                </li>
+                            </ul>
+                        </header>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div id="home" class="tab-pane active">
+                                    <b>Soru</b> <p>@Model.Soru</p> <br />
+
+                                    <b>Cevap 1 : </b> <p>@Model.Cevap1 </p> <br />
+                                    <b>Cevap 2 : </b> <p>@Model.Cevap2 </p> <br />
+                                    <b>Cevap 3 : </b> <p>@Model.Cevap3 </p> <br />
+                                    <b>Cevap 4 : </b> <p>@Model.Cevap4 </p> <br />
+                                    <b>Süre : </b> <p>@Model.Sure saniye </p> <br />
+                                    @{
+                                        if (Model.Odul == true)
+                                        {
+                                            <b>Ödüllü Soru : </b> <p>Evet </p> <br />
+                                        }
+                                        else
+                                        {
+                                            <b>Ödüllü Soru : </b> <p>Hayır </p> <br />
+                                        }
+                                    }
+                                </div>
+                                <div id="about" class="tab-pane">
+                                    <b>Sınıf Adı : </b> <p>@Model.Sinif.Ad</p> <br />
+                                    <b> Kategori Adı: </b><br /><p>@Model.Sinif.SinifKategori.KategoriAdi</p> <br />
+                                    <b> Oynanma Sayısı: </b><br /><p>@Model.Sinif.GoruntulenmeSayisi</p> <br />
+                                    <b> Oluşturma Tarihi: </b><br /><p>@Model.Sinif.OlusturmaTarihi.Value.ToString("dd-MM-yyyy")</p> <br />
+                                    <b> Kategori Resmi: </b><br /> <img style="width:25%;height:25% " src="@Model.Sinif.SinifKategori.Resim.Url" /> <br />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+

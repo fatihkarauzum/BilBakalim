@@ -17,5 +17,9 @@ namespace BilBakalim.Web.Controllers
         {
             return View ();
         }
+        public ActionResult Index3()
+        {
+            return View();
+        }
     }
 }
