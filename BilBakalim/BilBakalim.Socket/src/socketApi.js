@@ -10,6 +10,7 @@ const questions = [ ];
 const roomIds = [ ];
 const answers = { };
 const choosingAnswer = { };
+const sessionIds = { };
 
 // function initPlayers(roomID) {
 //     users.forEach(element => {
@@ -17,14 +18,68 @@ const choosingAnswer = { };
 //     });
 // }
 
+var finish = (getRoomId) => {
+    var roomId = getRoomId;
+    Object.keys(users).forEach(item => {
+        if(users[item].roomId == roomId){
+            delete users[item];
+        }
+    });
+
+    var length = questions.length;
+    for( var i = length - 1 ; i >= 0; i--){          
+        if ( questions[i].realRoomId == roomId) {
+            questions.splice(i, 1);
+        }
+    }
+
+    roomIds.forEach( item => {
+        if ( item == roomId ) {
+            roomIds.splice(i, 1);
+        }
+    });
+    
+    console.log(roomIds);
+
+    Object.keys(answers).forEach(item => {
+        if(answers[item].roomId == roomId){
+            delete answers[item];
+        }
+    });
+
+    Object.keys(choosingAnswer).forEach(item => {
+        if(choosingAnswer[item].roomId == roomId){
+            delete choosingAnswer[item];
+        }
+    });
+    
+    // Object.keys(sessionIds).forEach(item => {
+    //     if(sessionIds[item].roomId == roomId){
+    //         delete sessionIds[item];
+    //     }
+    // });
+};
+
 io.on('connection', (socket) => {
 
     socket.on('joinRoom', (data) => {
-        if(io.sockets.adapter.rooms[data.roomId] != null && questions[0] == null)
+        if(io.sockets.adapter.rooms[data.roomId] != null)
         {
-            socket.join(data.roomId, () => {
-                socket.emit('inputNameShow');
+            var control = 0;
+            questions.forEach( element => {
+                if(element.realRoomId == data.roomId) {
+                    control = 1;
+                }
             });
+
+            if(!control){
+                socket.join(data.roomId, () => {
+                    socket.emit('inputNameShow');
+                });
+            }
+            else{
+                socket.emit('hata', { err: 'Odada Oyun Başlamış Durumda.'});
+            }
         }
         else{
             socket.emit('hata', { err: 'Oda Bulunamadı.'});
@@ -33,36 +88,54 @@ io.on('connection', (socket) => {
     });
 
     socket.on('newUser', (data) => {
-        const defaultData = {
-            id: socket.id,
-            roomId: data.roomId,
-            username: data.username,
-            score: 0
-        };
+        var control = true;
+        Object.keys(users).forEach(item => {
+            if(users[item].username == data.username && users[item].roomId == data.roomId){
+                control = false;
+            }
+        });
 
-        users[socket.id] = defaultData;
-
-        io.to(data.roomId).emit('newUserConnect', users[socket.id]);    
-        socket.emit('mineId', socket.id);
-        socket.emit('initPlayers', users);
+        if(control){
+            const defaultData = {
+                id: socket.id,
+                roomId: data.roomId,
+                username: data.username,
+                score: 0
+            };
+    
+            users[socket.id] = defaultData;
+    
+            io.to(data.roomId).emit('newUserConnect', users[socket.id]);    
+            socket.emit('mineId', socket.id);
+            socket.emit('initPlayers', users);
+        }
+        else if(!control){
+            socket.emit('hata', { err: 'İsim Kullanılmakta.'});
+        }
+        
     });
 
     socket.on('registerRoom', (data) => {
 
-        data.roomId = Math.floor(Math.random() * 100000) + 1;
-
-        roomIds.forEach(element => {
-            if(element != data.roomIds){
-                roomIds.push(data.roomIds);
+        if(roomIds.length == 0){
+            data.roomId = Math.floor(Math.random() * 100000) + 1;
+            roomIds.push(data.roomId);
+        }
+        else
+        {roomIds.forEach(element => {
+            if(element != data.roomId){
+                data.roomId = Math.floor(Math.random() * 100000) + 1;
+                roomIds.push(data.roomId);
             }   
             else{
                 data.roomId = Math.floor(Math.random() * 100000) + 1;
-                roomIds.push(data.roomIds);
+                roomIds.push(data.roomId);
             }
-        });
+        });}
 
         const defaultData = {
-            answer: 0
+            answer: 0,
+            roomId: data.roomId
         };
         answers[data.roomId] = defaultData;
 
@@ -70,9 +143,15 @@ io.on('connection', (socket) => {
             Cevap1: 0,
             Cevap2: 0,
             Cevap3: 0,
-            Cevap4: 0
+            Cevap4: 0,
+            roomId: data.roomId
         };
         choosingAnswer[data.roomId] =  defaultChoosing;
+
+        const defaultRoom = {
+            roomId: data.roomId
+        };
+        sessionIds[socket.id] = defaultRoom;
 
         socket.join(data.roomId, () => {
             io.to(data.roomId).emit('log', { messages: data.roomId + ' Numaralı Odaya Girildi.', realRoomId: data.roomId });
@@ -150,7 +229,18 @@ io.on('connection', (socket) => {
         socket.emit('score', { score: data.score });
     });
 
+    socket.on('disconnect', () => {
+        if(sessionIds[socket.id] != null){
+            var roomId = sessionIds[socket.id].roomId;
 
+            finish(roomId);
+
+            io.to(sessionIds[socket.id].roomId).emit('admin');
+        }
+        else if(users[socket.id] != null){
+            io.to(users[socket.id].roomId).emit('oyuncu', { oyuncuId: socket.id });
+        }
+    });
 });
 
 const getOnlineCount = (io, data) => {

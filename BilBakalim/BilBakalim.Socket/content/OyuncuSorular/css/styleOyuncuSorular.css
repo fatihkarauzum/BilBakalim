@@ -1,0 +1,123 @@
+html, body {
+	position: absolute;
+    height: 100%;
+	width: 100%;
+    margin: 0;
+	z-index: -2;
+}
+
+.block{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: -4;
+	display: flex;
+	flex-direction: column;
+}
+
+.topOyuncuSorular{
+	position: relative;
+	z-index : 1;
+	width: 100%;
+	height: 8%;
+	background-color: white;
+	-webkit-box-shadow: 0px 5px 5px 5px rgba(0,0,0,0.50);
+	-moz-box-shadow: 0px 5px 5px 5px rgba(0,0,0,0.50);
+	box-shadow: 0px 5px 5px 5px rgba(0,0,0,0.50);
+}
+
+.topLeftOyuncuSorular{
+	text-align: left;
+	float: left;
+	padding-top: 2vh;
+	padding-left: 2vh;
+	font-family: montserrat, "helvetica neue", helvetica, arial, sans-serif;
+	font-size: 1.1rem;
+}
+
+.topRightOyuncuSorular{
+	text-align: right;
+	float: right;
+	padding-top: 2vh;
+	padding-right: 2vh;
+	font-family: montserrat, "helvetica neue", helvetica, arial, sans-serif;
+	font-size: 1.1rem;
+}
+
+.bottomOyuncuSorular {
+  display:flex;
+  position: relative;
+  background-color: #361438;
+  height: 92%;
+  width: 100%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.bottomOyuncuSorular > div{
+	display:flex;
+  position: relative;
+  background-color: #361438;
+  height: 100%;
+  width: 95%;
+  flex-direction: column;
+  margin: auto;
+  float: left;
+}
+
+.bottomOyuncuSorular > div > div{
+	display:flex;
+  height: 44%;
+  width: 90%;
+  margin: auto;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+}
+
+.bottomOyuncuSorular > div > div:hover{
+	-webkit-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,1);
+  -moz-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,1);
+  box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,1);
+}
+
+.bottomOyuncuSorular > div > div > div{
+  margin: auto;
+  font-family: montserrat, "helvetica neue", helvetica, arial, sans-serif;
+  font-size: 1.1rem;
+  color: white;
+  padding: 5%;
+  text-align: center;
+}
+
+@media only screen and (max-width:600px){
+	.bottomOyuncuSorular {
+		flex-direction: column; 
+		padding-top: 4%;
+		padding-bottom: 4%;
+	}
+	
+	.bottomOyuncuSorular > div{
+		height: 50%;
+	}
+}
+
+.altOyuncuSorular{
+	display: flex;
+	position: relative;
+	z-index : 1;
+	width: 100%;
+	height: 8%;
+	background-color: white;
+	-webkit-box-shadow: 0px -5px 5px 0px rgba(0,0,0,0.50);
+	-moz-box-shadow: 0px -5px 5px 0px rgba(0,0,0,0.50);
+	box-shadow: 0px -5px 5px 0px rgba(0,0,0,0.50);
+}
+
+.altOyuncuSorular > div{
+	margin: auto;
+	font-family: montserrat, "helvetica neue", helvetica, arial, sans-serif;
+}
+
+

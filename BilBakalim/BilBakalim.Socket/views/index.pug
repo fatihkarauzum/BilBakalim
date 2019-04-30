@@ -1,9 +1,13 @@
 extends layout
 
 block styles
+  link(href='/Sorular2/css/loading-bar.css', rel='stylesheet')
   link(rel='stylesheet', href='/OturumGiris/css/styleIndex.css')
   link(rel='stylesheet', href='/OturumGiris/css/bootstrap.css')
   link(rel='stylesheet', href='/OturumGiris/css/bootstrap.min.css')
+  link(href='/Sorular2/css/styleSoru.css', rel='stylesheet')
+  link(href='/SecimSayilari/css/styleSecim.css', rel='stylesheet')
+  link(href='/Siralama/css/styleSiralama.css', rel='stylesheet')
 
 block content
   div(ng-controller="indexController", ng-init="init()")
@@ -31,7 +35,8 @@ block content
                   span#playersCount
                   i {{ playersCount }} Oyuncu
               .col-4.bottomText(style='float:right; text-align: center')
-                img(src='/OturumGiris/images/logo.png', width='30%')
+                img(src='/OturumGiris/images/logo.png', width='70%') 
+                | BilBakalım
               .col-4.bottomText(style='font-size:25;float:right; text-align: right')
                 button#start(disabled, style='background-color: black; color: white; width: 150px; height: 55px')
                   b Başlat
@@ -58,58 +63,208 @@ block content
     //- br
     //- button#start(disabled) Start
     //- br
-
     div(ng-repeat="question in showQuestions")
-      br
-      div
-        | Soru)&nbsp; {{ question.Soru }}
-        br
-        | A)&nbsp; {{ question.Cevap1 }}
-        | B)&nbsp; {{ question.Cevap2 }}
-        br
-        | C)&nbsp; {{ question.Cevap3 }}
-        | D)&nbsp; {{ question.Cevap4 }}
-        br
+      div#Sorular(style="width: 1366px; height: 730px")
+        .topQuestion
+          .topLeftQuestion
+            b PIN: {{ sinifId }}
+          .topRightQuestion
+            b {{ answersCount }}
+              | &nbsp;Cevap
+        .middleQuestion
+          .middleCounter#parent(style="width: 97.6vw;")
+            .Loading-progress
+          .middleIn
+            .templateQuestion
+              div {{ question.Soru }} 
+            .templateAnswers
+              .a(style='background-color:#2F6DAE; margin-right: 1.03%')
+                div {{ question.Cevap1 }}
+              .a(style='background-color:#2C9CA6; margin-right: 1.03%')
+                div {{ question.Cevap2 }}
+              .a(style='background-color:#ECA82C; margin-right: 1.03%')
+                div {{ question.Cevap3 }}
+              .a(style='background-color:#D4546A;')
+                div {{ question.Cevap4 }}
 
-    div(style="display:none;")#score
-      | Puanlar 
-      br
-      div(ng-repeat="oyuncular in oyuncular | orderBy: '-score'")
-        span {{ oyuncular.username }} : &nbsp;
-        span {{ oyuncular.score }}
-      br
-      br
-      button#pass Diğer Soru
-      br
-      br
+      //- div#Sorular(style="width: 1366px; height: 730px")
+      //-   .topSoru
+      //-     div {{ question.Soru }} 
+      //-   .middleSoru
+      //-     .middleLeftSoru
+      //-       div
+      //-         b
+      //-           i   
+      //-             span#remaining  
+      //-     .middleCenterSoru
+      //-       div
+      //-         img(src='/Sorular/images/deneme.jpg', width='auto', height='100%')
+      //-     .middleRightSoru
+      //-       div#answersCount
+      //-         b
+      //-           i {{ answersCount }}
+      //-             | &nbsp;Cevap
+      //-   .bottomSoru
+      //-     .bottomTopSoru
+      //-       .a
+      //-         .img
+      //-           img(src='/Sorular/images/a.png')
+      //-         .text
+      //-           b {{ question.Cevap1 }}
+      //-       .blank
+      //-       .b
+      //-         .img
+      //-           img(src='/Sorular/images/b.png')
+      //-         .text
+      //-           b {{ question.Cevap2 }}
+      //-     .bottomBottomSoru
+      //-       .c
+      //-         .img
+      //-           img(src='/Sorular/images/c.png')
+      //-         .text
+      //-           b {{ question.Cevap3 }}
+      //-       .blank1
+      //-       .d
+      //-         .img
+      //-           img(src='/Sorular/images/d.png')
+      //-         .text
+      //-           b {{ question.Cevap4 }}
+
+    //- div(ng-repeat="question in showQuestions")
+    //-   br
+    //-   div
+    //-     | Soru)&nbsp; {{ question.Soru }}
+    //-     br
+    //-     | A)&nbsp; {{ question.Cevap1 }}
+    //-     | B)&nbsp; {{ question.Cevap2 }}
+    //-     br
+    //-     | C)&nbsp; {{ question.Cevap3 }}
+    //-     | D)&nbsp; {{ question.Cevap4 }}
+    //-     br
+
+    div#middle(style="display:none; height: 730px")
+      .topSecim
+        div#SecimSoru Türkiyenin Başkenti Neresidir ?
+      .middleSecim
+        .middleCenterSecim
+          button#puanlar(ng-click="passScores()")
+            b
+             | Puanlar
+          div
+            .in
+              .Count
+                div
+                  b#choosingA 
+              .Rate#aRate
+              .inBottom
+                #correctA
+            .in1
+              .Count
+                div
+                  b#choosingB 
+              .Rate#bRate
+              .inBottom
+                #correctB
+            .in2
+              .Count
+                div
+                  b#choosingC 
+              .Rate#cRate
+              .inBottom
+                #correctC
+            .in3
+              .Count
+                div
+                  b#choosingD 
+              .Rate#dRate
+              .inBottom
+                #correctD
+
+    //- div(style="display:none;")#score
+    //-   | Puanlar 
+    //-   br
+    //-   div(ng-repeat="oyuncular in oyuncular | orderBy: '-score'")
+    //-     span {{ oyuncular.username }} : &nbsp;
+    //-     span {{ oyuncular.score }}
+    //-   br
+    //-   br
+    //-   button#pass Diğer Soru
+    //-   br
+    //-   br
+
+    div(style="display:none; height: 100vh")#score
+      .topSiralama
+        .topLeftSiralama
+          b PIN: {{ sinifId }}
+        .topRightSiralama
+          b 
+            | {{ point }}
+            | &nbsp;/&nbsp;
+            | {{ questions.length }}
+      .middleSiralama
+        #style-3.middleInSiralama.scroller
+          .buttonDiv(ng-if="point!=questions.length")
+            button#pass
+              b
+                | İleri
+          .buttonDiv(ng-if="point==questions.length")
+            button#finish(onclick="window.location='http://localhost:3000/login/'")
+              b
+                | Bitir
+            button#replay(onclick="window.location='http://localhost:3000/register/' + $('#id').text()")
+              b
+                | Yeniden
+          div
+            .leftTopSiralama
+              div
+                b Sıra
+            .rightTopSiralama
+              div
+                b İsim
+            .scoreTopSiralama
+              div
+                b Skor
+          span(ng-repeat="oyuncular in oyuncular | orderBy: '-score'")
+            div
+              .leftSiralama
+                div
+                  b {{ $index + 1 }}
+              .rightSiralama
+                div
+                  b {{ oyuncular.username }}
+              .scoreSiralama
+                div
+                  b {{ oyuncular.score }}
  
-    div#answersCount
+    div#answersCount(hidden)
       | {{ answersCount }} &nbsp; &nbsp; &nbsp;
     
-    span(style="display:none;")#remaining  
+    span(style="display:none")#remaining  
 
-    div#middle(style="display:none;")
-      span A: &nbsp;
-      span#choosingA 
-      br
-      span B: &nbsp;
-      span#choosingB 
-      br
-      span C: &nbsp;
-      span#choosingC 
-      br
-      span D: &nbsp;
-      span#choosingD
-      br
-      button#puanlar(ng-click="passScores()") Next
+    //- div#middle(style="display:none;")
+    //-   span A: &nbsp;
+    //-   span#choosingA 
+    //-   br
+    //-   span B: &nbsp;
+    //-   span#choosingB 
+    //-   br
+    //-   span C: &nbsp;
+    //-   span#choosingC 
+    //-   br
+    //-   span D: &nbsp;
+    //-   span#choosingD
+    //-   br
+    //-   button#puanlar(ng-click="passScores()") Next
     
 
 append javascripts
+  script(src='/Sorular2/js/loading-bar.js')
   script(src="/javascripts/controller/indexController.js")
   script(src="/javascripts/services/indexFactory.js")
-
+  
   script(src='/OturumGiris/js/bootstrap.js')
   script(src='/OturumGiris/js/bootstrap.min.js')
+  
   script.
     var main = $('.main');
     var colors = ['#864BBF', '#34C7CF', '#65BF39', '#FA4045', '#FF3356', ' 	#FFA502'];

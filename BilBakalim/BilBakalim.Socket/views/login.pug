@@ -11,6 +11,7 @@ block styles
   link(rel='stylesheet', href='/OyuncuIlkEkran/css/stylePlayer.css')
   link(rel='stylesheet', href='/OyuncuIlkEkran/css/bootstrap.css')
   link(rel='stylesheet', href='/OyuncuIlkEkran/css/bootstrap.min.css')
+  link(rel='stylesheet', href='/OyuncuSorular/css/styleOyuncuSorular.css')
 
 block content
   div(ng-controller="loginController", ng-init="init()")
@@ -61,22 +62,41 @@ block content
     //-     span [SERVER] &nbsp;
     //-     | {{ message.message }}
 
-    div(ng-repeat="question in showQuestions")
-      br
-      div.questionID(ng-attr-id="{{ question.ID }}")
-        | Soru)&nbsp; {{ question.Soru }}
-        br
+    div.block(ng-repeat="question in showQuestions")
+      .topOyuncuSorular.questionID(ng-attr-id="{{ question.ID }}")
+        .topLeftOyuncuSorular
+          b PIN: {{classId}}
+        .topRightOyuncuSorular
+          b {{ playerName }}
+      .bottomOyuncuSorular
+        div
+          div#Cevap1(style='cursor: pointer; background-color: #2F6DAE', ng-click="Cevap('Cevap1')")
+            div {{ question.Cevap1 }}
+          div#Cevap2(style='cursor: pointer; background-color: #2C9CA6', ng-click="Cevap('Cevap2')")
+            div {{ question.Cevap2 }}
+        div
+          div#Cevap3(style='cursor: pointer; background-color: #ECA82C', ng-click="Cevap('Cevap3')")
+            div {{ question.Cevap3 }}
+          div#Cevap4(style='cursor: pointer; background-color: #D4546A', ng-click="Cevap('Cevap4')")
+            div {{ question.Cevap4 }}
+      .altOyuncuSorular
+        div
+          b Puan: {{ playersOfScore }}
+
+      //- div.questionID(ng-attr-id="{{ question.ID }}")
+      //-   | Soru)&nbsp; {{ question.Soru }}
+      //-   br
         
-        button#Cevap1(ng-click="Cevap('Cevap1')") 
-          | A)&nbsp; {{ question.Cevap1 }}
-        button#Cevap2(ng-click="Cevap('Cevap2')") 
-          | B)&nbsp; {{ question.Cevap2 }}
-        br
-        button#Cevap3(ng-click="Cevap('Cevap3')") 
-          | C)&nbsp; {{ question.Cevap3 }}
-        button#Cevap4(ng-click="Cevap('Cevap4')") 
-          | D)&nbsp; {{ question.Cevap4 }}
-        br
+      //-   button#Cevap1(ng-click="Cevap('Cevap1')") 
+      //-     | A)&nbsp; {{ question.Cevap1 }}
+      //-   button#Cevap2(ng-click="Cevap('Cevap2')") 
+      //-     | B)&nbsp; {{ question.Cevap2 }}
+      //-   br
+      //-   button#Cevap3(ng-click="Cevap('Cevap3')") 
+      //-     | C)&nbsp; {{ question.Cevap3 }}
+      //-   button#Cevap4(ng-click="Cevap('Cevap4')") 
+      //-     | D)&nbsp; {{ question.Cevap4 }}
+      //-   br
 
     //- div(hidden)#score
     //-   | Puanlar 
@@ -153,7 +173,7 @@ block content
             br
             .mainCorrectPlaceBottom
               br
-              b#firstBeetwen
+              b#firstBeetwenWrong
         .mainTimeUp#timeUp(style="display: none;")
           .mainCorrectTop
             b
@@ -164,10 +184,18 @@ block content
             br
             .mainCorrectPlaceBottom
               br
-              b#firstBeetwen
+              b#firstBeetwenTimeUp
+
+    
+
       
 append javascripts
   script(src="/javascripts/controller/loginController.js")
   script(src="/javascripts/services/loginFactory.js")
   script(src='/OyuncuIlkEkran/js/bootstrap.js')
   script(src='/OyuncuIlkEkran/js/bootstrap.min.js')
+  script.
+    $('#Cevap1').css.cursor = 'pointer';
+    $('#Cevap2').css.cursor = 'pointer';
+    $('#Cevap3').css.cursor = 'pointer';
+    $('#Cevap4').css.cursor = 'pointer';

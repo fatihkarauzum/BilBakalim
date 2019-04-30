@@ -9,6 +9,12 @@ html
     div(ng-app="BilBakalim", ng-cloak)
       block content
 
+    .passive(style="display: none")
+      div
+        b
+          i
+            | Oturum Sonlandırıldı
+
   block javascripts
     script(src="http://localhost:3000/socket.io/socket.io.js")
     script(src="/angular/angular.min.js")

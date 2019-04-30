@@ -3,18 +3,21 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
     $scope.players = { };
     $scope.questions = [ ];
     $scope.showQuestions = [ ];
-    $scope.answersCount;
+    $scope.answersCount = 0;
     $scope.oyuncular = [ ];
     $scope.playersCount = 0;
+    $scope.distance;
+    $scope.point;
     var point;
-    var distance;
+    var distance = 0;
     var passingTime;
     var score;
     var first = 1;
     var x;
+    var y;
     var audioCount = 0;
+    $scope.sinifId;
     var audio = new Audio('/sounds/main.mp4');
-    
 
     $scope.init = () => {
         initSocket();
@@ -27,6 +30,43 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
         }
         return size;
     };
+
+    correctAnswer = (answer) => {
+        if(answer == 'Cevap1'){
+            $('#correctA').html('<img src="/SecimSayilari/images/correct.png" width="24%">');
+        }
+        if(answer == 'Cevap2'){
+            $('#correctB').html('<img src="/SecimSayilari/images/correct.png" width="24%">');
+        }
+        if(answer == 'Cevap3'){
+            $('#correctC').html('<img src="/SecimSayilari/images/correct.png" width="24%">');
+        }
+        if(answer == 'Cevap4'){
+            $('#correctD').html('<img src="/SecimSayilari/images/correct.png" width="24%">');
+        }
+    }
+
+    function counter (){
+        var parentWidth = $('#parent').width();
+        var azaltma = $('#parent').width()/$scope.distance;
+        var yeniDeger = parentWidth;
+        var distance = $scope.distance;
+
+        console.log(parentWidth, yeniDeger);
+        y = setInterval(() => {
+            distance -= 1;
+
+            yeniDeger = yeniDeger - azaltma;
+            console.log(yeniDeger);
+            $('.Loading-progress').animate({
+                width: yeniDeger
+            }, 'slow');
+            if (distance < 0) {
+                $('.Loading-progress').width($('#parent').width());
+                clearInterval(y);
+            }
+        }, 1000);
+    }
 
     async function initSocket(){
         const connectionOptions = {
@@ -41,7 +81,7 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                 socket.on('newUserConnect', (data) => {
                     $scope.players[data.id] = data;
                     $scope.playersCount += 1;
-                    $scope.$applyAsync();
+                    $scope.$apply();
                     
                     $('#start').removeAttr("disabled");
                 });
@@ -57,6 +97,7 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                     audio.play();
                     $('#realId').html(data.realRoomId);
                     $('#realIdShow').html(data.realRoomId);
+                    $scope.sinifId = data.realRoomId;
                     $scope.messages.push(messagesData);
                     $scope.$applyAsync();
                 });
@@ -92,11 +133,14 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                         audio.pause();
                         audio = new Audio('/sounds/timeUp.mp3');
                         audio.play();
-
+                        clearInterval(y);
+                        $('.Loading-progress').width($('#parent').width());
                         $('#remaining').hide();
                         $('#answersCount').hide();
                         if(first == 1){
                             point = 1;
+                            $scope.point = point;
+                            $scope.$apply();
                         }
                         socket.emit('showMiddle', { realRoomId: $('#realId').text() });
                     }
@@ -107,6 +151,28 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                     $('#choosingB').html(data.choosingAnswers.Cevap2);
                     $('#choosingC').html(data.choosingAnswers.Cevap3);
                     $('#choosingD').html(data.choosingAnswers.Cevap4);
+
+                    var rate = 0;
+
+                    if(data.choosingAnswers.Cevap1 != 0){
+                        rate = (data.choosingAnswers.Cevap1/$scope.playersCount)*70;
+                        $('#aRate').height(($('#aRate').parent().height() * rate) / 100)
+                    }
+
+                    if(data.choosingAnswers.Cevap2 != 0){
+                        rate = (data.choosingAnswers.Cevap2/$scope.playersCount)*70;
+                        $('#bRate').height(($('#bRate').parent().height() * rate) / 100)
+                    }
+
+                    if(data.choosingAnswers.Cevap3 != 0){
+                        rate = (data.choosingAnswers.Cevap3/$scope.playersCount)*70;
+                        $('#cRate').height(($('#cRate').parent().height() * rate) / 100)
+                    }
+
+                    if(data.choosingAnswers.Cevap4 != 0){
+                        rate = (data.choosingAnswers.Cevap4/$scope.playersCount)*70;
+                        $('#dRate').height(($('#dRate').parent().height() * rate) / 100)
+                    }
                 });
 
                 $('#start').on('click', () => {
@@ -116,19 +182,26 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                     if(audioCount=0){
                         audio = new Audio('/sounds/questions1.mp3');
                         audioCount = 1;
-                        socket.emit('delay');
+                        
                     }
                     else{
                         audio = new Audio('/sounds/questions.mp3');
                         audioCount = 0;
-                        socket.emit('delay');
+
                     }
 
                     socket.emit('start', { roomId: $('#id').text(), realRoomId: $('#realId').text() });
+                    socket.emit('delay');
+                    socket.emit('delay');
                     $('#remaining').show();
                 });
 
                 $scope.passScores = () => {
+                    if(point == $scope.questions.length){
+                        audio = new Audio('/sounds/finish.wav');
+                        audio.play();
+                    }
+
                     $('#middle').hide();
 
                     Object.keys($scope.players).forEach(element => {
@@ -136,6 +209,10 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                         $scope.$applyAsync();
                     });
 
+                    $('#correctA').html('');
+                    $('#correctB').html('');
+                    $('#correctC').html('');
+                    $('#correctD').html('');
                     $('#score').show();
                 }
 
@@ -149,27 +226,39 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                         audioCount = 0;
                     }
 
+                    $('#aRate').height(($('#aRate').parent().height() * 3) / 100);
+                    $('#bRate').height(($('#bRate').parent().height() * 3) / 100);
+                    $('#cRate').height(($('#cRate').parent().height() * 3) / 100);
+                    $('#dRate').height(($('#dRate').parent().height() * 3) / 100);
+                    $scope.answersCount = 0;
                     audio.play();
                     first = 0;
                     $('#remaining').show();
                     if(point < $scope.questions.length){
                         socket.emit('pass', { roomId: $('#id').text(), realRoomId: $('#realId').text() })
 
-                        $('#score').hide('slow');
+                        $('#score').hide();
                         if(point <= $scope.questions.length){
                             $scope.showQuestions.push($scope.questions[point]);
                             $scope.$applyAsync();
-    
+                            $('#SecimSoru').html($scope.questions[point].Soru);
                             distance = $scope.showQuestions[0].Sure;
+                            $scope.distance = $scope.showQuestions[0].Sure;
+                            $scope.$apply();
+                            correctAnswer($scope.showQuestions[0].DogruCevap);
+
+                            counter();
+
                             x = setInterval(() => {
                                 $('#remaining').html(distance);
                                 distance -= 1;
                                 passingTime = $scope.showQuestions[0].Sure - distance;
+                                
                                 if (distance < 0) {
                                     clearInterval(x);
                                     $scope.showQuestions.pop();
                                     $scope.$applyAsync();
-                                    $('#middle').show('slow');
+                                    $('#middle').show();
                                     audio.pause();
                                     audio = new Audio('/sounds/timeUp.mp3');
                                     audio.play();
@@ -181,13 +270,15 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                                 }
                             }, 1000);
                             point++;
+                            $scope.point = point;
+                            $scope.$apply();
                         }
                         $scope.$applyAsync();
 
                         socket.emit('answersCountReset', { realRoomId: $('#realId').text() });
                     }
                     else{
-
+                        
                     } 
                 });
 
@@ -200,18 +291,24 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
 
                     $scope.showQuestions.push($scope.questions[0]);
                     $scope.$applyAsync();
-
+                    $('#SecimSoru').html($scope.questions[0].Soru);
                     audio.play();
                     distance = $scope.showQuestions[0].Sure;
+                    $scope.distance = $scope.showQuestions[0].Sure;
+                    $scope.$apply();
+
+                    counter();
                     x = setInterval(() => {
                         $('#remaining').html(distance);
                         distance -= 1;
                         passingTime = $scope.showQuestions[0].Sure - distance;
+                        correctAnswer($scope.showQuestions[0].DogruCevap);
                         if (distance < 0) {
+                            $('.Loading-progress').width($('#parent').css.width);
                             clearInterval(x);
                             $scope.showQuestions.pop();
                             $scope.$applyAsync();
-                            $('#middle').show('slow');
+                            $('#middle').show();
                             $('#remaining').hide();
                             $('#answersCount').hide();
                             audio.pause();
@@ -220,10 +317,17 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
 
                             socket.emit('showMiddle', { realRoomId: $('#realId').text() });
                             point=1;
+                            $scope.point = point;
+                            $scope.$apply();
                         }
                     }, 1000);
 
-                    $('#start').hide('slow');
+                    $('#start').hide();
+                });
+
+                socket.on('oyuncu', (data) => {
+                    delete $scope.players[data.oyuncuId];
+                    $scope.$apply();
                 });
 
             }

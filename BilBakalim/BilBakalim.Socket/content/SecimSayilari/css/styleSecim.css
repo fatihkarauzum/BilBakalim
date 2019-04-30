@@ -1,0 +1,318 @@
+html, body{
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+.topSecim {
+  display: flex;
+  background-color: #260828;
+  position: relative;
+  min-height: 17%;
+  height: auto;
+  width: 100%;
+  -webkit-box-shadow: 0px 4px 5px 5px rgba(0,0,0,0.7);
+  -moz-box-shadow: 0px 4px 5px 5px rgba(0,0,0,0.7);
+  box-shadow: 0px 4px 5px 5px rgba(0,0,0,0.7);
+  z-index: 5;
+}
+
+.topSecim > div {
+  margin: auto;
+  font-size: 3.7vw;
+  font-family: "Montserrat", "Helvetica Neue", helvetica, arial, sans-serif;
+  color: white
+}
+
+.middleSecim {
+  display: flex;
+  background-color: #361438;
+  position: relative;
+  height: 73%;
+  width: 100%;
+  z-index: 2;
+  padding-bottom: 6%
+}
+
+.middleCenterSecim{
+	display: flex;
+	background-color: #361438;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 4;
+	float: left;
+}
+
+.middleCenterSecim > button{
+	position: absolute;
+	height: 13%;
+	width: 13%;
+	right: 5%;
+	bottom: 0;
+	background-color: black;
+	color: white;
+	font-family: "Montserrat", "Helvetica Neue", helvetica, arial, sans-serif;
+	font-size: 3vh;
+	border-radius: 5px;
+}
+
+.middleCenterSecim > div{
+	display: flex;
+	height: 100%;
+	width: 45%;
+	margin: auto;
+}
+
+.middleCenterSecim > button{
+	position: absolute;
+	height: 13%;
+	width: 13%;
+	background-color: black;
+	color: white;
+	font-family: "Montserrat", "Helvetica Neue", helvetica, arial, sans-serif;
+	font-size: 3vh;
+}
+
+.middleCenterSecim > div > .in{
+	height: 100%;
+	width: 22%;
+	margin: auto;
+	float: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.middleCenterSecim > div > .in > .inBottom{
+	position: relative;
+	display: flex;
+	height: 17%;
+	width: 100%;
+	background-color: #2F6DAE;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	-webkit-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+}
+
+.middleCenterSecim > div > .in > .Rate{
+	position: relative;
+	display: flex;
+	height: 3%;
+	width: 100%;
+	background-color: #2F6DAE;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	margin-bottom: 5%;
+	-webkit-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+}
+
+.middleCenterSecim > div > .in > .Count{
+	position: relative;
+	display: flex;
+	margin-bottom: 2%;
+}
+
+.middleCenterSecim > div > .in > .Count > div{
+	position: relative;
+	display: flex;
+	margin: auto;
+	font-size: 3vw;
+	font-family: "Montserrat", "Helvetica Neue", helvetica, arial, sans-serif;
+	color: #2F6DAE;
+}
+
+.middleCenterSecim > div > .in > .inBottom > div{
+	display: flex;
+}
+
+.middleCenterSecim > div > .in > .inBottom > div > img{
+	margin: auto;
+}
+
+.middleCenterSecim > div > .in1{
+	height: 100%;
+	width: 22%;
+	margin: auto;
+	float: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.middleCenterSecim > div > .in1 > .inBottom{
+	position: relative;
+	display: flex;
+	height: 17%;
+	width: 100%;
+	background-color: #2C9CA6;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	-webkit-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+}
+
+.middleCenterSecim > div > .in1 > .Rate{
+	position: relative;
+	display: flex;
+	height: 3%;
+	width: 100%;
+	background-color: #2C9CA6;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	margin-bottom: 5%;
+	-webkit-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+}
+
+.middleCenterSecim > div > .in1 > .Count{
+	position: relative;
+	display: flex;
+	margin-bottom: 2%;
+}
+
+.middleCenterSecim > div > .in1 > .Count > div{
+	position: relative;
+	display: flex;
+	margin: auto;
+	font-size: 3vw;
+	font-family: "Montserrat", "Helvetica Neue", helvetica, arial, sans-serif;
+	color: #2C9CA6;
+}
+
+.middleCenterSecim > div > .in1 > .inBottom > div{
+	display: flex;
+}
+
+.middleCenterSecim > div > .in1 > .inBottom > div > img{
+	margin: auto;
+}
+
+.middleCenterSecim > div > .in2{
+	height: 100%;
+	width: 22%;
+	margin: auto;
+	float: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.middleCenterSecim > div > .in2 > .inBottom{
+	position: relative;
+	display: flex;
+	height: 17%;
+	width: 100%;
+	background-color: #ECA82C;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	-webkit-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+}
+
+.middleCenterSecim > div > .in2 > .Rate{
+	position: relative;
+	display: flex;
+	height: 3%;
+	width: 100%;
+	background-color: #ECA82C;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	margin-bottom: 5%;
+	-webkit-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+}
+
+.middleCenterSecim > div > .in2 > .Count{
+	position: relative;
+	display: flex;
+	margin-bottom: 2%;
+}
+
+.middleCenterSecim > div > .in2 > .Count > div{
+	position: relative;
+	display: flex;
+	margin: auto;
+	font-size: 3vw;
+	font-family: "Montserrat", "Helvetica Neue", helvetica, arial, sans-serif;
+	color: #ECA82C;
+}
+
+.middleCenterSecim > div > .in2 > .inBottom > div{
+	display: flex;
+}
+
+.middleCenterSecim > div > .in2 > .inBottom > div > img{
+	margin: auto;
+}
+
+.middleCenterSecim > div > .in3{
+	height: 100%;
+	width: 22%;
+	margin: auto;
+	float: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.middleCenterSecim > div > .in3 > .inBottom{
+	position: relative;
+	display: flex;
+	height: 17%;
+	width: 100%;
+	background-color: #D4546A;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	-webkit-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+}
+
+.middleCenterSecim > div > .in3 > .Rate{
+	position: relative;
+	display: flex;
+	height: 3%;
+	width: 100%;
+	background-color: #D4546A;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	margin-bottom: 5%;
+	-webkit-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0px 0px 15px 3px rgba(0,0,0,0.5);
+}
+
+.middleCenterSecim > div > .in3 > .Count{
+	position: relative;
+	display: flex;
+	margin-bottom: 2%;
+}
+
+.middleCenterSecim > div > .in3 > .Count > div{
+	position: relative;
+	display: flex;
+	margin: auto;
+	font-size: 3vw;
+	font-family: "Montserrat", "Helvetica Neue", helvetica, arial, sans-serif;
+	color: #D4546A;
+}
+
+.middleCenterSecim > div > .in3 > .inBottom > div{
+	display: flex;
+}
+
+.middleCenterSecim > div > .in3 > .inBottom > div > img{
+	margin: auto;
+}
+
+

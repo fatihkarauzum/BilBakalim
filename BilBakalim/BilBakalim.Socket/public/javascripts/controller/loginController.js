@@ -5,6 +5,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
     $scope.showQuestions = [ ];
     $scope.answersCount;
     $scope.oyuncular = [ ];
+    $scope.playersOfScore = 0;
     var point;
     var distance;
     var passingTime;
@@ -39,13 +40,6 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                 });
 
                 $('#send').on('click', () => {
-                    $('#name').hide();
-                    $('#loginBlock').hide();
-                    $('#middle').show();
-                    $('#middleSub').show();
-                    $('#middleSub1').show();
-                    $('#wait').show();
-
                     socket.emit('newUser', { roomId: $('#id').val(), username: $('#inputName').val() });
                 });
 
@@ -58,10 +52,11 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                     
                     answers = ['Cevap1', 'Cevap2', 'Cevap3', 'Cevap4'];
                     answers.forEach(element => {
-                        $('#' + element).prop( "disabled", true );
-                        $('#' + cevap).css( "background-color", "yellow" )
+                        $('#' + element).removeAttr('ng-click');
+                        $('#' + element).css( "cursor", "default" );
                     });
             
+                    $('#' + cevap).css( "opacity", "0.5" );
                     questionID = $('.questionID').attr('id');
                     $scope.questions.forEach(element=>{
                         if(element.ID == questionID){
@@ -135,10 +130,14 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                         var max = Math.max.apply(Math, $scope.oyuncular.map(x => x.score));
                         var fark = max - $scope.players[$('#mineId').text()].score;
                         if( fark != 0 ){
-                            $('#firstBeetwen').html(fark);
+                            $('#firstBeetwen').html('1.ile Aranızdakı Puan Farkı: '+fark);
+                            $('#firstBeetwenWrong').html('1.ile Aranızdakı Puan Farkı: '+fark);
+                            $('#firstBeetwenTimeUp').html('1.ile Aranızdakı Puan Farkı: '+fark);
                         }
                         else{
                             $('#firstBeetwen').html('Birincisiniz');
+                            $('#firstBeetwenWrong').html('Birincisiniz');
+                            $('#firstBeetwenTimeUp').html('Birincisiniz');
                         }
                         
                     }
@@ -159,6 +158,13 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                 });
 
                 socket.on('newUserConnect', (data) => {
+                    $('#name').hide();
+                    $('#loginBlock').hide();
+                    $('#middle').show();
+                    $('#middleSub').show();
+                    $('#middleSub1').show();
+                    $('#wait').show();
+
                     $scope.players[data.id] = data;
                     $scope.$applyAsync();
                 });
@@ -202,6 +208,14 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                         username.classList.remove('error');
                     }, 300);
 
+                    var username = document.getElementById('name');
+                    username.classList.add('error');
+                
+                    setTimeout(function() {
+                        username.classList.remove('error');
+                    }, 300);
+
+
                     $scope.messages.push(messagesData);
                     $scope.$applyAsync();
                 });
@@ -213,13 +227,13 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                         if(element.realRoomId == $('#id').val()) $scope.questions.push(element);
                     });
                     $scope.$applyAsync();
-
+                    $scope.playersOfScore = $scope.players[$('#mineId').text()].score;
                     $scope.showQuestions.push($scope.questions[0]);
                     $scope.$applyAsync();
                     $('#middle').hide();
                     $('#middleSub').hide();
                     $('#wait').hide();
-                    $('#middleSub1').hide();
+                    $('#middleSub1').hide(); 
 
                     distance = $scope.showQuestions[0].Sure;
                     x = setInterval(() => {
@@ -266,6 +280,9 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                     $('#correct').hide();
                     $('#wrong').hide();
                     $('#remaining').show();
+                    $scope.playersOfScore = $scope.players[$('#mineId').text()].score;
+                    $scope.$apply();
+
                     if(point <= $scope.questions.length){
                         $scope.showQuestions.push($scope.questions[point]);
                         $scope.$applyAsync();
@@ -301,6 +318,16 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                         point++;
                     }
                     $scope.$applyAsync();
+                });
+
+                socket.on('admin', () => {
+                    $(".passive").show();
+                    socket.disconnect();
+                });
+
+                socket.on('oyuncu', (data) => {
+                    delete $scope.players[data.oyuncuId];
+                    $scope.$apply();
                 });
             }
             catch(err){
