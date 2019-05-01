@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "SinifDetay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using BilBakalim.Data
+@model Sinif
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading" style="padding-bottom: 10px;">
+                <div class="col-lg-12" style="margin-bottom:10px;">
+                    <b>Sınıf Detay</b>
+                    <a href="/Sinif/Oyunlar/@Model.SinifKategoriID" class="btn btn-success" style="float: right"><i class="icon-mail-reply (alias)"></i> Listeye Geri Dön</a>
+                </div>
+            </header>
+
+            <div class="panel-body">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading tab-bg-dark-navy-blue ">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#home">Sınıf Bilgileri</a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#about">Kategori Bilgileri</a>
+                                </li>
+                            </ul>
+                        </header>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div id="home" class="tab-pane active">
+                                    <b>Sınıf Adı : </b> <p>@Model.Ad</p> <br />
+
+                                    <b>Açıklama : </b> <p>@Model.Aciklama </p> <br />
+
+                                    <b>Sınıfı Oluşturan Kullanıcı : </b> <p>@Model.Kullanici.Adi @Model.Kullanici.Soyadi </p> <br />
+
+                                    <b>Görünürlük : </b>
+                                    @{
+                                        if (Model.Gorunurluk == true)
+                                        {
+                                            <p> Açık</p>
+                                        }
+                                        else
+                                        { <p> Kapalı</p>}
+                                    }
+                                    <br />
+
+                                    <b> Oynanma Sayısı: </b> <p>@Model.GoruntulenmeSayisi</p>  <br />
+                                    <b>Oluşturma Tarihi : </b> <p>@Model.OlusturmaTarihi.Value.ToString("dd-MM-yyyy") </p> <br />
+                                </div>
+                                <div id="about" class="tab-pane">
+                                    <b>Kategori Adı : </b> <p>@Model.SinifKategori.KategoriAdi</p> <br />
+                                    <b> Kategori Resmi: </b><br /> <img style="width:25%;height:25% " src="@Model.SinifKategori.Resim.Url" /> <br />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

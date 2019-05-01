@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "SoruGuncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using BilBakalim.Data
+@model Sorular
+
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <div class="col-lg-12">
+                    <b> Yeni Soru Ekle</b>
+                </div>
+            </header>
+            <div class="panel-body">
+                <form role="form" method="post" action="/Sinif/SoruGuncelle/@Model.SinifID">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-lg-12">
+                                <div class="form-group alt">
+                                </div>
+                                <div style="display:none" class="form-group">
+                                    <label for="exampleInputEmail1">Süre (sn)</label>&nbsp;<span style="color: red;">*</span>
+                                    <input type="number" class="form-control" value="@Model.ID" name="SinifID" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Soru  </label>&nbsp;<span style="color: red;">*</span>
+                                    <input type="text" class="form-control" placeholder="Soruyu Giriniz..." value="@Model.Soru" name="Soru" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Cevap 1 </label>&nbsp;<span style="color: red;">*</span>
+                                    <input type="text" class="form-control" placeholder="1. Cevabı Giriniz..." value="@Model.Cevap1" name="Cevap1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Cevap 2 </label>&nbsp;<span style="color: red;">*</span>
+                                    <input type="text" class="form-control" placeholder="2. Cevabı Giriniz..." value="@Model.Cevap2" name="Cevap2" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Cevap 3 </label>&nbsp;<span style="color: red;">*</span>
+                                    <input type="text" class="form-control" placeholder="3. Cevabı Giriniz..." value="@Model.Cevap3" name="Cevap3" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Cevap 4 </label>&nbsp;<span style="color: red;">*</span>
+                                    <input type="text" class="form-control" placeholder="4. Cevabı Giriniz..." value="@Model.Cevap4" name="Cevap4" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Süre (sn)</label>&nbsp;<span style="color: red;">*</span>
+                                    <input type="number" class="form-control" placeholder="Süreyi Giriniz..." value="@Model.Sure" name="Sure" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Doğru Cevap</label>&nbsp;<span style="color: red;">*</span>
+                                    <select class="form-control" id="StudentGender" name="DogruCevap">
+                                        <option>Cevap1</option>
+                                        <option>Cevap2</option>
+                                        <option>Cevap3</option>
+                                        <option>Cevap4</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="label_check">Ödüllü Soru </label>&nbsp;<span style="color: red;">*</span><br />
+                                    @Html.CheckBox("Odul", true)
+                                </div>
+                                <button type="submit" id="button" class="btn btn-info">Kaydet</button>
+                                <a href="../Sinif/Sorular" class="btn btn-danger">İptal</a>
+                                <button type="reset" class="btn btn-default">Temizle</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+
+@section script{
+    <script>
+        var id;
+        $("#ana").change(function () {
+            id = this.value;
+            $.ajax({
+                url: '/Sinif/SoruEkle/' + id,
+                type: 'GET',
+                cache: false,
+                success: function (data) {
+                    $('.alt').html(data);
+                },
+                error: function () {
+                    $('.alt').html("");
+                }
+            });
+        });
+    </script>
+
+}

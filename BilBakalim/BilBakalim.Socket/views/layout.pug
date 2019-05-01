@@ -2,10 +2,18 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    
+    block styles
+
   body
-    div(ng-app="BilBakalim")
+    div(ng-app="BilBakalim", ng-cloak)
       block content
+
+    .passive(style="display: none")
+      div
+        b
+          i
+            | Oturum Sonlandırıldı
 
   block javascripts
     script(src="http://localhost:3000/socket.io/socket.io.js")
