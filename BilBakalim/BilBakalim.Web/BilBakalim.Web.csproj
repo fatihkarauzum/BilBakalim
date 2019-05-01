@@ -82,6 +82,13 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -123,6 +130,53 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Admin\js\additional-methods.min.js" />
+    <Content Include="Content\Admin\js\advanced-form-components.js" />
+    <Content Include="Content\Admin\js\all-chartjs.js" />
+    <Content Include="Content\Admin\js\bootstrap-switch.js" />
+    <Content Include="Content\Admin\js\bootstrap.js" />
+    <Content Include="Content\Admin\js\bootstrap.min.js" />
+    <Content Include="Content\Admin\js\common-scripts.js" />
+    <Content Include="Content\Admin\js\count.js" />
+    <Content Include="Content\Admin\js\dynamic-table.js" />
+    <Content Include="Content\Admin\js\easy-pie-chart.js" />
+    <Content Include="Content\Admin\js\editable-table.js" />
+    <Content Include="Content\Admin\js\external-dragging-calendar.js" />
+    <Content Include="Content\Admin\js\flot-chart.js" />
+    <Content Include="Content\Admin\js\form-component.js" />
+    <Content Include="Content\Admin\js\form-image-crop.js" />
+    <Content Include="Content\Admin\js\form-validation-script.js" />
+    <Content Include="Content\Admin\js\ga.js" />
+    <Content Include="Content\Admin\js\gmaps-scripts.js" />
+    <Content Include="Content\Admin\js\gmaps.js" />
+    <Content Include="Content\Admin\js\gritter.js" />
+    <Content Include="Content\Admin\js\hover-dropdown.js" />
+    <Content Include="Content\Admin\js\html5shiv.js" />
+    <Content Include="Content\Admin\js\jquery-1.8.3.min.js" />
+    <Content Include="Content\Admin\js\jquery-ui-1.9.2.custom.min.js" />
+    <Content Include="Content\Admin\js\jquery.cookie.js" />
+    <Content Include="Content\Admin\js\jquery.customSelect.min.js" />
+    <Content Include="Content\Admin\js\jquery.dcjqaccordion.2.7.js" />
+    <Content Include="Content\Admin\js\jquery.dcjqaccordion.2.7.min.js" />
+    <Content Include="Content\Admin\js\jquery.js" />
+    <Content Include="Content\Admin\js\jquery.nicescroll.js" />
+    <Content Include="Content\Admin\js\jquery.scrollTo.min.js" />
+    <Content Include="Content\Admin\js\jquery.sparkline-11.js" />
+    <Content Include="Content\Admin\js\jquery.sparkline.js" />
+    <Content Include="Content\Admin\js\jquery.stepy.js" />
+    <Content Include="Content\Admin\js\jquery.tagsinput.js" />
+    <Content Include="Content\Admin\js\jquery.ui.touch-punch.min.js" />
+    <Content Include="Content\Admin\js\jquery.validate.min.js" />
+    <Content Include="Content\Admin\js\modernizr.custom.js" />
+    <Content Include="Content\Admin\js\morris-script.js" />
+    <Content Include="Content\Admin\js\nestable.js" />
+    <Content Include="Content\Admin\js\owl.carousel.js" />
+    <Content Include="Content\Admin\js\respond.min.js" />
+    <Content Include="Content\Admin\js\respond.src.js" />
+    <Content Include="Content\Admin\js\sliders.js" />
+    <Content Include="Content\Admin\js\sparkline-chart.js" />
+    <Content Include="Content\Admin\js\tasks.js" />
+    <Content Include="Content\Admin\js\toucheffects.js" />
     <Content Include="Content\Home\404-bg.html" />
     <Content Include="Content\Home\404.html" />
     <Content Include="Content\Home\assets\css\bootstrap.min.css" />
@@ -312,6 +366,7 @@
     <Content Include="Content\LocalScripts\editable-table.js" />
     <Content Include="Content\Resimler\SinifSoru\bos.jpg" />
     <Content Include="Content\Resimler\SinifSoru\default.png" />
+    <Content Include="Content\Resimler\Kullanici\defaultuser.png" />
     <Content Include="Database\13.03.2019 - DB.sql" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -333,8 +388,11 @@
     <Content Include="Content\Home\assets\plugins\ResponsiveMultiLevelMenu\fonts\icomoon.ttf" />
     <Content Include="Content\Home\assets\plugins\ResponsiveMultiLevelMenu\fonts\icomoon.woff" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\favori.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\jquery.js" />
+    <Content Include="scripts\jquery.nicescroll.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -345,6 +403,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Classes\Functions.cs" />
+    <Compile Include="App_Classes\Global.cs" />
     <Compile Include="App_Classes\MvcHelper.cs" />
     <Compile Include="App_Classes\ResimIslemleri.cs" />
     <Compile Include="App_Classes\_SecurityFilter.cs" />
@@ -392,6 +451,12 @@
     <Content Include="Views\Home\Gelistiriciler.cshtml" />
     <Content Include="Views\Home\KategoriGetir.cshtml" />
     <Content Include="Views\Home\KategoriAyrıntı.cshtml" />
+    <Content Include="Views\Home\SinifAyrinti.cshtml" />
+    <Content Include="Views\Kullanici\KullaniciDetay.cshtml" />
+    <Content Include="Views\Kullanici\KullaniciGuncelle.cshtml" />
+    <Content Include="Views\Kullanici\TakipListesi.cshtml" />
+    <Content Include="Views\Kullanici\OyunListesi.cshtml" />
+    <Content Include="Views\Kullanici\FavoriListesi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -401,10 +466,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Admin\" />
     <Folder Include="Content\Login_v4\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BilBakalim.Api\BilBakalim.Api.csproj">
+      <Project>{39e82a2d-714d-4e5d-8fa4-065615b59608}</Project>
+      <Name>BilBakalim.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BilBakalim.Data\BilBakalim.Data.csproj">
       <Project>{28b93b4f-2ec9-4b15-a0c7-e639e42de01f}</Project>
       <Name>BilBakalim.Data</Name>

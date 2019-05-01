@@ -13,7 +13,7 @@ namespace BilBakalim.Web.App_Classes
         public string Ekle(HttpPostedFileBase orjResim, String yer)
         {
             string uzanti = Path.GetExtension(orjResim.FileName);
-            if (!(uzanti == ".jpg" || uzanti == ".png"))
+            if (!(uzanti == ".jpg" || uzanti == ".png" || uzanti==".JPEG"||uzanti==".PNG"))
             {
                 return "uzanti";
             }

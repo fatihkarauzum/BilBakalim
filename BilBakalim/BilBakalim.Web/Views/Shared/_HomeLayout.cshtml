@@ -27,7 +27,7 @@
     <meta name="description" content="Faashmira Shop - HTML Template">
     <meta name="author" content="webaashi.com">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Faashmira Shop - HTML</title>
+    <title>BilBakalım</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="/Content/Home/assets\img\favicon.ico" type="image/x-icon">
     <link rel="icon" href="/Content/Home/assets\img\favicon.ico" type="image/x-icon">
@@ -105,7 +105,7 @@
                                             <i class="icon-bag"></i> (2)
                                         </a>
                                     </li>
-                                    @if(Session["Kullanici"] == null)
+                                    @if (Session["Kullanici"] == null)
                                     {
                                         <li class="btn-group dropdown">
                                             <a href="/Login" class="pm_item" title="login">
@@ -128,15 +128,15 @@
                                                 <span class="">Log Out</span>
                                             </a>
                                         </li>
+
+                                        <li>
+                                            <a href="/Kullanici/KullaniciDetay/@aktifKullanici.ID">@aktifKullanici.Adi @aktifKullanici.Soyadi <i class="fa fa-caret-down"></i></a>
+                                            <ul>
+                                                <li><a href="/Kullanici/KullaniciDetay/@aktifKullanici.ID">Profil</a></li>                                               
+                                                <li><a href="/LogOut">Çıkış Yap</a></li>
+                                            </ul>
+                                        </li>
                                     }
-                                    <li>
-                                        <a href="/Content/Home/#">My Account <i class="fa fa-caret-down"></i></a>
-                                        <ul>
-                                            <li><a href="/Content/Home/order.html">Order</a></li>
-                                            <li><a href="/Content/Home/wishlist.html">Wishlist</a></li>
-                                            <li><a href="/Content/Home/#">SignOut</a></li>
-                                        </ul>
-                                    </li>
                                 </ul>
                             </nav>
                         </div>
@@ -195,7 +195,7 @@
                             <nav class="main-menu">
                                 <ul class="nav-menu">
                                     @{
-                                        if(aktifKullanici != null)
+                                        if (aktifKullanici != null)
                                         {
                                             if (aktifKullanici.Rol.RolAdi == "Admin")
                                             {
@@ -728,7 +728,7 @@
 
 
     <div style="display:none;">
-        <a href="/Content/Home/http://info.flagcounter.com/DsUo"><img src="/Content/Home/http://s01.flagcounter.com/count2/DsUo/bg_FFFFFF/txt_000000/border_CCCCCC/columns_6/maxflags_12/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+        @*<a href="/Content/Home/http://info.flagcounter.com/DsUo"><img src="/Content/Home/http://s01.flagcounter.com/count2/DsUo/bg_FFFFFF/txt_000000/border_CCCCCC/columns_6/maxflags_12/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0"></a>*@
     </div>
 
     <script src="/Content/Home/assets\plugins\ResponsiveMultiLevelMenu\js\modernizr.custom.js"></script>
@@ -744,7 +744,9 @@
     <script src="/Content/Home/assets\plugins\ResponsiveMultiLevelMenu\js\jquery.dlmenu.js"></script>
     <script src="/Content/Home/assets\plugins\switcher\switcher.js"></script>
     <script src="/Content/Home/assets\js\main.js"></script>
+
+
     @RenderSection("script", false)
-    
+
 </body>
 </html>

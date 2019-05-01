@@ -1,8 +1,8 @@
-﻿
+﻿@using BilBakalim.Data
 @{
     Layout = null;
 }
-
+@{ Kullanici ak = (Kullanici)Session["Kullanici"];}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -268,16 +268,14 @@
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="/Content/Admin/#">
-                            <img alt="" src="/Content/Admin/img/avatar1_small.jpg">
-                            <span class="username">Jhon Doue</span>
+                            <img style="height:30px;width:30px" alt="" src="@ak.KullaniciResim.Url">
+                            <span class="username">@ak.Adi @ak.Soyadi</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
-                            <div class="log-arrow-up"></div>
-                            <li><a href="/Content/Admin/#"><i class=" icon-suitcase"></i>Profile</a></li>
-                            <li><a href="/Content/Admin/#"><i class="icon-cog"></i> Settings</a></li>
-                            <li><a href="/Content/Admin/#"><i class="icon-bell-alt"></i> Notification</a></li>
-                            <li><a href="/Content/Admin/login.html"><i class="icon-key"></i> Log Out</a></li>
+                            
+                            <li style="margin-left:32%"><a href="/Kullanici/KullaniciDetay/@ak.ID"><i class=" icon-suitcase"></i>Profil</a></li>                          
+                            <li><a href="/LogOut"><i class="icon-key"></i> Çıkış Yap</a></li>
                         </ul>
                     </li>
                     <!-- user login dropdown end -->

@@ -43,7 +43,7 @@
                                                 <div class="caption-text">
                                                     @item.Sorular.Count() Soru
                                                     <div class="clear"></div>
-                                                    <a href="product-detail.html" class="theme-button marT10">Oyna</a>
+                                                    <a href="/Home/SinifAyrinti/@item.ID" class="theme-button marT10">Oyna</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -94,7 +94,7 @@
                                 {
                                 <li>
                                     <a href="@item.ID">
-                                        <div class="clearfix"><span class="pull-left">@item.KategoriAdi</span> <span class="pull-right">(@item.Sinif.Count())</span></div>
+                                        <div class="clearfix"><span class="pull-left">@item.KategoriAdi</span> <span class="pull-right">(@item.Sinif.Where(x=>x.Gorunurluk==true).Count())</span></div>
                                     </a>
                                 </li>
                                 }

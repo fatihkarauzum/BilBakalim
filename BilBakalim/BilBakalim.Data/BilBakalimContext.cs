@@ -12,7 +12,7 @@
             : base("name=BilBakalimContext")
         {
             Database.SetInitializer(new FirstDatas());
-            this.Configuration.LazyLoadingEnabled = true;
+            this.Configuration.LazyLoadingEnabled = false;// false yap!
         }
 
         public virtual DbSet<Dİl> Dİl { get; set; }

@@ -36,6 +36,13 @@
                 <p>@TempData["GenelMesaj"]</p>
             </div>
         }
+        @if (ViewBag.hata != null)
+        {
+            <div class="alert alert-danger">
+                <p>@ViewBag.hata</p>
+            </div>
+        }
+
         <section class="panel">
             <header class="panel-heading" style="padding-bottom: 10px;">
                 <div class="col-lg-12" style="margin-bottom:10px;">
@@ -61,34 +68,34 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                <tr id="@item.ID">
-                                    <td>
-                                        @item.Adi @item.Soyadi
-                                    </td>
-                                    <td>
-                                        @item.Email
-                                    </td>
-                                    <td>
-                                        @item.Adi
-                                    </td>
-                                    <td>
-                                        @item.Rol.RolAdi
-                                    </td>
-                                    <td>
-                                        @if (item.Durum == true)
-                                        {
-                                        <span style="font-size:10px;" class="label label-success">Aktif</span>
-                                        }
-                                        else
-                                        {
-                                        <span style="font-size:10px;" class="label label-danger">Pasif</span>
-                                        }
-                                    </td>
-                                    <td>
-                                        <a title="Sil" style="float:right;" class="btn btn-danger btn-xs btn-confirm" data-id="@item.ID"><i class="icon-trash"></i> Sil</a>
-                                        <a title="Düzünle" style="float:right;margin-right:5px;" href="/Admin/KullaniciGuncelle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Düzenle</a>
-                                    </td>
-                                </tr>
+                                    <tr id="@item.ID">
+                                        <td>
+                                            @item.Adi @item.Soyadi
+                                        </td>
+                                        <td>
+                                            @item.Email
+                                        </td>
+                                        <td>
+                                            @item.Adi
+                                        </td>
+                                        <td>
+                                            @item.Rol.RolAdi
+                                        </td>
+                                        <td>
+                                            @if (item.Durum == true)
+                                            {
+                                                <span style="font-size:10px;" class="label label-success">Aktif</span>
+                                            }
+                                            else
+                                            {
+                                                <span style="font-size:10px;" class="label label-danger">Pasif</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a title="Sil" style="float:right;" class="btn btn-danger btn-xs btn-confirm" data-id="@item.ID"><i class="icon-trash"></i> Sil</a>
+                                            <a title="Düzünle" style="float:right;margin-right:5px;" href="/Admin/KullaniciGuncelle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Düzenle</a>
+                                        </td>
+                                    </tr>
                                 }
 
                             </tbody>
@@ -172,6 +179,7 @@
                     success: function (rs) {
                         if (rs === true) {
                             $('#' + id).remove();
+                            alert("Kullanıcı Silme İşlemi Başarıyla Gerçekleşmiştir.");
                         }
                         else if (rs === "FK") {
                             alert("Bu Kullanıcıya ait Garanti Kaydı , Ürün Giriş Kaydı veya Ürün Çıkış Kaydı Bulunduğundan dolayı bu Kullanıcıyı Silemezsiniz. ");

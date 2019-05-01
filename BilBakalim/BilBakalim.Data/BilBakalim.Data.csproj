@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,7 +61,9 @@
     <Compile Include="BilBakalimContext.cs" />
     <Compile Include="Dİl.cs" />
     <Compile Include="Favori.cs" />
+    <Compile Include="Interfaces\BodyType.cs" />
     <Compile Include="Interfaces\Entity.cs" />
+    <Compile Include="Interfaces\ViewbagModel.cs" />
     <Compile Include="Kullanici.cs" />
     <Compile Include="KullaniciResim.cs" />
     <Compile Include="Menu.cs" />

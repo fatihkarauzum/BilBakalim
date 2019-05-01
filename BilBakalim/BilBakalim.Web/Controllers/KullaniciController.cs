@@ -1,35 +1,86 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using BilBakalim.Data;
+using BilBakalim.Data.Interfaces;
 using BilBakalim.Web.App_Classes;
+
 
 namespace BilBakalim.Web.Controllers
 {
     public class KullaniciController : Controller
     {
-        private BilBakalimContext db = new BilBakalimContext();
+        static BilBakalimContext db = new BilBakalimContext();
         // GET: Kullanici
+
         [HttpGet]
         public ActionResult Yetkiler(int id)
         {
-            Rol r = db.Rol.Where(x => x.ID == id).FirstOrDefault();
 
-            if (r == null)
+            ViewbagModel a=new ViewbagModel();
+            HttpResponseMessage respone = Global.client.GetAsync("/api/KullaniciApi/ViewBag/"+id.ToString()).Result;
+            if (respone.IsSuccessStatusCode)
             {
-                return RedirectToAction("Hata", "Admin");
+                a = respone.Content.ReadAsAsync<ViewbagModel>().Result;
+                ViewBag.Yetkileri = a.MenuRol.ToList();
+                ViewBag.Menuler = a.Menu.ToList();
+                return View(a.Rol);
+            }
+            else
+            {
+                TempData["hata"] = "Roller Listelenirken Bir Hata Oluştu. Lütfen Daha Sonra Tekrar Deneyiniz.";
+                return View();
             }
 
-            ViewBag.Yetkileri = db.MenuRol.Where(x => x.RolId == r.ID).ToList();
-            ViewBag.Menuler = db.Menu.Where(x => x.Aktif == true).ToList();
-            return View(r);
+
+
+
+
+            //Rol r = db.Rol.Where(x => x.ID == id).FirstOrDefault();
+
+            //if (r == null)
+            //{
+            //    return RedirectToAction("Hata", "Admin");
+            //}
+
+            //ViewBag.Yetkileri = db.MenuRol.Where(x => x.RolId == r.ID).ToList();
+            //ViewBag.Menuler = db.Menu.Where(x => x.Aktif == true).ToList();
+            //return View(r);
         }
 
         [HttpPost]
         public ActionResult Yetkiler(int RolID, string menuler)
         {
+
+            //try
+            //{
+            //    HttpResponseMessage respone = Global.client.DeleteAsync("/api/KullaniciApi/Yetkiler/" + RolID.ToString(),liste).Result;
+            //    if (respone.IsSuccessStatusCode)
+            //    {
+            //        //TempData["GenelMesaj"] = "Kullanıcı Silme işlemi başarılı bir şekilde tamamlanmıştır.";
+            //        return Json(true);
+            //    }
+
+            //    else
+            //    {
+            //        //TempData["hata"] = "Kullanici Silme İşleminde Bir hata oluştu.";
+            //        return Json(false);
+            //    }
+
+            //}
+            //catch (Exception)
+            //{
+
+            //    return Json("FK");
+            //}
+
+
+
+
 
             try
             {
@@ -94,9 +145,22 @@ namespace BilBakalim.Web.Controllers
         public ActionResult SinifEkle()
         {
 
-            ViewBag.Dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
-            ViewBag.SinifKat = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");           
-            return View(new Sinif());
+            ViewbagModel a = new ViewbagModel();
+            HttpResponseMessage respone = Global.client.GetAsync("/api/KullaniciApi/SinifEkleViewbag/").Result;
+            if (respone.IsSuccessStatusCode)
+            {
+                a = respone.Content.ReadAsAsync<ViewbagModel>().Result;
+                ViewBag.Dil = new SelectList(a.Dil.ToList(), "ID", "Adi");
+                ViewBag.SinifKat = new SelectList(a.SinifKat.ToList(), "ID", "KategoriAdi");
+
+                return View(new Sinif());
+            }
+            else
+            {
+                TempData["hata"] = "Bir Hata Oluştu. Lütfen Daha Sonra Tekrar Deneyiniz.";
+                return RedirectToAction("Index","Home");
+            }
+
         }
 
         [HttpPost]
@@ -140,6 +204,7 @@ namespace BilBakalim.Web.Controllers
                     l= db.ResimKategori.Where(x => x.KategoriAdi == "SinifSoru").SingleOrDefault();
                     o.ResimKategoriID = l.ID;                  
                     o.Url = yeniResimAdi;
+                    k.GoruntulenmeSayisi = 0;
                     db.Resim.Add(o);
                     db.SaveChanges();
 
@@ -273,12 +338,304 @@ namespace BilBakalim.Web.Controllers
 
 
 
+
+        [HttpGet]
+        public ActionResult KullaniciDetay(int id)
+        {
+            Kullanici a = new Kullanici();
+            HttpResponseMessage respone = Global.client.GetAsync("/api/KullaniciApi/KullaniciGetir/" + id.ToString()).Result;
+            if (respone.IsSuccessStatusCode)
+            {
+                a = respone.Content.ReadAsAsync<Kullanici>().Result;
+               
+                return View(a);
+            }
+            else
+            {
+                TempData["hata"] = "Kullanici Listelenirken Bir Hata Oluştu. Lütfen Daha Sonra Tekrar Deneyiniz.";
+                return RedirectToAction("Index","Home");
+            }
+
+        }
+
+
+        [HttpPost]
+        public ActionResult KUllaniciGuncelle(Kullanici z)
+        {
+
+                if (z != null)
+                {
+                    Kullanici k = db.Kullanici.Where(x => x.ID == z.ID).FirstOrDefault();
+                    k.Adi = z.Adi;                 
+                    k.Aciklama = z.Aciklama;
+                    k.Soyadi = z.Soyadi;
+                    k.KullaniciAdi = z.KullaniciAdi;
+                    db.SaveChanges();
+                    TempData["GenelMesaj"] = "Güncelleme Islemi Basarılı.";
+                    return RedirectToAction("KullaniciDetay/"+z.ID);
+                    
+                }
+            else
+            {
+                TempData["hata"] = "Boş Geçilemez!";
+                return View("KullaniciDetay/"+z.ID);
+            }
+                                      
+
+        }
+
+        [HttpPost]
+        public ActionResult KullaniciSifreResimGuncelle(string SifreTekrar, Kullanici k, HttpPostedFileBase resimGelen)
+        {
+           
+                Kullanici c = db.Kullanici.Where(x => x.ID == k.ID).SingleOrDefault();
+
+            if(SifreTekrar=="" && k.Sifre == null)
+            {
+                if (resimGelen != null)
+                {
+                    KullaniciResim kg = new KullaniciResim();
+                    string yeniResimAdi = "";
+                    ResimIslemleri r = new ResimIslemleri();
+                    yeniResimAdi = r.Ekle(resimGelen, "Kullanici");
+                    //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
+
+                    if (yeniResimAdi == "uzanti")
+                    {
+                        TempData["hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                        return RedirectToAction("KullaniciDetay/" + k.ID);
+                    }
+                    else if (yeniResimAdi == "boyut")
+                    {
+
+                        TempData["hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
+                        return RedirectToAction("KullaniciDetay/" + k.ID);
+                    }
+                    else
+                    {
+                        new ResimIslemleri().Sil(resimGelen.ToString(), "Kullanici");
+
+
+                        kg.Url = yeniResimAdi;
+                        db.KullaniciResim.Add(kg);
+                        c.ResimID = kg.ID;
+                        db.SaveChanges();
+                        TempData["GenelMesaj"] = "Başarılı";
+                        return RedirectToAction("KullaniciDetay/" + k.ID);
+
+                    }
+                }
+                else
+                {
+                    TempData["hata"] = "Boş Geçmeyiniz.";
+                    return RedirectToAction("KullaniciDetay/" + k.ID);
+
+                }
+
+                
+            }
+
+
+                if (SifreTekrar != k.Sifre)
+                {
+                    TempData["hata"] = "Sifreler uyusmadı";
+                    return RedirectToAction("KullaniciDetay/" + k.ID);
+                }
+                else
+                {
+
+                        if (resimGelen != null)
+                        {
+                            KullaniciResim kg = new KullaniciResim();
+                            string yeniResimAdi = "";
+                            ResimIslemleri r = new ResimIslemleri();
+                            yeniResimAdi = r.Ekle(resimGelen, "Kullanici");
+                    //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
+
+                    if (yeniResimAdi == "uzanti")
+                    {
+                        TempData["hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                        return RedirectToAction("KullaniciDetay/" + k.ID);
+                    }
+                    else if (yeniResimAdi == "boyut")
+                    {
+
+                        TempData["hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
+                        return RedirectToAction("KullaniciDetay/" + k.ID);
+                    }
+                    else
+                    {
+                        new ResimIslemleri().Sil(resimGelen.ToString(), "Kullanici");
+
+
+                        kg.Url = yeniResimAdi;
+                        db.KullaniciResim.Add(kg);
+                        c.ResimID = kg.ID;
+                        using (MD5 md5Hash = MD5.Create())
+                        {
+                            string hash = Functions.Encrypt(k.Sifre);
+                            try
+                            {
+                                c.Sifre = hash;
+
+                                db.SaveChanges();
+                                TempData["GenelMesaj"] = "Başarılı";
+                                return RedirectToAction("KullaniciDetay/" + k.ID);
+
+                            }
+
+                            catch (Exception)
+                            {
+                                TempData["hata"] = "Başarısız";
+                                return RedirectToAction("KullaniciDetay/" + k.ID);
+                            }
+                        }
+
+
+                    }
+                         }
+                    else
+                    {
+                        using (MD5 md5Hash = MD5.Create())
+                        {
+                            string hash = Functions.Encrypt(k.Sifre);
+                            try
+                            {
+                                c.Sifre = hash;
+
+                                    db.SaveChanges();
+                                    TempData["GenelMesaj"] = "Başarılı";
+                                    return RedirectToAction("KullaniciDetay/" + k.ID);
+                               
+
+                            }
+
+
+                            catch (Exception)
+                            {
+                                TempData["hata"] = "Başarısız";
+                                return RedirectToAction("KullaniciDetay/" + k.ID);
+                            }
+                        }
+                    }                   
+                   
+                }
+
+            }
+
+           
+
+        [HttpGet]
+        public ActionResult KullaniciGuncelle(int id)
+        {
+            HttpResponseMessage respone = Global.client.GetAsync("/api/KullaniciApi/KullaniciGetir/" + id.ToString()).Result;           
+            if (respone.IsSuccessStatusCode)
+            {
+                return View(respone.Content.ReadAsAsync<Kullanici>().Result);
+            }
+            else
+            {
+                TempData["hata"] = "Bir Hata Oluştu.";
+                return RedirectToAction("KullaniciListesi");
+            }
+        }
+
+
+        [HttpGet]
+        public ActionResult TakipListesi(int id)
+        {
+            List<Takip> liste = db.Takip.Where(x => x.TakipEdenID == id).ToList();
+            List<Kullanici> liste2 = new List<Kullanici>();
+            ViewBag.takip = db.Takip.Include("Kullanici").ToList();
+            foreach (var item in liste)
+            {
+               List<Kullanici> list = db.Kullanici.Include("KullaniciResim").Include("Sinif").Include("Takip").Where(x => x.ID == item.TakipEdilenID).ToList();
+                liste2.AddRange(list);
+            }
+
+            return View(liste2);
+        }
+
+
+        [HttpGet]
+        public ActionResult OyunListesi(int id)
+        {
+
+            ViewBag.Kategori = db.SinifKategori.Include("Sinif").ToList();
+            List<Sinif> liste= db.Sinif.Include("Resim").Include("Favori").Include("Sorular").Include("SinifKategori").Where(x => x.KullaniciID == id).ToList();
+            return View(liste);
+
+        }
+
+        public ActionResult OyunKatListesi(int id)
+        {
+            ViewBag.Kategori = db.SinifKategori.Include("Sinif").ToList();
+            ViewBag.SinifKat = db.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x => x.SinifKategoriID == id).ToList();
+            List<Sinif> liste = db.Sinif.Include("Resim").Include("Favori").Include("Sorular").Include("SinifKategori").Where(x => x.KullaniciID == id).ToList();
+            return View("OyunListesi",liste);
+
+        }
+
+        [HttpGet]
+        public ActionResult FavoriListesi(int id)
+        {
+            ViewBag.Kategori = db.SinifKategori.Include("Sinif").ToList();
+            List<Favori> liste = db.Favori.Include("Sinif").Where(x => x.KullaniciID == id).ToList();
+
+            List<Sinif> liste2 = new List<Sinif>();
+
+            foreach (var item in liste)
+            {
+                List<Sinif> list = db.Sinif.Include("Resim").Include("Favori").Include("Sorular").Include("SinifKategori").Where(x => x.ID == item.Sinif.ID).ToList();
+                liste2.AddRange(list);
+            }
+
+            return View(liste2);
+
+
+        }
+
+
+        [HttpPost]
+        public ActionResult FavoriEkleSil(int id)
+        {
+            Favori k = new Favori();
+            Sinif a = new Sinif();
+            a = db.Sinif.Where(x => x.ID == id).SingleOrDefault();
+
+            //k = db.Favori.Where(x => x.ID == id).SingleOrDefault();
+
+            Kullanici c = (Kullanici)Session["Kullanici"];
+            if (c == null)
+            {
+                return Json("Gir");
+            }
+            else
+            {
+                k = db.Favori.Where(x => x.KullaniciID == c.ID && x.SinifID == a.ID).SingleOrDefault();
+                if (k != null)
+                {
+                    db.Favori.Remove(k);
+                    db.SaveChanges();
+                    return Json("cik");
+                }
+                else
+                {
+                    Favori h = new Favori();
+                    h.KullaniciID = c.ID;
+                    h.SinifID = a.ID;
+                    db.Favori.Add(h);
+                    db.SaveChanges();
+                    return Json("ekle");
+                }
+            }
+
+           
+
+        }
+
+
     }
-
-
-
-
-
 
     }
 

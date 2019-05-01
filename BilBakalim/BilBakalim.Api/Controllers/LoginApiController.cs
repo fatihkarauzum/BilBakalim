@@ -1,0 +1,60 @@
+﻿using BilBakalim.Api.App_Class;
+using BilBakalim.Data;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Security.Cryptography;
+using System.Web.Http;
+
+namespace BilBakalim.Api.Controllers
+{
+
+    [RoutePrefix("api/LoginApi")]
+
+    public class LoginApiController : ApiController
+    {
+        BilBakalimContext db = new BilBakalimContext();
+
+
+        [Route("KullaniciKayit")]
+        [HttpPost]
+        public IHttpActionResult PostKullanici(Kullanici k)
+        {
+
+            Kullanici c = db.Kullanici.Where(x => x.Email == k.Email).SingleOrDefault();
+
+            if (c != null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                using (MD5 md5Hash = MD5.Create())
+                {
+                    string hash = Functions.Encrypt(k.Sifre);
+                    try
+                    {
+                        k.ResimID = 1;
+                        k.RolID = 2;
+                        k.Durum = true;
+                        k.Sifre = hash;
+                        db.Kullanici.Add(k);
+                        db.SaveChanges();
+                        return Ok();
+                    }
+                    catch (Exception)
+                    {
+                        return BadRequest();
+                    }
+                }
+            }
+
+        }
+
+
+    }
+}
+

@@ -17,6 +17,12 @@
                 <p>@TempData["Uyari"]</p>
             </div>
         }
+        @if (TempData["hata"] != null)
+        {
+            <div class="alert alert-success">
+                <p>@TempData["hata"]</p>
+            </div>
+        }
 
         @if (TempData["GenelMesaj"] != null)
         {

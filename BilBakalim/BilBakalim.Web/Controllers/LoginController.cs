@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
@@ -30,7 +31,7 @@ namespace BilBakalim.Web.Controllers
                 using (MD5 md5Hash = MD5.Create())
                 {
                     string hash = Functions.Encrypt(Sifre);
-                    kullanici = db.Kullanici.FirstOrDefault(x => x.Email == Mail && x.Sifre == hash);
+                    kullanici = db.Kullanici.Include("Rol").Include("KullaniciResim").FirstOrDefault(x => x.Email == Mail && x.Sifre == hash);
                 }
 
                 if (kullanici == null)
@@ -38,6 +39,7 @@ namespace BilBakalim.Web.Controllers
                     ViewBag.Hata = "Girdiğiniz bilgilere ait bir kullanıcı bulunamadı";
                     return View();
                 }
+
                 else
                 {
                     if (kullanici.Durum != null)
@@ -65,32 +67,65 @@ namespace BilBakalim.Web.Controllers
         [HttpGet]
         public ActionResult Kayit()
         {
+
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Kayit(Kullanici kullanici)
         {
-            using (MD5 md5Hash = MD5.Create())
+
+            try
             {
-                string hash = Functions.Encrypt(kullanici.Sifre);
-                try
+                HttpResponseMessage respone = Global.client.PostAsJsonAsync("/api/LoginApi/KullaniciKayit/", kullanici).Result;
+                if (respone.IsSuccessStatusCode)
                 {
-                    kullanici.ResimID = 1;
-                    kullanici.RolID = 2;
-                    kullanici.Durum = true;
-                    kullanici.Sifre = hash;
-                    db.Kullanici.Add(kullanici);
-                    db.SaveChanges();
-                    TempData["GenelMesaj"] = "Kaydınız başarı ile tamamlanmıştır";
+                    TempData["GenelMesaj"] = "Kayıt işlemi başarılı bir şekilde tamamlanmıştır.";
                     return RedirectToAction("Login");
                 }
-                catch (Exception )
+
+                else if (respone.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
-                    ViewBag.Hata = "Kaydınız yapılırken bir hata ortaya çıktı";
-                    return Redirect("/Home/Index");
+                    TempData["hata"] = "Mail Adresi Kullanımda.";
+                    return RedirectToAction("Kayit");
                 }
+                else
+                {
+                    TempData["hata"] = "Kayıt İşleminde Bir hata oluştu.";
+                    return RedirectToAction("Kayit");
+                }
+
             }
+            catch (Exception)
+            {
+
+                TempData["hata"] = "Kayıt İşleminde Bir hata oluştu.";
+                return RedirectToAction("Kayit");
+            }
+
+
+            //using (MD5 md5Hash = MD5.Create())
+            //{
+            //    string hash = Functions.Encrypt(kullanici.Sifre);
+            //    try
+            //    {
+            //        kullanici.ResimID = 1;
+            //        kullanici.RolID = 2;
+            //        kullanici.Durum = true;
+            //        kullanici.Sifre = hash;
+            //        db.Kullanici.Add(kullanici);
+            //        db.SaveChanges();
+            //        TempData["GenelMesaj"] = "Kaydınız başarı ile tamamlanmıştır";
+            //        return RedirectToAction("Login");
+            //    }
+            //    catch (Exception )
+            //    {
+            //        ViewBag.Hata = "Kaydınız yapılırken bir hata ortaya çıktı";
+            //        return Redirect("/Home/Index");
+            //    }
+            //}
+
         }
 
         [Route("LogOut")]

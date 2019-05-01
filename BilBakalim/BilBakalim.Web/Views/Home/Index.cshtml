@@ -102,12 +102,12 @@
                                 <ul class="blog-meta-info">
                                     <li class="author"><a href=""><i class="fa fa-eye"></i>@item.GoruntulenmeSayisi</a></li>
                                     <li class="comment"><a href=""><i class="fa fa-calendar"></i> @item.OlusturmaTarihi.Value.Day.@item.OlusturmaTarihi.Value.Month.@item.OlusturmaTarihi.Value.Year</a></li>
-                                    
-                                    <li class="comments_nr"><a href=""><i class="fa fa-comments"> @item.Favori.Count()</i></a></li>
+
+                                    <li class="comments_nr"><a><i data-id="@item.ID" class="fa fa-comments deneme"> @item.Favori.Count()</i></a></li>
                                 </ul>
 
                             </div>
-                            
+
                             <div class="clear"></div>
                             <
                         </div>
@@ -118,11 +118,27 @@
             <!--Product end-->
 
             <div class="clear"></div>
-            <a href="/Content/Home/" class="theme-button marT10 marT30 hover-color">view more</a>
+            <a href="" class="theme-button marT10 marT30 hover-color">view more</a>
+
+        </div>
+
+    </div>
+
+    <div class="more-product-enable padTB30">
+        <div class="container">
+            <div class="col-md-9 col-sm-9">
+                <h2> <span class="light-font">Sende Bir Oda Kur ve Arkadaşlarınla</span> Yarış</h2>
+            </div>
+            <div class="col-md-3 col-sm-3"><a href="/Kullanici/SinifEkle" class="btn btn-info "> Oda Kur!</a></div>
+            <div class="clear"></div>
         </div>
     </div>
 </div>
-<a href="http://localhost:3000/5">Deneme</a>
+
+
+
+
+@*<a href="http://localhost:3000/5">Deneme</a>*@
 @section script{
     <script src="/Content/Home/assets/plugins/ResponsiveMultiLevelMenu/js/modernizr.custom.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -137,4 +153,37 @@
     <script src="/Content/Home/assets/plugins/ResponsiveMultiLevelMenu/js/jquery.dlmenu.js"></script>
     <script src="/Content/Home/assets/plugins/switcher/switcher.js"></script> 	  
     <script src="/Content/Home/assets/js/main.js"></script>
+    <script>
+
+        $(".deneme").on('click', function () {
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: '/Kullanici/FavoriEkleSil/' + id,
+                type: 'POST',
+                success: function (rs) {
+                    if (rs === true) {
+                        $('#' + id).remove();
+                    }
+                    else if (rs === "cik") {
+                        alert("Favoriden Çıkıldı.");
+                    }
+                    else if (rs === "Gir") {
+                        alert("Öncelikle Giriş Yapmalısınız.");
+                    }
+                    else if (rs === "ekle") {
+                        alert("Favori Ekleme Başarılı.");
+                    }
+                    else {
+                        alert('Silme işlemi gerçekleşirken bir hata oluştu.');
+                    }
+                },
+                error: function (rs) {
+                    alert('Bir hata oluştu');
+                }
+            });
+        })
+           
+    </script>
+
 }
+

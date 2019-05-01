@@ -79,37 +79,40 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @if (Model != null)
                 {
-                    <tr id="@item.ID">
-                        <td>
-                            @item.KategoriAdi
-                        </td>
-                        <td>
-                            <div class="entry-thumbnail"><img width="120" height="80" src="/Content/Resimler/SinifSoru/@item.Resim.Url" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="@item.Resim.Url 770w, @item.Resim.Url 230w, @item.Resim.Url 640w" sizes="(max-width: 120px) 100vw, 80px"></div>
+                    foreach (var item in Model)
+                    {
+                        <tr id="@item.ID">
+                            <td>
+                                @item.KategoriAdi
+                            </td>
+                            <td>
+                                <div class="entry-thumbnail"><img width="120" height="80" src="/Content/Resimler/SinifSoru/@item.Resim.Url" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="@item.Resim.Url 770w, @item.Resim.Url 230w, @item.Resim.Url 640w" sizes="(max-width: 120px) 100vw, 80px"></div>
 
-                        </td>
-                        <td>
-                            @if (item.Aktif == true)
-                            {
+                            </td>
+                            <td>
+                                @if (item.Aktif == true)
+                                {
 
-                                <a style="float:right;margin-right:5px;" href="/Admin/SinifKatAktif/@item.ID" class="btn btn-success btn-xs"><i></i> Aktif</a>
+                                    <a style="float:right;margin-right:5px;" href="/Admin/SinifKatAktif/@item.ID" class="btn btn-success btn-xs"><i></i> Aktif</a>
 
-                            }
-                            else
-                            {
-                                <a style="float:right;margin-right:5px;" href="/Admin/SinifKatAktif/@item.ID" class="btn btn-danger btn-xs"><i></i> Pasif</a>
-                            }
+                                }
+                                else
+                                {
+                                    <a style="float:right;margin-right:5px;" href="/Admin/SinifKatAktif/@item.ID" class="btn btn-danger btn-xs"><i></i> Pasif</a>
+                                }
 
-                        </td>
-                        <td>
+                            </td>
+                            <td>
 
-                            @*<a style="float:right;margin-right:5px;" href="/Admin/SinifKategoriSil/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Sil</a>*@
+                                @*<a style="float:right;margin-right:5px;" href="/Admin/SinifKategoriSil/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Sil</a>*@
 
-                            <a title="Sil" style="float:right;" class="btn btn-danger btn-xs btn-confirm" data-id="@item.ID"><i class="icon-trash"></i> Sil</a>
-                            <a style="float:right;margin-right:5px;" href="/Admin/SinifKategoriDuzenle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Düzenle</a>
-                        </td>
-                    </tr>
+                                <a title="Sil" style="float:right;" class="btn btn-danger btn-xs btn-confirm" data-id="@item.ID"><i class="icon-trash"></i> Sil</a>
+                                <a style="float:right;margin-right:5px;" href="/Admin/SinifKategoriDuzenle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Düzenle</a>
+                            </td>
+                        </tr>
+                    }
                 }
 
             </tbody>

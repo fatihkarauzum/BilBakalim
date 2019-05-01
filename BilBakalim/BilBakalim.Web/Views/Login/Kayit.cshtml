@@ -36,6 +36,19 @@
                     <br />
                     <img style="margin-left: -10px" src="/Content/images/logo - giris.png" alt="" height="60">
                 </span>
+                @if (TempData["GenelMesaj"] != null)
+                {
+                    <div class="alert alert-success">
+                        <p>@TempData["GenelMesaj"]</p>
+                    </div>
+                }
+
+                @if (TempData["hata"] != null)
+                {
+                    <div class="alert alert-danger">
+                        <p>@TempData["hata"]</p>
+                    </div>
+                }
 
                 <div class="wrap-input100 validate-input m-b-23" data-validate="İsminizi Girmediniz">
                     <span class="label-input100">İsim</span>
