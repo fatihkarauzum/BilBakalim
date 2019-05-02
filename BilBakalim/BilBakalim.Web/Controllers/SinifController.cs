@@ -14,11 +14,11 @@ namespace BilBakalim.Web.Controllers
         BilBakalimContext db = new BilBakalimContext();
         public ActionResult Index()
         {
-            return View(db.SinifKategori.ToList());
+            return View(db.SinifKategori.Include("Resim").ToList());
         }
         public ActionResult Oyunlar(int id)
         {
-            return View(db.Sinif.Where(x => x.SinifKategoriID == id).ToList());
+            return View(db.Sinif.Include("SinifKategori").Include("Kullanici").Where(x => x.SinifKategoriID == id).ToList());
         }
 
         [HttpGet]
@@ -57,7 +57,7 @@ namespace BilBakalim.Web.Controllers
 
         public ActionResult SinifDetay(int id)
         {
-            Sinif u = db.Sinif.Where(x => x.ID == id).FirstOrDefault();
+            Sinif u = db.Sinif.Include("Kullanici").Include("SinifKategori").Include("Resim").Where(x => x.ID == id).FirstOrDefault();
             return View(u);
         }
         public ActionResult SinifGuncelle(int id)
