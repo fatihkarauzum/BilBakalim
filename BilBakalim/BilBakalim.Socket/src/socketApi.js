@@ -1,6 +1,7 @@
 const socketio = require('socket.io');
 const io = socketio();
 const sql = require('../helpers/sql');
+// const a = require('../../BilBakalim.Web/Content/Resimler/SinifSoru/');
 const socketApi = {
     io
 };
@@ -160,7 +161,7 @@ io.on('connection', (socket) => {
 
     socket.on('start', (data) => {
         var request = new sql.Request();
-        request.query('SELECT * FROM Sorular WHERE SinifID = '+ data.roomId, function (err, recordset) {
+        request.query('SELECT Sorular.*, Resim.Url FROM Sorular FULL OUTER JOIN Resim ON Sorular.MedyaID = Resim.ID WHERE Sorular.SinifID = '+ data.roomId, function (err, recordset) {
             if (err){
                 console.log(err)
             }

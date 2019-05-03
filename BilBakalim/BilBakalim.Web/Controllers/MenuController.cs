@@ -107,7 +107,7 @@ namespace BilBakalim.Web.Controllers
                 }
                 else
                 {
-                    menu.AcilirMenu = false;
+                    menu.AcilirMenu = true;
                 }
 
                 menu.Aktif = true;

@@ -77,6 +77,8 @@ block content
           .middleIn
             .templateQuestion
               div {{ question.Soru }} 
+              div(ng-if="question.Url != null") 
+                img(src="{{question.Url}}")
             .templateAnswers
               .a(style='background-color:#2F6DAE; margin-right: 1.03%')
                 div {{ question.Cevap1 }}
@@ -208,7 +210,7 @@ block content
               b
                 | İleri
           .buttonDiv(ng-if="point==questions.length")
-            button#finish(onclick="window.location='http://localhost:3000/login/'")
+            button#finish(onclick="window.location='http://localhost:10833/Home/Index'")
               b
                 | Bitir
             button#replay(onclick="window.location='http://localhost:3000/register/' + $('#id').text()")
