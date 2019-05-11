@@ -52,7 +52,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                     
                     answers = ['Cevap1', 'Cevap2', 'Cevap3', 'Cevap4'];
                     answers.forEach(element => {
-                        $('#' + element).removeAttr('ng-click');
+                        $('#' + element).attr('ng-click', 'empty()');
                         $('#' + element).css( "cursor", "default" );
                     });
             

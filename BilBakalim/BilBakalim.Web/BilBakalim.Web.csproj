@@ -191,9 +191,7 @@
     <Content Include="Content\Home\assets\img\all\cause-image-1.jpeg" />
     <Content Include="Content\Home\assets\img\all\cause-image-2.jpeg" />
     <Content Include="Content\Home\assets\img\all\cause-image-3.jpeg" />
-    <Content Include="Content\Home\assets\img\all\error-bg.png" />
     <Content Include="Content\Home\assets\img\all\featured-image.png" />
-    <Content Include="Content\Home\assets\img\all\footerbg.jpeg" />
     <Content Include="Content\Home\assets\img\all\img1.jpeg" />
     <Content Include="Content\Home\assets\img\all\img10.jpeg" />
     <Content Include="Content\Home\assets\img\all\img11.jpeg" />

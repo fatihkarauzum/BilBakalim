@@ -2677,7 +2677,7 @@ Partner
     position: relative;
 }
 .footer-one {
-    background-image: url('../img/all/footerbg.jpeg');
+    background-image: url('');
     background-size: cover;
     background-attachment: fixed;
     background-position: 0 0;
