@@ -64,6 +64,7 @@ namespace BilBakalim.Api.Controllers
                     ku.Soyadi = k.Soyadi;
                     ku.Email = k.Email;
                     ku.Sifre = k.Sifre;
+                    ku.RolID = k.RolID;
                     db.SaveChanges();
                     return Ok();
                 }

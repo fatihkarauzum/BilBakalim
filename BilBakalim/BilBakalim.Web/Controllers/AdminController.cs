@@ -18,7 +18,13 @@ namespace BilBakalim.Web.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            
+            ViewBag.kullanicisay = db.Kullanici.ToList().Count();
+            ViewBag.sinifsay = db.Sinif.ToList().Count();
+            ViewBag.sorusay = db.Sorular.ToList().Count();
+            ViewBag.kategorisay = db.SinifKategori.ToList().Count();   ViewBag.ensonsinif = db.Sinif.ToList();
+           // ViewBag.ensonsinif = db.Sinif.Where(x => x.OlusturmaTarihi.Value.ToString("dd.MM.yyyy") == DateTime.Now.ToShortDateString()).ToList();
+            ViewBag.ensonsinif = db.Sinif.ToList();
+            ViewBag.ensonkisi = db.Kullanici.Include("Rol").ToList();
             return View();
                 
         }
@@ -57,11 +63,34 @@ namespace BilBakalim.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult KullaniciEkle()
+        {
+            var rol = db.Rol.ToList();
+            ViewBag.rol = new SelectList(rol, "ID", "RolAdi");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult KullaniciEkle(Kullanici kullanici)
+        {
+            db.Kullanici.Add(kullanici);
+            db.SaveChanges();
+            return RedirectToAction("KullaniciListesi");
+        }
+        
+      
+        public ActionResult KullaniciDetay(int id)
+        {
+            Kullanici kullanici = db.Kullanici.Include("KullaniciResim").Include("Rol").Where(x => x.ID == id).SingleOrDefault();
+            return View(kullanici);
+        }
+        [HttpGet]
         public ActionResult KullaniciGuncelle(int id)
         {
 
             HttpResponseMessage respone = Global.client.GetAsync("/api/KullaniciApi/KullaniciGetir/" + id.ToString()).Result;
-            ViewBag.Roller = db.Rol.ToList();
+            var rol = db.Rol.ToList();
+            ViewBag.rol = new SelectList(rol, "ID", "RolAdi");
             if (respone.IsSuccessStatusCode)
             {
                 return View(respone.Content.ReadAsAsync<Kullanici>().Result);
@@ -94,18 +123,7 @@ namespace BilBakalim.Web.Controllers
                     TempData["hata"] = "Kullanici Guncellerken Bir hata oluştu.";
                     return RedirectToAction("KullaniciListesi");
                 }
-                //Kullanici ku = db.Kullanici.Where(x => x.ID==k.ID).FirstOrDefault();
-                //if (ku == null)
-                //{
-                //    return RedirectToAction("Hata", "Admin");
-                //}
-                //ku.Adi = k.Adi;
-                //ku.Soyadi = k.Soyadi;
-                //ku.Email = k.Email;
-                //ku.Sifre = k.Sifre;              
-                //db.SaveChanges();
-                //TempData["GenelMesaj"] = "Kullanıcı güncelleme işlemi başarılı bir şekilde tamamlanmıştır.";
-                //return RedirectToAction("KullaniciListesi");
+                
             }
             catch (Exception)
             {

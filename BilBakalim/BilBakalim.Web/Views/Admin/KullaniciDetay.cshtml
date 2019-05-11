@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "KullaniciDetay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using BilBakalim.Data
+@model Kullanici
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading" style="padding-bottom: 10px;">
+                <div class="col-lg-12" style="margin-bottom:10px;">
+                    <b>Kullanıcı Detay</b>
+                    <a href="/Admin/KullaniciListesi" class="btn btn-success" style="float: right"><i class="icon-mail-reply (alias)"></i> Listeye Geri Dön</a>
+                </div>
+            </header>
+
+            <div class="panel-body">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading tab-bg-dark-navy-blue ">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#home">Kişisel Bilgileri</a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#about">Üyelik Bilgileri</a>
+                                </li>
+                            </ul>
+                        </header>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div id="home" class="tab-pane active">
+                                    <b>Adı:</b> <p>@Model.Adi</p> <br />
+                                    <b>Soyadı:</b> <p>@Model.Soyadi</p> <br />
+                                    <b> Kullanıcı Resmi: </b><br /> <img style="width:20%;height:20% " src="@Model.KullaniciResim.Url" /> <br />
+
+                                </div>
+                                <div id="about" class="tab-pane">
+                                    <b>Sınıf Adı : </b> <p>@Model.KullaniciAdi</p> <br />
+                                    <b>Adı:</b> <p>@Model.Email</p> <br />
+                                    <b>Adı:</b> <p>@Model.Rol.RolAdi</p> <br />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+

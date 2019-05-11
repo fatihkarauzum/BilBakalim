@@ -45,6 +45,8 @@ namespace BilBakalim.Data
         [StringLength(50)]
         public string EskiSifre { get; set; }
 
+        public DateTime? OlusturmaTarihi { get; set; }
+
         public bool? Durum { get; set; }
 
         public int? ResimID { get; set; }

@@ -3,6 +3,220 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@using BilBakalim.Data
 
-<h2>Index</h2>
+<div class="row state-overview">
 
+    <div class="col-lg-3 col-sm-6">
+        <section class="panel">
+            <div class="symbol red">
+                <i class="icon-user"></i>
+            </div>
+            <div class="value">
+                <h1 class=" count"></h1>
+                <p>Kullanici Sayısı</p>
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <section class="panel">
+            <div class="symbol blue">
+                <i class=" icon-gamepad"></i>
+            </div>
+            <div class="value">
+                <h1 class=" count2"></h1>
+                <p>Sınıf Sayısı</p>
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <section class="panel">
+            <div class="symbol yellow">
+                <i class=" icon-question-sign"></i>
+            </div>
+            <div class="value">
+                <h1 class=" count3"></h1>
+                <p>Soru Sayısı</p>
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <section class="panel">
+            <div class="symbol terques">
+                <i class="icon-shopping-cart"></i>
+            </div>
+            <div class="value">
+                <h1 class=" count4"></h1>
+                <p>Kategori Sayısı</p>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <section class="panel tasks-widget">
+            <header class="panel-heading">
+                Bugün Oluşturulan Sınıflar
+            </header>
+            <div class="panel-body">
+                <div class="task-content">
+                    <ul id="sortable" class="task-list ui-sortable">
+                        @foreach (Sinif item in ViewBag.ensonsinif)
+                        {
+
+                            if (item.OlusturmaTarihi.Value.ToString("dd.MM.yyyy") == DateTime.Now.ToShortDateString())
+                            {
+                                <li class="list-success">
+                                    <a href="/Sinif/SinifGuncelle/@item.ID"> <i class=" icon-pencil"></i></a>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">@item.Ad</span>	&nbsp;
+                                        <span class="badge badge-sm label-warning">@item.Kullanici.Adi @item.Kullanici.Soyadi</span>
+                                    </div>
+                                </li>
+                            }
+                         
+
+                        }
+
+                    </ul>
+                </div>
+                <div class=" add-task-row">
+                    <a class="btn btn-success btn-sm pull-right" href="/Sinif/Index">Sınıf Kategorilerini Gör</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <section class="panel tasks-widget">
+            <header class="panel-heading">
+                Bugün Üye Olan Kişiler
+            </header>
+            <div class="panel-body">
+                <div class="task-content">
+                    <ul id="sortable" class="task-list ui-sortable">
+                        @foreach (Kullanici item in ViewBag.ensonkisi)
+                        {
+
+                            if (item.OlusturmaTarihi.Value.ToString("dd.MM.yyyy") == DateTime.Now.ToShortDateString())
+                            {
+                                <li class="list-info">
+                                    <a href="/Sinif/SinifGuncelle/@item.ID"> <i class=" icon-pencil"></i></a>
+                                    <div class="task-title">
+                                        <span class="task-title-sp">@item.Adi @item.Soyadi</span>	&nbsp;
+                                        <span class="badge badge-sm label-success">@item.Rol.RolAdi</span>
+                                    </div>
+                                </li>
+                            }
+
+
+                        }
+
+                    </ul>
+                </div>
+                <div class=" add-task-row">
+                    <a class="btn btn-success btn-sm pull-right" href="/Admin/KullaniciListesi">Tüm Kullanıcıları Gör</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section script{
+    <script>
+
+
+    function countUp(count) {
+        var div_by = @ViewBag.kullanicisay,
+            speed = Math.round(count / div_by),
+            $display = $('.count'),
+            run_count = 0,
+            int_speed = 24;
+
+        var int = setInterval(function () {
+            if (run_count < div_by) {
+                $display.text(speed * run_count);
+                run_count++;
+            } else if (parseInt($display.text()) < count) {
+                var curr_count = parseInt($display.text()) + 1;
+                $display.text(curr_count);
+            } else {
+                clearInterval(int);
+            }
+        }, int_speed);
+    }
+
+    countUp(@ViewBag.kullanicisay);
+
+    function countUp2(count) {
+        var div_by = @ViewBag.sinifsay,
+            speed = Math.round(count / div_by),
+            $display = $('.count2'),
+            run_count = 0,
+            int_speed = 24;
+
+        var int = setInterval(function () {
+            if (run_count < div_by) {
+                $display.text(speed * run_count);
+                run_count++;
+            } else if (parseInt($display.text()) < count) {
+                var curr_count = parseInt($display.text()) + 1;
+                $display.text(curr_count);
+            } else {
+                clearInterval(int);
+            }
+        }, int_speed);
+    }
+
+    countUp2(@ViewBag.sinifsay);
+
+    function countUp3(count) {
+        var div_by = @ViewBag.sorusay,
+            speed = Math.round(count / div_by),
+            $display = $('.count3'),
+            run_count = 0,
+            int_speed = 24;
+
+        var int = setInterval(function () {
+            if (run_count < div_by) {
+                $display.text(speed * run_count);
+                run_count++;
+            } else if (parseInt($display.text()) < count) {
+                var curr_count = parseInt($display.text()) + 1;
+                $display.text(curr_count);
+            } else {
+                clearInterval(int);
+            }
+        }, int_speed);
+    }
+
+    countUp3(@ViewBag.sorusay);
+
+    function countUp4(count) {
+        var div_by = @ViewBag.kategorisay,
+            speed = Math.round(count / div_by),
+            $display = $('.count4'),
+            run_count = 0,
+            int_speed = 24;
+
+        var int = setInterval(function () {
+            if (run_count < div_by) {
+                $display.text(speed * run_count);
+                run_count++;
+            } else if (parseInt($display.text()) < count) {
+                var curr_count = parseInt($display.text()) + 1;
+                $display.text(curr_count);
+            } else {
+                clearInterval(int);
+            }
+        }, int_speed);
+    }
+
+    /**/
+    countUp4(@ViewBag.kategorisay);
+/**/
+    </script>
+}
