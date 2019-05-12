@@ -8,6 +8,7 @@
 
 @{
     Kullanici aktifKullanici = (Kullanici)Session["Kullanici"];
+    
 }
 
 <!DOCTYPE html>
@@ -183,7 +184,7 @@
                 <div class="row positionR">
                     <!--======Logo========-->
                     <div id="header-logo" class="col-md-2 col-sm-4" >
-                        <a href="~/Content/Home/index.html">
+                        <a href="/Home/Index">
                             <img src="/Content/logom.png" style="height:50px;width:125%" class="logo center-block hidden-xs hidden-sm" alt="Faashmira- ResponsiveHTML5 Multipurpose Ecommerce Template">Bil Bakalım
                         
                         </a>
@@ -229,6 +230,9 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="/Home/Gelistiriciler"><i class="icon-call-in"></i> Geliştiriciler</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/Kullanici/Iletisim"><i class="icon-call-in"></i> İletişim</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -363,44 +367,44 @@
         <div class="footer-one footer-widgets">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-md-4 col-sm-4">
                         <div class="widget contact-widget">
-                            <a href="/Content/Home/"><img src="~/Content/logo.png" alt=""></a>
+                            <a href=""><img src="~/Content/logo.png" alt=""></a>
                             <div class="cp-widget-content">
                                 <address>
                                     <ul>
                                         <li>
                                             <i class="fa fa-home"></i>
                                             <p>
-                                                The Webaashi Building,
-                                                12345 King Street, Melbourne Victoria 3000 Australia
+                                                Düzce Üniversitesi Öğrencileri
+                                                Merkez/Düzce
                                             </p>
                                         </li>
                                         <li>
                                             <i class="fa fa-phone"></i>
                                             <p>
-                                                Phone: 0123 456 7890<br>
+                                                Telefon: 0123 456 7890<br>
                                                 Fax: 01234567890
                                             </p>
                                         </li>
                                         <li>
                                             <i class="fa fa-skype"></i>
-                                            <p> Skype: webaashi </p>
+                                            <p> Skype: BilBakalım </p>
                                         </li>
                                         <li>
                                             <i class="fa fa-envelope-o"></i>
-                                            <p> Email: <a href="/Content/Home/mailto:webaashi@gmail.com">webaashi@gmail.com</a> </p>
+                                            <p> Email:  bilbakalım@gmail.com </p>
                                         </li>
                                         <li>
                                             <i class="fa fa-globe"></i>
-                                            <p> <a href="/Content/Home/">www.webaashi.com</a> </p>
+                                            <p>www.bilbakalım.com</p>
                                         </li>
                                     </ul>
                                 </address>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-md-4 col-sm-4">
                         <div class="widget">
                             <h3>information</h3>
                             <ul class="footer-links">
@@ -415,57 +419,27 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-3">
+                    <div class="col-md-4 col-sm-4">
                         <div class="widget">
-                            <h3>Category</h3>
+                            <h3>Kategori</h3>
                             <ul class="footer-links">
-                                <li><a href="/Content/Home/product-detail.html"><i class="fa fa-angle-double-right"></i> International Beauty Shop</a></li>
+                                
+                                @{
+                                    
+                                    Html.RenderAction("KategoriGetir", "Home");
+                                }
+                                @*<li><a href="/Content/Home/product-detail.html"><i class="fa fa-angle-double-right"></i> International Beauty Shop</a></li>
                                 <li><a href="/Content/Home/product-detail.html"><i class="fa fa-angle-double-right"></i> Home &amp; Furniture</a></li>
                                 <li><a href="/Content/Home/product-detail.html"><i class="fa fa-angle-double-right"></i> Baby &amp; Kids</a></li>
                                 <li><a href="/Content/Home/product-detail.html"><i class="fa fa-angle-double-right"></i> Electronics</a></li>
                                 <li><a href="/Content/Home/product-detail.html"><i class="fa fa-angle-double-right"></i> Men</a></li>
                                 <li><a href="/Content/Home/product-detail.html"><i class="fa fa-angle-double-right"></i> Women</a></li>
                                 <li><a href="/Content/Home/product-detail.html"><i class="fa fa-angle-double-right"></i> Kids</a></li>
-                                <li><a href="/Content/Home/product-detail.html"><i class="fa fa-angle-double-right"></i> Offer Zone</a></li>
+                                <li><a href="/Content/Home/product-detail.html"><i class="fa fa-angle-double-right"></i> Offer Zone</a></li>*@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-3">
-                        <div class="twitter-box box-with-top-button mobile-collapse">
-                            <div class="wa-main-heading text-left">
-                                <h3>latest <span>tweets</span></h3>
-                                <div class="clear"></div>
-                            </div>
-                            <ul class="latest-posts latest-twitts">
-                                <li>
-                                    <div class="post-details">
-                                        <div class="description">
-                                            <a href="/Content/Home/#"><span><i class="fa fa-twitter"></i> fashmira</span></a>
-                                            <p>
-                                                Lorem ipsum dolor sit aconsecte tuadip
-                                                iscing elit Fusce fermen
-                                            </p>
-                                            <a href="/Content/Home/#" class="default-color url">www.webaashi.com</a>
-                                            <p><span>4 hour ago</span></p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="post-details">
-                                        <div class="description">
-                                            <a href="/Content/Home/#"><span><i class="fa fa-twitter"></i> fashmira</span></a>
-                                            <p>
-                                                Lorem ipsum dolor sit aconsecte tuadip
-                                                iscing elit Fusce fermen
-                                            </p>
-                                            <a href="/Content/Home/#" class="default-color url">www.webaashi.com</a>
-                                            <p><span>4 hour ago</span></p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -473,11 +447,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 copy-right">
-                        <p>All Rights Reserved 2016 © webaashi</p>
-                    </div>
-                    <div class="col-md-6 payment-method text-right">
-                        <img src="/Content/Home/assets\img\all\payment.png" alt="">
-                    </div>
+                        <p>Tüm Hakkı Saklıdır 2019 © BilBakalım</p>
+                    </div>                   
                 </div>
             </div>
         </div>

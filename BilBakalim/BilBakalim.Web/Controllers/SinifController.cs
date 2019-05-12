@@ -14,11 +14,11 @@ namespace BilBakalim.Web.Controllers
         BilBakalimContext db = new BilBakalimContext();
         public ActionResult Index()
         {
-            return View(db.SinifKategori.ToList());
+            return View(db.SinifKategori.Include("Resim").ToList());
         }
         public ActionResult Oyunlar(int id)
         {
-            return View(db.Sinif.Where(x => x.SinifKategoriID == id).ToList());
+            return View(db.Sinif.Include("SinifKategori").Include("Kullanici").Where(x => x.SinifKategoriID == id).ToList());
         }
 
         [HttpGet]
@@ -57,7 +57,7 @@ namespace BilBakalim.Web.Controllers
 
         public ActionResult SinifDetay(int id)
         {
-            Sinif u = db.Sinif.Where(x => x.ID == id).FirstOrDefault();
+            Sinif u = db.Sinif.Include("SinifKategori").Include("Resim").Include("Kullanici").Where(x => x.ID == id).FirstOrDefault();
             return View(u);
         }
         public ActionResult SinifGuncelle(int id)
@@ -67,7 +67,7 @@ namespace BilBakalim.Web.Controllers
 
             var kategori = db.SinifKategori.ToList();
             ViewBag.kategori = new SelectList(kategori, "ID", "KategoriAdi");
-            return View(db.Sinif.Where(x => x.ID == id).SingleOrDefault());
+            return View(db.Sinif.Include("SinifKategori").Where(x => x.ID == id).SingleOrDefault());
         }
         [HttpPost]
         public ActionResult SinifGuncelle(Sinif s,int id)
@@ -91,7 +91,7 @@ namespace BilBakalim.Web.Controllers
         }
         public ActionResult SoruDetay(int id)
         {
-            return View(db.Sorular.Where(x => x.ID == id).FirstOrDefault());
+            return View(db.Sorular.Include("Sinif").Include("SinifKateori").Where(x => x.ID == id).FirstOrDefault());
         }
         public ActionResult SoruSil(int id)
         {

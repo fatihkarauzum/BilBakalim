@@ -1,5 +1,3 @@
-using BilBakalim.Data.Interfaces;
-
 namespace BilBakalim.Data
 {
     using System;
@@ -9,7 +7,7 @@ namespace BilBakalim.Data
     using System.Data.Entity.Spatial;
 
     [Table("MenuRol")]
-    public partial class MenuRol : Entity
+    public partial class MenuRol
     {
         public int ID { get; set; }
 

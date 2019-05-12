@@ -634,6 +634,42 @@ namespace BilBakalim.Web.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult Iletisim()
+        {
+            return View(new Iletisim());
+        }
+
+        [HttpPost]
+        public ActionResult Iletisim(Iletisim i)
+        {
+            try
+            {
+                if (i == null)
+                {
+                    ViewBag.sonuc = "Hata";
+                    return View();
+                }  
+                else
+                {
+                    i.Tarih = DateTime.Now;
+                    i.Telefon = i.Telefon.ToString();
+                    db.Iletisim.Add(i);
+                    db.SaveChanges();
+                    TempData["basarı"] = "Mesajınız alınmıştır";
+                    return View();
+
+                }
+            }
+            catch (Exception)
+            {
+                TempData["tehlikeli"] = "Hata olustu";
+                return View();
+
+            }
+        }
+
+
 
     }
 

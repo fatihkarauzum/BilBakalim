@@ -905,6 +905,78 @@ namespace BilBakalim.Web.Controllers
 
         //}
 
+
+        [HttpGet]
+        public ActionResult IletisimListele()
+        {
+            return View(db.Iletisim.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult IletisimDetay(int id)
+        {
+            TempData["Iletisimid"] = id;
+            return View(db.Iletisim.Where(x => x.ID == id).SingleOrDefault());
+        }
+
+        [HttpGet]
+        public ActionResult IletisimSil(int id)
+        {
+            try
+            {
+                Iletisim i = db.Iletisim.Where(x => x.ID == id).SingleOrDefault(); 
+                    if (i == null)
+                    {
+                        TempData["hata"] = "Bulunamadı.";
+                    }
+                    else
+                    {
+                        db.Iletisim.Remove(i);
+                        db.SaveChanges();
+                        TempData["GenelMesaj"] = "Basarı ile silinmiştir";
+                    }
+            }
+
+            catch (Exception)
+            {
+                TempData["hata"] = "Hata olustu";
+                return RedirectToAction("IletisimListele");
+            }
+            return RedirectToAction("IletisimListele");
+        }
+
+
+        [HttpGet]
+        public ActionResult IletisimYanıtla(int id)
+        {
+            TempData["Iletisimid"] = id;
+            return View(db.Iletisim.Where(x => x.ID == id).SingleOrDefault());
+        }
+
+        [HttpPost]
+        public ActionResult IletisimYanıtla(string icerik)
+        {
+            try
+            {
+                int id = (int)TempData["Iletisimid"];
+                Iletisim i = db.Iletisim.Where(x => x.ID == id).SingleOrDefault();
+
+                string mesaj = "";
+                mesaj = mesaj + "<b>Sayın " + i.Isim + "</b> <br/>";
+                mesaj = mesaj + icerik + "<hr/>";
+                mesaj = mesaj + i.Icerik;
+                EpostaGonder.Gonder("İletisim isteginiz hakkında", mesaj, i.Eposta);
+                TempData["uyari"] = " Basarı ile yanıtlanmıştır";
+
+            }
+            catch (Exception)
+            {
+                TempData["tehlikeli"] = "Yanıtlarken hata oldu";
+                return RedirectToAction("IletisimListele");
+            }
+            return RedirectToAction("IletisimListele");
+        }
+
         public ActionResult Hata()
         {
             return View();

@@ -191,9 +191,7 @@
     <Content Include="Content\Home\assets\img\all\cause-image-1.jpeg" />
     <Content Include="Content\Home\assets\img\all\cause-image-2.jpeg" />
     <Content Include="Content\Home\assets\img\all\cause-image-3.jpeg" />
-    <Content Include="Content\Home\assets\img\all\error-bg.png" />
     <Content Include="Content\Home\assets\img\all\featured-image.png" />
-    <Content Include="Content\Home\assets\img\all\footerbg.jpeg" />
     <Content Include="Content\Home\assets\img\all\img1.jpeg" />
     <Content Include="Content\Home\assets\img\all\img10.jpeg" />
     <Content Include="Content\Home\assets\img\all\img11.jpeg" />
@@ -434,6 +432,7 @@
     <Content Include="Views\Admin\Hata.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Classes\EpostaGonder.cs" />
     <Compile Include="App_Classes\Functions.cs" />
     <Compile Include="App_Classes\Global.cs" />
     <Compile Include="App_Classes\MvcHelper.cs" />
@@ -503,6 +502,11 @@
     <Content Include="Views\Kullanici\TakipListesi.cshtml" />
     <Content Include="Views\Kullanici\OyunListesi.cshtml" />
     <Content Include="Views\Kullanici\FavoriListesi.cshtml" />
+    <Content Include="Views\Kullanici\Iletisim.cshtml" />
+    <Content Include="Views\Admin\IletisimListele.cshtml" />
+    <Content Include="Views\Admin\IletisimDetay.cshtml" />
+    <Content Include="Views\Admin\IletisimYanıtla.cshtml" />
+    <Content Include="Views\Login\SifremiUnuttum.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

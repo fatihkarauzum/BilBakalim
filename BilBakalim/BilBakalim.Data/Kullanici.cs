@@ -1,5 +1,3 @@
-using BilBakalim.Data.Interfaces;
-
 namespace BilBakalim.Data
 {
     using System;
@@ -9,7 +7,7 @@ namespace BilBakalim.Data
     using System.Data.Entity.Spatial;
 
     [Table("Kullanici")]
-    public partial class Kullanici : Entity
+    public partial class Kullanici
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Kullanici()
@@ -19,7 +17,6 @@ namespace BilBakalim.Data
             Sinif = new HashSet<Sinif>();
             Takip = new HashSet<Takip>();
             Takip1 = new HashSet<Takip>();
-
         }
 
         public int ID { get; set; }
@@ -42,14 +39,14 @@ namespace BilBakalim.Data
         [StringLength(50)]
         public string Sifre { get; set; }
 
-        [StringLength(50)]
-        public string EskiSifre { get; set; }
-
         public bool? Durum { get; set; }
 
         public int? ResimID { get; set; }
 
         public int? RolID { get; set; }
+
+        [StringLength(50)]
+        public string EskiSifre { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favori> Favori { get; set; }
@@ -69,7 +66,5 @@ namespace BilBakalim.Data
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Takip> Takip1 { get; set; }
-
-
     }
 }
