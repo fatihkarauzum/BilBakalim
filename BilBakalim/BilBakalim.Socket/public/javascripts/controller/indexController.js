@@ -226,10 +226,11 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                         audioCount = 0;
                     }
 
-                    $('#aRate').height(($('#aRate').parent().height() * 3) / 100);
-                    $('#bRate').height(($('#bRate').parent().height() * 3) / 100);
-                    $('#cRate').height(($('#cRate').parent().height() * 3) / 100);
-                    $('#dRate').height(($('#dRate').parent().height() * 3) / 100);
+                    document.getElementById('aRate').style.height = '3%';
+                    document.getElementById('bRate').style.height = '3%';
+                    document.getElementById('cRate').style.height = '3%';
+                    document.getElementById('dRate').style.height = '3%';
+
                     $scope.answersCount = 0;
                     audio.play();
                     first = 0;

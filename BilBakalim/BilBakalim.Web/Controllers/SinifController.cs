@@ -57,7 +57,7 @@ namespace BilBakalim.Web.Controllers
 
         public ActionResult SinifDetay(int id)
         {
-            Sinif u = db.Sinif.Include("SinifKategori").Include("Resim").Include("Kullanici").Where(x => x.ID == id).FirstOrDefault();
+            Sinif u = db.Sinif.Include("Kullanici").Include("SinifKategori").Include("Resim").Where(x => x.ID == id).FirstOrDefault();
             return View(u);
         }
         public ActionResult SinifGuncelle(int id)
@@ -91,7 +91,9 @@ namespace BilBakalim.Web.Controllers
         }
         public ActionResult SoruDetay(int id)
         {
-            return View(db.Sorular.Include("Sinif").Include("SinifKateori").Where(x => x.ID == id).FirstOrDefault());
+            var soru = db.Sorular.Include("Sinif").Where(x => x.ID == id).FirstOrDefault();
+            ViewBag.sinif = db.Sinif.Include("Resim").Include("SinifKategori").Where(x => x.ID == soru.SinifID);
+            return View(soru);
         }
         public ActionResult SoruSil(int id)
         {
@@ -119,12 +121,12 @@ namespace BilBakalim.Web.Controllers
         }
         public ActionResult SoruGuncelle(int id)
         {
-            return View(db.Sorular.Where(x => x.ID == id).SingleOrDefault());
+            return View(db.Sorular.Include("Sinif").Where(x => x.ID == id).SingleOrDefault());
         }
         [HttpPost]
-        public ActionResult SoruGuncelle(Sorular s,int id)
+        public ActionResult SoruGuncelle(Sorular s)
         {
-            Sorular soru = db.Sorular.Where(x => x.ID == s.ID).FirstOrDefault();
+            Sorular soru = db.Sorular.Include("Sinif").Where(x => x.ID == s.ID).FirstOrDefault();
             soru.Soru = s.Soru;
             soru.Cevap1 = s.Cevap1;
             soru.Cevap2 = s.Cevap2;
@@ -133,7 +135,7 @@ namespace BilBakalim.Web.Controllers
             soru.Sure = s.Sure;
             soru.DogruCevap = s.DogruCevap;
             db.SaveChanges();
-            return RedirectToAction("Sorular",new { id=id});
+            return RedirectToAction("Sorular",new { id=soru.SinifID});
         }
       
     }

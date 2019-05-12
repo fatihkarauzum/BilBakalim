@@ -387,7 +387,9 @@
     <Content Include="Content\Resimler\SinifSoru\bos.jpg" />
     <Content Include="Content\Resimler\SinifSoru\default.png" />
     <Content Include="Content\Resimler\Kullanici\defaultuser.png" />
+    <Content Include="Database\12.05.2019.sql" />
     <Content Include="Database\13.03.2019 - DB.sql" />
+    <Content Include="Database\DB.sql" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -507,6 +509,8 @@
     <Content Include="Views\Admin\IletisimDetay.cshtml" />
     <Content Include="Views\Admin\IletisimYanıtla.cshtml" />
     <Content Include="Views\Login\SifremiUnuttum.cshtml" />
+    <Content Include="Views\Admin\KullaniciEkle.cshtml" />
+    <Content Include="Views\Admin\KullaniciDetay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

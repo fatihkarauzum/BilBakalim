@@ -43,7 +43,9 @@ namespace BilBakalim.Web.Controllers
       [HttpGet]
         public ActionResult SinifAyrinti(int id)
         {
-            return View( ctx.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x => x.ID== id && x.Gorunurluk == true).ToList());
+            ViewBag.sinif = ctx.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x => x.ID == id && x.Gorunurluk == true).ToList();
+            ViewBag.soru = ctx.Sorular.Where(x => x.SinifID == id).ToList();
+            return View();
         }
 
     }

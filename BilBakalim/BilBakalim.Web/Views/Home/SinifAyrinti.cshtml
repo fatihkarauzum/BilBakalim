@@ -3,9 +3,199 @@
     ViewBag.Title = "SinifAyrinti";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+@using BilBakalim.Data
+
+<link href="/Content/Admin/assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="/Content/Admin/css/gallery.css" />
+
+<div class="row">
+    <div class="col-lg-4">
+        <div>
+            <li class="grid cs-style-3">
+                <figure>
+                    <img src="/Content/images/ing.jpg" alt="img04">
+                    <figcaption>
+                        <h3>KategoriAdi</h3>
+                        <a class="fancybox" rel="group" href="/Sinif/Oyunlar/item.ID"> Oyna </a>
+                    </figcaption>
+                </figure>
+            </li>
+        </div>
+
+        <div style="margin-top:2%">
+            <section class="panel">
+                <header class="panel-heading">
+                    Sınıf Özellikleri
+                </header>
+
+                <div class="panel-body profile-activity">
+                    <h5 class="pull-right">12 August 2013</h5>
+                    <div class="activity terques">
+                        <span>
+                            <i class="icon-user"></i>
+                        </span>
+                        <div class="activity-desk">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="arrow"></div>
+                                    <h4>Emre Kaymak</h4>
+                                    <p>Emre KAymak tarafından hazırlanmış sınıftır.Fenerbahçe ile alakalı sorular vardır.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body profile-activity">
+                    <div class="activity green">
+                        <span>
+                            <i class=" icon-gamepad"></i>
+                        </span>
+                        <div class="activity-desk">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="arrow"></div>
+                                    <p> <i class="icon-eye-open"></i> Görüntülenme Sayısı : 150</p><br />
+                                    <p> <i class="icon-film"></i> Görünürlük : True</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
 
 
-   
-          yapılacak
+    </div>
+
+    <div class="col-lg-8">
+        <div id="accordion" class="panel-group m-bot20">
+            @{
+                int sayi = 0;
+                foreach (Sorular item in ViewBag.soru)
+                {
+                    sayi++;
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a href="/Content/Admin/#@sayi" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle">
+                                    Collapsible Group Item @sayi  Collapsible Group Item @sayi   Collapsible Group Item @sayi   Collapsible Group Item @sayi   Collapsible Group Item @sayi   Collapsible Group Item @sayi   Collapsible Group Item @sayi   Collapsible Group Item @sayi
+                                </a>
+                            </h4>
+                        </div>
+                        <div class="panel-collapse collapse" id="@sayi">
+                            <div class="panel-body">
+                                <!-- buraya yaz-->
+                                <div class="best-seller">
+
+                                    <article class="media">
+                                        <h3>@item.Soru</h3>
+                                    </article>
+
+                                    <article class="media">
+                                        @if ("Cevap1" == item.DogruCevap)
+                                        {
+                                            <a class="pull-left thumb p-thumb">
+                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a class="pull-left thumb p-thumb">
+                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
+                                            </a>
+                                        }
+                                        <div class="media-body">
+                                            <a href="/Content/Admin/#" class=" p-head">Cevap 1</a>
+                                            <p>@item.Cevap1 </p>
+
+                                        </div>
+
+                                    </article>
+                                    <article class="media">
+                                        @if ("Cevap2" == item.DogruCevap)
+                                        {
+                                            <a class="pull-left thumb p-thumb">
+                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a class="pull-left thumb p-thumb">
+                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
+                                            </a>
+                                        }
+                                        <div class="media-body">
+                                            <a href="/Content/Admin/#" class=" p-head">Cevap 2</a>
+                                            <p>@item.Cevap2 </p>
+
+                                        </div>
+
+                                    </article>
+                                    <article class="media">
+                                        @if ("Cevap3" == item.DogruCevap)
+                                        {
+                                            <a class="pull-left thumb p-thumb">
+                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a class="pull-left thumb p-thumb">
+                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
+                                            </a>
+                                        }
+                                        <div class="media-body">
+                                            <a href="/Content/Admin/#" class=" p-head">Cevap 3</a>
+                                            <p>@item.Cevap3 </p>
+
+                                        </div>
+
+                                    </article>
+                                    <article class="media">
+                                        @if ("Cevap4" == item.DogruCevap)
+                                        {
+                                            <a class="pull-left thumb p-thumb">
+                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a class="pull-left thumb p-thumb">
+                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
+                                            </a>
+                                        }
+                                        <div class="media-body">
+                                            <a href="/Content/Admin/#" class=" p-head">Cevap 4</a>
+                                            <p>@item.Cevap4 </p>
+
+                                        </div>
+
+                                    </article>
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+</div>
+
+
+<link href="/Content/Admin/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="/Content/Admin/css/style.css" rel="stylesheet">
+
+<script src="/Content/Admin/js/jquery.js"></script>
+<script src="/Content/Admin/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+<script src="/Content/Admin/js/common-scripts.js"></script>
 
 

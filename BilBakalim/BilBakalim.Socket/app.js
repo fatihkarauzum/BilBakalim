@@ -23,6 +23,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 app.use(express.static(path.join(__dirname, 'content')));
+app.use(express.static(path.join(__dirname, "/../BilBakalim.Web")));
+// app.use(express.static(path.basename('C:\\Users\\fatih\\Desktop\\Bil Bakalım - Tez\\BilBakalim\\BilBakalim.Web')));
 
 app.use('/register', indexRouter);
 app.use('/login', loginRouter);
