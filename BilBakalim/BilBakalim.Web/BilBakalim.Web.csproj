@@ -387,6 +387,7 @@
     <Content Include="Content\Resimler\SinifSoru\bos.jpg" />
     <Content Include="Content\Resimler\SinifSoru\default.png" />
     <Content Include="Content\Resimler\Kullanici\defaultuser.png" />
+    <Content Include="Database\12.05.2019.sql" />
     <Content Include="Database\13.03.2019 - DB.sql" />
     <Content Include="Database\DB.sql" />
     <Content Include="Global.asax" />
