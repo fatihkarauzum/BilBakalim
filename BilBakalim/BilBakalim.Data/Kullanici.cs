@@ -50,9 +50,6 @@ namespace BilBakalim.Data
 
         public int? RolID { get; set; }
 
-        [StringLength(50)]
-        public string EskiSifre { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favori> Favori { get; set; }
 
