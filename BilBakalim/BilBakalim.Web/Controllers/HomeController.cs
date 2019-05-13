@@ -40,7 +40,11 @@ namespace BilBakalim.Web.Controllers
             return View(ad);
         }
 
-
+        public ActionResult SinifAyrinti(int id)
+        {
+            ViewBag.soru = ctx.Sorular.Where(x => x.SinifID == id).ToList();
+            return View(ctx.Sinif.Include("Resim").Where(x => x.ID == id).SingleOrDefault());
+        }
 
 
         [HttpPost]
