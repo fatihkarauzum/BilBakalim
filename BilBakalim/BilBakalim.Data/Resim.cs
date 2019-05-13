@@ -1,5 +1,3 @@
-using BilBakalim.Data.Interfaces;
-
 namespace BilBakalim.Data
 {
     using System;
@@ -9,7 +7,7 @@ namespace BilBakalim.Data
     using System.Data.Entity.Spatial;
 
     [Table("Resim")]
-    public partial class Resim : Entity
+    public partial class Resim
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Resim()

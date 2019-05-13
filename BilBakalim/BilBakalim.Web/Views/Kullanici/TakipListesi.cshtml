@@ -56,17 +56,30 @@
 
                             @foreach (Takip item2 in ViewBag.takip)
                             {
+                                {
 
-                            <li>
-                                <h5>@item2.Kullanici1.Takip1.Where(x => x.TakipEdilenID == item.ID).Count()</h5>
-                                Takip Edilen
-                            </li>
-                            <li>
-                                <h5>@*@item2.Kullanici1.Takip.Where(x => x.TakipEdenID == item.ID).Count(*@)
-                                @item.Takip.Where(x=>x.TakipEdenID==item2.TakipEdilenID).Count()</h5>
-                                Takipçi
-                            </li>
-                                break;
+                                    if ( )
+                                    {
+                                        <li>
+                                            <h5>@item2.Kullanici1.Takip1.Where(x => x.TakipEdilenID == item.ID).Count()</h5>
+                                            Takip Edilen
+                                        </li>
+                                        <li>
+                                            <h5>
+                                                @*@item2.Kullanici1.Takip.Where(x => x.TakipEdenID == item.ID).Count(*@)
+                                                @item.Takip.Where(x => x.TakipEdenID == item2.TakipEdilenID).Count()
+                                            </h5>
+                                            Takipçi
+                                        </li>
+                                    }
+
+
+
+
+
+                                }
+
+
                             }
 
 

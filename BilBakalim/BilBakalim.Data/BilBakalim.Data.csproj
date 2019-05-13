@@ -61,6 +61,7 @@
     <Compile Include="BilBakalimContext.cs" />
     <Compile Include="Dİl.cs" />
     <Compile Include="Favori.cs" />
+    <Compile Include="Iletisim.cs" />
     <Compile Include="Interfaces\BodyType.cs" />
     <Compile Include="Interfaces\Entity.cs" />
     <Compile Include="Interfaces\ViewbagModel.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Sinif.cs" />
     <Compile Include="SinifKategori.cs" />
     <Compile Include="Sorular.cs" />
+    <Compile Include="sysdiagrams.cs" />
     <Compile Include="Takip.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,36 @@
+﻿@using BilBakalim.Data
+@{
+    ViewBag.Title = "IletisimDetay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model Iletisim
+<section class="panel">
+
+    <div class="panel-body bio-graph-info">
+        <h1>Iletişim</h1>
+        <div class="row">
+            <div class="col-md-3">
+                <p><span>Adı</span>: @Model.Isim </p>
+            </div>
+            <div class="col-md-3">
+                <p><span>Telefon</span>: @Model.Telefon </p>
+            </div>
+            <div class="col-md-3">
+                <p><span>Eposta</span>: @Model.Eposta </p>
+            </div>
+            <br />
+
+            <div class="col-md-6">
+                <p><span>Yorum icerigi </span>: @Model.Icerik</p>
+            </div>
+
+        </div>
+        <div class="row">
+            <a href="/Admin/IletisimSil/@Model.ID" title="Sil" style="float:right;margin-right:1%" class="btn btn-danger btn-xs btn-danger"><i class="icon-trash"></i> Sil</a>          
+            <a href="/Admin/IletisimYanıtla/@Model.ID" title="Sil" style="float:right;margin-right:1%" class="btn btn-success btn-xs btn-confirm"><i class="icon-trash"></i> Yanıtla</a>
+
+        </div>
+
+        
+    </div>
+</section>

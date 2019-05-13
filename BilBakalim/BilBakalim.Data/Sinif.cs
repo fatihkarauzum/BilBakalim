@@ -1,5 +1,3 @@
-using BilBakalim.Data.Interfaces;
-
 namespace BilBakalim.Data
 {
     using System;
@@ -9,7 +7,7 @@ namespace BilBakalim.Data
     using System.Data.Entity.Spatial;
 
     [Table("Sinif")]
-    public partial class Sinif : Entity
+    public partial class Sinif
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sinif()
@@ -33,7 +31,6 @@ namespace BilBakalim.Data
 
         public int? GoruntulenmeSayisi { get; set; }
 
-        [Display(Name ="Dil")]
         public int? LisanID { get; set; }
 
         public int? ResimID { get; set; }
@@ -43,7 +40,6 @@ namespace BilBakalim.Data
 
         public int? KullaniciID { get; set; }
 
-        [Display(Name = "Kategori")]
         public int? SinifKategoriID { get; set; }
 
         public virtual Dİl Dİl { get; set; }

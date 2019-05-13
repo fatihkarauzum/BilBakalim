@@ -67,7 +67,7 @@ namespace BilBakalim.Web.Controllers
 
             var kategori = db.SinifKategori.ToList();
             ViewBag.kategori = new SelectList(kategori, "ID", "KategoriAdi");
-            return View(db.Sinif.Where(x => x.ID == id).SingleOrDefault());
+            return View(db.Sinif.Include("SinifKategori").Where(x => x.ID == id).SingleOrDefault());
         }
         [HttpPost]
         public ActionResult SinifGuncelle(Sinif s,int id)
