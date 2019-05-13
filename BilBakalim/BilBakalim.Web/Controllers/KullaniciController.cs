@@ -242,8 +242,8 @@ namespace BilBakalim.Web.Controllers
         public ActionResult SoruEkle()
 
         {
-
-            return View(new Sorular());
+            
+            return View();
         }
 
 
@@ -331,7 +331,7 @@ namespace BilBakalim.Web.Controllers
                         break;
                 }
             db.SaveChanges();
-
+            ViewBag.id = s.ID;
             return View();
 
         }

@@ -512,6 +512,7 @@
     <Content Include="Views\Login\SifremiUnuttum.cshtml" />
     <Content Include="Views\Admin\KullaniciEkle.cshtml" />
     <Content Include="Views\Admin\KullaniciDetay.cshtml" />
+    <Content Include="Views\Home\SinifAra.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

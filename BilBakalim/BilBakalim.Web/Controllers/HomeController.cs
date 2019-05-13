@@ -14,9 +14,10 @@ namespace BilBakalim.Web.Controllers
         BilBakalimContext ctx = new BilBakalimContext();
         public ActionResult Index()
         {
-            ViewBag.Siniflar = ctx.Sinif.Include("Resim").Where(x => x.Gorunurluk == true).ToList();
+            ViewBag.Siniflar= ctx.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x=>x.Gorunurluk == true).OrderByDescending(x => x.OlusturmaTarihi).Take(20).ToList();
             ViewBag.Favori = ctx.Favori.ToList();
             ViewBag.SinifKategorileri = ctx.SinifKategori.Include("Resim").ToList();
+            //ViewBag.Siniflar = ctx.Database.SqlQuery<Sinif>("SELECT TOP 5 *FROM Sinif order by OlusturmaTarihi desc").Where(x => x.Gorunurluk == true).ToList();
             return View();
         }
         public ActionResult Gelistiriciler()
@@ -39,14 +40,16 @@ namespace BilBakalim.Web.Controllers
             return View(ad);
         }
 
-        
-      [HttpGet]
-        public ActionResult SinifAyrinti(int id)
+
+
+
+        [HttpPost]
+        public ActionResult SinifAra(string search)
         {
-            ViewBag.sinif = ctx.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x => x.ID == id && x.Gorunurluk == true).ToList();
-            ViewBag.soru = ctx.Sorular.Where(x => x.SinifID == id).ToList();
+            ViewBag.Kategori = ctx.SinifKategori.Include("Sinif").ToList();
+            // ViewBag.Oyunlar = ctx.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x => x.SinifKategoriID == id && x.Gorunurluk == true);
+            ViewBag.sonuc = ctx.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x => x.Ad == search).ToList();
             return View();
         }
-
     }
 }
