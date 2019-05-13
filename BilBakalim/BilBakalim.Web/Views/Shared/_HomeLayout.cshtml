@@ -43,7 +43,7 @@
     <script src="/Content/Home/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     @RenderSection("head", false)
-    
+
 </head>
 <body>
 
@@ -73,26 +73,7 @@
                 <div class="row hidden-xs">
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="top-bar-menu">
-                            <nav>
-                                <ul>
-                                    <li><a href="/Content/Home/wishlist.html"><i class="fa fa-heart"></i> Wishlist</a></li>
-                                    <li><a href="/Content/Home/compare.html"><i class="fa fa-random" aria-hidden="true"></i> Compare</a></li>
-                                    <li>
-                                        <a href="/Content/Home/#">English <i class="fa fa-caret-down"></i></a>
-                                        <ul>
-                                            <li><a href="/Content/Home/#">English</a></li>
-                                            <li><a href="/Content/Home/#">Français</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="/Content/Home/#">USD <i class="fa fa-caret-down"></i></a>
-                                        <ul>
-                                            <li><a href="/Content/Home/#">EUR</a></li>
-                                            <li><a href="/Content/Home/#">USD</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </nav>
+
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -132,7 +113,7 @@
                                         <li>
                                             <a href="/Kullanici/KullaniciDetay/@aktifKullanici.ID">@aktifKullanici.Adi @aktifKullanici.Soyadi <i class="fa fa-caret-down"></i></a>
                                             <ul>
-                                                <li><a href="/Kullanici/KullaniciDetay/@aktifKullanici.ID">Profil</a></li>                                               
+                                                <li><a href="/Kullanici/KullaniciDetay/@aktifKullanici.ID">Profil</a></li>
                                                 <li><a href="/LogOut">Çıkış Yap</a></li>
                                             </ul>
                                         </li>
@@ -143,38 +124,7 @@
                     </div>
                 </div>
                 <!--======Hidden for sm, md and lg device========-->
-                <div class="row hidden-sm hidden-md hidden-lg">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="top-bar-menu">
-                            <nav>
-                                <ul>
-                                    <li>
-                                        <a href="/Content/Home/#">English <i class="fa fa-caret-down"></i></a>
-                                        <ul>
-                                            <li><a href="/Content/Home/#">English</a></li>
-                                            <li><a href="/Content/Home/#">Français</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="/Content/Home/#">USD <i class="fa fa-caret-down"></i></a>
-                                        <ul>
-                                            <li><a href="/Content/Home/#">EUR</a></li>
-                                            <li><a href="/Content/Home/#">USD</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="/Content/Home/#">My Account <i class="fa fa-caret-down"></i></a>
-                                        <ul>
-                                            <li><a href="/Content/Home/order.html">Order</a></li>
-                                            <li><a href="/Content/Home/wishlist.html">Wishlist</a></li>
-                                            <li><a href="/Content/Home/#">SignOut</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
         <!--//=======middle header Start=======//-->
@@ -182,10 +132,10 @@
             <div class="container">
                 <div class="row positionR">
                     <!--======Logo========-->
-                    <div id="header-logo" class="col-md-2 col-sm-4" >
-                        <a href="~/Content/Home/index.html">
+                    <div id="header-logo" class="col-md-2 col-sm-4">
+                        <a href="/Home/Index">
                             <img src="/Content/logom.png" style="height:50px;width:125%" class="logo center-block hidden-xs hidden-sm" alt="Faashmira- ResponsiveHTML5 Multipurpose Ecommerce Template">Bil Bakalım
-                        
+
                         </a>
                     </div>
                     <!--======Hidden for xs and sm device========-->
@@ -241,115 +191,13 @@
                                 <i class="fa fa-search"></i>
                             </div>
                         </a>
-                        <a href="/Content/Home/#" class="header-icons cart-box-btn">
+                        <a href="/Home/Index" class="header-icons cart-box-btn">
                             <div class="s-bars">
                                 <i class="fa fa-shopping-cart"></i>
                             </div>
                         </a>
                     </div>
-                    <!--======Hidden for md and lg device========-->
-                    <div class="hidden-lg hidden-md">
-                        <div id="dl-menu" class="dl-menuwrapper">
-                            <button class="dl-trigger">Open Menu</button>
-                            <ul class="dl-menu">
-                                <li>
-                                    <a href="/Content/Home/index.html">Home</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="/Content/Home/index.html">Home Page 1</a></li>
-                                        <li><a href="/Content/Home/index-2.html">Home Page 2</a></li>
-                                        <li><a href="/Content/Home/index-3.html">Home Page 3</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="/Content/Home/#">Categories</a>
-                                    <ul class="dl-submenu">
-                                        <li>
-                                            <a href="/Content/Home/shop.html">Mens</a>
-                                            <ul class="dl-submenu">
-                                                <li><a href="/Content/Home/shop.html" class="">Shirts</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Jackets</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Chinos &amp; Trousers</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Jeans</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">T-Shirts</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Underwear</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="/Content/Home/shop.html">Womens</a>
-                                            <ul class="dl-submenu">
-                                                <li><a href="/Content/Home/shop.html" class="">Shirts</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Jackets</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Chinos &amp; Trousers</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Jeans</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">T-Shirts</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Underwear</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="/Content/Home/shop.html">Kids</a>
-                                            <ul class="dl-submenu">
-                                                <li><a href="/Content/Home/shop.html" class="">Shirts</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Jackets</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Chinos &amp; Trousers</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Jeans</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">T-Shirts</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Underwear</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="/Content/Home/shop.html">All</a>
-                                            <ul class="dl-submenu">
-                                                <li><a href="/Content/Home/shop.html" class="">Shirts</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Jackets</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Chinos &amp; Trousers</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Jeans</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">T-Shirts</a></li>
-                                                <li><a href="/Content/Home/shop.html" class="">Underwear</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="/Content/Home/#">Pages</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="/Content/Home/shop.html" class="">Shop</a></li>
-                                        <li><a href="/Content/Home/shop-list.html" class="">Shop List</a></li>
-                                        <li><a href="/Content/Home/shop-fullwidth.html" class="">Shop full width</a></li>
 
-                                        <li><a href="/Content/Home/product-detail.html" class="">Product detail</a></li>
-                                        <li><a href="/Content/Home/cart-page.html" class="">Cart</a></li>
-                                        <li><a href="/Content/Home/checkout-page.html" class="">Checkout</a></li>
-                                        <li><a href="/Content/Home/register.html" class="">Register</a></li>
-                                        <li><a href="/Content/Home/login.html" class="">Login</a></li>
-                                        <li><a href="/Content/Home/wishlist.html" class="">Wishlist</a></li>
-                                        <li><a href="/Content/Home/compare.html" class="">Compare</a></li>
-                                        <li><a href="/Content/Home/order.html" class="">Order</a></li>
-                                        <li>
-                                            <a href="/Content/Home/#">404 Error Page</a>
-                                            <ul class="dl-submenu">
-                                                <li><a href="/Content/Home/404.html" class="">404 Default</a></li>
-                                                <li><a href="/Content/Home/404-bg.html">404 Bg Image</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="/Content/Home/#">Blogs</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="/Content/Home/blogs.html" class="">Blog Default</a></li>
-                                        <li><a href="/Content/Home/blogs-grid.html" class="">Blog Grid Sidebar</a></li>
-                                        <li><a href="/Content/Home/blogs-grid-fullwidth.html" class="">Blog Grid Full Width</a></li>
-                                        <li><a href="/Content/Home/blogs-detail.html" class="">Blog Detail Sidebar</a></li>
-                                        <li><a href="/Content/Home/blogs-detail-fullwidth.html" class="">Blog Detail Full Width</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="/Content/Home/contact.html">Contact US</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /dl-menuwrapper -->
-                    </div>
                 </div>
             </div>
         </div>
@@ -490,241 +338,32 @@
         <div class="popup-inner">
             <div class="container">
                 <div class="centered-title marT60">
-                    <h2>Your <span class="light-font">Search Bar</span></h2>
-                    <div class="clear"></div>
-                    <em>doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo <br>inventore veritatis et quasi architecto beatae</em>
+
                 </div>
-                <div class="col-sm-6 col-sm-offset-3">
-                    <div class="sidebar-form text-center">
-                        <form method="post" action="#">
-                            <div class="form-group clearfix">
-                                <input type="text" name="search" value="" placeholder="Search..">
-                                <button type="submit" class="theme-button">Search</button>
-                            </div>
-                        </form>
+                @using (Html.BeginForm("SinifAra", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="sidebar-form text-center">
+                            <form method="post" action="#">
+                                <div class="form-group clearfix">
+                                    <input type="text" name="search" value="" placeholder="Search..">
+                                    <button type="submit" class="theme-button">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                        <h3 class="marB20"><span class="light-font">Your recent Searches</span></h3>
+                        <div class="clear">
+                        </div>
+
                     </div>
-                    <h3 class="marB20"><span class="light-font">Your recent Searches</span></h3>
-                    <div class="clear">
-                    </div>
-                    <div class="tag-list seacrh-list">
-                        <a href="/Content/Home/" class="btn btn-light hover-color" title="1 topic">Sleeveless top</a>
-                        <a href="/Content/Home/" class="btn btn-light hover-color" title="1 topic">jewellery set</a>
-                        <a href="/Content/Home/" class="btn btn-light hover-color" title="1 topic">Jeans top</a>
-                        <a href="/Content/Home/" class="btn btn-light hover-color" title="1 topic">Shop</a>
-                        <a href="/Content/Home/" class="btn btn-light hover-color" title="1 topic">Fashmira</a>
-                        <a href="/Content/Home/" class="btn btn-light hover-color" title="1 topic">fashion</a>
-                        <a href="/Content/Home/" class="btn btn-light hover-color" title="1 topic">Hot Lingerie Collection</a>
-                        <a href="/Content/Home/" class="btn btn-light hover-color" title="1 topic">sexy</a>
-                    </div>
-                </div>
+                }
             </div>
-        </div>
-    </div>
-    <!--Cart Popup-->
-    <div id="cart-popup" class="cart-popup">
-        <div class="close-cart theme-btn"><span class="flaticon-cross-1"><i class="fa fa-times" aria-hidden="true"></i></span></div>
-        <div class="popup-inner">
-            <div class="container">
-                <div class="centered-title marT60">
-                    <h2>Your <span class="light-font">Shopping Cart</span></h2>
-                    <div class="clear"></div>
-                    <em>doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo <br>inventore veritatis et quasi architecto beatae</em>
-                </div>
-                <!--Product item-->
-                <div class="col-md-3 col-sm-3">
-                    <div class="wa-product">
-                        <div class="wa-product-thumbnail wa-item">
-                            <img src="/Content/Home/assets\img\newarrival\img1.jpeg" alt="">
-                            <div class="caption">
-                                <div class="caption-text">
-                                    <a href="/Content/Home/" class="theme-button marT10"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="wa-product-caption">
-                            <h2><a href="/Content/Home/#">Ladies fency dress</a></h2>
-                            <div class="clear"></div>
-                            <ul class="ratings">
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star-half-o"></i></a></li>
-                            </ul>
-                            <div class="clear"></div>
-                            <span class="price">
-                                $100x1
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!--Product item-->
-                <div class="col-md-3 col-sm-3">
-                    <div class="wa-product">
-                        <div class="wa-product-thumbnail wa-item">
-                            <img src="/Content/Home/assets\img\newarrival\img7.jpeg" alt="">
-                            <div class="caption">
-                                <div class="caption-text">
-                                    <a href="/Content/Home/" class="theme-button marT10"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="wa-product-caption">
-                            <h2><a href="/Content/Home/#">Ladies fency dress</a></h2>
-                            <div class="clear"></div>
-                            <ul class="ratings">
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star-half-o"></i></a></li>
-                            </ul>
-                            <div class="clear"></div>
-                            <span class="price">
-                                $100x2
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!--Product item-->
-                <div class="col-md-3 col-sm-3">
-                    <div class="wa-product">
-                        <div class="wa-product-thumbnail wa-item">
-                            <img src="/Content/Home/assets\img\newarrival\img3.jpeg" alt="">
-                            <div class="caption">
-                                <div class="caption-text">
-                                    <a href="/Content/Home/" class="theme-button marT10"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="wa-product-caption">
-                            <h2><a href="/Content/Home/#">Ladies fency dress</a></h2>
-                            <div class="clear"></div>
-                            <ul class="ratings">
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star-half-o"></i></a></li>
-                            </ul>
-                            <div class="clear"></div>
-                            <span class="price">
-                                $100x3
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!--Product item-->
-                <div class="col-md-3 col-sm-3">
-                    <div class="wa-product">
-                        <div class="wa-product-thumbnail wa-item">
-                            <img src="/Content/Home/assets\img\newarrival\img6.jpeg" alt="">
-                            <div class="caption">
-                                <div class="caption-text">
-                                    <a href="/Content/Home/" class="theme-button marT10"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="wa-product-caption">
-                            <h2><a href="/Content/Home/#">Ladies fency dress</a></h2>
-                            <div class="clear"></div>
-                            <ul class="ratings">
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                <li><a href="/Content/Home/"><i class="fa fa-star-half-o"></i></a></li>
-                            </ul>
-                            <div class="clear"></div>
-                            <span class="price">
-                                $100x4
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-                <div class="col-md-12">
-                    <div class="clear"></div>
-                    <div class="total-amount fix">
-                        Sub Total:  <span>$845 </span>
-                    </div>
-                </div>
-                <div class="clear"></div>
-                <div class="textC">
-                    <a href="/Content/Home/#" class="theme-button marT10">Checkout</a>
-                    <a href="/Content/Home/#" class="theme-button marT10">Continue Shopping</a>
-                </div>
-            </div>
+
         </div>
     </div>
 
-    <!--Search Popup-->
-    <div id="quickview-popup" class="quickview-popup">
-        <div class="close-quickview theme-btn"><span class="flaticon-cross-1"><i class="fa fa-times" aria-hidden="true"></i></span></div>
-        <div class="popup-inner">
-            <div class="container">
-                <!--Prod Info Section-->
-                <div class="prod-info-section marT100">
-                    <div class="row clearfix">
-                        <div class="carousel-column col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                            <div class="wa-product-main-image marB20">
-                                <img src="/Content/Home/assets\img\single\1.jpeg" alt="">
-                            </div>
-                        </div>
-                        <!--Content Column-->
-                        <div class="content-column col-lg-7 col-md-7 col-sm-7 col-xs-12">
-                            <div class="outer wow fadeInRight">
-                                <div class="title-box">
-                                    <div class="inner">
-                                        <h2> Sleeveless Top</h2>
-                                        <span class="price">
-                                            $100
-                                            <del>$200</del>
-                                        </span>
-                                        <ul class="ratings">
-                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="/Content/Home/"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="/Content/Home/"><i class="fa fa-star-half-o"></i></a></li>
-                                        </ul>
-                                        <p class="availability in-stock">Availability: <span>In stock</span></p>
-                                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies .</p>
-                                        <p>
-                                            It has survived not only five centuries, but also the leap into ele ctronic typesetting, remaining essentially un changed The industry's standard dummy text ever
-                                            since.
-                                        </p>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <!--Options-->
-                                    <div class="prod-options marB10">
-                                        <div class="clearfix">
-                                            <div class="form-group col-sm-12 padL0 quantity">
-                                                <label>Tags</label>
-                                                <div class="tag-list">
-                                                    <a class="btnlight" href="/Content/Home/#"><i class="fa fa-tags" aria-hidden="true"></i> Vintage</a>
-                                                    <a class="btnlight" href="/Content/Home/"><i class="fa fa-tags" aria-hidden="true"></i> Street styles</a>
-                                                    <a class="btnlight" href="/Content/Home/"><i class="fa fa-tags" aria-hidden="true"></i> Prom dresses</a>
-                                                    <a class="btnlight" href="/Content/Home/"><i class="fa fa-tags" aria-hidden="true"></i> Style</a>
-                                                    <a class="btnlight" href="/Content/Home/"><i class="fa fa-tags" aria-hidden="true"></i>Model</a>
-                                                    <a class="btnlight" href="/Content/Home/"><i class="fa fa-tags" aria-hidden="true"></i> Colorful</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Add-->
-                                <div class="add-options">
-                                    <button type="button" class="theme-button">Add to cart</button>
-                                    <button type="button" class="theme-button"><span class="fa fa-heart"></span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
 
 
     <div style="display:none;">
