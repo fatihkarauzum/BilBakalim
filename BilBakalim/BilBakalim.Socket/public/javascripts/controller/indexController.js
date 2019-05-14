@@ -76,7 +76,7 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
 
         const socket = await indexFactory.connectSocket("http://localhost:3000", connectionOptions)
             try{
-                socket.emit('registerRoom', { roomId: $('#id').text() });
+                socket.emit('registerRoom', { roomId: $('#id').text(), type: 'question' });
 
                 socket.on('newUserConnect', (data) => {
                     $scope.players[data.id] = data;
@@ -142,7 +142,7 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                             $scope.point = point;
                             $scope.$apply();
                         }
-                        socket.emit('showMiddle', { realRoomId: $('#realId').text() });
+                        socket.emit('showMiddle', { realRoomId: $('#realId').text(), type: 'question' });
                     }
                 });
 
@@ -190,7 +190,7 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
 
                     }
 
-                    socket.emit('start', { roomId: $('#id').text(), realRoomId: $('#realId').text() });
+                    socket.emit('start', { roomId: $('#id').text(), realRoomId: $('#realId').text(), type: 'Sorular' });
                     socket.emit('delay');
                     socket.emit('delay');
                     $('#remaining').show();
@@ -236,7 +236,7 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                     first = 0;
                     $('#remaining').show();
                     if(point < $scope.questions.length){
-                        socket.emit('pass', { roomId: $('#id').text(), realRoomId: $('#realId').text() })
+                        socket.emit('pass', { roomId: $('#id').text(), realRoomId: $('#realId').text()})
 
                         $('#score').hide();
                         if(point <= $scope.questions.length){
@@ -267,7 +267,7 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                                     $('#remaining').hide();
                                     $('#answersCount').hide();
 
-                                    socket.emit('showMiddle', { realRoomId: $('#realId').text() });
+                                    socket.emit('showMiddle', { realRoomId: $('#realId').text() , type: 'question'});
                                 }
                             }, 1000);
                             point++;
@@ -316,7 +316,7 @@ app.controller('indexController', ['$scope', 'indexFactory', ($scope, indexFacto
                             audio = new Audio('/sounds/timeUp.mp3');
                             audio.play();
 
-                            socket.emit('showMiddle', { realRoomId: $('#realId').text() });
+                            socket.emit('showMiddle', { realRoomId: $('#realId').text(), type: 'question' });
                             point=1;
                             $scope.point = point;
                             $scope.$apply();

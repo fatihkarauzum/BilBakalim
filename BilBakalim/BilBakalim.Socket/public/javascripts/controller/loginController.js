@@ -6,6 +6,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
     $scope.answersCount;
     $scope.oyuncular = [ ];
     $scope.playersOfScore = 0;
+    $scope.isSurvey = false;
     var point;
     var distance;
     var passingTime;
@@ -13,6 +14,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
     var timeUp = 0;
     var first = 1;
     var x;
+    var isSurvey = false;
     const scoreMiddle = [ ];
 
     $scope.init = () => {
@@ -66,7 +68,12 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                                 timeUp = 1;
                             }
                             else{
-                                $('#wrong').show();
+                                if(isSurvey){
+                                    $('#survey').show();
+                                }
+                                else{
+                                    $('#wrong').show();
+                                }
                                 timeUp = 1;
                             }
                         }
@@ -187,6 +194,12 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                         $('#name').show();
                         $('#name').animate({left: '0%'});
                     });   
+
+                    if(data.type == 'survey'){
+                        isSurvey = true;
+                        $scope.isSurvey = true;
+                        $scope.$applyAsync()
+                    }
                 });
 
                 socket.on('showMiddle', () => {

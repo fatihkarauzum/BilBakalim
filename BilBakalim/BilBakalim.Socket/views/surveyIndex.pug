@@ -1,0 +1,175 @@
+extends layout
+
+block styles
+  link(href='/Sorular2/css/loading-bar.css', rel='stylesheet')
+  link(rel='stylesheet', href='/OturumGiris/css/styleIndex.css')
+  link(rel='stylesheet', href='/OturumGiris/css/bootstrap.css')
+  link(rel='stylesheet', href='/OturumGiris/css/bootstrap.min.css')
+  link(href='/Sorular2/css/styleSoru.css', rel='stylesheet')
+  link(href='/SecimSayilari/css/styleSecim.css', rel='stylesheet')
+  link(href='/Siralama/css/styleSiralama.css', rel='stylesheet')
+
+  link(href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css')
+  link(href='/SurveyEnd/css/surveyEnd.css', rel='stylesheet')
+
+block content
+  div(ng-controller="surveyIndexController", ng-init="init()")
+    div#oturum(style="height: 100vh;width: 100%; position: absolute; z-index: -4")
+      p(hidden)#id= id
+      p(hidden)#realId= id
+
+      .top
+          .topText
+            | PIN:
+            b 
+              span#realIdShow
+                | 
+            |  ile
+            b  bilbakalim.com/login
+            |  Adresinden Giriş Yapabilirsiniz
+            
+      .main
+        .mainTop
+          .container
+            br
+            .row
+              .col-4.bottomText(style='float:right; text-align: left')
+                b
+                  span#playersCount
+                  i {{ playersCount }} Oyuncu
+              .col-4.bottomText(style='float:right; text-align: center')
+                img(src='/OturumGiris/images/logo.png', width='70%') 
+                | BilBakalım
+              .col-4.bottomText(style='font-size:25;float:right')
+                button.action-button.shadow.animate.green#start(disabled, style='float:right;') 
+                  b Başlat
+            br
+            br
+            .row
+              .col(ng-repeat="player in players", id="{{ player.id }}")
+                | {{ player.username }}
+
+      .bottom
+        .bottomImage
+          img(src='/OturumGiris/images/exclamation.png', width='60', height='60')
+        .bottomText
+          b &nbsp;&nbsp;&nbsp; Diğer Oyuncular Bekleniyor ...
+
+    //------------------------------------------------------------------------------------------//
+
+    div(ng-repeat="question in showQuestions")
+      div#Sorular(style="width: 1366px; height: 730px")
+        .topQuestion
+          .topLeftQuestion
+            b PIN: {{ sinifId }}
+          .topRightQuestion
+            b {{ answersCount }}
+              | &nbsp;Cevap
+        .middleQuestion
+          .middleCounter#parent(style="width: 97.6vw;")
+            .Loading-progress
+          .middleIn
+            .templateQuestion
+              div {{ question.Soru }} 
+              div(ng-if="question.Url != null") 
+                img(src="{{question.Url}}")
+            .templateAnswers
+              .a(style='background-color:#2F6DAE; margin-right: 1.03%')
+                div {{ question.Cevap1 }}
+              .a(style='background-color:#2C9CA6; margin-right: 1.03%')
+                div {{ question.Cevap2 }}
+              .a(style='background-color:#ECA82C; margin-right: 1.03%')
+                div {{ question.Cevap3 }}
+              .a(style='background-color:#D4546A;')
+                div {{ question.Cevap4 }}
+
+    //------------------------------------------------------------------------------------------//
+
+    div#middle(style="display:none; height: 730px")
+      .topSecim
+        div#SecimSoru Türkiyenin Başkenti Neresidir ?
+      .middleSecim
+        .middleCenterSecim
+          button#pass
+              b
+                | İleri
+          div
+            .in
+              .Count
+                div
+                  b#choosingA 
+              .Rate#aRate
+              .inBottom
+                #correctA
+            .in1
+              .Count
+                div
+                  b#choosingB 
+              .Rate#bRate
+              .inBottom
+                #correctB
+            .in2
+              .Count
+                div
+                  b#choosingC 
+              .Rate#cRate
+              .inBottom
+                #correctC
+            .in3
+              .Count
+                div
+                  b#choosingD 
+              .Rate#dRate
+              .inBottom
+                #correctD
+
+    //------------------------------------------------------------------------------------------//
+
+    div(style="display:none; height: 100vh")#score
+      .topSiralama
+        .topLeftSiralama
+          b PIN: {{ sinifId }}
+        .topRightSiralama
+          b 
+            | {{ point }}
+            | &nbsp;/&nbsp;
+            | {{ questions.length }}
+      .middleSurvey
+        #style-3.middleInSurvey.scroller
+          .middleTopSurvey
+            div
+              | Sonuçlarınız Kaydedilmiştir
+          .middleBottomSurvey
+            a.action-button.shadow.animate.blue Sonuçlar
+            a.action-button.shadow.animate.green(href="http://localhost:10833/Home/Index") Bitir
+            a#yeniden.action-button.shadow.animate.yellow(href="http://localhost:3000/surveyRegister/") Yeniden
+ 
+    div#answersCount(hidden)
+      | {{ answersCount }} &nbsp; &nbsp; &nbsp;
+    
+    span(style="display:none")#remaining  
+
+    //------------------------------------------------------------------------------------------//
+
+append javascripts
+  script(src='/Sorular2/js/loading-bar.js')
+  script(src="/javascripts/controller/surveyIndexController.js")
+  script(src="/javascripts/services/surveyIndexFactory.js")
+  
+  script(src='/OturumGiris/js/bootstrap.js')
+  script(src='/OturumGiris/js/bootstrap.min.js')
+  
+  script.
+    var main = $('.main');
+    var colors = ['#864BBF', '#34C7CF', '#65BF39', '#FA4045', '#FF3356', ' 	#FFA502'];
+    var currentIndex = 0;
+    setInterval(function () {
+    main.css({
+    backgroundColor: colors[currentIndex]
+    });
+    if (!colors[currentIndex]) {
+    currentIndex = 0;
+    } else {
+    currentIndex++;
+    }
+    }, 7000);
