@@ -63,6 +63,56 @@ var finish = (getRoomId) => {
 
 io.on('connection', (socket) => {
 
+    socket.on('registerRoom', (data) => {
+
+        if(roomIds.length == 0){
+            data.roomId = Math.floor(Math.random() * 100000) + 1;
+            roomIds.push(data.roomId);
+        }
+        else
+        {roomIds.forEach(element => {
+            if(element != data.roomId){
+                data.roomId = Math.floor(Math.random() * 100000) + 1;
+                roomIds.push(data.roomId);
+            }   
+            else{
+                data.roomId = Math.floor(Math.random() * 100000) + 1;
+                roomIds.push(data.roomId);
+            }
+        });}
+
+        const defaultData = {
+            answer: 0,
+            roomId: data.roomId
+        };
+        answers[data.roomId] = defaultData;
+
+        const defaultChoosing = {
+            Cevap1: 0,
+            Cevap2: 0,
+            Cevap3: 0,
+            Cevap4: 0,
+            roomId: data.roomId,
+            isSurvey: false
+        };
+
+        if(data.type == 'survey'){
+            defaultChoosing.isSurvey = true;
+        }
+
+        choosingAnswer[data.roomId] =  defaultChoosing;
+
+        const defaultRoom = {
+            roomId: data.roomId,
+        };
+        
+        sessionIds[socket.id] = defaultRoom;
+
+        socket.join(data.roomId, () => {
+            io.to(data.roomId).emit('log', { messages: data.roomId + ' Numaralı Odaya Girildi.', realRoomId: data.roomId });
+        });
+    });
+
     socket.on('joinRoom', (data) => {
         if(io.sockets.adapter.rooms[data.roomId] != null)
         {
@@ -75,7 +125,12 @@ io.on('connection', (socket) => {
 
             if(!control){
                 socket.join(data.roomId, () => {
-                    socket.emit('inputNameShow');
+                    if(choosingAnswer[data.roomId].isSurvey){
+                        socket.emit('inputNameShow', { type: 'survey' });
+                    }
+                    else{
+                        socket.emit('inputNameShow', { type: 'question' });
+                    }
                 });
             }
             else{
@@ -113,55 +168,11 @@ io.on('connection', (socket) => {
         else if(!control){
             socket.emit('hata', { err: 'İsim Kullanılmakta.'});
         }
-        
-    });
-
-    socket.on('registerRoom', (data) => {
-
-        if(roomIds.length == 0){
-            data.roomId = Math.floor(Math.random() * 100000) + 1;
-            roomIds.push(data.roomId);
-        }
-        else
-        {roomIds.forEach(element => {
-            if(element != data.roomId){
-                data.roomId = Math.floor(Math.random() * 100000) + 1;
-                roomIds.push(data.roomId);
-            }   
-            else{
-                data.roomId = Math.floor(Math.random() * 100000) + 1;
-                roomIds.push(data.roomId);
-            }
-        });}
-
-        const defaultData = {
-            answer: 0,
-            roomId: data.roomId
-        };
-        answers[data.roomId] = defaultData;
-
-        const defaultChoosing = {
-            Cevap1: 0,
-            Cevap2: 0,
-            Cevap3: 0,
-            Cevap4: 0,
-            roomId: data.roomId
-        };
-        choosingAnswer[data.roomId] =  defaultChoosing;
-
-        const defaultRoom = {
-            roomId: data.roomId
-        };
-        sessionIds[socket.id] = defaultRoom;
-
-        socket.join(data.roomId, () => {
-            io.to(data.roomId).emit('log', { messages: data.roomId + ' Numaralı Odaya Girildi.', realRoomId: data.roomId });
-        });
     });
 
     socket.on('start', (data) => {
         var request = new sql.Request();
-        request.query('SELECT Sorular.*, Resim.Url FROM Sorular FULL OUTER JOIN Resim ON Sorular.MedyaID = Resim.ID WHERE Sorular.SinifID = '+ data.roomId, function (err, recordset) {
+        request.query('SELECT '+ data.type +'.*, Resim.Url FROM '+ data.type +' FULL OUTER JOIN Resim ON '+ data.type +'.MedyaID = Resim.ID WHERE '+ data.type +'.SinifID = '+ data.roomId, function (err, recordset) {
             if (err){
                 console.log(err)
             }
@@ -176,7 +187,7 @@ io.on('connection', (socket) => {
         });     
     });
 
-    socket.on('pass', (data) => {
+    socket.on('pass', (data) => { 
         choosingAnswer[data.realRoomId].Cevap1 = 0;
         choosingAnswer[data.realRoomId].Cevap2 = 0;
         choosingAnswer[data.realRoomId].Cevap3 = 0;
@@ -198,7 +209,20 @@ io.on('connection', (socket) => {
         io.sockets.in('delay');
     });
 
+    socket.on('saveResult', (data) => {
+        console.log(data.realRoomId, choosingAnswer[data.realRoomId].Cevap1, choosingAnswer[data.realRoomId].Cevap2, choosingAnswer[data.realRoomId].Cevap3, choosingAnswer[data.realRoomId].Cevap4, data.soruID);
+
+        var request = new sql.Request();
+        request.query('INSERT INTO AnketOturum (Pin, Cevap1, Cevap2, Cevap3, Cevap4, SoruID) VALUES ('+ data.realRoomId +', '+ choosingAnswer[data.realRoomId].Cevap1 +', '+ choosingAnswer[data.realRoomId].Cevap2 +', '+ choosingAnswer[data.realRoomId].Cevap3 +', '+ choosingAnswer[data.realRoomId].Cevap4 +', '+ data.soruID +')', function (err, recordset) {
+            if (err){
+                console.log(err);
+            }                 
+        });
+    });
+
     socket.on('showMiddle', (data) => {
+        
+
         io.to(data.realRoomId).emit('showMiddle', { choosingAnswers: choosingAnswer[data.realRoomId] });
     });
 

@@ -9,6 +9,7 @@ dotenv.config();
 
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
+const surveyIndexRouter = require('./routes/surveyIndex');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, "/../BilBakalim.Web")));
 
 app.use('/register', indexRouter);
 app.use('/login', loginRouter);
+app.use('/surveyRegister', surveyIndexRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
