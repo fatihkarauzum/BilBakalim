@@ -20,7 +20,7 @@ namespace BilBakalim.Data
         [StringLength(50)]
         public string Telefon { get; set; }
 
-        [StringLength(50)]
+        [StringLength(500)]
         public string Icerik { get; set; }
 
         [Column(TypeName = "smalldatetime")]

@@ -13,7 +13,7 @@ namespace BilBakalim.Api.Controllers
 {
 
     [RoutePrefix("api/LoginApi")]
-
+    [AllowAnonymous]
     public class LoginApiController : ApiController
     {
         BilBakalimContext db = new BilBakalimContext();

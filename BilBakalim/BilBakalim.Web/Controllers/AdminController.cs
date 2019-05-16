@@ -71,11 +71,62 @@ namespace BilBakalim.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult KullaniciEkle(Kullanici kullanici)
+        public ActionResult KullaniciEkle(Kullanici kullanici, HttpPostedFileBase resimGelen)
         {
+            KullaniciResim s = new KullaniciResim();
+           
             db.Kullanici.Add(kullanici);
             db.SaveChanges();
-            return RedirectToAction("KullaniciListesi");
+            Kullanici n = db.Kullanici.Where(x => x.ID == kullanici.ID).SingleOrDefault();
+            if (resimGelen == null)
+            {
+                KullaniciResim b = db.KullaniciResim.Where(x => x.Url == "/Content/Resimler/Kullanici/defaultuser.png").SingleOrDefault();
+                n.ResimID = b.ID;
+                db.SaveChanges();
+                TempData["GenelMesaj"] = "Kullanıcı Ekleme işlemi başarılı bir şekilde tamamlanmıştır.";
+                return RedirectToAction("KullaniciListesi");
+
+            }
+
+            else
+            {
+
+                string yeniResimAdi = "";
+                ResimIslemleri r = new ResimIslemleri();
+                yeniResimAdi = r.Ekle(resimGelen, "Kullanici");
+                //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
+
+                if (yeniResimAdi == "uzanti")
+                {
+                    ViewBag.Dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                    ViewBag.SinifKat = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");
+                    TempData["hata"] = "Resim Uzantısı .png/.jpeg olmalıdır.";
+                    return RedirectToAction("KullaniciListesi");
+                }
+                else if (yeniResimAdi == "boyut")
+                {
+                    ViewBag.Dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                    ViewBag.SinifKat = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");
+                    TempData["hata"] = "Resmin Boyutu Çok Büyük.";
+                    return RedirectToAction("KullaniciListesi");
+                }
+                else
+                {
+
+                    s.Url = yeniResimAdi;
+                    db.KullaniciResim.Add(s);
+                    db.SaveChanges();
+                    n.ResimID = s.ID;
+                    db.SaveChanges();
+                    TempData["GenelMesaj"] = "Kullanıcı Ekleme işlemi başarılı bir şekilde tamamlanmıştır.";
+                    return RedirectToAction("KullaniciListesi");
+
+                }
+
+
+
+
+            }
         }
         
       
@@ -107,23 +158,63 @@ namespace BilBakalim.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult KullaniciGuncelle(Kullanici k)
+        public ActionResult KullaniciGuncelle(Kullanici k,HttpPostedFileBase resimGelen)
         {
             try
             {
                 HttpResponseMessage respone = Global.client.PutAsJsonAsync("/api/KullaniciApi/KullaniciGuncelle/",k).Result;
                 if (respone.IsSuccessStatusCode)
                 {
-                    TempData["GenelMesaj"] = "Kullanıcı güncelleme işlemi başarılı bir şekilde tamamlanmıştır.";
+                    if (resimGelen == null)
+                    {
+                        TempData["GenelMesaj"] = "Kullanıcı güncelleme işlemi başarılı bir şekilde tamamlanmıştır.";
+                        return RedirectToAction("KullaniciListesi");
+                    }
+                    else
+                    {
+                        string yeniResimAdi = "";
+                        ResimIslemleri r = new ResimIslemleri();
+                        yeniResimAdi = r.Ekle(resimGelen, "Kullanici");
+                        //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
+
+                        if (yeniResimAdi == "uzanti")
+                        {
+                            ViewBag.Dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                            ViewBag.SinifKat = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");
+                            TempData["hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                            return RedirectToAction("KullaniciListesi");
+                        }
+                        else if (yeniResimAdi == "boyut")
+                        {
+                            ViewBag.Dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                            ViewBag.SinifKat = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");
+                            TempData["hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
+                            return RedirectToAction("KullaniciListesi");
+                        }
+                        else
+                        {
+
+                            KullaniciResim o = new KullaniciResim();
+                            Kullanici s = db.Kullanici.Where(x => x.ID == k.ID).SingleOrDefault();
+                           new ResimIslemleri().Sil(resimGelen.ToString(), "Kullanici");
+
+                            o.Url = yeniResimAdi;
+
+                            db.KullaniciResim.Add(o);
+                            db.SaveChanges();
+                            s.ResimID = o.ID;
+                            db.SaveChanges();
+                            TempData["GenelMesaj"] = "Kullanıcı güncelleme işlemi başarılı bir şekilde tamamlanmıştır.";
+                            return RedirectToAction("KullaniciListesi");
+                        }
+                    }
+                }
+                else
+                {
+                    TempData["hata"] = "Hata";
                     return RedirectToAction("KullaniciListesi");
                 }
 
-                else
-                {
-                    TempData["hata"] = "Kullanici Guncellerken Bir hata oluştu.";
-                    return RedirectToAction("KullaniciListesi");
-                }
-                
             }
             catch (Exception)
             {
