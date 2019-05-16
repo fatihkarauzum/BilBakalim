@@ -125,7 +125,7 @@ namespace BilBakalim.Web.Controllers
         [HttpPost]
         public ActionResult SinifGuncelle(Sinif s,int id)
         {
-            Sinif yeni = db.Sinif.Where(x => x.ID == s.ID).FirstOrDefault();
+            Sinif yeni = db.Sinif.Where(x => x.ID ==id).FirstOrDefault();
             yeni.Ad = s.Ad;
             yeni.Aciklama = s.Aciklama;
             yeni.Gorunurluk = s.Gorunurluk;
@@ -133,7 +133,7 @@ namespace BilBakalim.Web.Controllers
             //resim işlemi
             yeni.SinifKategoriID = s.SinifKategoriID;
             db.SaveChanges();
-            return RedirectToAction("Oyunlar", new { id = id });
+            return RedirectToAction("Oyunlar", new { id = s.SinifKategoriID });
         }
         /*Sorular için gerekli işlemler*/
         public ActionResult Sorular(int id)
