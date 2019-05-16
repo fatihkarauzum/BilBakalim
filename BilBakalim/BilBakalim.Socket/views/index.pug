@@ -8,6 +8,7 @@ block styles
   link(href='/Sorular2/css/styleSoru.css', rel='stylesheet')
   link(href='/SecimSayilari/css/styleSecim.css', rel='stylesheet')
   link(href='/Siralama/css/styleSiralama.css', rel='stylesheet')
+  link(href='/SurveyEnd/css/surveyEnd.css', rel='stylesheet')
 
 block content
   div(ng-controller="indexController", ng-init="init()")
@@ -38,8 +39,9 @@ block content
                 img(src='/OturumGiris/images/logo.png', width='70%') 
                 | BilBakalım
               .col-4.bottomText(style='font-size:25;float:right; text-align: right')
-                button#start(disabled, style='background-color: black; color: white; width: 150px; height: 55px')
+                a.action-button.shadow.animate.blue#start(href="#") 
                   b Başlat
+                
             br
             br
             .row

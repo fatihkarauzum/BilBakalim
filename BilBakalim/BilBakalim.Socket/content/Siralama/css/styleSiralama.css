@@ -37,6 +37,7 @@
 }
 
 .middleSiralama > .middleInSiralama{
+	display: flex;
 	position: relative;
 	width: 98.2%;
 	height: 96%;

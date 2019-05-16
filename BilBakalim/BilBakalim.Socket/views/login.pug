@@ -80,7 +80,7 @@ block content
           div#Cevap4(style='cursor: pointer; background-color: #D4546A', ng-click="Cevap('Cevap4')")
             div {{ question.Cevap4 }}
       .altOyuncuSorular
-        div
+        div(ng-if="!isSurvey")
           b Puan: {{ playersOfScore }}
 
       //- div.questionID(ng-attr-id="{{ question.ID }}")
@@ -163,6 +163,12 @@ block content
             .mainCorrectPlaceBottom
               br
               b#firstBeetwen
+        .mainCorrect#survey(style="display: none;")
+          .mainCorrectTop
+            b
+              i Cevabınız Alındı
+            br
+            img(src='/OyuncuIlkEkran/images/correct.png', width='70px')
         .mainWrong#wrong(style="display: none;")
           .mainCorrectTop
             b

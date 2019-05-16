@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 @using BilBakalim.Data
+@model Sinif
 
 <link href="/Content/Admin/assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="/Content/Admin/css/gallery.css" />
@@ -13,10 +14,10 @@
         <div>
             <li class="grid cs-style-3">
                 <figure>
-                    <img src="/Content/images/ing.jpg" alt="img04">
+                    <img  style="height:400px"src="@Model.Resim.Url" alt="img04">
                     <figcaption>
-                        <h3>KategoriAdi</h3>
-                        <a class="fancybox" rel="group" href="/Sinif/Oyunlar/item.ID"> Oyna </a>
+                        <h3>@Model.Ad</h3>
+                        <a class="fancybox" rel="group" href=""> Oyna </a>
                     </figcaption>
                 </figure>
             </li>
@@ -29,7 +30,7 @@
                 </header>
 
                 <div class="panel-body profile-activity">
-                    <h5 class="pull-right">12 August 2013</h5>
+                    <h5 class="pull-right">@Model.OlusturmaTarihi.Value.ToString("dd-MM-yyy")</h5>
                     <div class="activity terques">
                         <span>
                             <i class="icon-user"></i>
@@ -39,7 +40,7 @@
                                 <div class="panel-body">
                                     <div class="arrow"></div>
                                     <h4>Emre Kaymak</h4>
-                                    <p>Emre KAymak tarafından hazırlanmış sınıftır.Fenerbahçe ile alakalı sorular vardır.</p>
+                                    <p>@Model.Aciklama</p>
                                 </div>
                             </div>
                         </div>
@@ -54,8 +55,8 @@
                             <div class="panel">
                                 <div class="panel-body">
                                     <div class="arrow"></div>
-                                    <p> <i class="icon-eye-open"></i> Görüntülenme Sayısı : 150</p><br />
-                                    <p> <i class="icon-film"></i> Görünürlük : True</p>
+                                    <p> <i class="icon-eye-open"></i> Görüntülenme Sayısı : @Model.GoruntulenmeSayisi</p><br />
+                                    <p><i class="icon-film"></i>Görünürlük : @Model.Gorunurluk</p>
                                 </div>
                             </div>
                         </div>
@@ -79,106 +80,108 @@
                         <div class="panel-heading">
                             <h4 class="panel-title">
                                 <a href="/Content/Admin/#@sayi" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle">
-                                    Collapsible Group Item @sayi  Collapsible Group Item @sayi   Collapsible Group Item @sayi   Collapsible Group Item @sayi   Collapsible Group Item @sayi   Collapsible Group Item @sayi   Collapsible Group Item @sayi   Collapsible Group Item @sayi
+                                    @sayi -) @item.Soru
                                 </a>
                             </h4>
                         </div>
                         <div class="panel-collapse collapse" id="@sayi">
                             <div class="panel-body">
                                 <!-- buraya yaz-->
-                                <div class="best-seller">
+                                <div class="col-md-8">
+                                    <div class="best-seller">
 
-                                    <article class="media">
-                                        <h3>@item.Soru</h3>
-                                    </article>
+                                        <article class="media">
+                                            @if ("Cevap1" == item.DogruCevap)
+                                            {
+                                                <a class="pull-left thumb p-thumb">
+                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="pull-left thumb p-thumb">
+                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
+                                                </a>
+                                            }
+                                            <div class="media-body">
+                                                <a href="/Content/Admin/#" class=" p-head">Cevap 1</a>
+                                                <p>@item.Cevap1 </p>
 
-                                    <article class="media">
-                                        @if ("Cevap1" == item.DogruCevap)
-                                        {
-                                            <a class="pull-left thumb p-thumb">
-                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a class="pull-left thumb p-thumb">
-                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
-                                            </a>
-                                        }
-                                        <div class="media-body">
-                                            <a href="/Content/Admin/#" class=" p-head">Cevap 1</a>
-                                            <p>@item.Cevap1 </p>
+                                            </div>
 
-                                        </div>
+                                        </article>
+                                        <article class="media">
+                                            @if ("Cevap2" == item.DogruCevap)
+                                            {
+                                                <a class="pull-left thumb p-thumb">
+                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="pull-left thumb p-thumb">
+                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
+                                                </a>
+                                            }
+                                            <div class="media-body">
+                                                <a href="/Content/Admin/#" class=" p-head">Cevap 2</a>
+                                                <p>@item.Cevap2 </p>
 
-                                    </article>
-                                    <article class="media">
-                                        @if ("Cevap2" == item.DogruCevap)
-                                        {
-                                            <a class="pull-left thumb p-thumb">
-                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a class="pull-left thumb p-thumb">
-                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
-                                            </a>
-                                        }
-                                        <div class="media-body">
-                                            <a href="/Content/Admin/#" class=" p-head">Cevap 2</a>
-                                            <p>@item.Cevap2 </p>
+                                            </div>
 
-                                        </div>
+                                        </article>
+                                        <article class="media">
+                                            @if ("Cevap3" == item.DogruCevap)
+                                            {
+                                                <a class="pull-left thumb p-thumb">
+                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="pull-left thumb p-thumb">
+                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
+                                                </a>
+                                            }
+                                            <div class="media-body">
+                                                <a href="/Content/Admin/#" class=" p-head">Cevap 3</a>
+                                                <p>@item.Cevap3 </p>
 
-                                    </article>
-                                    <article class="media">
-                                        @if ("Cevap3" == item.DogruCevap)
-                                        {
-                                            <a class="pull-left thumb p-thumb">
-                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a class="pull-left thumb p-thumb">
-                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
-                                            </a>
-                                        }
-                                        <div class="media-body">
-                                            <a href="/Content/Admin/#" class=" p-head">Cevap 3</a>
-                                            <p>@item.Cevap3 </p>
+                                            </div>
 
-                                        </div>
+                                        </article>
+                                        <article class="media">
+                                            @if ("Cevap4" == item.DogruCevap)
+                                            {
+                                                <a class="pull-left thumb p-thumb">
+                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="pull-left thumb p-thumb">
+                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
+                                                </a>
+                                            }
+                                            <div class="media-body">
+                                                <a href="/Content/Admin/#" class=" p-head">Cevap 4</a>
+                                                <p>@item.Cevap4 </p>
 
-                                    </article>
-                                    <article class="media">
-                                        @if ("Cevap4" == item.DogruCevap)
-                                        {
-                                            <a class="pull-left thumb p-thumb">
-                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a class="pull-left thumb p-thumb">
-                                                <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
-                                            </a>
-                                        }
-                                        <div class="media-body">
-                                            <a href="/Content/Admin/#" class=" p-head">Cevap 4</a>
-                                            <p>@item.Cevap4 </p>
+                                            </div>
 
-                                        </div>
-
-                                    </article>
+                                        </article>
 
 
 
 
 
 
+                                    </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <img src="@Model.Resim.Url" alt="img04">
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
