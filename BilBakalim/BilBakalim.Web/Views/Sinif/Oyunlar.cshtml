@@ -75,7 +75,7 @@
                                 <td>@item.SinifKategori.KategoriAdi</td>
 
                                 <td> @item.OlusturmaTarihi</td>
-                                <td>@item.GoruntulenmeSayisi</td>
+                                <td>@item.Sorular.Count()</td>
                                 <td> @item.GoruntulenmeSayisi</td>
                                 <td> @item.Kullanici.Adi @item.Kullanici.Soyadi</td>
 
@@ -83,7 +83,16 @@
 
                                     @*<a style="float:right;margin-right:5px;" href="/Admin/SinifKategoriSil/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Sil</a>*@
 
-                                    <a title="Sil" style="float:right;" class="btn btn-danger btn-xs btn-confirm" data-id="@item.ID"><i class="icon-trash"></i> Sil</a>
+                                    @if (item.Durum == true)
+                                    {
+
+                                        <a style="float:right;margin-right:5px;" href="/Sinif/SinifAktifEt/@item.ID" class="btn btn-success btn-xs"><i></i> Aktif</a>
+
+                                    }
+                                    else
+                                    {
+                                        <a style="float:right;margin-right:5px;" href="/Sinif/SinifAktifEt/@item.ID" class="btn btn-danger btn-xs"><i></i> Pasif</a>
+                                    }
                                     <a style="float:right;margin-right:5px;" href="/Sinif/SinifGuncelle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Düzenle</a>
                                     <a style="float:right;margin-right:5px;" href="/Sinif/SinifDetay/@item.ID" class="btn btn-info btn-xs"><i class="icon-search"></i> Göster</a>
                                     <a style="float:right;margin-right:5px;" href="/Sinif/Sorular/@item.ID" class="btn btn-warning btn-xs"><i class="icon-eye-open"></i> Sorular</a>
