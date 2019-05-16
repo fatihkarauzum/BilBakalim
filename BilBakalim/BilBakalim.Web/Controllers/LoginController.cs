@@ -8,6 +8,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 using BilBakalim.Data;
+using BilBakalim.Data.Model;
 using BilBakalim.Web.App_Classes;
 
 namespace BilBakalim.Web.Controllers
@@ -31,8 +32,9 @@ namespace BilBakalim.Web.Controllers
                 Kullanici kullanici = new Kullanici();
                 using (MD5 md5Hash = MD5.Create())
                 {
+                    
                     string hash = Functions.Encrypt(Sifre);
-                    kullanici = db.Kullanici.Include("Rol").Include("KullaniciResim").FirstOrDefault(x => x.Email == Mail && x.Sifre == hash);
+                    kullanici = db.Kullanici.Include("Rol").Include("KullaniciResim").Where(x => x.Email == Mail && x.Sifre == hash).FirstOrDefault();
                 }
 
                 if (kullanici == null)

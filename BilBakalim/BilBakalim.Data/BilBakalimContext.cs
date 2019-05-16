@@ -4,15 +4,19 @@
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using BilBakalim.Data.Model;
 
     public partial class BilBakalimContext : DbContext
     {
         public BilBakalimContext()
             : base("name=BilBakalimContext")
         {
-            this.Configuration.LazyLoadingEnabled = false;//lazy loading false
+            Database.SetInitializer(new FirstDatas());
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
+        public virtual DbSet<Anket> Anket { get; set; }
+        public virtual DbSet<AnketSoru> AnketSoru { get; set; }
         public virtual DbSet<Dİl> Dİl { get; set; }
         public virtual DbSet<Favori> Favori { get; set; }
         public virtual DbSet<Iletisim> Iletisim { get; set; }
@@ -27,7 +31,6 @@
         public virtual DbSet<Sinif> Sinif { get; set; }
         public virtual DbSet<SinifKategori> SinifKategori { get; set; }
         public virtual DbSet<Sorular> Sorular { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Takip> Takip { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

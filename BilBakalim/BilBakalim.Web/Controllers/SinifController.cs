@@ -36,23 +36,76 @@ namespace BilBakalim.Web.Controllers
         [HttpPost]
         public ActionResult SinifEkle(Sinif k,bool? gor, HttpPostedFileBase resimGelen)
         {
-            Sinif sinif = new Sinif();
+            //Sinif sinif = new Sinif();
 
-            sinif.Ad = k.Ad;
-            sinif.Aciklama = k.Aciklama;
-            sinif.Gorunurluk = k.Gorunurluk;
-            sinif.OlusturmaTarihi = DateTime.Now;
-            sinif.GoruntulenmeSayisi = 0;
-            sinif.LisanID = k.LisanID;
-            //resim ıd
-            sinif.KullaniciID = k.KullaniciID;
-            sinif.SinifKategoriID = k.SinifKategoriID;
-          
+            //sinif.Ad = k.Ad;
+            //sinif.Aciklama = k.Aciklama;
+            //sinif.Gorunurluk = k.Gorunurluk;
+            //sinif.OlusturmaTarihi = DateTime.Now;
+            //sinif.GoruntulenmeSayisi = 0;
+            //sinif.LisanID = k.LisanID;
+            ////resim ıd
+            //sinif.KullaniciID = k.KullaniciID;
+            //sinif.SinifKategoriID = k.SinifKategoriID;
+            //db.Sinif.Add(sinif);
 
-            db.Sinif.Add(sinif);
+
+
+            //db.SaveChanges();
+         
+
+            Resim o = new Resim();
+            ResimKategori l = new ResimKategori();
+
+            if (resimGelen == null)
+            {
+
+                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/SinifSoru/default.png").SingleOrDefault();
+                k.ResimID = b.ID;
+            }
+            else
+            {
+
+                string yeniResimAdi = "";
+                ResimIslemleri r = new ResimIslemleri();
+                yeniResimAdi = r.Ekle(resimGelen, "SinifSoru");
+                //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
+
+                if (yeniResimAdi == "uzanti")
+                {
+                    ViewBag.dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                    ViewBag.kategori = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");
+                    ViewData["Hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                    return View();
+                }
+                else if (yeniResimAdi == "boyut")
+                {
+                    ViewBag.dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                    ViewBag.kategori = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");
+                    ViewData["Hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
+                    return View();
+                }
+                else
+                {
+
+                    l = db.ResimKategori.Where(x => x.KategoriAdi == "SinifSoru").SingleOrDefault();
+                    o.ResimKategoriID = l.ID;
+                    o.Url = yeniResimAdi;
+                    k.GoruntulenmeSayisi = 0;
+                    db.Resim.Add(o);
+                    db.SaveChanges();
+
+                    k.ResimID = o.ID;
+
+                }
+            }
+
+            Kullanici c = (Kullanici)Session["Kullanici"];
+            k.OlusturmaTarihi = DateTime.Now;           
+            k.KullaniciID = c.ID;
+            db.Sinif.Add(k);
             db.SaveChanges();
-            return RedirectToAction("Index");
-
+            return RedirectToAction("Index", "Sinif");
         }
 
         public ActionResult SinifDetay(int id)
