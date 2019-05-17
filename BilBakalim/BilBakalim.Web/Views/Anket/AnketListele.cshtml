@@ -82,7 +82,36 @@
             <!--Content Side-->
             <!--Sidebar-->
             
+            <div class="col-lg-3 pull-left col-md-4 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                    <aside class="sidebar">
+                        <!-- Recent Articles -->
+                        <div class="sidebar-widget shop-widget boxed-widget links-widget wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <div class="widget-title">
+                                <h2 class="mini-heading">Oyun <span class="light-font">Kategorileri</span></h2>
+                            </div>
+                            <ul class="list">
+                                @foreach (SinifKategori item in ViewBag.Kategori)
+                                {
+                                <li>
+                                    <a href="@item.ID">
+                                        <div class="clearfix"><span class="pull-left">@item.KategoriAdi</span> <span class="pull-right">(@item.Sinif.Where(x=>x.Gorunurluk==true).Count())</span></div>
+                                    </a>
+                                </li>
+                                }
+                                
+                              
+                            </ul>
+                        </div>
+                        <!-- Price Filters -->
 
+
+
+
+
+
+
+                    </aside>
+                </div>
            
             <!--Sidebar-->
         </div>

@@ -540,6 +540,8 @@
     <Content Include="Views\Anket\AnketDuzenle.cshtml" />
     <Content Include="Views\Kullanici\AnketListele.cshtml" />
     <Content Include="Views\Kullanici\SinifDuzenle.cshtml" />
+    <Content Include="Views\Admin\AnketEkle.cshtml" />
+    <Content Include="Views\Admin\AnketSoruEkle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

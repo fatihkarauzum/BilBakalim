@@ -1252,6 +1252,68 @@ namespace BilBakalim.Web.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult AnketEkle()
+        {
+            var dil = db.Dİl.ToList();
+            ViewBag.dil = new SelectList(dil, "ID", "Adi");         
+
+            return View(db.Dİl.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult AnketEkle(Anket k, bool? gor, HttpPostedFileBase resimGelen)
+        {
+            Resim o = new Resim();
+            ResimKategori l = new ResimKategori();
+
+            if (resimGelen == null)
+            {
+
+                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/SinifSoru/default.png").SingleOrDefault();
+                k.ResimID = b.ID;
+            }
+            else
+            {
+
+                string yeniResimAdi = "";
+                ResimIslemleri r = new ResimIslemleri();
+                yeniResimAdi = r.Ekle(resimGelen, "Anket");
+
+                if (yeniResimAdi == "uzanti")
+                {
+                    ViewBag.dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                    ViewData["Hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                    return View();
+                }
+                else if (yeniResimAdi == "boyut")
+                {
+                    ViewBag.dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                    ViewData["Hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
+                    return View();
+                }
+                else
+                {
+
+                    l = db.ResimKategori.Where(x => x.KategoriAdi == "Anket").SingleOrDefault();
+                    o.ResimKategoriID = l.ID;
+                    o.Url = yeniResimAdi;
+                    k.GoruntulenmeSayisi = 0;
+                    db.Resim.Add(o);
+                    db.SaveChanges();
+
+                    k.ResimID = o.ID;
+
+                }
+            }
+
+            Kullanici c = (Kullanici)Session["Kullanici"];
+            k.OlusturmaTarihi = DateTime.Now;
+            k.KullaniciID = c.ID;
+            db.Anket.Add(k);
+            db.SaveChanges();
+            return RedirectToAction("AnketListele", "Admin");
+        }
 
         public ActionResult AnketSoru(int id)
         {
@@ -1260,6 +1322,62 @@ namespace BilBakalim.Web.Controllers
             return View(id);
         }
 
+        [HttpGet]
+        public ActionResult AnketSoruEkle(int id)
+        {
+            return View(db.Sinif.Where(x => x.ID == id).SingleOrDefault());
+        }
+
+        [HttpPost]
+        public ActionResult AnketSoruEkle(AnketSoru k,int id, bool? gor, HttpPostedFileBase resimGelen)
+        {
+            Resim o = new Resim();
+            ResimKategori l = new ResimKategori();
+
+            if (resimGelen == null)
+            {
+
+                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/Anket/default.png").SingleOrDefault();
+                k.MedyaID = b.ID;
+            }
+            else
+            {
+
+                string yeniResimAdi = "";
+                ResimIslemleri r = new ResimIslemleri();
+                yeniResimAdi = r.Ekle(resimGelen, "Anket");
+
+                if (yeniResimAdi == "uzanti")
+                {
+                    ViewBag.dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                    ViewData["Hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                    return View();
+                }
+                else if (yeniResimAdi == "boyut")
+                {
+                    ViewBag.dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                    ViewData["Hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
+                    return View();
+                }
+                else
+                {
+
+                    l = db.ResimKategori.Where(x => x.KategoriAdi == "Anket").SingleOrDefault();
+                    o.ResimKategoriID = l.ID;
+                    o.Url = yeniResimAdi;
+                    db.Resim.Add(o);
+                    db.SaveChanges();
+
+                    k.MedyaID = o.ID;
+
+                }
+            }
+
+            Kullanici c = (Kullanici)Session["Kullanici"];
+            db.AnketSoru.Add(k);
+            db.SaveChanges();
+            return RedirectToAction("AnketSoru", new { id = id });
+        }
         public ActionResult AnketSoruDetay(int id)
         {
             var soru = db.AnketSoru.Include("Anket").Include("Resim").Where(x => x.ID == id).SingleOrDefault();
@@ -1291,7 +1409,7 @@ namespace BilBakalim.Web.Controllers
             {
                 db.SaveChanges();
                 TempData["GenelMesaj"] = "Soru güncelleme işlemi başarılı bir şekilde tamamlanmıştır.";
-                return RedirectToAction("AnketSoruGuncelle", new { id = k.ID });
+                return RedirectToAction("AnketSoru", new { id = yeni.SinifID });
             }
             else
             {
@@ -1325,7 +1443,7 @@ namespace BilBakalim.Web.Controllers
                     yeni.MedyaID = o.ID;
 
                     db.SaveChanges();
-                    return RedirectToAction("AnketSoru", new { id = k.ID });
+                    return RedirectToAction("AnketSoru", new { id = yeni.SinifID });
 
                 }
             }
@@ -1335,10 +1453,11 @@ namespace BilBakalim.Web.Controllers
         public ActionResult AnketSoruSil(int id)
         {
             AnketSoru k = db.AnketSoru.Where(x => x.ID == id).SingleOrDefault();
+            int ? k2 = k.SinifID;
             db.AnketSoru.Remove(k);
             db.SaveChanges();
             TempData["GenelMesaj"] = "Silme İşlemi Başarılı.";
-            return RedirectToAction("AnketSoru", new { id = id });
+            return RedirectToAction("AnketSoru", new { id = k2 });
         }
 
 
