@@ -270,6 +270,50 @@ namespace BilBakalim.Web.Controllers
             //}
         }
 
+        public ActionResult KulAktifEt(int id)
+        {
+           Kullanici k = db.Kullanici.Where(x => x.ID == id).SingleOrDefault();
+            try
+            {
+
+                if (k != null)
+                {
+                    if (db.Kullanici.Where(x => x.Durum == true).Where(x => x.Durum == true).Count() > 0)
+                    {
+
+                        k.Durum = Convert.ToBoolean(k.Durum) ? false : true;
+                        if (k.Durum == true)
+                        {
+                            TempData["uyari"] = "Kullanıcı Aktif oldu";
+                        }
+                        else
+                        {
+                            TempData["uyari"] = "Kullanıcı Pasif oldu";
+                        }
+                        db.SaveChanges();
+
+                        return RedirectToAction("KullaniciListesi");
+                    }
+                    else
+                    {
+                        TempData["hata"] = "En az bir tane Kullanıcı olmali";
+                        return RedirectToAction("KullaniciListesi");
+                    }
+                }
+                else
+                {
+                    TempData["hata"] = id + "li Kullanıcı bulunamamıştır.";
+                    return RedirectToAction("KullaniciListesi");
+                }
+
+            }
+            catch
+            {
+                TempData["uyari"] = "Hata";
+                return RedirectToAction("KullaniciListesi");
+            }
+        }
+
         [HttpGet]
         public ActionResult RolListesi()
         {
