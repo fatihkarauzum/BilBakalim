@@ -342,6 +342,8 @@ namespace BilBakalim.Web.Controllers
         [HttpGet]
         public ActionResult KullaniciDetay(int id)
         {
+            //ViewBag.Siniflar = ctx.Database.SqlQuery<Sinif>("SELECT TOP 5 *FROM Sinif order by OlusturmaTarihi desc").Where(x => x.Gorunurluk == true).ToList();
+           
             Kullanici a = new Kullanici();
             HttpResponseMessage respone = Global.client.GetAsync("/api/KullaniciApi/KullaniciGetir/" + id.ToString()).Result;
             if (respone.IsSuccessStatusCode)

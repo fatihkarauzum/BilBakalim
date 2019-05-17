@@ -533,6 +533,7 @@
     <Content Include="Views\Admin\AnketSoruDetay.cshtml" />
     <Content Include="Views\Admin\AnketSoruGuncelle.cshtml" />
     <Content Include="Views\Anket\AnketListele.cshtml" />
+    <Content Include="Views\Home\EnCokOynanan.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

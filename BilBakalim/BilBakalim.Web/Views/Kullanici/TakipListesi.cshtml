@@ -4,6 +4,10 @@
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 @model List<Kullanici>
+@{
+    int deneme = 0;
+    int deneme2 = 0;
+ }
 <!DOCTYPE html>
 
 <head>
@@ -35,75 +39,82 @@
 
 @if (Model != null)
 {
-    
-        foreach (var item in Model)
-        {
-            <div class="col-lg-3">
-                <section class="panel">
-                    <div class="twt-feed blue-bg">
-                        <a href="/Kullanici/KullaniciDetay/@item.ID"><h1>@item.Adi @item.Soyadi</h1></a>
-                        <p>@item.Email</p>
-                        <a>
-                            <img alt="" src="@item.KullaniciResim.Url">
-                        </a>
-                    </div>
-                    <div class="weather-category twt-category">
-                        <ul>
-                            <li class="active">
-                                <h5>@item.Sinif.Where(x => x.KullaniciID == item.ID).Count()</h5>
-                                Oyun Sayısı
-                            </li>
 
-                            @foreach (Takip item2 in ViewBag.takip)
-                            {
+    foreach (var item in Model)
+    {
+        deneme = 0;
+        deneme2 = 0;
+        <div class="col-lg-3">
+            <section class="panel">
+                <div class="twt-feed blue-bg">
+                    <a href="/Kullanici/KullaniciDetay/@item.ID"><h1>@item.Adi @item.Soyadi</h1></a><br /><br />
+                    <p>@item.Email</p>
+                    <a>
+                        <img alt="" src="@item.KullaniciResim.Url">
+                    </a>
+                </div>
+                <div class="weather-category twt-category">
+                    <ul>
+                        <li class="active">
+                            <h5>@item.Sinif.Where(x => x.KullaniciID == item.ID).Count()</h5>
+                            Oyun Sayısı
+                        </li>
+                        <li>
+                            <h5>
+                                @foreach (Takip item2 in ViewBag.takip)
                                 {
 
-                                    if ( )
+                                    if (item2.TakipEdenID == item.ID)
                                     {
-                                        <li>
-                                            <h5>@item2.Kullanici1.Takip1.Where(x => x.TakipEdilenID == item.ID).Count()</h5>
-                                            Takip Edilen
-                                        </li>
-                                        <li>
-                                            <h5>
-                                                @*@item2.Kullanici1.Takip.Where(x => x.TakipEdenID == item.ID).Count(*@)
-                                                @item.Takip.Where(x => x.TakipEdenID == item2.TakipEdilenID).Count()
-                                            </h5>
-                                            Takipçi
-                                        </li>
+                                        deneme++;
                                     }
 
+                                }
+                                @deneme
+                            </h5>
+                            Takip Edilen
+                        </li>
+                        <li>
+                            <h5>
+                                @foreach (Takip item2 in ViewBag.takip)
+                                {
 
-
-
+                                    if (item2.TakipEdilenID == item.ID)
+                                    {
+                                        deneme2++;
+                                    }
 
                                 }
-
-
-                            }
-
-
-
-                        </ul>
-                    </div>
-                </section>
-            </div>
-            }
-        }
-    
+                                @deneme2
+                            </h5>
+                            Takip Edilen
+                        </li>
 
 
 
 
 
 
-    <script src="/Content/Admin/js/jquery.js"></script>
-    @*<script src="/Content/Admin/js/bootstrap.min.js"></script>*@
-    <script class="include" type="text/javascript" src="/Content/Admin/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="/Content/Admin/js/jquery.scrollTo.min.js"></script>
-    <script src="/Content/Admin/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="/Content/Admin/assets/jquery-knob/js/jquery.knob.js"></script>
-    <script src="/Content/Admin/js/respond.min.js"></script>
-    <!--common script for all pages-->
-    <script src="/Content/Admin/js/common-scripts.js"></script>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    }
+}
+
+
+
+
+
+
+
+<script src="/Content/Admin/js/jquery.js"></script>
+@*<script src="/Content/Admin/js/bootstrap.min.js"></script>*@
+<script class="include" type="text/javascript" src="/Content/Admin/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="/Content/Admin/js/jquery.scrollTo.min.js"></script>
+<script src="/Content/Admin/js/jquery.nicescroll.js" type="text/javascript"></script>
+<script src="/Content/Admin/assets/jquery-knob/js/jquery.knob.js"></script>
+<script src="/Content/Admin/js/respond.min.js"></script>
+<!--common script for all pages-->
+<script src="/Content/Admin/js/common-scripts.js"></script>
 
