@@ -39,7 +39,7 @@ block content
                 img(src='/OturumGiris/images/logo.png', width='70%') 
                 | BilBakalım
               .col-4.bottomText(style='font-size:25;float:right; text-align: right')
-                a.action-button.shadow.animate.blue#start(href="#") 
+                button.action-button.shadow.animate.green#start(disabled, style='float:right;') 
                   b Başlat
                 
             br
@@ -66,7 +66,7 @@ block content
     //- button#start(disabled) Start
     //- br
     div(ng-repeat="question in showQuestions")
-      div#Sorular(style="width: 1366px; height: 730px")
+      div#Sorular(style="width: 100vw; height: 100vh")
         .topQuestion
           .topLeftQuestion
             b PIN: {{ sinifId }}
@@ -146,7 +146,7 @@ block content
     //-     | D)&nbsp; {{ question.Cevap4 }}
     //-     br
 
-    div#middle(style="display:none; height: 730px")
+    div#middle(style="display:none; height: 100vh")
       .topSecim
         div#SecimSoru Türkiyenin Başkenti Neresidir ?
       .middleSecim

@@ -35,6 +35,7 @@ namespace BilBakalim.Web.Controllers
         }
         public PartialViewResult KategoriGetir()
         {
+            List<DateTime?> tarihler = ctx.Sinif.Where(x => x.ID == 10).Select(x => x.OlusturmaTarihi).ToList();
             ViewBag.Kategori=ctx.SinifKategori.ToList();
             return PartialView();
         }
@@ -61,7 +62,7 @@ namespace BilBakalim.Web.Controllers
         {
             ViewBag.Kategori = ctx.SinifKategori.Include("Sinif").ToList();
             // ViewBag.Oyunlar = ctx.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x => x.SinifKategoriID == id && x.Gorunurluk == true);
-            ViewBag.sonuc = ctx.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x => x.Ad == search).ToList();
+            ViewBag.sonuc = ctx.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x => x.Ad.Contains(search)).ToList();
             return View();
         }
     }
