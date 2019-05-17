@@ -455,6 +455,7 @@
     <Compile Include="App_Classes\_SecurityFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AnketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -525,6 +526,13 @@
     <Content Include="Views\Admin\KullaniciEkle.cshtml" />
     <Content Include="Views\Admin\KullaniciDetay.cshtml" />
     <Content Include="Views\Home\SinifAra.cshtml" />
+    <Content Include="Views\Admin\AnketListele.cshtml" />
+    <Content Include="Views\Admin\AnketDetay.cshtml" />
+    <Content Include="Views\Admin\AnketGuncelle.cshtml" />
+    <Content Include="Views\Admin\AnketSoru.cshtml" />
+    <Content Include="Views\Admin\AnketSoruDetay.cshtml" />
+    <Content Include="Views\Admin\AnketSoruGuncelle.cshtml" />
+    <Content Include="Views\Anket\AnketListele.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -535,6 +543,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Login_v4\" />
+    <Folder Include="Content\Resimler\Anket\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BilBakalim.Api\BilBakalim.Api.csproj">

@@ -1,0 +1,188 @@
+﻿
+@{
+    ViewBag.Title = "Oyunlar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "Oyunlar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using BilBakalim.Data
+
+@model List<Anket>
+@{
+    Kullanici k = (Kullanici)Session["Kullanici"];
+}
+
+
+<link href="/Content/Admin/assets/advanced-datatable/media/css/demo_page.css" rel="stylesheet" />
+<link href="/Content/Admin/assets/advanced-datatable/media/css/demo_table.css" rel="stylesheet" />
+
+
+<div class="row">
+    <div class="col-lg-12">
+        @if (TempData["Uyari"] != null)
+        {
+            <div class="alert alert-success">
+                <p>@TempData["Uyari"]</p>
+            </div>
+        }
+        @if (TempData["Hata"] != null)
+        {
+            <div class="alert alert-danger">
+                <p>@TempData["Hata"]</p>
+            </div>
+        }
+
+        @if (TempData["GenelMesaj"] != null)
+        {
+            <div class="alert alert-success">
+                <p>@TempData["GenelMesaj"]</p>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Anket Listesi
+                <a href="/Sinif/SinifEkle" class="btn btn-success" style="float: right"><i class="icon-plus"></i> Yeni Anket Ekle</a>
+            </header><div style="padding-left:20px;padding-right:20px;padding-bottom:50px">
+                <div class="adv-table">
+                    <table class="display table table-bordered table-striped" id="example">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Kategori Adı</th>
+                                <th>Oluşturma Tarihi</th>
+                                <th>Soru S.</th>
+                                <th>Görüntelenme S.</th>
+                                <th>Kullanıcı Adı</th>
+                               
+                                <th style="text-align:center;"> İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr id="@item.ID">
+                                <td>@item.ID</td>
+
+                                <td>
+                                    @item.Ad
+                                </td>
+                                <td> @item.OlusturmaTarihi</td>
+                                <td>@item.AnketSoru.Count()</td>
+                                <td> @item.GoruntulenmeSayisi</td>
+                                <td> @item.Kullanici.Adi @item.Kullanici.Soyadi</td>
+                               
+
+                                <td>
+
+                                    @*<a style="float:right;margin-right:5px;" href="/Admin/SinifKategoriSil/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Sil</a>*@
+
+                                    @if (item.Durum == true)
+                                    {
+
+                                        <a style="float:right;margin-right:5px;" href="/Admin/AnketAktif/@item.ID" class="btn btn-success btn-xs"><i></i> Aktif</a>
+
+                                    }
+                                    else
+                                    {
+                                        <a style="float:right;margin-right:5px;" href="/Admin/AnketAktif/@item.ID" class="btn btn-danger btn-xs"><i></i> Pasif</a>
+                                    }
+                                    <a style="float:right;margin-right:5px;" href="/Admin/AnketGuncelle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> Düzenle</a>
+                                    <a style="float:right;margin-right:5px;" href="/Admin/AnketDetay/@item.ID" class="btn btn-info btn-xs"><i class="icon-search"></i> Göster</a>
+                                    <a style="float:right;margin-right:5px;" href="/Admin/AnketSoru/@item.ID" class="btn btn-warning btn-xs"><i class="icon-eye-open"></i> Sorular</a>
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Bu Kullanıcıyı Silmek İstediğinizden Emin misiniz ?</h4>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-danger btnnn" id="modal-btn-si">Sil</a>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/Content/Admin/js/jquery.js"></script>
+<script src="/Content/Admin/js/jquery-1.8.3.min.js"></script>
+
+<script>
+    var id;
+    var modalConfirm = function (callback) {
+        $(".btn-confirm").on("click", function () {
+            id = $(this).attr("data-id");
+            $(".btnnn").attr('href', function () {
+                return "/Sinif/Oyunlar/" + id;
+            })
+            $("#mi-modal").modal('show');
+        });
+
+        $("#modal-btn-si").on("click", function () {
+            callback(true);
+            $("#mi-modal").modal('hide');
+        });
+
+        $("#modal-btn-no").on("click", function () {
+            callback(false);
+            $("#mi-modal").modal('hide');
+            return e.preventDefault()
+        });
+    };
+
+    modalConfirm(function (confirm) {
+
+    });
+</script>
+
+@section footer{
+
+    <script type="text/javascript" language="javascript" src="/Content/Admin/assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
+
+
+
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            $('#example').dataTable({
+                "aaSorting": [[4, "desc"]],
+                "oLanguage": {
+                    "sSearch": "Ara:",
+                    "sLengthMenu": "Getir _MENU_ kayıt",
+                    "sInfo": " _START_ den _END_ kadar Toplam _TOTAL_ madde gösterildi",
+                    "sEmptyTable": "Veri Bulunanadı",
+                    "oPaginate": {
+                        "sNext": "ileri",
+                        "sPrevious": "Geri"
+                    }
+                },
+
+            });
+        });
+    </script>
+}

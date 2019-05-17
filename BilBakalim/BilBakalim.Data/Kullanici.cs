@@ -12,6 +12,7 @@ namespace BilBakalim.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Kullanici()
         {
+            Anket = new HashSet<Anket>();
             Favori = new HashSet<Favori>();
             Rapor = new HashSet<Rapor>();
             Sinif = new HashSet<Sinif>();
@@ -50,6 +51,9 @@ namespace BilBakalim.Data
 
         [Column(TypeName = "date")]
         public DateTime? OlusturmaTarihi { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Anket> Anket { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favori> Favori { get; set; }

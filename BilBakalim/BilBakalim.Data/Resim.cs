@@ -12,6 +12,8 @@ namespace BilBakalim.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Resim()
         {
+            Anket = new HashSet<Anket>();
+            AnketSoru = new HashSet<AnketSoru>();
             Sinif = new HashSet<Sinif>();
             SinifKategori = new HashSet<SinifKategori>();
         }
@@ -22,6 +24,12 @@ namespace BilBakalim.Data
         public string Url { get; set; }
 
         public int? ResimKategoriID { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Anket> Anket { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AnketSoru> AnketSoru { get; set; }
 
         public virtual ResimKategori ResimKategori { get; set; }
 

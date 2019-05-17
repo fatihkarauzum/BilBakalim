@@ -4,18 +4,19 @@
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-    using BilBakalim.Data.Model;
 
     public partial class BilBakalimContext : DbContext
     {
         public BilBakalimContext()
             : base("name=BilBakalimContext")
         {
-            Database.SetInitializer(new FirstDatas());
             this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
+
         }
 
         public virtual DbSet<Anket> Anket { get; set; }
+        public virtual DbSet<AnketOturum> AnketOturum { get; set; }
         public virtual DbSet<AnketSoru> AnketSoru { get; set; }
         public virtual DbSet<Dİl> Dİl { get; set; }
         public virtual DbSet<Favori> Favori { get; set; }
@@ -35,6 +36,21 @@
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Anket>()
+                .HasMany(e => e.AnketSoru)
+                .WithOptional(e => e.Anket)
+                .HasForeignKey(e => e.SinifID);
+
+            modelBuilder.Entity<AnketSoru>()
+                .HasMany(e => e.AnketOturum)
+                .WithOptional(e => e.AnketSoru)
+                .HasForeignKey(e => e.SoruID);
+
+            modelBuilder.Entity<Dİl>()
+                .HasMany(e => e.Anket)
+                .WithOptional(e => e.Dİl)
+                .HasForeignKey(e => e.LisanID);
+
             modelBuilder.Entity<Dİl>()
                 .HasMany(e => e.Sinif)
                 .WithOptional(e => e.Dİl)
@@ -59,6 +75,11 @@
                 .HasMany(e => e.Menu1)
                 .WithOptional(e => e.Menu2)
                 .HasForeignKey(e => e.ParentMenuID);
+
+            modelBuilder.Entity<Resim>()
+                .HasMany(e => e.AnketSoru)
+                .WithOptional(e => e.Resim)
+                .HasForeignKey(e => e.MedyaID);
 
             modelBuilder.Entity<Sinif>()
                 .HasMany(e => e.Rapor)

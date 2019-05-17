@@ -35,6 +35,14 @@ namespace BilBakalim.Data
 
         public int? KullaniciID { get; set; }
 
+        public bool? Durum { get; set; }
+
+        public virtual Dİl Dİl { get; set; }
+
+        public virtual Kullanici Kullanici { get; set; }
+
+        public virtual Resim Resim { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnketSoru> AnketSoru { get; set; }
     }

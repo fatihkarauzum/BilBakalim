@@ -9,6 +9,12 @@ namespace BilBakalim.Data
     [Table("AnketSoru")]
     public partial class AnketSoru
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AnketSoru()
+        {
+            AnketOturum = new HashSet<AnketOturum>();
+        }
+
         public int ID { get; set; }
 
         [StringLength(500)]
@@ -28,8 +34,15 @@ namespace BilBakalim.Data
         [StringLength(500)]
         public string Cevap4 { get; set; }
 
-        public int? AnketID { get; set; }
+        public int? SinifID { get; set; }
+
+        public int? Sure { get; set; }
 
         public virtual Anket Anket { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AnketOturum> AnketOturum { get; set; }
+
+        public virtual Resim Resim { get; set; }
     }
 }
