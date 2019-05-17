@@ -534,6 +534,12 @@
     <Content Include="Views\Admin\AnketSoruGuncelle.cshtml" />
     <Content Include="Views\Anket\AnketListele.cshtml" />
     <Content Include="Views\Home\EnCokOynanan.cshtml" />
+    <Content Include="Views\Anket\AnketEkle.cshtml" />
+    <Content Include="Views\Anket\AnketSoruEkle.cshtml" />
+    <Content Include="Views\Anket\AnketDetay.cshtml" />
+    <Content Include="Views\Anket\AnketDuzenle.cshtml" />
+    <Content Include="Views\Kullanici\AnketListele.cshtml" />
+    <Content Include="Views\Kullanici\SinifDuzenle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

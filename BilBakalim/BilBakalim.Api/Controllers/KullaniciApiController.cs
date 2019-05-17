@@ -35,7 +35,7 @@ namespace BilBakalim.Api.Controllers
         [HttpGet]
         public IHttpActionResult GetKullanici(int id)
         {
-            Kullanici k = db.Kullanici.Include("Sinif").Include("Favori").Include("Takip").Include("KullaniciResim").Where(x => x.ID == id).FirstOrDefault();
+            Kullanici k = db.Kullanici.Include("Sinif").Include("Favori").Include("Takip").Include("KullaniciResim").Include("Anket").Where(x => x.ID == id).FirstOrDefault();
 
             if (k != null)
             {

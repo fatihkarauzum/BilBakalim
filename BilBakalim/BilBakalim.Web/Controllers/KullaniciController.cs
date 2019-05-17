@@ -203,8 +203,7 @@ namespace BilBakalim.Web.Controllers
                   
                     l= db.ResimKategori.Where(x => x.KategoriAdi == "SinifSoru").SingleOrDefault();
                     o.ResimKategoriID = l.ID;                  
-                    o.Url = yeniResimAdi;
-                    k.GoruntulenmeSayisi = 0;
+                    o.Url = yeniResimAdi;                  
                     db.Resim.Add(o);
                     db.SaveChanges();
 
@@ -213,7 +212,7 @@ namespace BilBakalim.Web.Controllers
 
                 }
             }
-
+            k.GoruntulenmeSayisi = 0;
             Kullanici c = (Kullanici)Session["Kullanici"];
             k.OlusturmaTarihi = DateTime.Now;
             if (gor != null)
@@ -225,6 +224,7 @@ namespace BilBakalim.Web.Controllers
                 k.Gorunurluk = false;
             }
             k.KullaniciID = c.ID;
+            k.Durum = true;
             db.Sinif.Add(k);
             db.SaveChanges();
 
@@ -671,7 +671,81 @@ namespace BilBakalim.Web.Controllers
             }
         }
 
+        public ActionResult AnketListele(int id)
+        {
+            List<Anket> liste = db.Anket.Include("Resim").Include("AnketSoru").Where(x => x.KullaniciID == id).ToList();
+            return View(liste);
+        }
 
+        public ActionResult SinifDuzenle(int id)
+        {
+            var dil = db.Dİl.ToList();
+            ViewBag.dil = new SelectList(dil, "ID", "Adi");
+            var kategori = db.SinifKategori.ToList();
+            ViewBag.kategori = new SelectList(kategori, "ID", "KategoriAdi");
+            return View(db.Sinif.Include("SinifKategori").Include("Resim").Where(x => x.ID == id).SingleOrDefault());
+        }
+
+        [HttpPost]
+        public ActionResult SinifDuzenle(Sinif s, HttpPostedFileBase resimGelen)
+        {
+            Sinif yeni = db.Sinif.Where(x => x.ID == s.ID).FirstOrDefault();
+            yeni.Ad = s.Ad;
+            yeni.Aciklama = s.Aciklama;
+            yeni.Gorunurluk = s.Gorunurluk;
+            yeni.LisanID = s.LisanID;
+            //resim işlemi
+            yeni.SinifKategoriID = s.SinifKategoriID;
+            Resim o = new Resim();
+            ResimKategori l = new ResimKategori();
+
+            if (resimGelen == null)
+            {
+                db.SaveChanges();
+                TempData["GenelMesaj"] = "Sınıf güncelleme işlemi başarılı bir şekilde tamamlanmıştır.";
+                return RedirectToAction("SinifDuzenle", s.ID);
+            }
+            else
+            {
+
+                string yeniResimAdi = "";
+                ResimIslemleri r = new ResimIslemleri();
+                yeniResimAdi = r.Ekle(resimGelen, "SinifSoru");
+                //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
+
+                if (yeniResimAdi == "uzanti")
+                {
+                    ViewBag.dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                    ViewBag.kategori = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");
+                    ViewData["Hata"] = "Lütfen .png veya .jpg uzantılı dosya giriniz.";
+                    return View();
+                }
+                else if (yeniResimAdi == "boyut")
+                {
+                    ViewBag.dil = new SelectList(db.Dİl.ToList(), "ID", "Adi");
+                    ViewBag.kategori = new SelectList(db.SinifKategori.ToList(), "ID", "KategoriAdi");
+                    ViewData["Hata"] = "En fazla 1MB boyutunda dosya girebilirsiniz.";
+                    return View();
+                }
+                else
+                {
+                    new ResimIslemleri().Sil(resimGelen.ToString(), "SinifSoru");
+
+                    l = db.ResimKategori.Where(x => x.KategoriAdi == "SinifSoru").SingleOrDefault();
+                    o.ResimKategoriID = l.ID;
+                    o.Url = yeniResimAdi;
+                    db.Resim.Add(o);
+                    db.SaveChanges();
+                    yeni.ResimID = o.ID;
+
+                    db.SaveChanges();
+                    return RedirectToAction("SinifDuzenle", s.ID);
+
+                }
+            }
+
+
+        }
 
     }
 

@@ -3,7 +3,6 @@
     ViewBag.Title = "AnketListele";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
-
 @using BilBakalim.Data
 @model List<Anket>
 
@@ -15,8 +14,6 @@
     <link href="/Content/Home/assets/plugins/switcher/switcher.css" rel="stylesheet">
     <link href="/Content/Home/assets/css/color.css" rel="stylesheet" id="colors">
 }
-
-
 
 
 <div class="sidebar-page-container shop-page">
@@ -31,38 +28,42 @@
                 <!--//=======Product Section Start=======//-->
                 <div class="wa-product-main">
                     <div class="row">
-                        @foreach (Anket item in Model)
-                        {
-                            <!--Product start-->
-                            <div class="col-lg-4  col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                                <div class="wa-product">
-                                    <div class="wa-product-thumbnail wa-item">
-                                        <img src="@item.Resim.Url" alt="">
-                                        <div class="caption">
-                                            <div class="caption-text">
-                                                @item.AnketSoru.Count() Soru
+
+                        
+                                @foreach (Anket item in Model)
+                                {
+                                    <!--Product start-->
+                                    <div class="col-lg-4  col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                                        <div class="wa-product">
+                                            <div class="wa-product-thumbnail wa-item">
+                                                <img src="@item.Resim.Url" alt="">
+                                                <div class="caption">
+                                                    <div class="caption-text">
+                                                        @item.AnketSoru.Count() Soru
+                                                        <div class="clear"></div>
+                                                        <a href="/Anket/AnketDetay/@item.ID" class="theme-button marT10">Oyna</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="wa-product-caption">
+                                                <h2><a href="/Anket/AnketDetay/@item.ID">@item.Ad</a></h2>
                                                 <div class="clear"></div>
-                                                <a href="/Anket/AnketDetay/@item.ID" class="theme-button marT10">Oyna</a>
+                                                <div class="lower-content">
+                                                    <ul class="blog-meta-info">
+                                                        <li class="author"><a href=""><i class="fa fa-eye"></i>@item.GoruntulenmeSayisi</a></li>
+                                                        <li class="comment"><a href=""><i class="fa fa-calendar"></i> @item.OlusturmaTarihi.Value.Day.@item.OlusturmaTarihi.Value.Month.@item.OlusturmaTarihi.Value.Year</a></li>
+
+                                                    </ul>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wa-product-caption">
-                                        <h2><a href="product-detail.html">@item.Ad</a></h2>
-                                        <div class="clear"></div>
-                                        <div class="lower-content">
-                                            <ul class="blog-meta-info">
-                                                <li class="author"><a href=""><i class="fa fa-eye"></i>@item.GoruntulenmeSayisi</a></li>
-                                                <li class="comment"><a href=""><i class="fa fa-calendar"></i> @item.OlusturmaTarihi.Value.Day.@item.OlusturmaTarihi.Value.Month.@item.OlusturmaTarihi.Value.Year</a></li>
+                                    <!--Product end-->
+                                }
 
-                                                @*<li class="comments_nr"><a href=""><i class="fa fa-comments"> @item.Favori.Count()</i></a></li>*@
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Product end-->
-                        }
+                            
+                        
 
 
                     </div>
@@ -81,9 +82,10 @@
             </div>
             <!--Content Side-->
             <!--Sidebar-->
-            
+            @*@{ if (ViewBag.SinifKat != null)
+                {*@
 
-           
+            
             <!--Sidebar-->
         </div>
     </div>
@@ -104,4 +106,3 @@
     <script src="/Content/Home/assets/plugins/switcher/switcher.js"></script>
     <script src="/Content/Home/assets/js/main.js"></script>
 }
-

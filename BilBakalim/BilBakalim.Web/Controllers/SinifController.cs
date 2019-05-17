@@ -25,7 +25,7 @@ namespace BilBakalim.Web.Controllers
             List<Sinif> sinif = db.Sinif.Include("SinifKategori").Include("Kullanici").Where(x => x.SinifKategoriID == id).ToList();
             List<Sorular> soru= db.Sorular.ToList();
             
-            return View(db.Sinif.Include("SinifKategori").Include("Kullanici").Where(x => x.SinifKategoriID == id).ToList());
+            return View(db.Sinif.Include("SinifKategori").Include("Kullanici").Where(x => x.SinifKategoriID == id || x.Durum==true).ToList());
 
         }
 
@@ -130,6 +130,7 @@ namespace BilBakalim.Web.Controllers
             ViewBag.kategori = new SelectList(kategori, "ID", "KategoriAdi");
             return View(db.Sinif.Include("SinifKategori").Include("Resim").Where(x => x.ID == id).SingleOrDefault());
         }
+
         [HttpPost]
         public ActionResult SinifGuncelle(Sinif s,HttpPostedFileBase resimGelen)
         {      
@@ -146,7 +147,7 @@ namespace BilBakalim.Web.Controllers
             if (resimGelen == null)
             {
                 db.SaveChanges();
-               TempData["GenelMesaj"] = "Kullanıcı güncelleme işlemi başarılı bir şekilde tamamlanmıştır.";
+               TempData["GenelMesaj"] = "Sınıf güncelleme işlemi başarılı bir şekilde tamamlanmıştır.";
                return RedirectToAction("SinifGuncelle",s.ID);
             }
             else

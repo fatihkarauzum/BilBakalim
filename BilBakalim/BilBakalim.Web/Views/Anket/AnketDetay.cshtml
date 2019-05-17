@@ -1,11 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "SinifAyrinti";
+    ViewBag.Title = "AnketDetay";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+
 @using BilBakalim.Data
-@model Sinif
+@model Anket
 @{ Kullanici c = (Kullanici)Session["Kullanici"]; }
+
 <link href="/Content/Admin/assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="/Content/Admin/css/gallery.css" />
 
@@ -16,17 +18,12 @@
                 <figure>
                     <img style="height:400px" src="@Model.Resim.Url" alt="img04">
                     <figcaption>
-
                         <h3>@Model.Ad</h3>
 
                         <a style="margin-right:15%" class="fancybox" rel="group" href=""> Oyna </a>
-
-                        @if (c != null)
+                        @if (Model.KullaniciID == c.ID)
                         {
-                            if (Model.Kullanici.ID == c.ID)
-                            {
-                                <a class="fancybox" rel="group" href="/Kullanici/SinifDuzenle/@Model.ID"> Düzenle </a>
-                            }
+                            <a class="fancybox" rel="group" href="/Anket/AnketDuzenle/@Model.ID"> Düzenle </a>
                         }
 
                     </figcaption>
@@ -37,7 +34,7 @@
         <div style="margin-top:2%">
             <section class="panel">
                 <header class="panel-heading">
-                    Sınıf Özellikleri
+                    Anket Özellikleri
                 </header>
 
                 <div class="panel-body profile-activity">
@@ -50,7 +47,7 @@
                             <div style="width:100%" class="panel">
                                 <div class="panel-body">
                                     <div class="arrow"></div>
-                                    <h4>Emre Kaymak</h4>
+                                    <h4>@Model.Kullanici.Adi</h4>
                                     <p>@Model.Aciklama</p>
                                 </div>
                             </div>
@@ -67,7 +64,7 @@
                                 <div class="panel-body">
                                     <div class="arrow"></div>
                                     <p> <i class="icon-eye-open"></i> Görüntülenme Sayısı : @Model.GoruntulenmeSayisi</p><br />
-                                    <p><i class="icon-film"></i>Görünürlük : @Model.Gorunurluk</p>
+
                                 </div>
                             </div>
                         </div>
@@ -84,7 +81,7 @@
         <div id="accordion" class="panel-group m-bot20">
             @{
                 int sayi = 0;
-                foreach (Sorular item in ViewBag.soru)
+                foreach (AnketSoru item in ViewBag.soru)
                 {
                     sayi++;
                     <div class="panel panel-default">
@@ -102,18 +99,7 @@
                                     <div class="best-seller">
 
                                         <article class="media">
-                                            @if ("Cevap1" == item.DogruCevap)
-                                            {
-                                                <a class="pull-left thumb p-thumb">
-                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <a class="pull-left thumb p-thumb">
-                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
-                                                </a>
-                                            }
+
                                             <div class="media-body">
                                                 <a href="/Content/Admin/#" class=" p-head">Cevap 1</a>
                                                 <p>@item.Cevap1 </p>
@@ -122,18 +108,7 @@
 
                                         </article>
                                         <article class="media">
-                                            @if ("Cevap2" == item.DogruCevap)
-                                            {
-                                                <a class="pull-left thumb p-thumb">
-                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <a class="pull-left thumb p-thumb">
-                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
-                                                </a>
-                                            }
+
                                             <div class="media-body">
                                                 <a href="/Content/Admin/#" class=" p-head">Cevap 2</a>
                                                 <p>@item.Cevap2 </p>
@@ -142,18 +117,7 @@
 
                                         </article>
                                         <article class="media">
-                                            @if ("Cevap3" == item.DogruCevap)
-                                            {
-                                                <a class="pull-left thumb p-thumb">
-                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <a class="pull-left thumb p-thumb">
-                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
-                                                </a>
-                                            }
+
                                             <div class="media-body">
                                                 <a href="/Content/Admin/#" class=" p-head">Cevap 3</a>
                                                 <p>@item.Cevap3 </p>
@@ -162,18 +126,7 @@
 
                                         </article>
                                         <article class="media">
-                                            @if ("Cevap4" == item.DogruCevap)
-                                            {
-                                                <a class="pull-left thumb p-thumb">
-                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/a.jpg">
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <a class="pull-left thumb p-thumb">
-                                                    <img style="width:50%;height:50%;margin-left:25%;margin-top:25%" src="/Content/images/b.jpg">
-                                                </a>
-                                            }
+
                                             <div class="media-body">
                                                 <a href="/Content/Admin/#" class=" p-head">Cevap 4</a>
                                                 <p>@item.Cevap4 </p>
@@ -181,11 +134,6 @@
                                             </div>
 
                                         </article>
-
-
-
-
-
 
                                     </div>
                                 </div>
@@ -211,5 +159,4 @@
 <script src="/Content/Admin/js/jquery.nicescroll.js" type="text/javascript"></script>
 
 <script src="/Content/Admin/js/common-scripts.js"></script>
-
 
