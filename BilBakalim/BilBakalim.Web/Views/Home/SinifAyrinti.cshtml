@@ -17,7 +17,7 @@
                     <img  style="height:400px"src="@Model.Resim.Url" alt="img04">
                     <figcaption>
                         <h3>@Model.Ad</h3>
-                        <a class="fancybox" rel="group" href=""> Oyna </a>
+                        <a class="fancybox" rel="group" target="_blank" href="http://localhost:3000/register/@Model.ID"> Oyna </a>
                     </figcaption>
                 </figure>
             </li>
@@ -52,7 +52,7 @@
                             <i class=" icon-gamepad"></i>
                         </span>
                         <div class="activity-desk">
-                            <div class="panel">
+                            <div style="width:100%" class="panel">
                                 <div class="panel-body">
                                     <div class="arrow"></div>
                                     <p> <i class="icon-eye-open"></i> Görüntülenme Sayısı : @Model.GoruntulenmeSayisi</p><br />

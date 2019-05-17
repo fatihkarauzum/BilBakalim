@@ -18,6 +18,7 @@ namespace BilBakalim.Web.Controllers
 
         public ActionResult AnketListele()
         {
+            ViewBag.Kategori = db.SinifKategori.Include("Sinif").ToList();
             return View(db.Anket.Include("Resim").Include("Kullanici").Include("AnketSoru").ToList());
         }
     }
