@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "AnketSoruGuncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using BilBakalim.Data
+@model AnketSoru
+
+<div class="row">
+    <div class="col-lg-12">
+        @if (TempData["Uyari"] != null)
+        {
+            <div class="alert alert-success">
+                <p>@TempData["Uyari"]</p>
+            </div>
+        }
+        @if (TempData["Hata"] != null)
+        {
+            <div class="alert alert-danger">
+                <p>@TempData["Hata"]</p>
+            </div>
+        }
+
+        @if (TempData["GenelMesaj"] != null)
+        {
+            <div class="alert alert-success">
+                <p>@TempData["GenelMesaj"]</p>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                <div class="col-lg-12">
+                    <b> Soru Detay</b>
+                </div>
+            </header>
+            <div class="panel-body">
+               
+                    @using (Html.BeginForm("AnketSoruGuncelle", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.Hidden("ID",Model.ID)
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-lg-12">
+                                    <div class="form-group alt">
+                                    </div>
+                                    <div style="display:none" class="form-group">
+                                        <input type="number" class="form-control" value="@Model.ID" name="ID" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Soru  </label>&nbsp;<span style="color: red;">*</span>
+                                        <input type="text" class="form-control" placeholder="Soruyu Giriniz..." value="@Model.Soru" name="Soru" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Cevap 1 </label>&nbsp;<span style="color: red;">*</span>
+                                        <input type="text" class="form-control" placeholder="1. Cevabı Giriniz..." value="@Model.Cevap1" name="Cevap1" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Cevap 2 </label>&nbsp;<span style="color: red;">*</span>
+                                        <input type="text" class="form-control" placeholder="2. Cevabı Giriniz..." value="@Model.Cevap2" name="Cevap2" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Cevap 3 </label>&nbsp;<span style="color: red;">*</span>
+                                        <input type="text" class="form-control" placeholder="3. Cevabı Giriniz..." value="@Model.Cevap3" name="Cevap3" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Cevap 4 </label>&nbsp;<span style="color: red;">*</span>
+                                        <input type="text" class="form-control" placeholder="4. Cevabı Giriniz..." value="@Model.Cevap4" name="Cevap4" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Süre (sn)</label>&nbsp;<span style="color: red;">*</span>
+                                        <input type="number" class="form-control" placeholder="Süreyi Giriniz..." value="@Model.Sure" name="Sure" required>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="entry-thumbnail"><img width="120" height="120" src="@Model.Resim.Url" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="@Model.Resim.Url 770w, @Model.Resim.Url 230w, @Model.Resim.Url 640w" sizes="(max-width: 120px) 100vw, 80px"></div>
+
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Resim</label>
+                                            <input type="file" name="resimGelen" class="form-control" placeholder="Resim giriniz.">
+                                        </div>
+                                    </div>
+
+
+
+                                    <button type="submit" id="button" class="btn btn-info">Kaydet</button>
+                                    <a href="/Admin/AnketSoru/@Model.SinifID" class="btn btn-danger">İptal</a>
+                                    <button type="reset" class="btn btn-default">Temizle</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    }
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+
+@section script{
+    <script>
+        var id;
+        $("#ana").change(function () {
+            id = this.value;
+            $.ajax({
+                url: '/Sinif/SoruEkle/' + id,
+                type: 'GET',
+                cache: false,
+                success: function (data) {
+                    $('.alt').html(data);
+                },
+                error: function () {
+                    $('.alt').html("");
+                }
+            });
+        });
+    </script>
+
+}

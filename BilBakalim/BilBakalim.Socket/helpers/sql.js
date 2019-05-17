@@ -1,7 +1,7 @@
 const sql = require("mssql");
 
 const config = {
-    user: 'fatih',
+    user: 'emre',
     password: '123456',
     server: 'localhost', 
     database: 'BilBakalimDB' 

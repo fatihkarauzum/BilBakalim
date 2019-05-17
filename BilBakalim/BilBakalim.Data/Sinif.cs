@@ -42,6 +42,8 @@ namespace BilBakalim.Data
 
         public int? SinifKategoriID { get; set; }
 
+        public bool? Durum { get; set; }
+
         public virtual Dİl Dİl { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

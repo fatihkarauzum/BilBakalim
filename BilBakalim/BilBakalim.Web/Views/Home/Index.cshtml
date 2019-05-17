@@ -108,7 +108,7 @@
                             </div>
 
                             <div class="clear"></div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
             <!--Product end-->
 
             <div class="clear"></div>
-            <a href="" class="theme-button marT10 marT30 hover-color">view more</a>
+            <a href="/Home/EnCokOynanan" class="theme-button marT10 marT30 hover-color">En Çok Oynanan Sınıflar</a>
 
         </div>
 
@@ -126,140 +126,10 @@
 
 
     
-    <div class="container">
-        <div class="col-md-6">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="centered-title">
-                            <h2>En Çok <span class="light-font">Oynanan Oyunlar</span></h2>
-                            <div class="clear"></div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row marT60" id="MixItUp1">
-                    <div class="col-md-6">
-                        <!--Product start-->
-                        @foreach (Sinif item in ViewBag.Siniflar)
-                        {
-                            <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1 mix women" style="display: inline-block;" data-bound="">
-                                <div class="wa-product">
-                                    <div class="wa-product-thumbnail wa-item">
-                                        <img src="@item.Resim.Url?width=200&height=200&mode=crop" width="100%" height="80%" alt="">
-
-                                        <div class="caption">
-                                            <div class="caption-text">
-                                                @item.Sorular.Count() Soru
-                                                <div class="clear"></div>
-                                                <a href="/Content/Home/product-detail.html" class="theme-button marT10"><i style="font-size:18px" class="fa">&#xf04b;</i> Oyna</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="wa-product-caption">
-                                        <h2>
-                                            <a href="/Content/Home/product-detail.html">@item.Ad </a>
-                                        </h2>
-                                        <div class="clear"></div>
-                                        <div class="lower-content">
-                                            <ul class="blog-meta-info">
-                                                <li class="author"><a href=""><i class="fa fa-eye"></i>@item.GoruntulenmeSayisi</a></li>
-                                                <li class="comment"><a href=""><i class="fa fa-calendar"></i> @item.OlusturmaTarihi.Value.Day.@item.OlusturmaTarihi.Value.Month.@item.OlusturmaTarihi.Value.Year</a></li>
-
-                                                <li class="comments_nr"><a><i data-id="@item.ID" class="fa fa-comments deneme"> @item.Favori.Count()</i></a></li>
-                                            </ul>
-
-                                        </div>
-
-                                        <div class="clear"></div>
-                                        <
-                                    </div>
-                                </div>
-                            </div>
-                        }
-
-                        <!--Product end-->
-
-                        <div class="clear"></div>
-                        <a href="" class="theme-button marT10 marT30 hover-color">view more</a>
-                    </div>
-                </div>
+    
 
 
-
-            </div>
-        </div>
-
-
-
-            <div class="col-md-6">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="centered-title">
-                                <h2>En Çok <span class="light-font">Favori Oyunlar</span></h2>
-                                <div class="clear"></div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row marT60" id="MixItUp1">
-                        <div class="col-md-6">
-                            <!--Product start-->
-                            @foreach (Sinif item in ViewBag.Siniflar)
-                            {
-                                <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-10 col-xs-offset-1 mix women" style="display: inline-block;" data-bound="">
-                                    <div class="wa-product">
-                                        <div class="wa-product-thumbnail wa-item">
-                                            <img src="@item.Resim.Url?width=200&height=200&mode=crop" width="100%" height="80%" alt="">
-
-                                            <div class="caption">
-                                                <div class="caption-text">
-                                                    @item.Sorular.Count() Soru
-                                                    <div class="clear"></div>
-                                                    <a href="/Content/Home/product-detail.html" class="theme-button marT10"><i style="font-size:18px" class="fa">&#xf04b;</i> Oyna</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="wa-product-caption">
-                                            <h2>
-                                                <a href="/Content/Home/product-detail.html">@item.Ad </a>
-                                            </h2>
-                                            <div class="clear"></div>
-                                            <div class="lower-content">
-                                                <ul class="blog-meta-info">
-                                                    <li class="author"><a href=""><i class="fa fa-eye"></i>@item.GoruntulenmeSayisi</a></li>
-                                                    <li class="comment"><a href=""><i class="fa fa-calendar"></i> @item.OlusturmaTarihi.Value.Day.@item.OlusturmaTarihi.Value.Month.@item.OlusturmaTarihi.Value.Year</a></li>
-
-                                                    <li class="comments_nr"><a><i data-id="@item.ID" class="fa fa-comments deneme"> @item.Favori.Count()</i></a></li>
-                                                </ul>
-
-                                            </div>
-
-                                            <div class="clear"></div>
-                                            <
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-
-                            <!--Product end-->
-
-                            <div class="clear"></div>
-                            <a href="" class="theme-button marT10 marT30 hover-color">view more</a>
-                        </div>
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-
-
-    <div class="more-product-enable padTB30">
+    <div style="margin-top:2vw" class="more-product-enable padTB30">
         <div class="container">
             <div class="col-md-9 col-sm-9">
                 <h2> <span class="light-font">Sende Bir Oda Kur ve Arkadaşlarınla</span> Yarış</h2>

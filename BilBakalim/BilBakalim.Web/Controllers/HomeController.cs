@@ -1,4 +1,5 @@
 ﻿using BilBakalim.Data;
+using BilBakalim.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,14 @@ namespace BilBakalim.Web.Controllers
             //ViewBag.Siniflar = ctx.Database.SqlQuery<Sinif>("SELECT TOP 5 *FROM Sinif order by OlusturmaTarihi desc").Where(x => x.Gorunurluk == true).ToList();
             return View();
         }
+
+        public ActionResult EnCokOynanan()
+        {
+            ViewBag.SinifKategorileri = ctx.SinifKategori.Include("Resim").ToList();
+            ViewBag.oyna = ctx.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x=>x.Gorunurluk==true).OrderByDescending(x => x.GoruntulenmeSayisi).Take(20).ToList();
+            return View();
+        }
+   
         public ActionResult Gelistiriciler()
         {
             return View();

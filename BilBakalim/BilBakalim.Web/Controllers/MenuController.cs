@@ -105,9 +105,13 @@ namespace BilBakalim.Web.Controllers
                     parentMenu.AcilirMenu = true;
                     menu.AcilirMenu = false;
                 }
-                else
+                else if(menu.ParentMenuID == null && menu.Controller == null)
                 {
                     menu.AcilirMenu = true;
+                }
+                else
+                {
+                    menu.AcilirMenu = false;
                 }
 
                 menu.Aktif = true;

@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "AnketSoruDetay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using BilBakalim.Data
+@model AnketSoru
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading" style="padding-bottom: 10px;">
+                <div class="col-lg-12" style="margin-bottom:10px;">
+                    <b>Soru Detay</b>
+                    <a href="/Admin/AnketSoru/@Model.SinifID" class="btn btn-success" style="float: right"><i class="icon-mail-reply (alias)"></i> Listeye Geri Dön</a>
+                </div>
+            </header>
+
+            <div class="panel-body">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading tab-bg-dark-navy-blue ">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#home">Soru Bilgileri</a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#about">Sınıf Bilgileri</a>
+                                </li>
+                            </ul>
+                        </header>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div id="home" class="tab-pane active">
+                                    <b>Soru</b> <p>@Model.Soru</p> <br />
+
+                                    <b>Cevap 1 : </b> <p>@Model.Cevap1 </p> <br />
+                                    <b>Cevap 2 : </b> <p>@Model.Cevap2 </p> <br />
+                                    <b>Cevap 3 : </b> <p>@Model.Cevap3 </p> <br />
+                                    <b>Cevap 4 : </b> <p>@Model.Cevap4 </p> <br />
+                                    <b>Süre : </b> <p>@Model.Sure saniye </p> <br />
+                                    <b>Soru Resmi </b> <br />
+
+                                    <div class="entry-thumbnail"><img width="120" height="120" src="@Model.Resim.Url" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" srcset="@Model.Resim.Url 770w, @Model.Resim.Url 230w, @Model.Resim.Url 640w" sizes="(max-width: 120px) 100vw, 80px"></div>
+
+                                </div>
+                                <div id="about" class="tab-pane">
+                                    <b>Sınıf Adı : </b> <p>@Model.Anket.Ad</p> <br />
+                                    <b> Oynanma Sayısı: </b><br /><p>@Model.Anket.GoruntulenmeSayisi</p> <br />
+                                    <b> Oluşturma Tarihi: </b><br /><p>@Model.Anket.OlusturmaTarihi.Value.ToString("dd-MM-yyyy")</p> <br />
+                                   
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+

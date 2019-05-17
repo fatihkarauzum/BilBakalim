@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "EnCokOynanan";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+@using BilBakalim.Data
+
+
+@section head{
+    <link rel="shortcut icon" href="/Content/Home/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/Content/Home/assets/img/favicon.ico" type="image/x-icon">
+    <!-- Master Css -->
+    <link href="/Content/Home/main.css" rel="stylesheet">
+    <link href="/Content/Home/assets/plugins/switcher/switcher.css" rel="stylesheet">
+    <link href="/Content/Home/assets/css/color.css" rel="stylesheet" id="colors">
+}
+
+<div class="latest-offer-main">
+    <div class="container-fluid pad0">
+        <div class="row mar0">
+            <div id="latest-offer-carousel" class="owl-carousel latest-offer-carousel">
+                @foreach (SinifKategori item in ViewBag.SinifKategorileri)
+                {
+                    <!--Product start-->
+                    <div class="latest-product-item">
+                        <div class="wa-product">
+                            <div class="wa-product-thumbnail item latest-offer-item wa-item">
+                                <img src=@item.Resim.Url alt="">
+                                <div class="caption">
+                                    <div class="caption-text">
+                                        <div class="clear"></div>
+                                        <div class="wa-product-caption">
+                                            <h2><a href="/Home/KategoriAyrıntı/@item.ID">@item.KategoriAdi</a></h2>
+                                            <div class="clear"></div>
+
+
+                                            <div class="clear"></div>
+
+                                            <div class="clear"></div>
+                                            <a href="/Home/KategoriAyrıntı/@item.ID" class="theme-button marT10">Oyunlara Bak</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mask-top-upper">
+                                    <div class="mask-top">
+                                        <h2>@item.KategoriAdi</h2>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Product end-->
+                }
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="wa-product-main padTB60">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="centered-title">
+                    <h2>En Çok <span class="light-font">Oynanan Sınıflar</span></h2>
+                    <div class="clear"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row marT60" id="MixItUp1">
+            <!--Product start-->
+            @foreach (Sinif item in ViewBag.oyna)
+            {
+                <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 mix women" style="display: inline-block;" data-bound="">
+                    <div class="wa-product">
+                        <div class="wa-product-thumbnail wa-item">
+                            <img src="@item.Resim.Url?width=200&height=200&mode=crop" width="100%" height="80%" alt="">
+                            <div class="caption">
+                                <div class="caption-text">
+                                    @item.Sorular.Count() Soru
+                                    <div class="clear"></div>
+                                    <a href="/Home/SinifAyrinti/@item.ID" class="theme-button marT10"><i style="font-size:18px" class="fa">&#xf04b;</i> Oyna</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wa-product-caption">
+                            <h2>
+                                <a href="/Content/Home/product-detail.html">@item.Ad </a>
+                            </h2>
+                            <div class="clear"></div>
+                            <div class="lower-content">
+                                <ul class="blog-meta-info">
+                                    <li class="author"><a href=""><i class="fa fa-eye"></i>@item.GoruntulenmeSayisi</a></li>
+                                    <li class="comment"><a href=""><i class="fa fa-calendar"></i> @item.OlusturmaTarihi.Value.Day.@item.OlusturmaTarihi.Value.Month.@item.OlusturmaTarihi.Value.Year</a></li>
+
+                                    <li class="comments_nr"><a><i data-id="@item.ID" class="fa fa-comments deneme"> @item.Favori.Count()</i></a></li>
+                                </ul>
+
+                            </div>
+
+                            <div class="clear"></div>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!--Product end-->
+
+            <div class="clear"></div>
+         
+
+        </div>
+
+    </div>
+
+
+    <div style="margin-top:2vw" class="more-product-enable padTB30">
+        <div class="container">
+            <div class="col-md-9 col-sm-9">
+                <h2> <span class="light-font">Sende Bir Oda Kur ve Arkadaşlarınla</span> Yarış</h2>
+            </div>
+            <div class="col-md-3 col-sm-3"><a href="/Kullanici/SinifEkle" class="btn btn-info "> Oda Kur!</a></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<a href="http://localhost:3000/5">Deneme</a>*@
+@section script{
+    <script src="/Content/Home/assets/plugins/ResponsiveMultiLevelMenu/js/modernizr.custom.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/Content/Home/assets/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/Content/Home/assets/js/bootstrap.min.js"></script>
+    <script src="/Content/Home/assets/plugins/megamenu/js/jquery-accessibleMegaMenu.js"></script>
+    <script src="/Content/Home/assets/plugins/bx-slider/js/jquery.bxslider.min.js"></script>
+    <script src="/Content/Home/assets/plugins/owl-carousel/js/owl.carousel.js"></script>
+    <script src="/Content/Home/assets/plugins/mixitup/js/jquery.mixitup.js"></script>
+    <script src="/Content/Home/assets/js/jquery.countdown.js"></script>
+    <script src="/Content/Home/assets/plugins/ResponsiveMultiLevelMenu/js/jquery.dlmenu.js"></script>
+    <script src="/Content/Home/assets/plugins/switcher/switcher.js"></script>
+    <script src="/Content/Home/assets/js/main.js"></script>
+    <script>
+
+        $(".deneme").on('click', function () {
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: '/Kullanici/FavoriEkleSil/' + id,
+                type: 'POST',
+                success: function (rs) {
+                    if (rs === true) {
+                        $('#' + id).remove();
+                    }
+                    else if (rs === "cik") {
+                        alert("Favoriden Çıkıldı.");
+                    }
+                    else if (rs === "Gir") {
+                        alert("Öncelikle Giriş Yapmalısınız.");
+                    }
+                    else if (rs === "ekle") {
+                        alert("Favori Ekleme Başarılı.");
+                    }
+                    else {
+                        alert('Silme işlemi gerçekleşirken bir hata oluştu.');
+                    }
+                },
+                error: function (rs) {
+                    alert('Bir hata oluştu');
+                }
+            });
+        })
+
+    </script>
+
+}

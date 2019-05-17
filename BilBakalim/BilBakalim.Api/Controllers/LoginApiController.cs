@@ -13,10 +13,53 @@ namespace BilBakalim.Api.Controllers
 {
 
     [RoutePrefix("api/LoginApi")]
-
+    [AllowAnonymous]
     public class LoginApiController : ApiController
     {
         BilBakalimContext db = new BilBakalimContext();
+
+
+        [Route("Login")]
+        [HttpGet]
+        public IHttpActionResult GetLogin(string eposta,string sifre)
+        {
+            try
+            {
+               
+                Kullanici kullanici = new Kullanici();
+                using (MD5 md5Hash = MD5.Create())
+                {
+
+                    string hash = Functions.Encrypt(sifre);
+                    kullanici = db.Kullanici.Include("Rol").Include("KullaniciResim").Where(x => x.Email == eposta && x.Sifre == hash).SingleOrDefault();
+                }
+
+                if (kullanici == null)
+                {
+                    return NotFound();
+                }
+
+                else
+                {
+                    if (kullanici.Durum != null)
+                    {
+
+                        return Ok(kullanici);
+
+                    }
+                    else
+                    {
+                        return BadRequest();
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
+
 
 
         [Route("KullaniciKayit")]
