@@ -11,6 +11,7 @@
             : base("name=BilBakalimContext")
         {
             this.Configuration.LazyLoadingEnabled = false;//lazy loading false
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<Dİl> Dİl { get; set; }
