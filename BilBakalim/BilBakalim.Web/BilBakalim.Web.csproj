@@ -525,6 +525,7 @@
     <Content Include="Views\Admin\KullaniciEkle.cshtml" />
     <Content Include="Views\Admin\KullaniciDetay.cshtml" />
     <Content Include="Views\Home\SinifAra.cshtml" />
+    <Content Include="Views\Home\EnCokOynanan.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

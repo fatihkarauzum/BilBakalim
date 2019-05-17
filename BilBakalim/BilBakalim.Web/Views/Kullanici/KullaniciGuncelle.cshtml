@@ -45,18 +45,14 @@
                               <p>@Model.Email</p>
                           </div>
 
-                          <ul class="nav nav-pills nav-stacked">
-                              <li><a href="/Content/Admin/profile.html"> <i class="icon-user"></i> Profile</a></li>
-                              <li><a href="/Content/Admin/profile-activity.html"> <i class="icon-calendar"></i> Recent Activity <span class="label label-danger pull-right r-activity">9</span></a></li>
-                              <li class="active"><a href="/Content/Admin/profile-edit.html"> <i class="icon-edit"></i> Edit profile</a></li>
-                          </ul>
+                          
 
                       </section>
                   </aside>
                   <aside class="profile-info col-lg-9">
                       <section class="panel">
                           <div class="bio-graph-heading">
-                              Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ispum. Aliquam ac magna metus.
+                              @Model.Adi @Model.Soyadi Kullanıcısını Güncelliyorsunuz.
                           </div>
                           @using (Html.BeginForm("KUllaniciGuncelle", "Kullanici", FormMethod.Post, new { enctype = "multipart/form-data" }))
                           {
@@ -93,7 +89,7 @@
                                       <div class="form-group">
                                           <div class="col-lg-offset-2 col-lg-10">
                                               <button type="submit" class="btn btn-success">Save</button>
-                                              <button type="button" class="btn btn-default">Cancel</button>
+                                              <a href="/Kullanici/KullaniciDetay/@Model.ID"> <button type="button" class="btn btn-default">Cancel</button></a>
                                           </div>
                                       </div>
                                   </form>
@@ -131,7 +127,7 @@
                                           <div class="form-group">
                                               <div class="col-lg-offset-2 col-lg-10">
                                                   <button type="submit" class="btn btn-info">Save</button>
-                                                  <button type="button" class="btn btn-default">Cancel</button>
+                                                  <a href="/Kullanici/KullaniciDetay/@Model.ID"> <button type="button" class="btn btn-default">Cancel</button></a>
                                               </div>
                                           </div>
                                       </form>

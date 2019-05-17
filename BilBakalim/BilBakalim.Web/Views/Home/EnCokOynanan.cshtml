@@ -1,12 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "EnCokOynanan";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
-
 @using BilBakalim.Data
 
-@model List<Favori>
 
 @section head{
     <link rel="shortcut icon" href="/Content/Home/assets/img/favicon.ico" type="image/x-icon">
@@ -69,7 +67,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="centered-title">
-                    <h2>En Son <span class="light-font">Eklenen Sınıflar</span></h2>
+                    <h2>En Çok <span class="light-font">Oynanan Sınıflar</span></h2>
                     <div class="clear"></div>
 
                 </div>
@@ -78,7 +76,7 @@
 
         <div class="row marT60" id="MixItUp1">
             <!--Product start-->
-            @foreach (Sinif item in ViewBag.Siniflar)
+            @foreach (Sinif item in ViewBag.oyna)
             {
                 <div class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 mix women" style="display: inline-block;" data-bound="">
                     <div class="wa-product">
@@ -117,16 +115,11 @@
             <!--Product end-->
 
             <div class="clear"></div>
-            <a href="/Home/EnCokOynanan" class="theme-button marT10 marT30 hover-color">En Çok Oynanan Sınıflar</a>
+         
 
         </div>
 
     </div>
-
-
-
-    
-    
 
 
     <div style="margin-top:2vw" class="more-product-enable padTB30">
@@ -142,7 +135,6 @@
 
 
 
-
 @*<a href="http://localhost:3000/5">Deneme</a>*@
 @section script{
     <script src="/Content/Home/assets/plugins/ResponsiveMultiLevelMenu/js/modernizr.custom.js"></script>
@@ -154,9 +146,9 @@
     <script src="/Content/Home/assets/plugins/bx-slider/js/jquery.bxslider.min.js"></script>
     <script src="/Content/Home/assets/plugins/owl-carousel/js/owl.carousel.js"></script>
     <script src="/Content/Home/assets/plugins/mixitup/js/jquery.mixitup.js"></script>
-    <script src="/Content/Home/assets/js/jquery.countdown.js"></script>      
+    <script src="/Content/Home/assets/js/jquery.countdown.js"></script>
     <script src="/Content/Home/assets/plugins/ResponsiveMultiLevelMenu/js/jquery.dlmenu.js"></script>
-    <script src="/Content/Home/assets/plugins/switcher/switcher.js"></script> 	  
+    <script src="/Content/Home/assets/plugins/switcher/switcher.js"></script>
     <script src="/Content/Home/assets/js/main.js"></script>
     <script>
 
@@ -187,8 +179,7 @@
                 }
             });
         })
-           
+
     </script>
 
 }
-
