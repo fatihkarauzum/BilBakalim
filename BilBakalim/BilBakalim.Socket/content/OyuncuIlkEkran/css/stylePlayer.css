@@ -19,7 +19,7 @@ html, body {
 
 .block{
 	height: 100vh;
-	width: 100%;
+	width: 100vw;
 	position: absolute;
 	z-index: -4;
 	margin-left: -7.6vh;
@@ -29,7 +29,7 @@ html, body {
 .top{
 	position: relative;
 	z-index : 1;
-	width: 100%;
+	width: 100vw;
 	height: 8vh;
 	background-color: white;
 	-webkit-box-shadow: 0px 5px 5px 5px rgba(0,0,0,0.50);
@@ -57,19 +57,19 @@ html, body {
 
 .main{
 	z-index : -1;
-	width: 100%;
+	width: 100vw;
 	height: 92%;
 }
 
 .mainWait{
-	width: 100%;
+	width: 100vw;
 	height: 92vh;
 	
 	background-color: #FFA502;
 }
 
 .mainWaitTop{
-	width: 100%;
+	width: 100vw;
 	height: 50%;
 	
 	text-align: center;
@@ -80,7 +80,7 @@ html, body {
 }
 
 .mainWaitBottom{
-	width: 100%;
+	width: 100vw;
 	height: 50%;
 	
 	text-align: center;
@@ -90,14 +90,14 @@ html, body {
 }
 
 .mainCorrect{
-	width: 100%;
+	width: 100vw;
 	height: 92vh;
 	display: none;
 	background-color: rgba(102,191,57);
 }
 
 .mainCorrectTop{
-	width: 100%;
+	width: 100vw;
 	height: 50%;
 	
 	
@@ -109,7 +109,7 @@ html, body {
 }
 
 .mainCorrectBottom{
-	width: 100%;
+	width: 100vw;
 	height: 40%;
 	
 	text-align: center;
@@ -134,14 +134,14 @@ html, body {
 }
 
 .mainWrong{
-	width: 100%;
+	width: 100vw;
 	height: 92vh;
 	display: none;
 	background-color: #FA4045;
 }
 
 .mainTimeUp{
-	width: 100%;
+	width: 100vw;
 	height: 92vh;
 	display: none;
 	background-color: #FA4045;

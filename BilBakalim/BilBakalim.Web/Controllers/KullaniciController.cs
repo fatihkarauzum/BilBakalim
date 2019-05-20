@@ -257,7 +257,7 @@ namespace BilBakalim.Web.Controllers
 
             if (resimGelen == null)
             {
-                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/SinifSoru/default.png").SingleOrDefault();
+                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/SinifSoru/default.jpg").SingleOrDefault();
                 sr.MedyaID = b.ID;
             }
 
