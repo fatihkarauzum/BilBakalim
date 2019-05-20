@@ -9,6 +9,8 @@ using BilBakalim.Web.App_Classes;
 using System.Net.Http;
 using BilBakalim.Data.Interfaces;
 using System.IO;
+using System.Security.Cryptography;
+using Functions = BilBakalim.Api.App_Class.Functions;
 
 namespace BilBakalim.Web.Controllers
 {
@@ -76,6 +78,11 @@ namespace BilBakalim.Web.Controllers
             KullaniciResim s = new KullaniciResim();
            
             db.Kullanici.Add(kullanici);
+            using (MD5 md5Hash = MD5.Create())
+            {
+                string hash = Functions.Encrypt(kullanici.Sifre);
+                kullanici.Sifre = hash;
+            }
             db.SaveChanges();
             Kullanici n = db.Kullanici.Where(x => x.ID == kullanici.ID).SingleOrDefault();
             if (resimGelen == null)

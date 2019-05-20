@@ -17,9 +17,20 @@ namespace BilBakalim.Web.App_Classes
             string metot = filterContext.HttpContext.Request.RequestType;
             if (HttpContext.Current.Session["Kullanici"] == null)
             {
-                if (controllerName == "Admin" || controllerName == "Menu" || controllerName=="Kullanici" || controllerName=="Anket")
+                if (controllerName == "Admin" || controllerName == "Menu" || controllerName=="Anket")
                 {
                     filterContext.Result = new RedirectResult("/Login");
+                }
+                else if(controllerName == "Kullanici")
+                {
+                    if (actionName != "Iletisim")
+                    {
+                        filterContext.Result = new RedirectResult("/Login");
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
                 else
                 {

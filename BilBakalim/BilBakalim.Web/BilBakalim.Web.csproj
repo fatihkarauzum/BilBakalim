@@ -402,6 +402,7 @@
     <Content Include="Content\Resimler\Kullanici\defaultuser.png" />
     <Content Include="Database\12.05.2019.sql" />
     <Content Include="Database\13.03.2019 - DB.sql" />
+    <Content Include="Database\17.05.2019.sql" />
     <Content Include="Database\DB.sql" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
