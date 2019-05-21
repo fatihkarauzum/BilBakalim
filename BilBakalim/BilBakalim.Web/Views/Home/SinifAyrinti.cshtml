@@ -22,6 +22,14 @@
 
                         @if (c != null)
                         {
+                            if (Enumerable.Count(ViewBag.soru) != 0)
+                            { 
+                                <a style="margin-right:15%" class="fancybox" rel="group" href="http://localhost:3000/register/@Model.ID"> Oyna </a>
+                            }
+                            else
+                            {
+                                <a style="margin-right:15%" class="fancybox" rel="group" href="#" onclick="alert('Sınıfta Soru Bulunamadığı İçin Oyun Başlatılamamakta. Lütfent Daha Sonra Tekrar Deneyiniz.');"> Oyna </a>
+                            }
 
                             if (Model.Kullanici.ID == c.ID)
                             {
