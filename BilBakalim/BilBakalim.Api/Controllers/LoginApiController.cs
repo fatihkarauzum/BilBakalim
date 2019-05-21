@@ -84,6 +84,7 @@ namespace BilBakalim.Api.Controllers
                         k.RolID = 2;
                         k.Durum = true;
                         k.Sifre = hash;
+                        k.OlusturmaTarihi = DateTime.Now;
                         db.Kullanici.Add(k);
                         db.SaveChanges();
                         return Ok();

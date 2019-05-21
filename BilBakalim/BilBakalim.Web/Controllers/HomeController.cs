@@ -56,6 +56,15 @@ namespace BilBakalim.Web.Controllers
             return View(ctx.Sinif.Include("Resim").Include("Kullanici").Where(x => x.ID == id).SingleOrDefault());
         }
 
+        public ActionResult SoruSil(int id)
+        {
+
+            Sorular soru = ctx.Sorular.Where(x => x.ID == id).SingleOrDefault();
+            int? git = soru.SinifID;
+            ctx.Sorular.Remove(soru);
+            ctx.SaveChanges();
+            return RedirectToAction("SinifAyrinti", new { id = git });
+        }
 
         [HttpPost]
         public ActionResult SinifAra(string search)

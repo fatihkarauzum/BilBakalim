@@ -8,6 +8,8 @@
 
 @model List<Favori>
 
+
+
 @section head{
     <link rel="shortcut icon" href="/Content/Home/assets/img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/Content/Home/assets/img/favicon.ico" type="image/x-icon">
@@ -88,7 +90,9 @@
                                 <div class="caption-text">
                                     @item.Sorular.Count() Soru
                                     <div class="clear"></div>
-                                    <a href="/Home/SinifAyrinti/@item.ID" class="theme-button marT10"><i style="font-size:18px" class="fa">&#xf04b;</i> Oyna</a>
+                                    <a href="/Home/SinifAyrinti/@item.ID" class="theme-button marT10"><i style="font-size:18px" class="fa">&#xf04b;</i> Oyna</a><br />
+                                 
+
                                 </div>
                             </div>
                         </div>
@@ -125,8 +129,8 @@
 
 
 
-    
-    
+
+
 
 
     <div style="margin-top:2vw" class="more-product-enable padTB30">
@@ -134,7 +138,7 @@
             <div class="col-md-9 col-sm-9">
                 <h2> <span class="light-font">Sende Bir Oda Kur ve Arkadaşlarınla</span> Yarış</h2>
             </div>
-            <div class="col-md-3 col-sm-3"><a href="/Kullanici/SinifEkle" class="btn btn-info "> Oda Kur!</a></div>
+            <div class="col-md-3 col-sm-3"><button style="cursor:pointer;" class="theme-button more-product-button" onclick="location.href='@Url.Action("SinifEkle", "Kullanici")'">Oda Kur</button></div>
             <div class="clear"></div>
         </div>
     </div>
@@ -154,9 +158,9 @@
     <script src="/Content/Home/assets/plugins/bx-slider/js/jquery.bxslider.min.js"></script>
     <script src="/Content/Home/assets/plugins/owl-carousel/js/owl.carousel.js"></script>
     <script src="/Content/Home/assets/plugins/mixitup/js/jquery.mixitup.js"></script>
-    <script src="/Content/Home/assets/js/jquery.countdown.js"></script>      
+    <script src="/Content/Home/assets/js/jquery.countdown.js"></script>
     <script src="/Content/Home/assets/plugins/ResponsiveMultiLevelMenu/js/jquery.dlmenu.js"></script>
-    <script src="/Content/Home/assets/plugins/switcher/switcher.js"></script> 	  
+    <script src="/Content/Home/assets/plugins/switcher/switcher.js"></script>
     <script src="/Content/Home/assets/js/main.js"></script>
     <script>
 
@@ -187,7 +191,7 @@
                 }
             });
         })
-           
+
     </script>
 
 }
