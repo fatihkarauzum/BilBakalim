@@ -239,10 +239,12 @@ namespace BilBakalim.Web.Controllers
 
 
         [HttpGet]
-        public ActionResult SoruEkle()
-
+        public ActionResult SoruEkle(int ? id)
         {
-            
+            if (id!=null)
+            {
+                ViewBag.id = id;
+            }
             return View();
         }
 

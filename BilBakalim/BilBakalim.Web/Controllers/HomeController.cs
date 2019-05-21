@@ -52,7 +52,7 @@ namespace BilBakalim.Web.Controllers
 
         public ActionResult SinifAyrinti(int id)
         {
-            ViewBag.soru = ctx.Sorular.Where(x => x.SinifID == id).ToList();
+            ViewBag.soru = ctx.Sorular.Include("Sinif").Where(x => x.SinifID == id).ToList();
             return View(ctx.Sinif.Include("Resim").Include("Kullanici").Where(x => x.ID == id).SingleOrDefault());
         }
 

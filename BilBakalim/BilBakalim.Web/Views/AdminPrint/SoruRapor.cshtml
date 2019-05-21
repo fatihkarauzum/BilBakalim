@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "SoruRapor";
+}
+
+
+@{
+    Layout = null;
+}
+
+@using BilBakalim.Data
+
+@model List<Rapor>
+
+<br />
+<br />
+
+
+<p style="text-align: center;"><strong><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif';">TUTANAKTIR</span></strong></p>
+<p style="text-align: center;"><strong><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif';">&nbsp;</span></strong></p>
+<div style="padding-left: 50px"><p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif';">Aşağıda yazılı olan listedeki malzemeleri, D&uuml;zce &Uuml;niversitesi Bilgi İşlem Daire Başkanlığı&rsquo;ından teslim aldım. (Model.FirstOrDefault().TeslimTarihi.Value.Day/Model.FirstOrDefault().TeslimTarihi.Value.Month/Model.FirstOrDefault().TeslimTarihi.Value.Year)</span></p></div>
+<p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif';">&nbsp;</span></p>
+<div style="padding-left: 50px">
+    <ol>
+        
+
+            foreach (var item in Model)
+            {
+
+                <li>item.UrunStok.Urun.UrunAdi (beş  item.UrunStok.Urun.UrunBirim.Adi)</li>
+            }}
+    </ol>
+</div>
+<div style="padding-left: 50px">
+    <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif';">&nbsp;</span></p>
+    <p style="text-align: justify;"><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif';">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<u>Teslim Eden</u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<u>Teslim Alan</u></span></p>
+    <p><span style="font-size: 12.0pt; line-height: 115%; font-family: 'Times New Roman','serif';">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Model.FirstOrDefault().Personel.Adi Model.FirstOrDefault().Personel.Soyadi  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Model.FirstOrDefault().TeslimAlanPersonel.Adi odel.FirstOrDefault().TeslimAlanPersonel.Soyadi</span></p>
+</div>
+
