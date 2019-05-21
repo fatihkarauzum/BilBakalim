@@ -22,12 +22,14 @@
 
                         @if (c != null)
                         {
-                            <a style="margin-right:15%" class="fancybox" rel="group" href="http://localhost:3000/register/@Model.ID"> Oyna </a>
+
                             if (Model.Kullanici.ID == c.ID)
                             {
-                                <a class="fancybox" rel="group" href="/Kullanici/SinifDuzenle/@Model.ID"> Düzenle </a>
+                                <a style="margin-right:9vw" class="fancybox" rel="group" href="/Kullanici/SoruEkle/@Model.ID"> Soru Ekle </a>
+                                <a style="margin-right:4vw" class="fancybox" rel="group" href="/Kullanici/SinifDuzenle/@Model.ID"> Düzenle </a>
 
                             }
+                            <a target="_blank" class="fancybox" rel="group" href="http://localhost:3000/register/@Model.ID"> Oyna </a>
                         }
 
                     </figcaption>
@@ -80,7 +82,6 @@
 
 
     </div>
-
     <div class="col-lg-8">
         <div id="accordion" class="panel-group m-bot20">
             @{
@@ -94,6 +95,7 @@
                                 <a href="/Content/Admin/#@sayi" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle">
                                     @sayi -) @item.Soru
                                 </a>
+                                <a style="float:right;margin-right:5px;"data-id="@item.ID" class="btn btn-warning btn-xs btn-confirm"><i class="icon-trash"></i> <b>Sil</b></a>
                             </h4>
                         </div>
                         <div class="panel-collapse collapse" id="@sayi">
@@ -203,7 +205,49 @@
     </div>
 
 </div>
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Bu Kullanıcıyı Silmek İstediğinizden Emin misiniz ?</h4>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-danger btnnn" id="modal-btn-si">Sil</a>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section script{
+<script>
+    var id;
+    var modalConfirm = function (callback) {
+        $(".btn-confirm").on("click", function () {
+            id = $(this).attr("data-id");
+            $(".btnnn").attr('href', function () {
+                return "/Home/SoruSil/" + id;
+            })
+            $("#mi-modal").modal('show');
+        });
 
+        $("#modal-btn-si").on("click", function () {
+            callback(true);
+            $("#mi-modal").modal('hide');
+        });
+
+        $("#modal-btn-no").on("click", function () {
+            callback(false);
+            $("#mi-modal").modal('hide');
+            return e.preventDefault()
+        });
+    };
+
+    modalConfirm(function (confirm) {
+
+    });
+</script>
+    }
 
 <link href="/Content/Admin/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href="/Content/Admin/css/style.css" rel="stylesheet">
