@@ -17,7 +17,7 @@ namespace BilBakalim.Web.App_Classes
             string metot = filterContext.HttpContext.Request.RequestType;
             if (HttpContext.Current.Session["Kullanici"] == null)
             {
-                if (controllerName == "Admin" || controllerName == "Menu" || controllerName=="Anket")
+                if (controllerName == "Admin" || controllerName == "Menu")
                 {
                     filterContext.Result = new RedirectResult("/Login");
                 }
@@ -30,6 +30,17 @@ namespace BilBakalim.Web.App_Classes
                     else
                     {
                         return;
+                    }
+                }
+                else if (controllerName == "Anket")
+                {
+                    if (actionName == "AnketListele" || actionName == "AnketDetay")
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        filterContext.Result = new RedirectResult("/Login");
                     }
                 }
                 else
