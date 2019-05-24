@@ -74,5 +74,28 @@ namespace BilBakalim.Web.Controllers
             ViewBag.sonuc = ctx.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x => x.Ad.Contains(search)).ToList();
             return View();
         }
+
+        public ActionResult SoruDuzenle(int id)
+        {
+            return View(ctx.Sorular.Where(x => x.ID == id).FirstOrDefault());
+        }
+        [HttpPost]
+        public ActionResult SoruDuzenle(Sorular s)
+        {
+            Sorular soru = ctx.Sorular.Where(x => x.ID == s.ID).SingleOrDefault();
+            soru.Soru = s.Soru;
+            soru.Cevap1 = s.Cevap1;
+            soru.Cevap2 = s.Cevap2;
+            soru.Cevap3 = s.Cevap3;
+            soru.Cevap4 = s.Cevap4;
+            if (s.Odul==null)
+            {
+                soru.Odul = false;
+            }         
+            soru.DogruCevap = s.DogruCevap;
+            soru.Sure = s.Sure;
+            ctx.SaveChanges();
+            return RedirectToAction("SinifAyrinti",new {id=s.SinifID});
+        }
     }
 }

@@ -461,6 +461,7 @@
     <Compile Include="App_Classes\Global.cs" />
     <Compile Include="App_Classes\MvcHelper.cs" />
     <Compile Include="App_Classes\ResimIslemleri.cs" />
+    <Compile Include="App_Classes\SinifFilter.cs" />
     <Compile Include="App_Classes\_SecurityFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -552,7 +553,11 @@
     <Content Include="Views\Kullanici\SinifDuzenle.cshtml" />
     <Content Include="Views\Admin\AnketEkle.cshtml" />
     <Content Include="Views\Admin\AnketSoruEkle.cshtml" />
-    <Content Include="Views\AdminPrint\SoruRapor.cshtml" />
+    <Content Include="Views\AdminPrint\SinifPrint.cshtml" />
+    <Content Include="Views\AdminPrint\Sinif.cshtml" />
+    <Content Include="Views\AdminPrint\altKategoriDropdown.cshtml" />
+    <Content Include="Views\Home\SoruDuzenle.cshtml" />
+    <Content Include="Views\Anket\AnketSoruDuzenle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

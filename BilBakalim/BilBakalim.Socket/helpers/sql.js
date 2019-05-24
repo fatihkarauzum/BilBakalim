@@ -1,9 +1,9 @@
 const sql = require("mssql");
 
 const config = {
-    user: 'emre',
-    password: '123456',
-    server: 'localhost', 
+    user: 'userBilBakalim',
+    password: 'Pass2019*Bakalim',
+    server: '79.123.147.224', 
     database: 'BilBakalimDB' 
 };
 

@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "SoruDuzenle";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+@using BilBakalim.Data
+@model Sorular
+
+<link href="/Content/Admin/assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="/Content/Admin/css/gallery.css" />
+<div class="row">
+
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading"></header>
+
+            <div class="panel-body">
+                @using (Html.BeginForm("SoruDuzenle", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div style="display:none">
+                        <input type="text" class="form-control" value="@Model.ID" placeholder="Soru Giriniz" name="ID" required>
+                    </div>
+                    <div style="display:none">
+                        <input type="text" class="form-control" value="@Model.SinifID" placeholder="Soru Giriniz" name="SinifID" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-11">
+                            <div class="form-group">
+                                <input type="text" class="form-control" value="@Model.Soru" placeholder="Soru Giriniz" name="Soru" required>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1">
+                            <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" name="Odul" class="custom-control-input" value="true" id="defaultChecked2" checked>
+                                    <label class="custom-control-label" for="defaultChecked2">Ödül?</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-lg-5">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" value="@Model.Cevap1" name="Cevap1" required placeholder="Cevap1" rows="3"></input>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label><input type="radio" name="DogruCevap" value="Cevap1" checked></label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" value="@Model.Cevap2" name="Cevap2" required placeholder="Cevap2" rows="3"></input>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label><input type="radio" name="DogruCevap" value="Cevap2" checked></label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" value="@Model.Cevap3" name="Cevap3" required placeholder="Cevap3" rows="3"></input>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label><input type="radio" name="DogruCevap" value="Cevap3" checked></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" value="@Model.Cevap4" name="Cevap4" required placeholder="Cevap4" rows="3"></input>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="form-group">
+                                <div class="radio">
+                                    <label><input type="radio" name="DogruCevap" value="Cevap4" checked></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label>Resim</label>
+                                <input style="height:2.5vw" type="file" name="resimGelen" class="form-control" placeholder="Resim giriniz.">
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="form-group">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label>Süre</label>
+                                <input type="text" class="form-control" value="@Model.Sure" placeholder="Süre Giriniz" name="Sure" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-lg-6">
+                        <button type="submit" id="button" class="btn btn-info">Kaydet</button>
+                        <a href="/Home/SinifAyrinti/@Model.SinifID" class="btn btn-danger">İptal</a>
+                        <button type="reset" class="btn btn-">Temizle</button>
+
+
+                    </div>
+
+                }
+            </div>
+        </section>
+    </div>
+</div>
+<link href="/Content/Admin/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="/Content/Admin/css/style.css" rel="stylesheet">
+
+<script src="/Content/Admin/js/jquery.js"></script>
+<script src="/Content/Admin/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+<script src="/Content/Admin/js/common-scripts.js"></script>

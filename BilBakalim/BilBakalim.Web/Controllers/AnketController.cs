@@ -99,20 +99,26 @@ namespace BilBakalim.Web.Controllers
         }
 
 
-        public ActionResult AnketSoruEkle()
+        public ActionResult AnketSoruEkle(int? id)
         {
+            if (id != null)
+            {
+                Anket k = db.Anket.Where(x => x.ID == id).SingleOrDefault();
+                Session["Anket"] = k;
+            }
+            ViewBag.id = id;
             return View();
         }
 
         [HttpPost]
-        public ActionResult AnketSoruEkle(AnketSoru sr, HttpPostedFileBase resimGelen)
+        public ActionResult AnketSoruEkle(AnketSoru sr, HttpPostedFileBase resimGelen, int? id)
         {
             Resim o = new Resim();
             ResimKategori l = new ResimKategori();
 
             if (resimGelen == null)
             {
-                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/Anket/default.png").SingleOrDefault();
+                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/Anket/default.jpg").SingleOrDefault();
                 sr.MedyaID = b.ID;
             }
 
@@ -196,7 +202,7 @@ namespace BilBakalim.Web.Controllers
             {
                 db.SaveChanges();
                 TempData["GenelMesaj"] = "Anket güncelleme işlemi başarılı bir şekilde tamamlanmıştır.";
-                return RedirectToAction("AnketDetay", s.ID);
+                return RedirectToAction("AnketDetay", new { id = s.ID });
             }
             else
             {
@@ -237,6 +243,33 @@ namespace BilBakalim.Web.Controllers
                 }
             }
 
+        }
+
+        public ActionResult AnketSoruSil(int id)
+        {
+            AnketSoru soru = db.AnketSoru.Where(x => x.ID == id).SingleOrDefault();
+            int? git = soru.SinifID;
+            db.AnketSoru.Remove(soru);
+            db.SaveChanges();
+            return RedirectToAction("AnketDetay", new { id = git });
+
+        }
+        public ActionResult AnketSoruDuzenle(int id)
+        {
+            return View(db.AnketSoru.Where(x => x.ID == id).FirstOrDefault());
+        }
+        [HttpPost]
+        public ActionResult AnketSoruDuzenle(Sorular s)
+        {
+            AnketSoru soru = db.AnketSoru.Where(x => x.ID == s.ID).SingleOrDefault();
+            soru.Soru = s.Soru;
+            soru.Cevap1 = s.Cevap1;
+            soru.Cevap2 = s.Cevap2;
+            soru.Cevap3 = s.Cevap3;
+            soru.Cevap4 = s.Cevap4;
+            soru.Sure = s.Sure;
+            db.SaveChanges();
+            return RedirectToAction("AnketDetay", new { id = s.SinifID });
         }
     }
 }
