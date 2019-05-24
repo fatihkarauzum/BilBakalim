@@ -52,10 +52,19 @@ namespace BilBakalim.Web.Controllers
 
         public ActionResult SinifAyrinti(int id)
         {
-            ViewBag.soru = ctx.Sorular.Where(x => x.SinifID == id).ToList();
+            ViewBag.soru = ctx.Sorular.Include("Sinif").Where(x => x.SinifID == id).ToList();
             return View(ctx.Sinif.Include("Resim").Include("Kullanici").Where(x => x.ID == id).SingleOrDefault());
         }
 
+        public ActionResult SoruSil(int id)
+        {
+
+            Sorular soru = ctx.Sorular.Where(x => x.ID == id).SingleOrDefault();
+            int? git = soru.SinifID;
+            ctx.Sorular.Remove(soru);
+            ctx.SaveChanges();
+            return RedirectToAction("SinifAyrinti", new { id = git });
+        }
 
         [HttpPost]
         public ActionResult SinifAra(string search)

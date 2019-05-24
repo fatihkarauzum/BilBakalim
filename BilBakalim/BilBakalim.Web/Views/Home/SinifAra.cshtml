@@ -93,7 +93,7 @@
                             @foreach (SinifKategori item in ViewBag.Kategori)
                             {
                                 <li>
-                                    <a href="@item.ID">
+                                    <a href="/Home/KategoriAyrıntı/@item.ID">
                                         <div class="clearfix"><span class="pull-left">@item.KategoriAdi</span> <span class="pull-right">(@item.Sinif.Where(x => x.Gorunurluk == true).Count())</span></div>
                                     </a>
                                 </li>

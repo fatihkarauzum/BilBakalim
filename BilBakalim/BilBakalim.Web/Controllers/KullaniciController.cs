@@ -172,7 +172,7 @@ namespace BilBakalim.Web.Controllers
             if (resimGelen == null)
             {
 
-                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/SinifSoru/default.png").SingleOrDefault();
+                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/SinifSoru/default.jpg").SingleOrDefault();
                 k.ResimID = b.ID;
             }
             else
@@ -239,17 +239,19 @@ namespace BilBakalim.Web.Controllers
 
 
         [HttpGet]
-        public ActionResult SoruEkle()
-
+        public ActionResult SoruEkle(int ? id)
         {
-            
+            if (id!=null)
+            {
+                ViewBag.id = id;
+            }
             return View();
         }
 
 
 
         [HttpPost]
-    public ActionResult SoruEkle(Sorular sr , int DogruCont,bool? Odul, HttpPostedFileBase resimGelen)
+    public ActionResult SoruEkle(Sorular sr , int DogruCont,bool? Odul, HttpPostedFileBase resimGelen, int? id)
 
         {
             Resim o = new Resim();
@@ -257,7 +259,7 @@ namespace BilBakalim.Web.Controllers
 
             if (resimGelen == null)
             {
-                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/SinifSoru/default.png").SingleOrDefault();
+                Resim b = db.Resim.Where(x => x.Url == "/Content/Resimler/SinifSoru/default.jpg").SingleOrDefault();
                 sr.MedyaID = b.ID;
             }
 
@@ -308,8 +310,18 @@ namespace BilBakalim.Web.Controllers
             {
                 sr.Odul = false;
             }
-            Sinif s = (Sinif)Session["Sinif"];
-            sr.SinifID = s.ID;
+            if (id!=null)
+            {
+                sr.SinifID = id;
+                ViewBag.id = id;
+            }
+            else
+            {
+                Sinif s = (Sinif)Session["Sinif"];
+                sr.SinifID = s.ID;
+                ViewBag.id = s.ID;
+            }
+        
             switch (DogruCont)
                 {
 
@@ -330,8 +342,8 @@ namespace BilBakalim.Web.Controllers
                     default:
                         break;
                 }
-            db.SaveChanges();
-            ViewBag.id = s.ID;
+            int? deneme = sr.Sure;
+            db.SaveChanges();           
             return View();
 
         }
@@ -703,7 +715,7 @@ namespace BilBakalim.Web.Controllers
             {
                 db.SaveChanges();
                 TempData["GenelMesaj"] = "Sınıf güncelleme işlemi başarılı bir şekilde tamamlanmıştır.";
-                return RedirectToAction("SinifDuzenle", s.ID);
+                return RedirectToAction("SinifAyrinti", "Home", new { id = s.ID });
             }
             else
             {

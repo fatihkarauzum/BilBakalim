@@ -17,13 +17,13 @@
                 {
 
                     <div class="row">
-                        <div class="col-lg-10">
+                        <div class="col-lg-11">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Soru Giriniz" name="Soru" required>
                             </div>
                         </div>
 
-                        <div class="col-lg-2">
+                        <div class="col-lg-1">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" name="Odul" class="custom-control-input" value="true" id="defaultChecked2" checked>
@@ -36,13 +36,13 @@
 
                     <div class="row">
 
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             <div class="form-group">
 
                                 <input type="text" class="form-control" name="Cevap1" required placeholder="Cevap1" rows="3"></input>
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-1">
                             <div class="form-group">
                                 <div class="radio">
                                     <label><input type="radio" name="DogruCont" value="1" checked></label>
@@ -51,42 +51,42 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="Cevap2" required placeholder="Cevap2" rows="3"></input>
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-1">
                             <div class="form-group">
                                 <div class="radio">
                                     <label><input type="radio" name="DogruCont" value="2" checked></label>
                                 </div>
                             </div>
                         </div>
+                        
 
                     </div>
-
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             <div class="form-group">
 
                                 <input type="text" class="form-control" name="Cevap3" required placeholder="Cevap3" rows="3"></input>
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-1">
                             <div class="form-group">
                                 <div class="radio">
                                     <label><input type="radio" name="DogruCont" value="3" checked></label>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             <div class="form-group">
 
                                 <input type="text" class="form-control" name="Cevap4" required placeholder="Cevap4" rows="3"></input>
                             </div>
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-1">
                             <div class="form-group">
                                 <div class="radio">
                                     <label><input type="radio" name="DogruCont" value="4" checked></label>
@@ -96,18 +96,32 @@
                     </div>
 
 
-
-                    <div class="col-lg-10">
-                        <div class="form-group">
-                            <label>Resim</label>
-                            <input type="file" name="resimGelen" class="form-control" placeholder="Resim giriniz.">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label>Resim</label>
+                                <input style="height:2.5vw" type="file" name="resimGelen" class="form-control" placeholder="Resim giriniz.">
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="form-group">
+                                
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label>Süre</label>
+                                <input type="text" class="form-control" placeholder="Süre Giriniz" name="Sure" required>
+                            </div>
                         </div>
                     </div>
+                   
+                    
 
 
                     <div class="col-lg-6">
                         <button type="submit" id="button" class="btn btn-info">Ekle</button>
-                        <a href="/Home/Index" class="btn btn-danger">İptal</a>
+                        <a href="/Home/SinifAyrinti/@ViewBag.id" class="btn btn-danger">İptal</a>
                         <button type="reset" class="btn btn-">Temizle</button>
                         <a href="/Home/SinifAyrinti/@ViewBag.id" class="btn btn-danger">Bitir</a>
 
