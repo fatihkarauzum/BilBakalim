@@ -465,6 +465,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminPrintController.cs" />
+    <Compile Include="Controllers\AnketCevapController.cs" />
     <Compile Include="Controllers\AnketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KullaniciController.cs" />
@@ -553,6 +554,9 @@
     <Content Include="Views\Admin\AnketEkle.cshtml" />
     <Content Include="Views\Admin\AnketSoruEkle.cshtml" />
     <Content Include="Views\AdminPrint\SoruRapor.cshtml" />
+    <Content Include="Views\AnketCevap\AnketSoru.cshtml" />
+    <Content Include="Views\AnketCevap\AnketSoruGec.cshtml" />
+    <Content Include="Views\AnketCevap\AnketSoruSon.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -564,6 +568,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Login_v4\" />
     <Folder Include="Content\Resimler\Anket\" />
+    <Folder Include="Content\Socket\Siralama\" />
+    <Folder Include="Content\Socket\Sorular2\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BilBakalim.Api\BilBakalim.Api.csproj">
