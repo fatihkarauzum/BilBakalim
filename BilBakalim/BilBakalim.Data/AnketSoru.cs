@@ -38,6 +38,8 @@ namespace BilBakalim.Data
 
         public int? Sure { get; set; }
 
+        public DateTime OlusturmaTarihi { get; set; }
+
         public virtual Anket Anket { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

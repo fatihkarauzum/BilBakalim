@@ -127,12 +127,13 @@
                                 {
                                     if (item.Sinif.KullaniciID == c.ID)
                                     {
-                                        <a style="float:right;margin-right:5px;" data-id="@item.ID" class="btn btn-warning btn-xs btn-confirm"><i class="icon-trash"></i> <b>Sil</b></a>
+                                        <a style="float:right;margin-right:5px;" data-id="@item.ID" class="btn btn-danger btn-xs btn-confirm"><i class="icon-trash"></i> <b>Sil</b></a>
+                                        <a style="float:right;margin-right:5px;" href="/Home/SoruDuzenle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> <b>Düzenle</b></a>
                                     }
 
                                 }
 
-                        </div>
+</div>
                         <div class="panel-collapse collapse" id="@sayi">
                             <div class="panel-body">
                                 <!-- buraya yaz-->

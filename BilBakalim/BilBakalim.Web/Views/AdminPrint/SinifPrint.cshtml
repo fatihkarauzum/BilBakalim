@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "SinifPrint";
+    Layout = null;
+}
+
+@using BilBakalim.Data
+
+@model List<Rapor>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rapor</title>
+    <link href="/Content/Admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/Admin/css/bootstrap-reset.css" rel="stylesheet">
+</head>
+<body>
+    <div style="align-items:center;text-align:center;">
+        <h3>Düzce Üniversitesi  <br /> Bil Bakalım Sınıf Raporu </h3> <p>@DateTime.Now</p><br />
+        @if (Model.Count == 0)
+        {
+            <p>Girilen Özelliklerde herhangi bir kayıt bulunamadı.</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sınıf Adı</th>
+                        <th>Kullanıcı Bilgileri</th>
+                        <th>Oyuncu Sayısı</th>
+                        <th>Gizlilik</th>
+                        <th>Oluşturma Tarihi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td align="left">
+                                @item.Sinif.Ad
+                            </td>
+                            <td align="left">
+                                @item.Kullanici.Adi @item.Kullanici.Soyadi
+                            </td>
+                            <td align="left">
+                                @item.KisiSayisi Kişi
+                            </td>
+
+                            @{
+                                if (item.Sinif.Gorunurluk == true)
+                                {
+                                    <td align="left">Herkese Açık </td>
+                                }
+                                else
+                                {
+                                    <td align="left">Gizli Sınıf </td>
+                                }
+                            }
+
+
+                            <td align="left">
+                                @item.OyunZaman.Value.Day/@item.OyunZaman.Value.Month/@item.OyunZaman.Value.Year
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
+
+    </div>
+</body>
+</html>
+
+

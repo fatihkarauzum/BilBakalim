@@ -1,0 +1,147 @@
+html, body{
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+.topQuestion {
+  background-color: #260828;
+  position: relative;
+  min-height: 8%;
+  height: auto;
+  width: 100%;
+  z-index: 5;
+}
+
+.topLeftQuestion {
+	text-align: left;
+	float: left;
+	padding-top: 2vh;
+	padding-left: 2vh;
+	font-family: montserrat, "helvetica neue", helvetica, arial, sans-serif;
+	font-size: 1.1rem;
+	color: white;
+}
+
+.topRightQuestion {
+	text-align: right;
+	float: right;
+	padding-top: 2vh;
+	padding-right: 2vh;
+	font-family: montserrat, "helvetica neue", helvetica, arial, sans-serif;
+	font-size: 1.1rem;
+	color: white;
+}
+
+.middleQuestion {
+	display: flex;
+	background: #361438;
+	position: relative;
+	width: 100%;
+	height: 92%;
+	flex-direction: column;
+}
+
+.middleQuestion > .middleCounter{
+	display: flex;
+	position: relative;
+	width: 98%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+
+.middleQuestion > .middleIn{
+	display: flex;
+	position: relative;
+	width: 98%;
+	height: 94%;
+	background: #412243;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	flex-direction: column;
+}
+
+.middleQuestion > .middleIn > .templateQuestion{
+	display: flex;
+	background: #3A1F3C;
+	margin: auto;
+	width: 98%;
+	height: 46%;
+	flex-direction: column;
+}
+
+.middleQuestion > .middleIn > .templateQuestion > div{
+  margin: auto;
+  font-size: 2.6vw;
+  font-family: "Montserrat", "Helvetica Neue", helvetica, arial, sans-serif;
+  text-align: center;
+  color: white;
+}
+
+.middleQuestion > .middleIn > .templateAnswers{
+	display: flex;
+	margin: auto;
+	width: 98%;
+	height: 47%;
+}
+
+.middleQuestion > .middleIn > .templateAnswers > .a{
+	display: flex;
+	background: black;
+	width: 24.3%;
+	height: 80%; 
+	border-radius: 3%;
+	padding: 2%
+}
+
+.middleQuestion > .middleIn > .templateAnswers > .a > div{
+	margin: auto;
+	font-size: 2vw;
+	font-family: "Montserrat", "Helvetica Neue", helvetica, arial, sans-serif;
+	text-align: center;
+	color: white;
+}
+
+.label-control{ 
+	content: "" ;
+	font-size: 0em;
+}
+  
+.Loading-progress {
+height: 5px;
+width: 100%;
+border-radius: 3px;
+background: linear-gradient(90deg, red 0%, yellow 15%, lime 30%, cyan 50%, blue 65%, magenta 80%, red 100%);
+background-size: 200%;
+animation: moveGradient 5s linear infinite;
+}
+
+@keyframes moveGradient {
+0% {
+	background-position: 0% 0%;
+}
+100% {
+	background-position: -200% 0%;
+}
+}
+  
+.middleQuestion > .middleIn > .templateQuestion > div > img{
+	width: 65%
+  }
+  
+
+
+
+
+
+
+
+
+

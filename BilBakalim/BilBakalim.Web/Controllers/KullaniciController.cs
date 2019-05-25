@@ -21,8 +21,8 @@ namespace BilBakalim.Web.Controllers
         public ActionResult Yetkiler(int id)
         {
 
-            ViewbagModel a=new ViewbagModel();
-            HttpResponseMessage respone = Global.client.GetAsync("/api/KullaniciApi/ViewBag/"+id.ToString()).Result;
+            ViewbagModel a = new ViewbagModel();
+            HttpResponseMessage respone = Global.client.GetAsync("/api/KullaniciApi/ViewBag/" + id.ToString()).Result;
             if (respone.IsSuccessStatusCode)
             {
                 a = respone.Content.ReadAsAsync<ViewbagModel>().Result;
@@ -158,13 +158,13 @@ namespace BilBakalim.Web.Controllers
             else
             {
                 TempData["hata"] = "Bir Hata Oluştu. Lütfen Daha Sonra Tekrar Deneyiniz.";
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
 
         }
 
         [HttpPost]
-        public ActionResult SinifEkle(Sinif k ,bool? gor, HttpPostedFileBase resimGelen)
+        public ActionResult SinifEkle(Sinif k, bool? gor, HttpPostedFileBase resimGelen)
         {
             Resim o = new Resim();
             ResimKategori l = new ResimKategori();
@@ -177,7 +177,7 @@ namespace BilBakalim.Web.Controllers
             }
             else
             {
-                
+
                 string yeniResimAdi = "";
                 ResimIslemleri r = new ResimIslemleri();
                 yeniResimAdi = r.Ekle(resimGelen, "SinifSoru");
@@ -199,11 +199,11 @@ namespace BilBakalim.Web.Controllers
                 }
                 else
                 {
-                    
-                  
-                    l= db.ResimKategori.Where(x => x.KategoriAdi == "SinifSoru").SingleOrDefault();
-                    o.ResimKategoriID = l.ID;                  
-                    o.Url = yeniResimAdi;                  
+
+
+                    l = db.ResimKategori.Where(x => x.KategoriAdi == "SinifSoru").SingleOrDefault();
+                    o.ResimKategoriID = l.ID;
+                    o.Url = yeniResimAdi;
                     db.Resim.Add(o);
                     db.SaveChanges();
 
@@ -228,20 +228,20 @@ namespace BilBakalim.Web.Controllers
             db.Sinif.Add(k);
             db.SaveChanges();
 
-           
+
             Session["Sinif"] = k;
             return RedirectToAction("SoruEkle");
 
-           
+
             //return View(new Sinif());
         }
 
 
 
         [HttpGet]
-        public ActionResult SoruEkle(int ? id)
+        public ActionResult SoruEkle(int? id)
         {
-            if (id!=null)
+            if (id != null)
             {
                 ViewBag.id = id;
             }
@@ -251,7 +251,7 @@ namespace BilBakalim.Web.Controllers
 
 
         [HttpPost]
-    public ActionResult SoruEkle(Sorular sr , int DogruCont,bool? Odul, HttpPostedFileBase resimGelen, int? id)
+        public ActionResult SoruEkle(Sorular sr, int DogruCont, bool? Odul, HttpPostedFileBase resimGelen, int? id)
 
         {
             Resim o = new Resim();
@@ -301,7 +301,7 @@ namespace BilBakalim.Web.Controllers
             }
 
 
-                db.Sorular.Add(sr);
+            db.Sorular.Add(sr);
             if (Odul != null)
             {
                 sr.Odul = Odul;
@@ -310,7 +310,7 @@ namespace BilBakalim.Web.Controllers
             {
                 sr.Odul = false;
             }
-            if (id!=null)
+            if (id != null)
             {
                 sr.SinifID = id;
                 ViewBag.id = id;
@@ -321,29 +321,29 @@ namespace BilBakalim.Web.Controllers
                 sr.SinifID = s.ID;
                 ViewBag.id = s.ID;
             }
-        
+
             switch (DogruCont)
-                {
+            {
 
-                    case 1:
-                        sr.DogruCevap = "Cevap1";
-                        break;
-                    case 2:
-                        sr.DogruCevap = "Cevap2";
-                        break;
-                    case 3:
-                        sr.DogruCevap = "Cevap3";
-                        break;
-                    case 4:
-                        sr.DogruCevap = "Cevap4";
-                        break;
+                case 1:
+                    sr.DogruCevap = "Cevap1";
+                    break;
+                case 2:
+                    sr.DogruCevap = "Cevap2";
+                    break;
+                case 3:
+                    sr.DogruCevap = "Cevap3";
+                    break;
+                case 4:
+                    sr.DogruCevap = "Cevap4";
+                    break;
 
 
-                    default:
-                        break;
-                }
+                default:
+                    break;
+            }
             int? deneme = sr.Sure;
-            db.SaveChanges();           
+            db.SaveChanges();
             return View();
 
         }
@@ -355,19 +355,19 @@ namespace BilBakalim.Web.Controllers
         public ActionResult KullaniciDetay(int id)
         {
             //ViewBag.Siniflar = ctx.Database.SqlQuery<Sinif>("SELECT TOP 5 *FROM Sinif order by OlusturmaTarihi desc").Where(x => x.Gorunurluk == true).ToList();
-           
+
             Kullanici a = new Kullanici();
             HttpResponseMessage respone = Global.client.GetAsync("/api/KullaniciApi/KullaniciGetir/" + id.ToString()).Result;
             if (respone.IsSuccessStatusCode)
             {
                 a = respone.Content.ReadAsAsync<Kullanici>().Result;
-               
+
                 return View(a);
             }
             else
             {
                 TempData["hata"] = "Kullanici Listelenirken Bir Hata Oluştu. Lütfen Daha Sonra Tekrar Deneyiniz.";
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
 
         }
@@ -377,34 +377,34 @@ namespace BilBakalim.Web.Controllers
         public ActionResult KUllaniciGuncelle(Kullanici z)
         {
 
-                if (z != null)
-                {
-                    Kullanici k = db.Kullanici.Where(x => x.ID == z.ID).FirstOrDefault();
-                    k.Adi = z.Adi;                 
-                    k.Aciklama = z.Aciklama;
-                    k.Soyadi = z.Soyadi;
-                    k.KullaniciAdi = z.KullaniciAdi;
-                    db.SaveChanges();
-                    TempData["GenelMesaj"] = "Güncelleme Islemi Basarılı.";
-                    return RedirectToAction("KullaniciDetay/"+z.ID);
-                    
-                }
+            if (z != null)
+            {
+                Kullanici k = db.Kullanici.Where(x => x.ID == z.ID).FirstOrDefault();
+                k.Adi = z.Adi;
+                k.Aciklama = z.Aciklama;
+                k.Soyadi = z.Soyadi;
+                k.KullaniciAdi = z.KullaniciAdi;
+                db.SaveChanges();
+                TempData["GenelMesaj"] = "Güncelleme Islemi Basarılı.";
+                return RedirectToAction("KullaniciDetay/" + z.ID);
+
+            }
             else
             {
                 TempData["hata"] = "Boş Geçilemez!";
-                return View("KullaniciDetay/"+z.ID);
+                return View("KullaniciDetay/" + z.ID);
             }
-                                      
+
 
         }
 
         [HttpPost]
         public ActionResult KullaniciSifreResimGuncelle(string SifreTekrar, Kullanici k, HttpPostedFileBase resimGelen)
         {
-           
-                Kullanici c = db.Kullanici.Where(x => x.ID == k.ID).SingleOrDefault();
 
-            if(SifreTekrar=="" && k.Sifre == null)
+            Kullanici c = db.Kullanici.Where(x => x.ID == k.ID).SingleOrDefault();
+
+            if (SifreTekrar == "" && k.Sifre == null)
             {
                 if (resimGelen != null)
                 {
@@ -446,24 +446,24 @@ namespace BilBakalim.Web.Controllers
 
                 }
 
-                
+
             }
 
 
-                if (SifreTekrar != k.Sifre)
-                {
-                    TempData["hata"] = "Sifreler uyusmadı";
-                    return RedirectToAction("KullaniciDetay/" + k.ID);
-                }
-                else
-                {
+            if (SifreTekrar != k.Sifre)
+            {
+                TempData["hata"] = "Sifreler uyusmadı";
+                return RedirectToAction("KullaniciDetay/" + k.ID);
+            }
+            else
+            {
 
-                        if (resimGelen != null)
-                        {
-                            KullaniciResim kg = new KullaniciResim();
-                            string yeniResimAdi = "";
-                            ResimIslemleri r = new ResimIslemleri();
-                            yeniResimAdi = r.Ekle(resimGelen, "Kullanici");
+                if (resimGelen != null)
+                {
+                    KullaniciResim kg = new KullaniciResim();
+                    string yeniResimAdi = "";
+                    ResimIslemleri r = new ResimIslemleri();
+                    yeniResimAdi = r.Ekle(resimGelen, "Kullanici");
                     //yeniResimAdi = new ResimIslem().Ekle(resimGelen);
 
                     if (yeniResimAdi == "uzanti")
@@ -507,42 +507,42 @@ namespace BilBakalim.Web.Controllers
 
 
                     }
-                         }
-                    else
+                }
+                else
+                {
+                    using (MD5 md5Hash = MD5.Create())
                     {
-                        using (MD5 md5Hash = MD5.Create())
+                        string hash = Functions.Encrypt(k.Sifre);
+                        try
                         {
-                            string hash = Functions.Encrypt(k.Sifre);
-                            try
-                            {
-                                c.Sifre = hash;
+                            c.Sifre = hash;
 
-                                    db.SaveChanges();
-                                    TempData["GenelMesaj"] = "Başarılı";
-                                    return RedirectToAction("KullaniciDetay/" + k.ID);
-                               
-
-                            }
+                            db.SaveChanges();
+                            TempData["GenelMesaj"] = "Başarılı";
+                            return RedirectToAction("KullaniciDetay/" + k.ID);
 
 
-                            catch (Exception)
-                            {
-                                TempData["hata"] = "Başarısız";
-                                return RedirectToAction("KullaniciDetay/" + k.ID);
-                            }
                         }
-                    }                   
-                   
+
+
+                        catch (Exception)
+                        {
+                            TempData["hata"] = "Başarısız";
+                            return RedirectToAction("KullaniciDetay/" + k.ID);
+                        }
+                    }
                 }
 
             }
 
-           
+        }
+
+
 
         [HttpGet]
         public ActionResult KullaniciGuncelle(int id)
         {
-            HttpResponseMessage respone = Global.client.GetAsync("/api/KullaniciApi/KullaniciGetir/" + id.ToString()).Result;           
+            HttpResponseMessage respone = Global.client.GetAsync("/api/KullaniciApi/KullaniciGetir/" + id.ToString()).Result;
             if (respone.IsSuccessStatusCode)
             {
                 return View(respone.Content.ReadAsAsync<Kullanici>().Result);
@@ -563,7 +563,7 @@ namespace BilBakalim.Web.Controllers
             ViewBag.takip = db.Takip.Include("Kullanici").ToList();
             foreach (var item in liste)
             {
-               List<Kullanici> list = db.Kullanici.Include("KullaniciResim").Include("Sinif").Include("Takip").Where(x => x.ID == item.TakipEdilenID).ToList();
+                List<Kullanici> list = db.Kullanici.Include("KullaniciResim").Include("Sinif").Include("Takip").Where(x => x.ID == item.TakipEdilenID).ToList();
                 liste2.AddRange(list);
             }
 
@@ -576,7 +576,7 @@ namespace BilBakalim.Web.Controllers
         {
 
             ViewBag.Kategori = db.SinifKategori.Include("Sinif").ToList();
-            List<Sinif> liste= db.Sinif.Include("Resim").Include("Favori").Include("Sorular").Include("SinifKategori").Where(x => x.KullaniciID == id).ToList();
+            List<Sinif> liste = db.Sinif.Include("Resim").Include("Favori").Include("Sorular").Include("SinifKategori").Where(x => x.KullaniciID == id).ToList();
             return View(liste);
 
         }
@@ -586,7 +586,7 @@ namespace BilBakalim.Web.Controllers
             ViewBag.Kategori = db.SinifKategori.Include("Sinif").ToList();
             ViewBag.SinifKat = db.Sinif.Include("Resim").Include("Favori").Include("Sorular").Where(x => x.SinifKategoriID == id).ToList();
             List<Sinif> liste = db.Sinif.Include("Resim").Include("Favori").Include("Sorular").Include("SinifKategori").Where(x => x.KullaniciID == id).ToList();
-            return View("OyunListesi",liste);
+            return View("OyunListesi", liste);
 
         }
 
@@ -644,7 +644,7 @@ namespace BilBakalim.Web.Controllers
                 }
             }
 
-           
+
 
         }
 
@@ -663,7 +663,7 @@ namespace BilBakalim.Web.Controllers
                 {
                     ViewBag.sonuc = "Hata";
                     return View();
-                }  
+                }
                 else
                 {
                     i.Tarih = DateTime.Now;
@@ -758,9 +758,9 @@ namespace BilBakalim.Web.Controllers
 
 
         }
-
+      
     }
 
-    }
+}
 
 

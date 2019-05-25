@@ -1,0 +1,39 @@
+﻿<div class="middleQuestion">
+    <div class="middleCounter">
+    </div>
+    <div class="middleIn">
+        <div class="templateQuestion">
+            <div>@Model.Soru</div>
+        </div>
+        <div class="templateAnswers">
+            @if (Model.Cevap1 != null)
+            {
+                <div class="a" style="background-color: #2F6DAE; margin-right: 1.03%">
+                    @{string linkText = Model.Cevap1;}
+                    <div>@Html.ActionLink(linkText, "AnketSoru", new { secim = "a" })</div>
+                </div>
+            }
+            @if (Model.Cevap2 != null)
+            {
+                <div class="a" style="background-color: #ECA82C; margin-right: 1.03%">
+                    @{string linkText = Model.Cevap2;}
+                    <div>@Html.ActionLink(linkText, "AnketSoru", new { secim = "b" })</div>
+                </div>
+            }
+            @if (Model.Cevap3 != null)
+            {
+                <div class="a" style="background-color: #2C9CA6; margin-right: 1.03%">
+                    @{string linkText = Model.Cevap3;}
+                    <div>@Html.ActionLink(linkText, "AnketSoru", new { secim = "c" })</div>
+                </div>
+            }
+            @if (Model.Cevap4 != null)
+            {
+                <div class="a" style="background-color: #D4546A; margin-right: 1.03%">
+                    @{string linkText = Model.Cevap4;}
+                    <div>@Html.ActionLink(linkText, "AnketSoru", new { secim = "d" })</div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

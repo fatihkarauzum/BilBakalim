@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Sinif";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Ürün Raporu<br />
+                <span style="color:red;font-size:11px;">*  Aşağıdaki alanlar 've' koşulu ile çalışır.</span>
+            </header>
+            <div class="panel-body">
+                <form role="form" method="post" action="/AdminPrint/SinifPrint" target="_blank">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Kategori Seçiniz </label>
+                        @Html.DropDownList("ID", (SelectList)ViewBag.kategori, "Seçiniz...", new { @class = "form-control", id = "ana" })
+                    </div>
+
+                    <!-- partial view-->
+                    <div class="form-group alt">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Kişi Sayısı (Küçük olanları Getirir.)</label>
+                        <input type="number" class="form-control" placeholder="Kişi Sayısı Giriniz..." name="OyunMiktarı">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Eklenme Tarihi (Seçilen tarihten sonra eklenen ürünleri getirir.) </label>
+                        <input type="date" class="form-control" placeholder="Eklenme Tarihi Giriniz..." name="EklenmeTarihi">
+                    </div>
+
+                    <button style="float:right;" type="submit" class="btn btn-info">Rapor Çıkar</button>
+                </form>
+
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+@section script{
+    <script>
+           var id;
+           $("#ana").change(function () {
+               id = this.value;
+               $.ajax({
+                   url: '/AdminPrint/altKategoriDropdown/' + id,
+                   type: 'GET',
+                   cache: false,
+                   success: function (data) {
+                       $('.alt').html(data);
+                   },
+                   error: function () {
+                       $('.alt').html("");
+                   }
+               });
+           });
+    </script>
+}

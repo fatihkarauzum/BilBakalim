@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model BilBakalim.Data.AnketSoru
+
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <link href="/Content/Socket/Sorular2/css/styleSoru.css" rel="stylesheet">
+        <style>
+            .a div a {
+                text-decoration: none;
+                color: white;
+            }
+        </style>
+        
+    </head>
+
+    <body>
+    <div class="topQuestion">
+        <div class="topLeftQuestion">
+            <b>PIN: 00000</b>
+        </div>
+        <div class="topRightQuestion">
+            <b>3 / 14</b>
+        </div>
+    </div>
+	    
+    @{
+        Html.RenderAction("AnketSoruGec");
+    }
+	    
+    @*<script>
+        var sorular = {};
+        var i = 1;
+        @foreach (var item in Model)
+        {
+            @:sorular[i] = @item;
+            @:i++;
+        }
+    </script>*@
+
+    </body>
+</html>
