@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Raporlar";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+@using BilBakalim.Data
+@model List<Rapor>
+<div class="site-content shop-layout product-cart padTB60">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="centered-title">
+                <h2>Oyun <span class="light-font">Raporları</span></h2>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post" action="#">
+                    <table class="shop_table cart">
+                        <thead>
+                            <tr>
+                                <th class="product-name">No</th>
+                                <th class="product-name">Sınıf Adı</th>
+                                <th class="product-price">Kullanıcı Bilgileri</th>
+                                <th class="product-quantity">Oyuncu Sayısı</th>
+                                <th class="product-subtotal">Gizlilik</th>
+                                <th class="product-subtotal">Oluşturma Tarihi</th>
+                                <th class="product-subtotal">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr class="cart_item">
+                                    <td class="product-name" data-title="Product">
+                                        <a href="/Content/Home/">@item.ID</a>
+                                    </td>
+                                    <td class="product-name" data-title="Product">
+                                        <a href="/Content/Home/">@item.Sinif.Ad</a>
+                                    </td>
+                                    <td class="product-name" data-title="Product">
+                                        <a href="/Content/Home/">@item.Kullanici.Adi @item.Kullanici.Soyadi</a>
+                                    </td>
+                                    <td class="product-name" data-title="Product">
+                                        <a href="/Content/Home/">@item.KisiSayisi</a>
+                                    </td>
+                                    <td class="product-name" data-title="Product">
+                                        <a href="/Content/Home/">@item.Sinif.Gorunurluk</a>
+                                    </td>
+                                    <td class="product-name" data-title="Product">
+                                        <a href="/Content/Home/">@item.OyunZaman</a>
+                                    </td>
+                                    <td class="product-name" data-title="Product">
+                                        <a target="_blank" href="/HomePrint/OyunPrint/@item.ID" class="btn btn-warning btn-xs"><i class="icon-pencil"></i> Raporla</a>
+                                    </td>
+                                </tr>
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                    <div class="row">
+
+                    </div>
+                </form>
+            </div>
+            <!-- /.col-md-12 -->
+        </div>
+        <!-- /.row -->
+        <!-- /.cart-collaterals -->
+    </div>
+    <!-- /.container -->
+</div>

@@ -468,6 +468,7 @@
     <Compile Include="Controllers\AdminPrintController.cs" />
     <Compile Include="Controllers\AnketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomePrintController.cs" />
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -558,6 +559,8 @@
     <Content Include="Views\AdminPrint\altKategoriDropdown.cshtml" />
     <Content Include="Views\Home\SoruDuzenle.cshtml" />
     <Content Include="Views\Anket\AnketSoruDuzenle.cshtml" />
+    <Content Include="Views\HomePrint\Raporlar.cshtml" />
+    <Content Include="Views\HomePrint\OyunPrint.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
