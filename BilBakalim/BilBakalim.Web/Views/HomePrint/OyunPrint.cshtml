@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "OyunPrint";
+    Layout = null;
+}
+
+@using BilBakalim.Data
+
+@model Rapor
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Rapor</title>
+    <link href="/Content/Admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/Admin/css/bootstrap-reset.css" rel="stylesheet">
+</head>
+<body>
+    <div style="align-items:center;text-align:center;">
+        <h3>Düzce Üniversitesi  <br /> Bil Bakalım Sınıf Raporu </h3> <p>@DateTime.Now</p><br />
+
+
+        <table class="table">
+
+            <tbody>
+
+                <tr>
+                    <td align="left">
+                        <b>1-) Sınıf Adı</b>
+                    </td>
+                    <td align="left">
+                        @Model.Sinif.Ad
+                    </td>
+
+                </tr>
+                <tr>
+                    <td align="left">
+                        <b> 2-) Kullanıcı Bilgileri</b>
+                    </td>
+                    <td align="left">
+                        @Model.Kullanici.Adi @Model.Kullanici.Soyadi
+                    </td>
+
+                </tr>
+                <tr>
+                    <td align="left">
+                        <b> 3-) Oyuncu Sayısı</b>
+                    </td>
+                    <td align="left">
+                        @Model.KisiSayisi
+                    </td>
+
+                </tr>
+                <tr>
+                    <td align="left">
+                        <b>4-) Gizlilik</b>
+                    </td>
+                    <td align="left">
+                        @{
+                            if (Model.Sinif.Gorunurluk == true)
+                            {
+                                <p> Herkese Açık</p>
+                            }
+                            else
+                            {
+                                <p>Gzili Sınıf</p>
+                            }
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left">
+                        <b>5-) Oynanma Zamanı</b>
+                    </td>
+                    <td align="left">
+                        @Model.OyunZaman.Value.Day/@Model.OyunZaman.Value.Month/@Model.OyunZaman.Value.Year
+                    </td>
+
+                </tr>
+                <tr>
+                    <td align="left">
+                        <b>6-) Sınıf Oluşturma Zamanı </b>
+                    </td>
+                    <td align="left">
+                        @Model.Sinif.OlusturmaTarihi.Value.Day/@Model.Sinif.OlusturmaTarihi.Value.Month/@Model.Sinif.OlusturmaTarihi.Value.Year
+                    </td>
+
+                </tr>
+
+
+
+            </tbody>
+            </table>
+
+        </div>
+    </body>
+</html>
+
+

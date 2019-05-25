@@ -20,10 +20,44 @@
                     <figcaption>
                         <h3>@Model.Ad</h3>
 
-                        <a style="margin-right:15%" class="fancybox" rel="group" href="http://localhost:3000/surveyRegister/@Model.ID"> Oyna </a>
-                        @if (Model.KullaniciID == c.ID)
-                        {
-                            <a class="fancybox" rel="group" href="/Anket/AnketDuzenle/@Model.ID"> Düzenle </a>
+                        @{
+                            if (c != null)
+                            {
+                                if (Model.Kullanici.ID == c.ID)
+                                {
+                                    <a style="margin-right:9vw" class="fancybox" rel="group" href="/Anket/AnketSoruEkle/@Model.ID"> Soru Ekle </a>
+                                    <a style="margin-right:4vw" class="fancybox" rel="group" href="/Anket/AnketDuzenle/@Model.ID"> Düzenle </a>
+                                    if (Enumerable.Count(ViewBag.soru) != 0)
+                                    {
+                                        <a class="fancybox" rel="group" href="http://localhost:3000/register/@Model.ID"> Oyna </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="fancybox" rel="group" href="#" onclick="alert('Sınıfta Soru Bulunamadığı İçin Oyun Başlatılamamakta. Lütfent Daha Sonra Tekrar Deneyiniz.');"> Oyna </a>
+                                    }
+
+                                }
+                                else
+                                {
+                                    if (Enumerable.Count(ViewBag.soru) != 0)
+                                    {
+                                        <a class="fancybox" rel="group" href="http://localhost:3000/register/@Model.ID"> Oyna </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="fancybox" rel="group" href="#" onclick="alert('Sınıfta Soru Bulunamadığı İçin Oyun Başlatılamamakta. Lütfent Daha Sonra Tekrar Deneyiniz.');"> Oyna </a>
+                                    }
+
+                                }
+                            }
+
+                            else
+                            {
+                                <a class="fancybox" rel="group" href="#" onclick="alert('Lütfen giriş yapınız');"> Oyna </a>
+
+                            }
+
+
                         }
 
                     </figcaption>
@@ -90,6 +124,15 @@
                                 <a href="/Content/Admin/#@sayi" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle">
                                     @sayi -) @item.Soru
                                 </a>
+                                @if (c != null)
+                                {
+                                    if (item.Anket.KullaniciID == c.ID)
+                                    {
+                                        <a style="float:right;margin-right:5px;" data-id="@item.ID" class="btn btn-danger btn-xs btn-confirm"><i class="icon-trash"></i> <b>Sil</b></a>
+                                        <a style="float:right;margin-right:5px;" href="/Anket/AnketSoruDuzenle/@item.ID" class="btn btn-primary btn-xs"><i class="icon-pencil"></i> <b>Düzenle</b></a>
+                                    }
+
+                                }
                             </h4>
                         </div>
                         <div class="panel-collapse collapse" id="@sayi">
@@ -150,7 +193,49 @@
     </div>
 
 </div>
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Bu Soruyu Silmek İstediğinizden Emin misiniz ?</h4>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-danger btnnn" id="modal-btn-si">Sil</a>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section script{
+    <script>
+        var id;
+        var modalConfirm = function (callback) {
+            $(".btn-confirm").on("click", function () {
+                id = $(this).attr("data-id");
+                $(".btnnn").attr('href', function () {
+                    return "/Anket/AnketSoruSil/" + id;
+                })
+                $("#mi-modal").modal('show');
+            });
 
+            $("#modal-btn-si").on("click", function () {
+                callback(true);
+                $("#mi-modal").modal('hide');
+            });
+
+            $("#modal-btn-no").on("click", function () {
+                callback(false);
+                $("#mi-modal").modal('hide');
+                return e.preventDefault()
+            });
+        };
+
+        modalConfirm(function (confirm) {
+
+        });
+    </script>
+}
 
 <link href="/Content/Admin/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link href="/Content/Admin/css/style.css" rel="stylesheet">

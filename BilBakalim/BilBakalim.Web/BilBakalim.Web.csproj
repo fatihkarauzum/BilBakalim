@@ -461,6 +461,7 @@
     <Compile Include="App_Classes\Global.cs" />
     <Compile Include="App_Classes\MvcHelper.cs" />
     <Compile Include="App_Classes\ResimIslemleri.cs" />
+    <Compile Include="App_Classes\SinifFilter.cs" />
     <Compile Include="App_Classes\_SecurityFilter.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -468,6 +469,7 @@
     <Compile Include="Controllers\AnketCevapController.cs" />
     <Compile Include="Controllers\AnketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomePrintController.cs" />
     <Compile Include="Controllers\KullaniciController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -553,6 +555,13 @@
     <Content Include="Views\Kullanici\SinifDuzenle.cshtml" />
     <Content Include="Views\Admin\AnketEkle.cshtml" />
     <Content Include="Views\Admin\AnketSoruEkle.cshtml" />
+    <Content Include="Views\AdminPrint\SinifPrint.cshtml" />
+    <Content Include="Views\AdminPrint\Sinif.cshtml" />
+    <Content Include="Views\AdminPrint\altKategoriDropdown.cshtml" />
+    <Content Include="Views\Home\SoruDuzenle.cshtml" />
+    <Content Include="Views\Anket\AnketSoruDuzenle.cshtml" />
+    <Content Include="Views\HomePrint\Raporlar.cshtml" />
+    <Content Include="Views\HomePrint\OyunPrint.cshtml" />
     <Content Include="Views\AdminPrint\SoruRapor.cshtml" />
     <Content Include="Views\AnketCevap\AnketSoru.cshtml" />
     <Content Include="Views\AnketCevap\AnketSoruGec.cshtml" />
