@@ -29,7 +29,7 @@
                                     <a style="margin-right:4vw" class="fancybox" rel="group" href="/Anket/AnketDuzenle/@Model.ID"> Düzenle </a>
                                     if (Enumerable.Count(ViewBag.soru) != 0)
                                     {
-                                        <a class="fancybox" rel="group" href="http://localhost:3000/register/@Model.ID"> Oyna </a>
+                                        <a class="fancybox" rel="group" href="/AnketCevap/AnketSoru/@Model.ID"> Oyna </a>
                                     }
                                     else
                                     {
@@ -41,7 +41,7 @@
                                 {
                                     if (Enumerable.Count(ViewBag.soru) != 0)
                                     {
-                                        <a class="fancybox" rel="group" href="http://localhost:3000/register/@Model.ID"> Oyna </a>
+                                        <a class="fancybox" rel="group" href="/AnketCevap/AnketSoru/@Model.ID"> Oyna </a>
                                     }
                                     else
                                     {
@@ -50,15 +50,21 @@
 
                                 }
                             }
-
                             else
                             {
-                                <a class="fancybox" rel="group" href="#" onclick="alert('Lütfen giriş yapınız');"> Oyna </a>
-
+                                if (Enumerable.Count(ViewBag.soru) != 0)
+                                {
+                                    <a class="fancybox" rel="group" href="/AnketCevap/AnketSoru/@Model.ID"> Oyna </a>
+                                }
+                                else
+                                {
+                                    <a class="fancybox" rel="group" href="#" onclick="alert('Sınıfta Soru Bulunamadığı İçin Oyun Başlatılamamakta. Lütfent Daha Sonra Tekrar Deneyiniz.');"> Oyna </a>
+                                }
                             }
 
-
                         }
+
+
 
                     </figcaption>
                 </figure>

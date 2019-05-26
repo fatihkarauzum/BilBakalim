@@ -566,6 +566,7 @@
     <Content Include="Views\AnketCevap\AnketSoru.cshtml" />
     <Content Include="Views\AnketCevap\AnketSoruGec.cshtml" />
     <Content Include="Views\AnketCevap\AnketSoruSon.cshtml" />
+    <Content Include="Views\AnketCevap\AnketSoruSayi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

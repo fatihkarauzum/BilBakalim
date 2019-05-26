@@ -23,11 +23,10 @@
 
     <body>
     <div class="topQuestion">
-        <div class="topLeftQuestion">
-            <b>PIN: 00000</b>
-        </div>
         <div class="topRightQuestion">
-            <b>3 / 14</b>
+            @{
+                Html.RenderAction("AnketSoruSayi");
+            }
         </div>
     </div>
 	    

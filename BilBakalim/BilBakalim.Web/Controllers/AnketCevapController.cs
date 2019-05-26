@@ -13,9 +13,12 @@ namespace BilBakalim.Web.Controllers
 
         private static List<AnketSoru> anketSoru;
 
+        private static int sayi = 0; 
+
         private static AnketSoru gosterilenAnketSoru;
 
-        private static int basimDurumu = 1;
+        private static int basimDurumu = 0;
+
 
         // GET: AnketCevap
         public ActionResult AnketSoru(int? id, string secim)
@@ -25,6 +28,9 @@ namespace BilBakalim.Web.Controllers
                 if (anketSoru == null && id != null)
                 {
                     anketSoru = db.AnketSoru.Where(x => x.SinifID == id).ToList();
+                    sayi = anketSoru.Count;
+                    gosterilenAnketSoru = anketSoru.First();
+                    anketSoru.Remove(gosterilenAnketSoru);    
                 }
                 else if (anketSoru != null)
                 {
@@ -122,9 +128,28 @@ namespace BilBakalim.Web.Controllers
                     gosterilenAnketSoru = anketSoru.First();
                     anketSoru.Remove(gosterilenAnketSoru);
                     basimDurumu = 0;
+                    ViewBag.gonderSayi = sayi - anketSoru.Count;
                 }    
             }
             return PartialView(gosterilenAnketSoru);
+        }
+
+        public PartialViewResult AnketSoruSayi()
+        {
+            if (anketSoru != null)
+            {
+                if (anketSoru.Count != 0 && basimDurumu == 1)
+                {
+                    ViewBag.gonderSayi = sayi - anketSoru.Count + 1;
+                    ViewBag.sayi = sayi;
+                }
+                else
+                {
+                    ViewBag.gonderSayi = 1;
+                    ViewBag.sayi = sayi;
+                }
+            }
+            return PartialView();
         }
 
         public ActionResult AnketSoruSon()
