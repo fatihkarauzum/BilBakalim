@@ -46,6 +46,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                 });
 
                 $scope.Cevap = (cevap) => {
+                    $("#dis").show();
                     socket.emit('choosingAnswer', { roomId: $('#id').val(), answer: cevap });
 
                     $('#middleSub').show();
@@ -164,7 +165,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                     $scope.$applyAsync();
                 });
 
-                socket.on('newUserConnect', (data) => {
+                socket.on('newUserConnectMe', (data) => {
                     $('#name').hide();
                     $('#loginBlock').hide();
                     $('#middle').show();
@@ -172,6 +173,11 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                     $('#middleSub1').show();
                     $('#wait').show();
 
+                    $scope.players[data.id] = data;
+                    $scope.$applyAsync();
+                });
+
+                socket.on('newUserConnect', (data) => {
                     $scope.players[data.id] = data;
                     $scope.$applyAsync();
                 });
@@ -203,6 +209,7 @@ app.controller('loginController', ['$scope', 'loginFactory', ($scope, loginFacto
                 });
 
                 socket.on('showMiddle', () => {
+                    $("#dis").hide();
                     $('#middle').show();
                 });
 

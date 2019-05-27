@@ -162,6 +162,7 @@ io.on('connection', (socket) => {
             users[socket.id] = defaultData;
     
             io.to(data.roomId).emit('newUserConnect', users[socket.id]);    
+            socket.emit('newUserConnectMe', users[socket.id]);   
             socket.emit('mineId', socket.id);
             socket.emit('initPlayers', users);
         }
